@@ -1,0 +1,74 @@
+import 'package:flutter/material.dart';
+
+Container customButton({
+  required void Function() onPress,
+  required Widget icon,
+  Color color = Colors.black,
+}) {
+  return Container(
+    height: 55,
+    width: 55,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(69),
+      border: Border.all(
+        color: color,
+        width: 3,
+      ),
+    ),
+    child: IconButton(
+      iconSize: 30,
+      icon: icon,
+      color: color,
+      onPressed: onPress,
+    ),
+  );
+}
+
+GestureDetector gridButton({
+  required IconData icon,
+  required String name,
+  String? selected,
+  Function()? onTap,
+}) {
+  return GestureDetector(
+    onTap: onTap,
+    child: Stack(
+      children: [
+        Container(
+          height: double.maxFinite,
+          width: double.maxFinite,
+          padding: const EdgeInsets.all(5),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(7),
+            color: const Color(0xFFFEEEFF),
+            border: Border.all(),
+          ),
+          child: Row(
+            children: [
+              Icon(icon, size: 30),
+              const SizedBox(width: 5),
+              Text(
+                name,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ),
+        Visibility(
+          visible: selected == name,
+          child: Container(
+            margin: const EdgeInsets.all(1),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(6),
+              color: const Color(0x44D32124),
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+}
