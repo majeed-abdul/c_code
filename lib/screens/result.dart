@@ -23,7 +23,6 @@ class _ResultScreenState extends State<ResultScreen> {
               curve: Curves.fastOutSlowIn,
               duration: const Duration(milliseconds: 1500),
             ));
-
     super.initState();
   }
 
