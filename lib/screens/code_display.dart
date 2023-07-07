@@ -22,18 +22,32 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
       ),
       body: Column(
         children: [
-          BarcodeWidget(
-            height: MediaQuery.of(context).size.width <=
-                    MediaQuery.of(context).size.height
-                ? MediaQuery.of(context).size.width - 60 * 2
-                : MediaQuery.of(context).size.height - 60 * 2,
-            data: widget.data ?? '',
-            barcode: widget.barCode ?? Barcode.qrCode(),
-            padding: const EdgeInsets.all(20),
-            errorBuilder: (context, error) => _onError(error),
-          ),
+          displayOutputCode(context),
         ],
       ),
+    );
+  }
+
+//
+
+//
+
+//                  E X T R A S
+
+//
+
+//
+
+  displayOutputCode(BuildContext context) {
+    BarcodeWidget(
+      height: MediaQuery.of(context).size.width <=
+              MediaQuery.of(context).size.height
+          ? MediaQuery.of(context).size.width - 60 * 2
+          : MediaQuery.of(context).size.height - 60 * 2,
+      data: widget.data ?? '',
+      barcode: widget.barCode ?? Barcode.qrCode(),
+      padding: const EdgeInsets.all(20),
+      errorBuilder: (context, error) => _onError(error),
     );
   }
 

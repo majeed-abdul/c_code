@@ -63,6 +63,16 @@ class _ScanScreenState extends State<ScanScreen> {
     );
   }
 
+//
+
+//
+
+//                  E X T R A S
+
+//
+
+//
+
   Container cameraSwitchButton() {
     return customButton(
       onPress: () async {

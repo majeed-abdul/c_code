@@ -23,7 +23,6 @@ class _ResultScreenState extends State<ResultScreen> {
               curve: Curves.fastOutSlowIn,
               duration: const Duration(milliseconds: 1500),
             ));
-
     super.initState();
   }
 
@@ -40,13 +39,8 @@ class _ResultScreenState extends State<ResultScreen> {
         title: Text(describeEnum(widget.result.format)),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pop(context);
-        },
-        child: const Icon(
-          Icons.qr_code_scanner_outlined,
-          size: 30,
-        ),
+        onPressed: () => Navigator.pop(context),
+        child: const Icon(Icons.qr_code_scanner_outlined, size: 30),
       ),
       body: SingleChildScrollView(
         controller: scrollCon,
@@ -55,66 +49,76 @@ class _ResultScreenState extends State<ResultScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text(
-                'Text',
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
+              const Text('Text',
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500)),
               const SizedBox(height: 10),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  border: Border.all(
-                    color: Colors.black,
-                    width: 1,
-                  ),
-                ),
-                width: double.infinity,
-                padding: const EdgeInsets.all(9),
-                child: SelectableText(
-                  '${widget.result.code}',
-                  style: const TextStyle(fontSize: 15),
-                ),
-              ),
+              resultText(),
               const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  customButton(
-                    onPress: () {
-                      _browse();
-                    },
-                    icon: const Icon(Icons.link),
-                  ),
-                  customButton(
-                    onPress: () {
-                      _copy();
-                    },
-                    icon: const Icon(Icons.copy),
-                  ),
-                ],
-              ),
-              // const SizedBox(height: 5),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SizedBox(
-                    width: 55,
-                    child: Text('Browse', textAlign: TextAlign.center),
-                  ),
-                  SizedBox(
-                    width: 55,
-                    child: Text('Copy', textAlign: TextAlign.center),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 55), // end spacer
+              buttonsRow(),
+              buttonsLabelRow(),
+              const SizedBox(height: 55),
             ],
           ),
         ),
       ),
+    );
+  }
+
+//
+
+//
+
+//                  E X T R A S
+
+//
+
+//
+
+  Row buttonsLabelRow() {
+    return const Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        SizedBox(
+          width: 55,
+          child: Text('Browse', textAlign: TextAlign.center),
+        ),
+        SizedBox(
+          width: 55,
+          child: Text('Copy', textAlign: TextAlign.center),
+        ),
+      ],
+    );
+  }
+
+  Row buttonsRow() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        customButton(
+          onPress: () => _browse(),
+          icon: const Icon(Icons.link),
+        ),
+        customButton(
+          onPress: () => _copy(),
+          icon: const Icon(Icons.copy),
+        ),
+      ],
+    );
+  }
+
+  Container resultText() {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        border: Border.all(
+          color: Colors.black,
+          width: 1,
+        ),
+      ),
+      width: double.infinity,
+      padding: const EdgeInsets.all(9),
+      child: SelectableText('${widget.result.code}',
+          style: const TextStyle(fontSize: 15)),
     );
   }
 
