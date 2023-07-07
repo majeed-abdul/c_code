@@ -28,6 +28,16 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
     );
   }
 
+//
+
+//
+
+//                  E X T R A S
+
+//
+
+//
+
   displayOutputCode(BuildContext context) {
     BarcodeWidget(
       height: MediaQuery.of(context).size.width <=
