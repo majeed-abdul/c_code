@@ -50,17 +50,14 @@ class _ResultScreenState extends State<ResultScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text(
-                'Text',
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
-              ),
+              const Text('Text',
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500)),
               const SizedBox(height: 10),
               resultText(),
               const SizedBox(height: 20),
               buttonsRow(),
-              // const SizedBox(height: 5),
               buttonsLabelRow(),
-              const SizedBox(height: 55), // end spacer
+              const SizedBox(height: 55),
             ],
           ),
         ),
