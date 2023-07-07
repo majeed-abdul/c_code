@@ -65,6 +65,16 @@ class _ResultScreenState extends State<ResultScreen> {
     );
   }
 
+//
+
+//
+
+//                  E X T R A S
+
+//
+
+//
+
   Row buttonsLabelRow() {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
