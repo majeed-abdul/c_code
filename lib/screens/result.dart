@@ -1,8 +1,8 @@
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:c_code/widgets/buttons.dart';
 import 'package:c_code/widgets/pop_ups.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class ResultScreen extends StatefulWidget {
@@ -97,9 +97,9 @@ class _ResultScreenState extends State<ResultScreen> {
                 ],
               ),
               // const SizedBox(height: 5),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: const [
+                children: [
                   SizedBox(
                     width: 55,
                     child: Text('Browse', textAlign: TextAlign.center),

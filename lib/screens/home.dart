@@ -31,10 +31,11 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('Create Code'),
         actions: [
           IconButton(
-              onPressed: () {
-                Navigator.pushNamed(context, ScanScreen.id);
-              },
-              icon: const Icon(Icons.qr_code_scanner)),
+            onPressed: () {
+              Navigator.pushNamed(context, ScanScreen.id);
+            },
+            icon: const Icon(Icons.qr_code_scanner),
+          ),
         ],
         elevation: 0,
       ),

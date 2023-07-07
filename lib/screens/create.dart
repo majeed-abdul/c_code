@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:c_code/data/create.dart';
-import 'package:c_code/data/provider.dart';
 import 'package:c_code/screens/code_display.dart';
-import 'package:c_code/widgets/buttons.dart';
 import 'package:c_code/widgets/text_field.dart';
 import 'package:c_code/widgets/drop_down.dart';
+import 'package:c_code/widgets/buttons.dart';
+import 'package:c_code/data/provider.dart';
+import 'package:c_code/data/create.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
 
 class CreateScreen extends StatefulWidget {
   const CreateScreen({Key? key}) : super(key: key);
@@ -203,12 +203,14 @@ class _CreateScreenState extends State<CreateScreen> {
     return ElevatedButton(
       onPressed: () {
         Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (BuildContext context) => CodeDisplayScreen(
-                      data: textCon.text,
-                      barCode: numberBarcodes[dropDownValueType],
-                    )));
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => CodeDisplayScreen(
+              data: textCon.text,
+              barCode: numberBarcodes[dropDownValueType],
+            ),
+          ),
+        );
       },
       child: const Text('Create'),
     );

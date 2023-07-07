@@ -41,15 +41,9 @@ ListTile dropDown({
         ),
         underline: const SizedBox(),
         onChanged: onChanged,
-        icon: const Icon(
-          Icons.keyboard_arrow_down_rounded,
-          size: 30,
-        ),
+        icon: const Icon(Icons.keyboard_arrow_down_rounded, size: 30),
         items: items.map<DropdownMenuItem<String>>((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Text(value),
-          );
+          return DropdownMenuItem<String>(value: value, child: Text(value));
         }).toList(),
       ),
     ),
