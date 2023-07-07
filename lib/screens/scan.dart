@@ -1,7 +1,7 @@
-import 'package:c_code/screens/result.dart';
-import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:c_code/widgets/buttons.dart';
+import 'package:c_code/screens/result.dart';
+import 'package:flutter/material.dart';
 import 'dart:io';
 
 class ScanScreen extends StatefulWidget {
