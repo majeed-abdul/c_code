@@ -124,7 +124,7 @@ class _ResultScreenState extends State<ResultScreen> {
 
   void _copy() async {
     await Clipboard.setData(
-      ClipboardData(text: widget.result.code),
+      ClipboardData(text: '${widget.result.code}'),
     ).then(
       (value) => showSnackBar(context, 'Coppied'),
     );
