@@ -16,8 +16,8 @@ class CreateScreen extends StatefulWidget {
 
 class _CreateScreenState extends State<CreateScreen> {
   TextEditingController textCon = TextEditingController();
-  String? dropDownValueType = textBarcodes.keys.first;
   String? dropDownValueTypeNum = numberBarcodes.keys.first;
+  String? dropDownValueType = textBarcodes.keys.first;
 
   bool isMore = false;
 
