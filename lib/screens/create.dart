@@ -114,6 +114,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 onChanged: (value) {
                   dropDownValueType = value;
                   setState(() {});
+                  debugPrint("   $dropDownValueType");
                 },
                 dropDownValue: dropDownValueType,
                 text: 'Type',
