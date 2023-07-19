@@ -83,9 +83,7 @@ class _ScanScreenState extends State<ScanScreen> {
         }
         controller?.flipCamera();
       },
-      icon: const Icon(
-        Icons.flip_camera_ios_outlined,
-      ),
+      icon: Icons.flip_camera_ios_outlined,
       color: Colors.white,
     );
   }
@@ -97,11 +95,9 @@ class _ScanScreenState extends State<ScanScreen> {
           isFlashOn = await controller?.getFlashStatus() ?? false;
           setState(() {});
         },
-        icon: Icon(
-          isFlashOn
-              ? Icons.flashlight_on_outlined
-              : Icons.flashlight_off_outlined,
-        ),
+        icon: isFlashOn
+            ? Icons.flashlight_on_outlined
+            : Icons.flashlight_off_outlined,
         color: Colors.white);
   }
 

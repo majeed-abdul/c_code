@@ -96,11 +96,11 @@ class _ResultScreenState extends State<ResultScreen> {
       children: [
         customButton(
           onPress: () => _browse(),
-          icon: const Icon(Icons.link),
+          icon: Icons.link,
         ),
         customButton(
           onPress: () => _copy(),
-          icon: const Icon(Icons.copy),
+          icon: Icons.copy,
         ),
       ],
     );

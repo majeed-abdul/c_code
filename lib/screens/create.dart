@@ -1,5 +1,6 @@
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:c_code/screens/code_display.dart';
+import 'package:c_code/screens/scan.dart';
 import 'package:c_code/widgets/text_field.dart';
 import 'package:c_code/widgets/drop_down.dart';
 import 'package:c_code/widgets/buttons.dart';
@@ -31,6 +32,12 @@ class _CreateScreenState extends State<CreateScreen> {
         elevation: 0,
         centerTitle: true,
         title: const Text('Create'),
+        actions: [
+          IconButton(
+            onPressed: () => Navigator.pushNamed(context, ScanScreen.id),
+            icon: const Icon(Icons.qr_code_scanner),
+          ),
+        ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
