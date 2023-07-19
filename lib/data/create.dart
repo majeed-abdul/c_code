@@ -47,5 +47,8 @@ Map<String, Barcode> numberBarcodes = {
 class Item {
   String name;
   IconData icon;
-  Item({required this.name, required this.icon});
+  Item({
+    required this.name,
+    required this.icon,
+  });
 }
