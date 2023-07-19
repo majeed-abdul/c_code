@@ -26,17 +26,17 @@ class _HomeScreenState extends State<HomeScreen> {
     }
     return Scaffold(
       body: bodyWidget,
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text('Create Code'),
-        actions: [
-          IconButton(
-            onPressed: () => Navigator.pushNamed(context, ScanScreen.id),
-            icon: const Icon(Icons.qr_code_scanner),
-          ),
-        ],
-        elevation: 0,
-      ),
+      // appBar: AppBar(
+      //   centerTitle: true,
+      //   title: const Text('Create Code'),
+      //   actions: [
+      //     IconButton(
+      //       onPressed: () => Navigator.pushNamed(context, ScanScreen.id),
+      //       icon: const Icon(Icons.qr_code_scanner),
+      //     ),
+      //   ],
+      //   elevation: 0,
+      // ),
       // bottomNavigationBar: BottomNavigationBar(
       //   elevation: 50,
       //   showSelectedLabels: false,

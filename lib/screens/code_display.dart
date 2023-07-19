@@ -38,8 +38,8 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
 
 //
 
-  displayOutputCode(BuildContext context) {
-    BarcodeWidget(
+  BarcodeWidget displayOutputCode(BuildContext context) {
+    return BarcodeWidget(
       height: MediaQuery.of(context).size.width <=
               MediaQuery.of(context).size.height
           ? MediaQuery.of(context).size.width - 60 * 2
@@ -52,9 +52,8 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
   }
 
   Widget _onError(String message) {
-    return Text(message.substring(
-      message.indexOf('Barcode, '),
-      message.length - 1,
-    ));
+    return Text(
+      message.substring(message.indexOf('Barcode, '), message.length - 1),
+    );
   }
 }
