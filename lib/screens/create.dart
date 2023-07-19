@@ -1,3 +1,4 @@
+import 'package:barcode_widget/barcode_widget.dart';
 import 'package:c_code/screens/code_display.dart';
 import 'package:c_code/widgets/text_field.dart';
 import 'package:c_code/widgets/drop_down.dart';
@@ -18,6 +19,7 @@ class _CreateScreenState extends State<CreateScreen> {
   TextEditingController textCon = TextEditingController();
   String? dropDownValueTypeNum = numberBarcodes.keys.first;
   String? dropDownValueType = textBarcodes.keys.first;
+  Barcode selectedCodeType = Barcode.qrCode();
 
   bool isMore = false;
 
@@ -113,6 +115,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 items: textBarcodes.keys.toList(),
                 onChanged: (value) {
                   dropDownValueType = value;
+                  selectedCodeType = textBarcodes[value] ?? Barcode.qrCode();
                   setState(() {});
                   debugPrint("   $dropDownValueType");
                 },
@@ -221,7 +224,8 @@ class _CreateScreenState extends State<CreateScreen> {
           MaterialPageRoute(
             builder: (BuildContext context) => CodeDisplayScreen(
               data: textCon.text,
-              barCode: numberBarcodes[dropDownValueType],
+              barCode: selectedCodeType,
+              // barCode: numberBarcodes[dropDownValueType],==========================
             ),
           ),
         );
