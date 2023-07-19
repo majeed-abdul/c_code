@@ -212,7 +212,7 @@ class _CreateScreenState extends State<CreateScreen> {
     return w;
   }
 
-  Widget createButtonsRow() {
+  ElevatedButton createButtonsRow() {
     return ElevatedButton(
       onPressed: () {
         Navigator.push(
