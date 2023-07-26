@@ -1,10 +1,10 @@
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:c_code/screens/code_display.dart';
-import 'package:c_code/screens/scan.dart';
 import 'package:c_code/widgets/text_field.dart';
 import 'package:c_code/widgets/drop_down.dart';
 import 'package:c_code/widgets/buttons.dart';
 import 'package:c_code/data/provider.dart';
+import 'package:c_code/screens/scan.dart';
 import 'package:c_code/data/create.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
