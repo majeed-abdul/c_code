@@ -20,11 +20,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
         centerTitle: true,
         title: const Text('AnyCode'),
       ),
-      body: Column(
-        children: [
-          displayOutputCode(context),
-        ],
-      ),
+      body: Column(children: [displayOutputCode(context)]),
     );
   }
 

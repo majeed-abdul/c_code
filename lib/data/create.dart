@@ -1,6 +1,12 @@
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:flutter/material.dart';
 
+class Item {
+  String name;
+  IconData icon;
+  Item({required this.name, required this.icon});
+}
+
 List<Item> creates = [
   Item(name: 'TEXT & URL', icon: Icons.text_snippet_outlined),
   Item(name: 'NUMBERS', icon: Icons.numbers_outlined),
@@ -43,12 +49,3 @@ Map<String, Barcode> numberBarcodes = {
   'upc A': Barcode.upcA(),
   'upc E': Barcode.upcE(),
 };
-
-class Item {
-  String name;
-  IconData icon;
-  Item({
-    required this.name,
-    required this.icon,
-  });
-}
