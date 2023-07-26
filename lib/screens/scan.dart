@@ -129,9 +129,10 @@ class _ScanScreenState extends State<ScanScreen> {
   void _onScanComplete(Barcode code) async {
     controller?.pauseCamera();
     await Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (BuildContext context) => ResultScreen(result: code)))
-        .then((value) => controller?.resumeCamera());
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext context) => ResultScreen(result: code),
+      ),
+    ).then((value) => controller?.resumeCamera());
   }
 }
