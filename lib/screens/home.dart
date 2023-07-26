@@ -24,8 +24,6 @@ class _HomeScreenState extends State<HomeScreen> {
         bodyWidget = const ScanScreen();
         break;
     }
-    return Scaffold(
-      body: bodyWidget,
-    );
+    return Scaffold(body: bodyWidget);
   }
 }
