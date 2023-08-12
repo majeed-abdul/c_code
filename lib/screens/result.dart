@@ -119,17 +119,17 @@ class _ResultScreenState extends State<ResultScreen> {
       ),
       width: double.infinity,
       padding: const EdgeInsets.all(9),
-      child: SelectableText('${widget.result.code}',
-          style: const TextStyle(fontSize: 15)),
+      child: SelectableText(
+        '${widget.result.code}',
+        style: const TextStyle(fontSize: 15),
+      ),
     );
   }
 
   void _copy() async {
     await Clipboard.setData(
       ClipboardData(text: '${widget.result.code}'),
-    ).then(
-      (value) => showSnackBar(context, 'Coppied'),
-    );
+    ).then((value) => showSnackBar(context, 'Coppied'));
   }
 
   void _browse() {}

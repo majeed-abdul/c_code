@@ -4,7 +4,11 @@ import 'package:c_code/screens/scan.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  return runApp(
+    const MyApp(),
+  );
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
