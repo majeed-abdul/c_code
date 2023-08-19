@@ -63,7 +63,7 @@ GestureDetector gridButton({
             margin: const EdgeInsets.all(1),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(6),
-              color: const Color(0x44000000),
+              // color: const Color(0x44000000),
             ),
           ),
         ),
