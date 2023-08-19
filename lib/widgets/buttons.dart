@@ -39,7 +39,7 @@ GestureDetector gridButton({
           padding: const EdgeInsets.all(5),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(7),
-            color: kButtonUnselectColor,
+            color: kButtonColor,
             border: Border.all(),
           ),
           child: Row(

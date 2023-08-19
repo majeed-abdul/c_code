@@ -1,4 +1,3 @@
 import 'package:flutter/material.dart';
 
-MaterialColor kButtonSelectColor = Colors.lightGreen;
-MaterialColor kButtonUnselectColor = Colors.lightGreen;
+Color kButtonColor = const Color.fromARGB(255, 166, 219, 106);
