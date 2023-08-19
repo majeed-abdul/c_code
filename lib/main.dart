@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'S-Code',
-        theme: ThemeData(primarySwatch: Colors.lightGreen),
+        theme: ThemeData(primarySwatch: Colors.red),
         initialRoute: HomeScreen.id,
         routes: {
           HomeScreen.id: (context) => const HomeScreen(),
