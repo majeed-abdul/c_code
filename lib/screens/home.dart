@@ -24,6 +24,37 @@ class _HomeScreenState extends State<HomeScreen> {
         bodyWidget = const ScanScreen();
         break;
     }
-    return Scaffold(body: bodyWidget);
+    return Scaffold(
+      body: bodyWidget,
+      bottomNavigationBar: BottomNavigationBar(
+        elevation: 25,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        backgroundColor: Colors.white,
+        selectedItemColor: Theme.of(context).primaryColor,
+        unselectedItemColor: Colors.black,
+        type: BottomNavigationBarType.fixed,
+        currentIndex: _index,
+        onTap: (i) {
+          _index = i;
+          setState(() {});
+        },
+        selectedLabelStyle: const TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.bold,
+          color: Colors.amber,
+        ),
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.cottage_outlined),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.chat_outlined),
+            label: 'Chat',
+          ),
+        ],
+      ),
+    );
   }
 }
