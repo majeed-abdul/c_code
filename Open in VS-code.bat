@@ -1,2 +1,3 @@
 code .
 exit
+exit
