@@ -1,4 +1,3 @@
-import 'package:c_code/data/theme.dart';
 import 'package:flutter/material.dart';
 
 Container customButton({
@@ -39,7 +38,7 @@ GestureDetector gridButton({
           padding: const EdgeInsets.all(5),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(7),
-            color: kButtonColor,
+            // color: kButtonColor,
             border: Border.all(),
           ),
           child: Row(
