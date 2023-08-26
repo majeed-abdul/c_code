@@ -17,12 +17,13 @@ class _ResultScreenState extends State<ResultScreen> {
   ScrollController scrollCon = ScrollController();
   @override
   void initState() {
-    Future.delayed(const Duration(milliseconds: 500))
-        .then((value) => scrollCon.animateTo(
-              scrollCon.position.maxScrollExtent,
-              curve: Curves.fastOutSlowIn,
-              duration: const Duration(milliseconds: 1500),
-            ));
+    Future.delayed(const Duration(milliseconds: 500)).then(
+      (value) => scrollCon.animateTo(
+        scrollCon.position.maxScrollExtent,
+        curve: Curves.fastOutSlowIn,
+        duration: const Duration(milliseconds: 1500),
+      ),
+    );
     super.initState();
   }
 

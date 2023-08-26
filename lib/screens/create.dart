@@ -141,8 +141,8 @@ class _CreateScreenState extends State<CreateScreen> {
               entryBar(
                 text: 'Number',
                 child: TextField(
-                  keyboardType: TextInputType.number,
                   controller: textCon,
+                  keyboardType: TextInputType.number,
                   decoration: kDecoration.copyWith(hintText: 'Enter Number'),
                 ),
               ),
@@ -246,11 +246,11 @@ class _CreateScreenState extends State<CreateScreen> {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
         crossAxisSpacing: 7,
-        mainAxisSpacing: 7,
         childAspectRatio: 3,
+        mainAxisSpacing: 7,
         mainAxisExtent: 45,
+        crossAxisCount: 2,
       ),
       itemCount: creates.length,
       itemBuilder: (context, index) {

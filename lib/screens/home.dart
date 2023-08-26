@@ -28,13 +28,13 @@ class _HomeScreenState extends State<HomeScreen> {
       body: bodyWidget,
       bottomNavigationBar: BottomNavigationBar(
         elevation: 25,
+        currentIndex: _index,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         backgroundColor: Colors.white,
-        selectedItemColor: Theme.of(context).primaryColor,
-        unselectedItemColor: Colors.black,
         type: BottomNavigationBarType.fixed,
-        currentIndex: _index,
+        unselectedItemColor: Colors.black,
+        selectedItemColor: Theme.of(context).primaryColor,
         onTap: (i) {
           _index = i;
           setState(() {});
