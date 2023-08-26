@@ -9,11 +9,11 @@ InputDecoration kDecoration = const InputDecoration(
     borderSide: BorderSide(color: Colors.red, width: 1.0),
     borderRadius: BorderRadius.all(Radius.circular(6.0)),
   ),
-  enabledBorder: OutlineInputBorder(
+  focusedBorder: OutlineInputBorder(
     borderSide: BorderSide(color: Color(0xff999999), width: 1.0),
     borderRadius: BorderRadius.all(Radius.circular(6.0)),
   ),
-  focusedBorder: OutlineInputBorder(
+  enabledBorder: OutlineInputBorder(
     borderSide: BorderSide(color: Color(0xff999999), width: 1.0),
     borderRadius: BorderRadius.all(Radius.circular(6.0)),
   ),
