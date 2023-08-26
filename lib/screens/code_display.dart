@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 class CodeDisplayScreen extends StatefulWidget {
   const CodeDisplayScreen({super.key, this.data, this.barCode});
-  final String? data;
   final Barcode? barCode;
+  final String? data;
 
   @override
   State<CodeDisplayScreen> createState() => _CodeDisplayScreenState();
