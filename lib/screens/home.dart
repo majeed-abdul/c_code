@@ -46,12 +46,12 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.cottage_outlined),
-            label: 'Home',
+            icon: Icon(Icons.add_box_outlined),
+            label: 'Create',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.chat_outlined),
-            label: 'Chat',
+            icon: Icon(Icons.qr_code_scanner),
+            label: 'Scan',
           ),
         ],
       ),
