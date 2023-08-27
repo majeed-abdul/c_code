@@ -27,14 +27,14 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: bodyWidget,
       bottomNavigationBar: BottomNavigationBar(
-        elevation: 25,
-        currentIndex: _index,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        backgroundColor: Colors.white,
-        type: BottomNavigationBarType.fixed,
-        unselectedItemColor: Colors.black,
         selectedItemColor: Theme.of(context).primaryColor,
+        unselectedItemColor: Colors.black,
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.white,
+        showUnselectedLabels: false,
+        showSelectedLabels: false,
+        currentIndex: _index,
+        elevation: 25,
         onTap: (i) {
           _index = i;
           setState(() {});
