@@ -4,7 +4,6 @@ import 'package:c_code/widgets/text_field.dart';
 import 'package:c_code/widgets/drop_down.dart';
 import 'package:c_code/widgets/buttons.dart';
 import 'package:c_code/data/provider.dart';
-import 'package:c_code/screens/scan.dart';
 import 'package:c_code/data/create.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
@@ -32,12 +31,12 @@ class _CreateScreenState extends State<CreateScreen> {
         elevation: 0,
         centerTitle: true,
         title: const Text('Create'),
-        actions: [
-          IconButton(
-            onPressed: () => Navigator.pushNamed(context, ScanScreen.id),
-            icon: const Icon(Icons.qr_code_scanner),
-          ),
-        ],
+        // actions: [
+        //   IconButton(
+        //     onPressed: () => Navigator.pushNamed(context, ScanScreen.id),
+        //     icon: const Icon(Icons.qr_code_scanner),
+        //   ),
+        // ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
