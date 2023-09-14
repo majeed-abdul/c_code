@@ -17,6 +17,7 @@ class _ScanScreenState extends State<ScanScreen> {
   Barcode? result;
   QRViewController? controller;
   bool isFlashOn = false;
+
   @override
   void reassemble() {
     super.reassemble();
