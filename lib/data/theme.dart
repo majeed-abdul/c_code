@@ -30,12 +30,11 @@ class CustomTheme {
           selectedItemColor: Colors.red,
         ),
         dialogTheme: const DialogTheme(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(30)),
-          ),
-          actionsPadding: EdgeInsets.all(15),
-          backgroundColor: Colors.white,
-        ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(30)),
+            ),
+            actionsPadding: EdgeInsets.all(15),
+            surfaceTintColor: Colors.white),
         inputDecorationTheme: const InputDecorationTheme(
           filled: true,
           fillColor: Colors.white,
@@ -53,7 +52,8 @@ class CustomTheme {
             borderRadius: BorderRadius.all(Radius.circular(15)),
             borderSide: BorderSide(color: Color(0xff999999), width: 1.0),
           ),
-        ));
+        ),
+        iconTheme: const IconThemeData(color: Colors.red));
   }
 
   static ThemeData darkThemeData() {

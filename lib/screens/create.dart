@@ -522,15 +522,14 @@ class _CreateScreenState extends State<CreateScreen> {
                 const Text('More options'),
                 const SizedBox(width: 10),
                 isMore
-                    ? Icon(
+                    ? const Icon(
                         Icons.check_box,
                         size: 21,
-                        color: Theme.of(context).primaryColor,
                       )
                     : const Icon(
                         Icons.check_box_outline_blank_rounded,
                         size: 21,
-                        color: Colors.black87,
+                        color: Colors.black54,
                       )
               ],
             ),
