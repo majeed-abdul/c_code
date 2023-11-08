@@ -44,7 +44,6 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
           : MediaQuery.of(context).size.height - 60 * 2,
       data: widget.data ?? '',
       barcode: widget.barCode ?? Barcode.qrCode(),
-      padding: const EdgeInsets.all(20),
       errorBuilder: (context, error) => _onError(error),
     );
   }
