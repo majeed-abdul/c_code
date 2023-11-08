@@ -225,16 +225,18 @@ class _CreateScreenState extends State<CreateScreen> {
   ElevatedButton createButtonsRow() {
     return ElevatedButton(
       onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (BuildContext context) => CodeDisplayScreen(
-              data: textCon.text,
-              barCode: selectedCodeType,
-              // barCode: numberBarcodes[dropDownValueType],==========================
+        if (textCon.text.isNotEmpty) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => CodeDisplayScreen(
+                data: textCon.text,
+                barCode: selectedCodeType,
+                // barCode: numberBarcodes[dropDownValueType],==========================
+              ),
             ),
-          ),
-        );
+          );
+        }
       },
       child: const Text('Create'),
     );
