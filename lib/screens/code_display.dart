@@ -21,7 +21,6 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
         title: const Text('AnyCode'),
       ),
       body: Column(children: [
-        const SizedBox(height: 75),
         displayOutputCode(context),
       ]),
     );
@@ -45,6 +44,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
           : MediaQuery.of(context).size.height - 60 * 2,
       data: widget.data ?? '',
       barcode: widget.barCode ?? Barcode.qrCode(),
+      margin: const EdgeInsets.symmetric(vertical: 40),
       errorBuilder: (context, error) => _onError(error),
     );
   }
