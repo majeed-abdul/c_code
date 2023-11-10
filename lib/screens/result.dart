@@ -27,9 +27,6 @@ class _ResultScreenState extends State<ResultScreen> {
     super.initState();
   }
 
-  String test =
-      'Dear Student Download a research paper having 3 or more impact factors related to software reengineering, write review of said paper and submit it along with downloaded paper on LMS. Review: The need of reengineering is started from 1990s. This happens when users need to shift their data from legacy systems to new systems like web. Reengineering is started from source code of current system and ends with source code of new system. And it can be easily done with translation tools it becomes very complex, when we need to change some design factor s and architecture.';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

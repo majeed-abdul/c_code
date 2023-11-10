@@ -21,6 +21,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
         title: const Text('AnyCode'),
       ),
       body: Column(children: [
+        const SizedBox(height: 75),
         displayOutputCode(context),
       ]),
     );
