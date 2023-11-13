@@ -18,7 +18,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: const Text('AnyCode'),
+        title: const Text('Code'),
       ),
       body: Column(children: [
         displayOutputCode(context),
