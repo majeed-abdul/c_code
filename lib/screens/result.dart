@@ -94,14 +94,8 @@ class _ResultScreenState extends State<ResultScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        customButton(
-          onPress: () => _browse(),
-          icon: Icons.link,
-        ),
-        customButton(
-          onPress: () => _copy(),
-          icon: Icons.copy,
-        ),
+        customButton(onPress: () => _browse(), icon: Icons.link),
+        customButton(onPress: () => _copy(), icon: Icons.copy),
       ],
     );
   }
@@ -110,10 +104,7 @@ class _ResultScreenState extends State<ResultScreen> {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
-        border: Border.all(
-          color: Colors.black,
-          width: 1,
-        ),
+        border: Border.all(color: Colors.black, width: 1),
       ),
       width: double.infinity,
       padding: const EdgeInsets.all(9),
@@ -132,17 +123,3 @@ class _ResultScreenState extends State<ResultScreen> {
 
   void _browse() {}
 }
-        // Column(
-        //   mainAxisAlignment: MainAxisAlignment.end,
-        //   crossAxisAlignment: CrossAxisAlignment.start,
-        //   children: [
-        //     Text(
-        //       'Data  :${result?.code}',
-        //       style: const TextStyle(color: Colors.white),
-        //     ),
-        //     Text(
-        //       'Format:${result?.format == null ? '' : describeEnum(result!.format)}',
-        //       style: const TextStyle(color: Colors.white),
-        //     ),
-        //   ],
-        // ),
