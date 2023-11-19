@@ -232,7 +232,7 @@ class _CreateScreenState extends State<CreateScreen> {
               builder: (BuildContext context) => CodeDisplayScreen(
                 data: textCon.text,
                 barCode: selectedCodeType,
-                // barCode: numberBarcodes[dropDownValueType],==========================
+                // barCode: numberBarcodes[dropDownValueType],=================
               ),
             ),
           );
@@ -263,12 +263,9 @@ class _CreateScreenState extends State<CreateScreen> {
             textCon = TextEditingController();
             isMore = false;
             dropDownValueType = textBarcodes.keys.first;
-            if (context.read<CreateProvider>().createSelected ==
-                creates[index].name) {
-              context.read<CreateProvider>().setCreate(creates[0].name);
-            } else {
-              context.read<CreateProvider>().setCreate(creates[index].name);
-            }
+            context.read<CreateProvider>().createSelected == creates[index].name
+                ? context.read<CreateProvider>().setCreate(creates[0].name)
+                : context.read<CreateProvider>().setCreate(creates[index].name);
           },
         );
       },
