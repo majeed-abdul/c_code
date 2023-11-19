@@ -121,7 +121,6 @@ class _CreateScreenState extends State<CreateScreen> {
                   dropDownValueType = value;
                   selectedCodeType = textBarcodes[value] ?? Barcode.qrCode();
                   setState(() {});
-                  debugPrint("   $dropDownValueType");
                 },
                 dropDownValue: dropDownValueType,
                 text: 'Type',
