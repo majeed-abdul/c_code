@@ -12,12 +12,6 @@ Container customButton({
       borderRadius: BorderRadius.circular(69),
       border: Border.all(color: color, width: 3),
     ),
-    // child: IconButton(
-    //   iconSize: 30,
-    //   icon: icon,
-    //   color: color,
-    //   onPressed: onPress,
-    // ),
     child: GestureDetector(onTap: onPress, child: Icon(icon, color: color)),
   );
 }
