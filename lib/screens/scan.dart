@@ -91,15 +91,16 @@ class _ScanScreenState extends State<ScanScreen> {
 
   Container flashButton() {
     return customButton(
-        onPress: () async {
-          controller?.toggleFlash();
-          isFlashOn = await controller?.getFlashStatus() ?? false;
-          setState(() {});
-        },
-        icon: isFlashOn
-            ? Icons.flashlight_on_outlined
-            : Icons.flashlight_off_outlined,
-        color: Colors.white);
+      onPress: () async {
+        controller?.toggleFlash();
+        isFlashOn = await controller?.getFlashStatus() ?? false;
+        setState(() {});
+      },
+      icon: isFlashOn
+          ? Icons.flashlight_on_outlined
+          : Icons.flashlight_off_outlined,
+      color: Colors.white,
+    );
   }
 
   Widget _buildQrView(BuildContext context) {
