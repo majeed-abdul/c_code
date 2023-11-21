@@ -25,30 +25,32 @@ Map<String, Barcode> textBarcodes = {
   'Aztec': Barcode.aztec(),
   'PDF 417': Barcode.pdf417(),
   'Code 128': Barcode.code128(),
-  // 'GS 128': Barcode.gs128(),
   'Telepen': Barcode.telepen(),
 };
 
 Map<String, Barcode> numberBarcodes = {
-  // 'QR Code': Barcode.qrCode(),
-  // 'Data Matrix': Barcode.dataMatrix(),
-  // 'Aztec': Barcode.aztec(),
-  // 'PDF 417': Barcode.pdf417(),
   'Coda Bar': Barcode.codabar(),
-  // 'Code 128': Barcode.code128(),
   'Code 39': Barcode.code39(),
   'Code 93': Barcode.code93(),
   'EAN 13': Barcode.ean13(),
   'EAN 2': Barcode.ean2(),
   'EAN 5': Barcode.ean5(),
   'EAN 8': Barcode.ean8(),
-  // 'GS 128': Barcode.gs128(),
   'ISBN': Barcode.isbn(),
   'ITF': Barcode.itf(),
+  'upc A': Barcode.upcA(),
+  'upc E': Barcode.upcE(),
+};
+// Text
+  // 'GS 128': Barcode.gs128(),
+// Number
+  // 'QR Code': Barcode.qrCode(),
+  // 'Data Matrix': Barcode.dataMatrix(),
+  // 'Aztec': Barcode.aztec(),
+  // 'PDF 417': Barcode.pdf417(),
+  // 'Code 128': Barcode.code128(),
+  // 'GS 128': Barcode.gs128(),
   // 'ITF 14': Barcode.itf14(),
   // 'ITF 16': Barcode.itf16(),
   // 'RM4SSC': Barcode.rm4scc(),
   // 'Telepen': Barcode.telepen(),
-  'upc A': Barcode.upcA(),
-  'upc E': Barcode.upcE(),
-};
