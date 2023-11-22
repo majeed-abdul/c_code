@@ -16,12 +16,23 @@ class CreateScreen extends StatefulWidget {
 }
 
 class _CreateScreenState extends State<CreateScreen> {
-  TextEditingController textCon = TextEditingController();
-  String? dropDownValueTypeNum = numberBarcodes.keys.first;
+  bool isMore = false;
   String? dropDownValueType = textBarcodes.keys.first;
   Barcode selectedCodeType = Barcode.qrCode();
 
-  bool isMore = false;
+  //  Text & URL
+  TextEditingController textCon = TextEditingController();
+
+  //  Number
+  String? dropDownValueTypeNum = numberBarcodes.keys.first;
+
+  //  WiFi
+
+  //  V-Card
+
+  //  Email
+
+  //  SMS
 
   @override
   Widget build(BuildContext context) {
