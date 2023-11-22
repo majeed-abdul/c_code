@@ -16,13 +16,16 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        // toolbarHeight: 56,
         elevation: 0,
         centerTitle: true,
         title: const Text('Code'),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           displayOutputCode(context),
+          // text
         ],
       ),
     );
@@ -38,15 +41,15 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
 
 //
 
-  BarcodeWidget displayOutputCode(BuildContext context) {
+  Widget displayOutputCode(BuildContext context) {
     return BarcodeWidget(
       height: MediaQuery.of(context).size.width <=
               MediaQuery.of(context).size.height
-          ? MediaQuery.of(context).size.width - 60 * 2
-          : MediaQuery.of(context).size.height - 60 * 2,
+          ? MediaQuery.of(context).size.width - (60 * 2) //  port
+          : MediaQuery.of(context).size.height - (60 * 2) - 56, //  land
       data: widget.data ?? '',
       barcode: widget.barCode ?? Barcode.qrCode(),
-      margin: const EdgeInsets.symmetric(vertical: 40, horizontal: 5),
+      margin: const EdgeInsets.symmetric(vertical: 40),
       errorBuilder: (context, error) => _onError(error),
     );
   }
