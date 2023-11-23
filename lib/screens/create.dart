@@ -95,48 +95,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 decoration: kDecoration.copyWith(hintText: 'Enter Text'),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 5),
-              child: GestureDetector(
-                onTap: () {
-                  isMore = !isMore;
-                  setState(() {});
-                },
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    const Text(
-                      'More options',
-                    ),
-                    const SizedBox(width: 10),
-                    isMore
-                        ? const Icon(
-                            Icons.check_box,
-                            size: 20,
-                            color: Color.fromRGBO(255, 80, 80, 1),
-                          )
-                        : const Icon(
-                            Icons.check_box_outline_blank_rounded,
-                            size: 20,
-                            color: Colors.black87,
-                          )
-                  ],
-                ),
-              ),
-            ),
-            Visibility(
-              visible: isMore,
-              child: dropDown(
-                items: textBarcodes.keys.toList(),
-                onChanged: (value) {
-                  dropDownValueType = value;
-                  selectedCodeType = textBarcodes[value] ?? Barcode.qrCode();
-                  setState(() {});
-                },
-                dropDownValue: dropDownValueType,
-                text: 'Type',
-              ),
-            ),
+            moreOptions(),
           ],
         );
         break;
@@ -228,6 +187,55 @@ class _CreateScreenState extends State<CreateScreen> {
         w = const SizedBox();
     }
     return w;
+  }
+
+  Column moreOptions() {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 5),
+          child: GestureDetector(
+            onTap: () {
+              isMore = !isMore;
+              setState(() {});
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                const Text(
+                  'More options',
+                ),
+                const SizedBox(width: 10),
+                isMore
+                    ? const Icon(
+                        Icons.check_box,
+                        size: 20,
+                        color: Color.fromRGBO(255, 80, 80, 1),
+                      )
+                    : const Icon(
+                        Icons.check_box_outline_blank_rounded,
+                        size: 20,
+                        color: Colors.black87,
+                      )
+              ],
+            ),
+          ),
+        ),
+        Visibility(
+          visible: isMore,
+          child: dropDown(
+            items: textBarcodes.keys.toList(),
+            onChanged: (value) {
+              dropDownValueType = value;
+              selectedCodeType = textBarcodes[value] ?? Barcode.qrCode();
+              setState(() {});
+            },
+            dropDownValue: dropDownValueType,
+            text: 'Type',
+          ),
+        ),
+      ],
+    );
   }
 
   ElevatedButton createButtonsRow() {
