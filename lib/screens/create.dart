@@ -16,12 +16,13 @@ class CreateScreen extends StatefulWidget {
 }
 
 class _CreateScreenState extends State<CreateScreen> {
+  //  All
   bool isMore = false;
   String? dropDownValueType = textBarcodes.keys.first;
   Barcode selectedCodeType = Barcode.qrCode();
+  String? finalWords;
 
   //  Text & URL
-  TextEditingController textCon = TextEditingController();
 
   //  Number
   String? dropDownValueTypeNum = numberBarcodes.keys.first;
@@ -58,7 +59,7 @@ class _CreateScreenState extends State<CreateScreen> {
               const SizedBox(height: 20),
               entryTextFields(), /////////////////////////// Inputs Fields
               const SizedBox(height: 11),
-              createButtonsRow(), ////////////////////////// Crerate Buttons
+              createButton(), ////////////////////////// Crerate Buttons
               const SizedBox(height: 20),
             ],
           ),
@@ -91,8 +92,8 @@ class _CreateScreenState extends State<CreateScreen> {
                 keyboardType: TextInputType.multiline,
                 maxLines: 20,
                 minLines: 1,
-                controller: textCon,
                 decoration: kDecoration.copyWith(hintText: 'Enter Text'),
+                onChanged: (value) => finalWords = value,
               ),
             ),
             moreOptions(),
@@ -107,7 +108,7 @@ class _CreateScreenState extends State<CreateScreen> {
               entryBar(
                 text: 'Number',
                 child: TextField(
-                  controller: textCon,
+                  // controller: textCon,
                   keyboardType: TextInputType.number,
                   decoration: kDecoration.copyWith(hintText: 'Enter Number'),
                 ),
@@ -159,26 +160,26 @@ class _CreateScreenState extends State<CreateScreen> {
         break;
       case 2: ////////////// V-Card
         w = TextField(
-          controller: textCon,
+          // controller: textCon,
           decoration: kDecoration.copyWith(hintText: 'Enter contact'),
         );
         break;
       case 3: ////////////// Email
         w = TextField(
-          controller: textCon,
+          // controller: textCon,
           decoration: kDecoration.copyWith(hintText: 'Enter EMail'),
         );
         break;
       case 4: ////////////// SMS
         w = TextField(
-          controller: textCon,
+          // controller: textCon,
           decoration: kDecoration.copyWith(hintText: 'Enter sms'),
         );
         break;
       case 5: ////////////// WiFi
         w = entryBar(
           child: TextField(
-            controller: textCon,
+            // controller: textCon,
             decoration: kDecoration.copyWith(hintText: 'Enter WIFW'),
           ),
         );
@@ -238,15 +239,15 @@ class _CreateScreenState extends State<CreateScreen> {
     );
   }
 
-  ElevatedButton createButtonsRow() {
+  ElevatedButton createButton() {
     return ElevatedButton(
       onPressed: () {
-        if (textCon.text.isNotEmpty) {
+        if (finalWords!.isNotEmpty) {
           Navigator.push(
             context,
             MaterialPageRoute(
               builder: (BuildContext context) => CodeDisplayScreen(
-                data: textCon.text,
+                data: finalWords,
                 barCode: selectedCodeType,
                 // barCode: numberBarcodes[dropDownValueType],=================
               ),
@@ -276,7 +277,7 @@ class _CreateScreenState extends State<CreateScreen> {
           icon: creates[index].icon,
           selected: context.watch<CreateProvider>().createSelected,
           onTap: () {
-            textCon = TextEditingController();
+            // textCon = TextEditingController();
             isMore = false;
             dropDownValueType = textBarcodes.keys.first;
             context.read<CreateProvider>().createSelected == creates[index].name
