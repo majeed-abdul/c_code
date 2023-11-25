@@ -153,13 +153,11 @@ class _CreateScreenState extends State<CreateScreen> {
         break;
       case 2: ////////////// V-Card
         w = TextField(
-          // controller: textCon,
           decoration: kDecoration.copyWith(hintText: 'Enter contact'),
         );
         break;
       case 3: ////////////// Email
         w = TextField(
-          // controller: textCon,
           decoration: kDecoration.copyWith(hintText: 'Enter EMail'),
         );
         break;
