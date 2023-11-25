@@ -30,12 +30,6 @@ class _CreateScreenState extends State<CreateScreen> {
   //  WiFi
   bool hidden = false;
 
-  //  V-Card
-
-  //  Email
-
-  //  SMS
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
