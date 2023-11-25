@@ -28,6 +28,7 @@ class _CreateScreenState extends State<CreateScreen> {
   String? dropDownValueTypeNum = numberBarcodes.keys.first;
 
   //  WiFi
+  bool hidden = false;
 
   //  V-Card
 
