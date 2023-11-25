@@ -165,14 +165,12 @@ class _CreateScreenState extends State<CreateScreen> {
         break;
       case 4: ////////////// SMS
         w = TextField(
-          // controller: textCon,
           decoration: kDecoration.copyWith(hintText: 'Enter sms'),
         );
         break;
       case 5: ////////////// WiFi
         w = entryBar(
           child: TextField(
-            // controller: textCon,
             decoration: kDecoration.copyWith(hintText: 'Enter WIFW'),
           ),
         );
