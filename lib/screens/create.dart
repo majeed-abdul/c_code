@@ -22,8 +22,6 @@ class _CreateScreenState extends State<CreateScreen> {
   Barcode selectedCodeType = Barcode.qrCode();
   String? finalWords;
 
-  //  Text & URL
-
   //  Number
   String? dropDownValueTypeNum = numberBarcodes.keys.first;
 
