@@ -36,12 +36,12 @@ class _CreateScreenState extends State<CreateScreen> {
         elevation: 0,
         centerTitle: true,
         title: const Text('Create'),
-        // actions: [
-        //   IconButton(
-        //     onPressed: () => Navigator.pushNamed(context, ScanScreen.id),
-        //     icon: const Icon(Icons.qr_code_scanner),
-        //   ),
-        // ],
+        // // actions: [
+        // //   IconButton(
+        // //     onPressed: () => Navigator.pushNamed(context, ScanScreen.id),
+        // //     icon: const Icon(Icons.qr_code_scanner),
+        // //   ),
+        // // ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
