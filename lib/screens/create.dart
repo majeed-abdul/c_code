@@ -172,9 +172,105 @@ class _CreateScreenState extends State<CreateScreen> {
         w = Column(
           children: [
             entryBar(
-              text: 'Name',
+              text: 'First Name',
               child: TextField(
-                decoration: kDecoration.copyWith(hintText: 'Enter contact'),
+                decoration: kDecoration.copyWith(
+                  hintText: 'Enter First tName',
+                ),
+              ),
+            ),
+            entryBar(
+              text: 'Last Name',
+              child: TextField(
+                decoration: kDecoration.copyWith(
+                  hintText: 'Enter Last Name',
+                ),
+              ),
+            ),
+            entryBar(
+              text: 'Mobile No',
+              child: TextField(
+                decoration: kDecoration.copyWith(
+                  hintText: 'Enter Mobile Number',
+                ),
+                keyboardType: TextInputType.phone,
+              ),
+            ),
+            entryBar(
+              text: 'Phone No',
+              child: TextField(
+                decoration: kDecoration.copyWith(
+                  hintText: 'Enter Phone Number',
+                ),
+                keyboardType: TextInputType.phone,
+              ),
+            ),
+            entryBar(
+              text: 'Fax',
+              child: TextField(
+                decoration: kDecoration.copyWith(
+                  hintText: 'Enter Fax Number',
+                ),
+                keyboardType: TextInputType.phone,
+              ),
+            ),
+            entryBar(
+              text: 'Email',
+              child: TextField(
+                decoration: kDecoration.copyWith(
+                  hintText: 'Enter Email Address',
+                ),
+                keyboardType: TextInputType.emailAddress,
+              ),
+            ),
+            entryBar(
+              text: 'Company',
+              child: TextField(
+                decoration: kDecoration.copyWith(
+                  hintText: 'Enter Company Name',
+                ),
+              ),
+            ),
+            entryBar(
+              text: 'Job',
+              child: TextField(
+                decoration: kDecoration.copyWith(
+                  hintText: 'Enter Job Title',
+                ),
+              ),
+            ),
+            entryBar(
+              text: 'Country',
+              child: TextField(
+                decoration: kDecoration.copyWith(
+                  hintText: 'Enter Country Name',
+                ),
+              ),
+            ),
+            entryBar(
+              text: 'State',
+              child: TextField(
+                decoration: kDecoration.copyWith(
+                  hintText: 'Enter State/Province Name',
+                ),
+              ),
+            ),
+            entryBar(
+              text: 'Street',
+              child: TextField(
+                decoration: kDecoration.copyWith(
+                  hintText: 'Enter Street Address',
+                ),
+                keyboardType: TextInputType.streetAddress,
+              ),
+            ),
+            entryBar(
+              text: 'Website',
+              child: TextField(
+                decoration: kDecoration.copyWith(
+                  hintText: 'Enter Web URL',
+                ),
+                keyboardType: TextInputType.emailAddress,
               ),
             ),
             moreOptions(),
@@ -187,7 +283,9 @@ class _CreateScreenState extends State<CreateScreen> {
             entryBar(
               text: 'Message',
               child: TextField(
-                decoration: kDecoration.copyWith(hintText: 'Enter Email'),
+                decoration: kDecoration.copyWith(
+                  hintText: 'Enter Email',
+                ),
               ),
             ),
             moreOptions(),
@@ -200,7 +298,9 @@ class _CreateScreenState extends State<CreateScreen> {
             entryBar(
               text: 'Message',
               child: TextField(
-                decoration: kDecoration.copyWith(hintText: 'Enter SMS'),
+                decoration: kDecoration.copyWith(
+                  hintText: 'Enter SMS',
+                ),
               ),
             ),
             moreOptions(),
