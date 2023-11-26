@@ -256,6 +256,23 @@ class _CreateScreenState extends State<CreateScreen> {
               ),
             ),
             entryBar(
+              text: 'City',
+              child: TextField(
+                decoration: kDecoration.copyWith(
+                  hintText: 'Enter City Name',
+                ),
+              ),
+            ),
+            entryBar(
+              text: 'Zip',
+              child: TextField(
+                decoration: kDecoration.copyWith(
+                  hintText: 'Enter Postal Code',
+                ),
+                keyboardType: TextInputType.number,
+              ),
+            ),
+            entryBar(
               text: 'Street',
               child: TextField(
                 decoration: kDecoration.copyWith(
