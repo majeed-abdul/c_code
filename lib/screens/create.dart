@@ -151,8 +151,11 @@ class _CreateScreenState extends State<CreateScreen> {
       case 2: ////////////// WiFi
         w = Column(
           children: [
-            TextField(
-              decoration: kDecoration.copyWith(hintText: 'Enter wifis'),
+            entryBar(
+              text: 'WiFi Name',
+              child: TextField(
+                decoration: kDecoration.copyWith(hintText: 'Enter SSID'),
+              ),
             ),
             moreOptions(),
           ],
@@ -161,8 +164,11 @@ class _CreateScreenState extends State<CreateScreen> {
       case 3: ////////////// V-Card
         w = Column(
           children: [
-            TextField(
-              decoration: kDecoration.copyWith(hintText: 'Enter contact'),
+            entryBar(
+              text: 'Name',
+              child: TextField(
+                decoration: kDecoration.copyWith(hintText: 'Enter contact'),
+              ),
             ),
             moreOptions(),
           ],
@@ -171,23 +177,27 @@ class _CreateScreenState extends State<CreateScreen> {
       case 4: ////////////// Email
         w = Column(
           children: [
-            TextField(
-              decoration: kDecoration.copyWith(hintText: 'Enter Email'),
+            entryBar(
+              text: 'Message',
+              child: TextField(
+                decoration: kDecoration.copyWith(hintText: 'Enter Email'),
+              ),
             ),
             moreOptions(),
           ],
         );
         break;
       case 5: ////////////// SMS
-        w = entryBar(
-          child: Column(
-            children: [
-              TextField(
+        w = Column(
+          children: [
+            entryBar(
+              text: 'Message',
+              child: TextField(
                 decoration: kDecoration.copyWith(hintText: 'Enter SMS'),
               ),
-              moreOptions(),
-            ],
-          ),
+            ),
+            moreOptions(),
+          ],
         );
         break;
       default:
