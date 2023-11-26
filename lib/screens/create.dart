@@ -94,82 +94,99 @@ class _CreateScreenState extends State<CreateScreen> {
         );
         break;
       case 1: ////////////// Numbers
-        w = Padding(
-          padding: const EdgeInsets.all(0.0),
+        w = Column(
+          children: [
+            entryBar(
+              text: 'Number',
+              child: TextField(
+                // controller: textCon,
+                keyboardType: TextInputType.number,
+                decoration: kDecoration.copyWith(hintText: 'Enter Number'),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 5),
+              child: GestureDetector(
+                onTap: () {
+                  isMore = !isMore;
+                  setState(() {});
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    const Text(
+                      'More options',
+                    ),
+                    const SizedBox(width: 10),
+                    isMore
+                        ? const Icon(
+                            Icons.check_box,
+                            size: 20,
+                            color: Color.fromRGBO(255, 80, 80, 1),
+                          )
+                        : const Icon(
+                            Icons.check_box_outline_blank_rounded,
+                            size: 20,
+                            color: Colors.black87,
+                          ),
+                  ],
+                ),
+              ),
+            ),
+            Visibility(
+              visible: isMore,
+              child: dropDown(
+                items: numberBarcodes.keys.toList(),
+                onChanged: (value) {
+                  dropDownValueTypeNum = value;
+                  setState(() {});
+                },
+                dropDownValue: dropDownValueTypeNum,
+                text: 'Type',
+              ),
+            ),
+          ],
+        );
+        break;
+      case 2: ////////////// WiFi
+        w = Column(
+          children: [
+            TextField(
+              decoration: kDecoration.copyWith(hintText: 'Enter wifis'),
+            ),
+            moreOptions(),
+          ],
+        );
+        break;
+      case 3: ////////////// V-Card
+        w = Column(
+          children: [
+            TextField(
+              decoration: kDecoration.copyWith(hintText: 'Enter contact'),
+            ),
+            moreOptions(),
+          ],
+        );
+        break;
+      case 4: ////////////// Email
+        w = Column(
+          children: [
+            TextField(
+              decoration: kDecoration.copyWith(hintText: 'Enter Email'),
+            ),
+            moreOptions(),
+          ],
+        );
+        break;
+      case 5: ////////////// SMS
+        w = entryBar(
           child: Column(
             children: [
-              entryBar(
-                text: 'Number',
-                child: TextField(
-                  // controller: textCon,
-                  keyboardType: TextInputType.number,
-                  decoration: kDecoration.copyWith(hintText: 'Enter Number'),
-                ),
+              TextField(
+                decoration: kDecoration.copyWith(hintText: 'Enter SMS'),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 5),
-                child: GestureDetector(
-                  onTap: () {
-                    isMore = !isMore;
-                    setState(() {});
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      const Text(
-                        'More options',
-                      ),
-                      const SizedBox(width: 10),
-                      isMore
-                          ? const Icon(
-                              Icons.check_box,
-                              size: 20,
-                              color: Color.fromRGBO(255, 80, 80, 1),
-                            )
-                          : const Icon(
-                              Icons.check_box_outline_blank_rounded,
-                              size: 20,
-                              color: Colors.black87,
-                            ),
-                    ],
-                  ),
-                ),
-              ),
-              Visibility(
-                visible: isMore,
-                child: dropDown(
-                  items: numberBarcodes.keys.toList(),
-                  onChanged: (value) {
-                    dropDownValueTypeNum = value;
-                    setState(() {});
-                  },
-                  dropDownValue: dropDownValueTypeNum,
-                  text: 'Type',
-                ),
-              ),
+              moreOptions(),
             ],
-          ),
-        );
-        break;
-      case 2: ////////////// V-Card
-        w = TextField(
-          decoration: kDecoration.copyWith(hintText: 'Enter contact'),
-        );
-        break;
-      case 3: ////////////// Email
-        w = TextField(
-          decoration: kDecoration.copyWith(hintText: 'Enter EMail'),
-        );
-        break;
-      case 4: ////////////// SMS
-        w = TextField(
-          decoration: kDecoration.copyWith(hintText: 'Enter sms'),
-        );
-        break;
-      case 5: ////////////// WiFi
-        w = entryBar(
-          child: TextField(
-            decoration: kDecoration.copyWith(hintText: 'Enter WIFW'),
           ),
         );
         break;
