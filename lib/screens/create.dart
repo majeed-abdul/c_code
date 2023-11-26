@@ -281,10 +281,26 @@ class _CreateScreenState extends State<CreateScreen> {
         w = Column(
           children: [
             entryBar(
-              text: 'Message',
+              text: 'To',
               child: TextField(
                 decoration: kDecoration.copyWith(
                   hintText: 'Enter Email',
+                ),
+              ),
+            ),
+            entryBar(
+              text: 'Subject',
+              child: TextField(
+                decoration: kDecoration.copyWith(
+                  hintText: 'Enter Subject',
+                ),
+              ),
+            ),
+            entryBar(
+              text: 'Message',
+              child: TextField(
+                decoration: kDecoration.copyWith(
+                  hintText: 'Enter Message',
                 ),
               ),
             ),
