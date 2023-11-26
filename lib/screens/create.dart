@@ -157,6 +157,13 @@ class _CreateScreenState extends State<CreateScreen> {
                 decoration: kDecoration.copyWith(hintText: 'Enter SSID'),
               ),
             ),
+            entryBar(
+              text: 'password',
+              child: TextField(
+                decoration: kDecoration.copyWith(hintText: 'Enter Password'),
+              ),
+            ),
+            //TODO add non nullable encryption radio button for none, wpa/wpa2, wep.
             moreOptions(),
           ],
         );
