@@ -312,10 +312,18 @@ class _CreateScreenState extends State<CreateScreen> {
         w = Column(
           children: [
             entryBar(
+              text: 'Phone No',
+              child: TextField(
+                decoration: kDecoration.copyWith(
+                  hintText: 'Enter Phone Number',
+                ),
+              ),
+            ),
+            entryBar(
               text: 'Message',
               child: TextField(
                 decoration: kDecoration.copyWith(
-                  hintText: 'Enter SMS',
+                  hintText: 'Enter Message',
                 ),
               ),
             ),
