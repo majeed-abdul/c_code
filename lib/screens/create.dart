@@ -47,6 +47,9 @@ class _CreateScreenState extends State<CreateScreen> {
   TextEditingController vCardWebCon = TextEditingController();
 
   //  Email
+  TextEditingController emailTooCon = TextEditingController();
+  TextEditingController emailSubCon = TextEditingController();
+  TextEditingController emailMsgCon = TextEditingController();
 
   //  SMS
 
@@ -341,6 +344,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 decoration: kDecoration.copyWith(
                   hintText: 'Enter Email',
                 ),
+                controller: emailTooCon,
               ),
             ),
             entryBar(
@@ -349,6 +353,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 decoration: kDecoration.copyWith(
                   hintText: 'Enter Subject',
                 ),
+                controller: emailSubCon,
               ),
             ),
             entryBar(
@@ -357,6 +362,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 decoration: kDecoration.copyWith(
                   hintText: 'Enter Message',
                 ),
+                controller: emailMsgCon,
               ),
             ),
             moreOptions(),
