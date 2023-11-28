@@ -30,6 +30,26 @@ class _CreateScreenState extends State<CreateScreen> {
   TextEditingController wiFiNamCon = TextEditingController();
   TextEditingController wiFiPasCon = TextEditingController();
 
+  //  V-Card
+  TextEditingController vCardFNaCon = TextEditingController();
+  TextEditingController vCardLNaCon = TextEditingController();
+  TextEditingController vCardMobCon = TextEditingController();
+  TextEditingController vCardPhoCon = TextEditingController();
+  TextEditingController vCardFaxCon = TextEditingController();
+  TextEditingController vCardEmaCon = TextEditingController();
+  TextEditingController vCardComCon = TextEditingController();
+  TextEditingController vCardJobCon = TextEditingController();
+  TextEditingController vCardConCon = TextEditingController();
+  TextEditingController vCardStaCon = TextEditingController();
+  TextEditingController vCardCitCon = TextEditingController();
+  TextEditingController vCardZipCon = TextEditingController();
+  TextEditingController vCardStrCon = TextEditingController();
+  TextEditingController vCardWebCon = TextEditingController();
+
+  //  Email
+
+  //  SMS
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -181,6 +201,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 decoration: kDecoration.copyWith(
                   hintText: 'Enter First tName',
                 ),
+                controller: vCardFNaCon,
               ),
             ),
             entryBar(
@@ -189,6 +210,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 decoration: kDecoration.copyWith(
                   hintText: 'Enter Last Name',
                 ),
+                controller: vCardLNaCon,
               ),
             ),
             entryBar(
@@ -198,6 +220,7 @@ class _CreateScreenState extends State<CreateScreen> {
                   hintText: 'Enter Mobile Number',
                 ),
                 keyboardType: TextInputType.phone,
+                controller: vCardMobCon,
               ),
             ),
             entryBar(
@@ -207,6 +230,7 @@ class _CreateScreenState extends State<CreateScreen> {
                   hintText: 'Enter Phone Number',
                 ),
                 keyboardType: TextInputType.phone,
+                controller: vCardPhoCon,
               ),
             ),
             entryBar(
@@ -216,6 +240,7 @@ class _CreateScreenState extends State<CreateScreen> {
                   hintText: 'Enter Fax Number',
                 ),
                 keyboardType: TextInputType.phone,
+                controller: vCardFaxCon,
               ),
             ),
             entryBar(
@@ -225,6 +250,7 @@ class _CreateScreenState extends State<CreateScreen> {
                   hintText: 'Enter Email Address',
                 ),
                 keyboardType: TextInputType.emailAddress,
+                controller: vCardEmaCon,
               ),
             ),
             entryBar(
@@ -233,6 +259,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 decoration: kDecoration.copyWith(
                   hintText: 'Enter Company Name',
                 ),
+                controller: vCardComCon,
               ),
             ),
             entryBar(
@@ -241,6 +268,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 decoration: kDecoration.copyWith(
                   hintText: 'Enter Job Title',
                 ),
+                controller: vCardJobCon,
               ),
             ),
             entryBar(
@@ -249,6 +277,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 decoration: kDecoration.copyWith(
                   hintText: 'Enter Country Name',
                 ),
+                controller: vCardConCon,
               ),
             ),
             entryBar(
@@ -257,6 +286,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 decoration: kDecoration.copyWith(
                   hintText: 'Enter State/Province Name',
                 ),
+                controller: vCardStaCon,
               ),
             ),
             entryBar(
@@ -265,6 +295,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 decoration: kDecoration.copyWith(
                   hintText: 'Enter City Name',
                 ),
+                controller: vCardCitCon,
               ),
             ),
             entryBar(
@@ -274,6 +305,7 @@ class _CreateScreenState extends State<CreateScreen> {
                   hintText: 'Enter Postal Code',
                 ),
                 keyboardType: TextInputType.number,
+                controller: vCardZipCon,
               ),
             ),
             entryBar(
@@ -283,6 +315,7 @@ class _CreateScreenState extends State<CreateScreen> {
                   hintText: 'Enter Street Address',
                 ),
                 keyboardType: TextInputType.streetAddress,
+                controller: vCardStrCon,
               ),
             ),
             entryBar(
@@ -292,6 +325,7 @@ class _CreateScreenState extends State<CreateScreen> {
                   hintText: 'Enter Web URL',
                 ),
                 keyboardType: TextInputType.emailAddress,
+                controller: vCardWebCon,
               ),
             ),
             moreOptions(),
