@@ -27,6 +27,8 @@ class _CreateScreenState extends State<CreateScreen> {
 
   //  WiFi
   bool hidden = false;
+  TextEditingController wiFiNamCon = TextEditingController();
+  TextEditingController wiFiPasCon = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -155,12 +157,14 @@ class _CreateScreenState extends State<CreateScreen> {
               text: 'WiFi Name',
               child: TextField(
                 decoration: kDecoration.copyWith(hintText: 'Enter SSID'),
+                controller: wiFiNamCon,
               ),
             ),
             entryBar(
               text: 'password',
               child: TextField(
                 decoration: kDecoration.copyWith(hintText: 'Enter Password'),
+                controller: wiFiPasCon,
               ),
             ),
             //TODO add non nullable encryption radio button for none, wpa/wpa2, wep.
