@@ -43,7 +43,6 @@ GestureDetector gridButton({
                 name,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                  color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
               ),
