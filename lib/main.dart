@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
           // primarySwatch: Colors.red,
           colorScheme: ColorScheme.fromSeed(
             seedColor: Colors.red,
+            onTertiary: Colors.amber,
           ),
           useMaterial3: true,
         ),

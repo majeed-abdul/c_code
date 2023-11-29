@@ -154,7 +154,7 @@ class _CreateScreenState extends State<CreateScreen> {
                           )
                         : const Icon(
                             Icons.check_box_outline_blank_rounded,
-                            size: 20,
+                            size: 21,
                             color: Colors.black87,
                           ),
                   ],
@@ -409,7 +409,6 @@ class _CreateScreenState extends State<CreateScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 13),
             InkWell(
               onTap: () => setState(() => encryption = 'None'),
               child: Padding(
@@ -423,6 +422,7 @@ class _CreateScreenState extends State<CreateScreen> {
                       color: encryption == 'None'
                           ? Theme.of(context).primaryColor
                           : null,
+                      size: 21,
                     ),
                     const Text(' None'),
                   ],
@@ -442,6 +442,7 @@ class _CreateScreenState extends State<CreateScreen> {
                       color: encryption == 'WPA/WPA-2'
                           ? Theme.of(context).primaryColor
                           : null,
+                      size: 21,
                     ),
                     const Text(' WPA/WPA-2'),
                   ],
@@ -461,6 +462,7 @@ class _CreateScreenState extends State<CreateScreen> {
                       color: encryption == 'WEP'
                           ? Theme.of(context).primaryColor
                           : null,
+                      size: 21,
                     ),
                     const Text(' WEP'),
                   ],
@@ -496,7 +498,7 @@ class _CreateScreenState extends State<CreateScreen> {
                       )
                     : const Icon(
                         Icons.check_box_outline_blank_rounded,
-                        size: 20,
+                        size: 21,
                         color: Colors.black87,
                       )
               ],
