@@ -135,10 +135,7 @@ class _CreateScreenState extends State<CreateScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 5),
               child: GestureDetector(
-                onTap: () {
-                  isMore = !isMore;
-                  setState(() {});
-                },
+                onTap: () => setState(() => isMore = !isMore),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -479,10 +476,7 @@ class _CreateScreenState extends State<CreateScreen> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 5),
           child: GestureDetector(
-            onTap: () {
-              isMore = !isMore;
-              setState(() {});
-            },
+            onTap: () => setState(() => isMore = !isMore),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
