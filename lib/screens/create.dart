@@ -184,10 +184,34 @@ class _CreateScreenState extends State<CreateScreen> {
               ),
             ),
             entryBar(
-              text: 'password',
+              text: 'Password',
               child: TextField(
                 decoration: kDecoration.copyWith(hintText: 'Enter Password'),
                 controller: wiFiPasCon,
+              ),
+            ),
+            entryBar(
+              text: 'Hidden Network',
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(30),
+                  onTap: () => setState(() => hidden = !hidden),
+                  child: Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: Row(
+                      children: [
+                        Icon(
+                          hidden
+                              ? Icons.check_box
+                              : Icons.check_box_outline_blank,
+                          size: 21,
+                          color: hidden ? Theme.of(context).primaryColor : null,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ),
             encryptionRadioButtons(),
@@ -407,6 +431,7 @@ class _CreateScreenState extends State<CreateScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             InkWell(
+              borderRadius: BorderRadius.circular(30),
               onTap: () => setState(() => encryption = 'None'),
               child: Padding(
                 padding: const EdgeInsets.all(5),
@@ -427,6 +452,7 @@ class _CreateScreenState extends State<CreateScreen> {
               ),
             ),
             InkWell(
+              borderRadius: BorderRadius.circular(30),
               onTap: () => setState(() => encryption = 'WPA/WPA-2'),
               child: Padding(
                 padding: const EdgeInsets.all(5),
@@ -447,6 +473,7 @@ class _CreateScreenState extends State<CreateScreen> {
               ),
             ),
             InkWell(
+              borderRadius: BorderRadius.circular(30),
               onTap: () => setState(() => encryption = 'WEP'),
               child: Padding(
                 padding: const EdgeInsets.all(5),
