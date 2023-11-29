@@ -52,6 +52,8 @@ class _CreateScreenState extends State<CreateScreen> {
   TextEditingController emailMsgCon = TextEditingController();
 
   //  SMS
+  TextEditingController smsPhoCon = TextEditingController();
+  TextEditingController smsMsgCon = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -378,6 +380,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 decoration: kDecoration.copyWith(
                   hintText: 'Enter Phone Number',
                 ),
+                controller: smsPhoCon,
               ),
             ),
             entryBar(
@@ -386,6 +389,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 decoration: kDecoration.copyWith(
                   hintText: 'Enter Message',
                 ),
+                controller: smsMsgCon,
               ),
             ),
             moreOptions(),
