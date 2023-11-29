@@ -538,7 +538,13 @@ class _CreateScreenState extends State<CreateScreen> {
           );
         }
       },
-      child: const Text('Create'),
+      child: const Padding(
+        padding: EdgeInsets.symmetric(vertical: 10),
+        child: Text(
+          'Create',
+          style: TextStyle(fontSize: 15),
+        ),
+      ),
     );
   }
 
