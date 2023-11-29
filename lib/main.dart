@@ -20,7 +20,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         theme: ThemeData(
           // primarySwatch: Colors.red,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.red,
+          ),
           useMaterial3: true,
         ),
         initialRoute: HomeScreen.id,

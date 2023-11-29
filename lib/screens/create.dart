@@ -147,10 +147,10 @@ class _CreateScreenState extends State<CreateScreen> {
                     ),
                     const SizedBox(width: 10),
                     isMore
-                        ? const Icon(
+                        ? Icon(
                             Icons.check_box,
-                            size: 20,
-                            color: Color.fromRGBO(255, 80, 80, 1),
+                            size: 21,
+                            color: Theme.of(context).primaryColor,
                           )
                         : const Icon(
                             Icons.check_box_outline_blank_rounded,
@@ -491,7 +491,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 isMore
                     ? Icon(
                         Icons.check_box,
-                        size: 20,
+                        size: 21,
                         color: Theme.of(context).primaryColor,
                       )
                     : const Icon(
