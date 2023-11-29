@@ -135,10 +135,7 @@ class _CreateScreenState extends State<CreateScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 5),
               child: GestureDetector(
-                onTap: () {
-                  isMore = !isMore;
-                  setState(() {});
-                },
+                onTap: () => setState(() => isMore = !isMore),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -479,10 +476,7 @@ class _CreateScreenState extends State<CreateScreen> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 5),
           child: GestureDetector(
-            onTap: () {
-              isMore = !isMore;
-              setState(() {});
-            },
+            onTap: () => setState(() => isMore = !isMore),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -538,7 +532,13 @@ class _CreateScreenState extends State<CreateScreen> {
           );
         }
       },
-      child: const Text('Create'),
+      child: const Padding(
+        padding: EdgeInsets.symmetric(vertical: 10),
+        child: Text(
+          'Create',
+          style: TextStyle(fontSize: 15),
+        ),
+      ),
     );
   }
 
