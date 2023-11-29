@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(
             seedColor: Colors.red,
             primaryContainer: Colors.amber,
+            secondary: Colors.purple,
           ),
           useMaterial3: true,
         ),
