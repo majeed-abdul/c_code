@@ -18,7 +18,11 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => CreateProvider()),
       ],
       child: MaterialApp(
-        theme: ThemeData(primarySwatch: Colors.red),
+        theme: ThemeData(
+          // primarySwatch: Colors.red,
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
+          useMaterial3: true,
+        ),
         initialRoute: HomeScreen.id,
         routes: {
           HomeScreen.id: (context) => const HomeScreen(),
