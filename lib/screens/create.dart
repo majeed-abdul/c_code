@@ -29,6 +29,7 @@ class _CreateScreenState extends State<CreateScreen> {
   bool hidden = false;
   TextEditingController wiFiNamCon = TextEditingController();
   TextEditingController wiFiPasCon = TextEditingController();
+  String encryption = 'None';
 
   //  V-Card
   TextEditingController vCardFNaCon = TextEditingController();
@@ -192,7 +193,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 controller: wiFiPasCon,
               ),
             ),
-            //TODO add non nullable encryption radio button for none, wpa/wpa2, wep.
+            encryptionRadioButtons(),
             moreOptions(),
           ],
         );
@@ -400,6 +401,74 @@ class _CreateScreenState extends State<CreateScreen> {
         w = const SizedBox();
     }
     return w;
+  }
+
+  Widget encryptionRadioButtons() {
+    return entryBar(
+        text: 'Encryption',
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 13),
+            InkWell(
+              onTap: () => setState(() => encryption = 'None'),
+              child: Padding(
+                padding: const EdgeInsets.all(5),
+                child: Row(
+                  children: [
+                    Icon(
+                      encryption == 'None'
+                          ? Icons.check_box
+                          : Icons.check_box_outline_blank,
+                      color: encryption == 'None'
+                          ? Theme.of(context).primaryColor
+                          : null,
+                    ),
+                    const Text(' None'),
+                  ],
+                ),
+              ),
+            ),
+            InkWell(
+              onTap: () => setState(() => encryption = 'WPA/WPA-2'),
+              child: Padding(
+                padding: const EdgeInsets.all(5),
+                child: Row(
+                  children: [
+                    Icon(
+                      encryption == 'WPA/WPA-2'
+                          ? Icons.check_box
+                          : Icons.check_box_outline_blank,
+                      color: encryption == 'WPA/WPA-2'
+                          ? Theme.of(context).primaryColor
+                          : null,
+                    ),
+                    const Text(' WPA/WPA-2'),
+                  ],
+                ),
+              ),
+            ),
+            InkWell(
+              onTap: () => setState(() => encryption = 'WEP'),
+              child: Padding(
+                padding: const EdgeInsets.all(5),
+                child: Row(
+                  children: [
+                    Icon(
+                      encryption == 'WEP'
+                          ? Icons.check_box
+                          : Icons.check_box_outline_blank,
+                      color: encryption == 'WEP'
+                          ? Theme.of(context).primaryColor
+                          : null,
+                    ),
+                    const Text(' WEP'),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ));
   }
 
   Column moreOptions() {
