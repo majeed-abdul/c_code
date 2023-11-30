@@ -32,7 +32,7 @@ class _CreateScreenState extends State<CreateScreen> {
   //  WiFi
   TextEditingController wiFiNamCon = TextEditingController();
   TextEditingController wiFiPasCon = TextEditingController();
-  String encryption = 'None';
+  String encryption = 'WPA';
   bool hidden = false;
 
   //  V-Card
@@ -106,11 +106,11 @@ class _CreateScreenState extends State<CreateScreen> {
         w = Column(
           children: [
             entryBar(
-              text: 'Text',
+              text: 'Text / url',
               child: TextField(
                 keyboardType: TextInputType.multiline,
                 maxLines: 6,
-                minLines: 2,
+                minLines: 3,
                 decoration: kDecoration.copyWith(hintText: 'Enter Text'),
                 onChanged: (value) => finalWords = value,
                 controller: stringCon,
@@ -182,15 +182,19 @@ class _CreateScreenState extends State<CreateScreen> {
                 controller: wiFiNamCon,
               ),
             ),
-            entryBar(
-              text: 'Password',
-              child: TextField(
-                decoration: kDecoration.copyWith(hintText: 'Enter Password'),
-                controller: wiFiPasCon,
+            Visibility(
+              visible: encryption != 'None',
+              child: entryBar(
+                text: 'Password',
+                child: TextField(
+                  decoration: kDecoration.copyWith(hintText: 'Enter Password'),
+                  controller: wiFiPasCon,
+                ),
               ),
             ),
+            encryptionRadioButtons(),
             entryBar(
-              text: 'Hidden Network',
+              text: 'Hidden',
               child: Padding(
                 padding: const EdgeInsets.only(top: 8),
                 child: InkWell(
@@ -213,7 +217,6 @@ class _CreateScreenState extends State<CreateScreen> {
                 ),
               ),
             ),
-            encryptionRadioButtons(),
             moreOptions(),
           ],
         );
@@ -385,6 +388,8 @@ class _CreateScreenState extends State<CreateScreen> {
                 decoration: kDecoration.copyWith(
                   hintText: 'Enter Message',
                 ),
+                maxLines: 6,
+                minLines: 3,
                 controller: emailMsgCon,
               ),
             ),
@@ -401,6 +406,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 decoration: kDecoration.copyWith(
                   hintText: 'Enter Phone Number',
                 ),
+                keyboardType: TextInputType.phone,
                 controller: smsPhoCon,
               ),
             ),
@@ -410,6 +416,8 @@ class _CreateScreenState extends State<CreateScreen> {
                 decoration: kDecoration.copyWith(
                   hintText: 'Enter Message',
                 ),
+                maxLines: 6,
+                minLines: 3,
                 controller: smsMsgCon,
               ),
             ),
@@ -452,16 +460,16 @@ class _CreateScreenState extends State<CreateScreen> {
             ),
             InkWell(
               borderRadius: BorderRadius.circular(30),
-              onTap: () => setState(() => encryption = 'WPA/WPA-2'),
+              onTap: () => setState(() => encryption = 'WPA'),
               child: Padding(
                 padding: const EdgeInsets.all(5),
                 child: Row(
                   children: [
                     Icon(
-                      encryption == 'WPA/WPA-2'
+                      encryption == 'WPA'
                           ? Icons.check_box
                           : Icons.check_box_outline_blank,
-                      color: encryption == 'WPA/WPA-2'
+                      color: encryption == 'WPA'
                           ? Theme.of(context).primaryColor
                           : null,
                       size: 21,

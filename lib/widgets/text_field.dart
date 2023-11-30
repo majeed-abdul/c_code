@@ -24,7 +24,7 @@ Widget entryBar({
 }) {
   return ListTile(
     contentPadding: const EdgeInsets.all(0),
-    minLeadingWidth: 50,
+    minLeadingWidth: 87,
     horizontalTitleGap: 7,
     leading: Text(
       '$text :',
