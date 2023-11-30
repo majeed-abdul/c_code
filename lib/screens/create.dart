@@ -17,19 +17,23 @@ class CreateScreen extends StatefulWidget {
 
 class _CreateScreenState extends State<CreateScreen> {
   //  All
-  bool isMore = false;
   String? dropDownValueType = textBarcodes.keys.first;
   Barcode selectedCodeType = Barcode.qrCode();
+  bool isMore = false;
   String? finalWords;
 
+  //  String
+  TextEditingController stringCon = TextEditingController();
+
   //  Number
+  TextEditingController numberCon = TextEditingController();
   String? dropDownValueTypeNum = numberBarcodes.keys.first;
 
   //  WiFi
-  bool hidden = false;
   TextEditingController wiFiNamCon = TextEditingController();
   TextEditingController wiFiPasCon = TextEditingController();
   String encryption = 'None';
+  bool hidden = false;
 
   //  V-Card
   TextEditingController vCardFNaCon = TextEditingController();
@@ -105,8 +109,8 @@ class _CreateScreenState extends State<CreateScreen> {
               text: 'Text',
               child: TextField(
                 keyboardType: TextInputType.multiline,
-                maxLines: 20,
-                minLines: 1,
+                maxLines: 6,
+                minLines: 2,
                 decoration: kDecoration.copyWith(hintText: 'Enter Text'),
                 onChanged: (value) => finalWords = value,
               ),
@@ -121,7 +125,6 @@ class _CreateScreenState extends State<CreateScreen> {
             entryBar(
               text: 'Number',
               child: TextField(
-                // controller: textCon,
                 keyboardType: TextInputType.number,
                 decoration: kDecoration.copyWith(hintText: 'Enter Number'),
               ),
@@ -581,9 +584,7 @@ class _CreateScreenState extends State<CreateScreen> {
           icon: creates[index].icon,
           selected: context.watch<CreateProvider>().createSelected,
           onTap: () {
-            finalWords = null;
-            isMore = false;
-            dropDownValueType = textBarcodes.keys.first;
+            clearControllers();
             context.read<CreateProvider>().createSelected == creates[index].name
                 ? context.read<CreateProvider>().setCreate(creates[0].name)
                 : context.read<CreateProvider>().setCreate(creates[index].name);
@@ -591,5 +592,47 @@ class _CreateScreenState extends State<CreateScreen> {
         );
       },
     );
+  }
+
+  clearControllers() {
+    //  Default Values
+    dropDownValueType = textBarcodes.keys.first;
+    finalWords = null;
+    isMore = false;
+
+    //  String
+    stringCon = TextEditingController();
+
+    //  Number
+    numberCon = TextEditingController();
+
+    //  WiFi
+    wiFiNamCon = TextEditingController();
+    wiFiPasCon = TextEditingController();
+
+    //  V-Card
+    vCardFNaCon = TextEditingController();
+    vCardLNaCon = TextEditingController();
+    vCardMobCon = TextEditingController();
+    vCardPhoCon = TextEditingController();
+    vCardFaxCon = TextEditingController();
+    vCardEmaCon = TextEditingController();
+    vCardComCon = TextEditingController();
+    vCardJobCon = TextEditingController();
+    vCardConCon = TextEditingController();
+    vCardStaCon = TextEditingController();
+    vCardCitCon = TextEditingController();
+    vCardZipCon = TextEditingController();
+    vCardStrCon = TextEditingController();
+    vCardWebCon = TextEditingController();
+
+    //  Email
+    emailTooCon = TextEditingController();
+    emailSubCon = TextEditingController();
+    emailMsgCon = TextEditingController();
+
+    //  SMS
+    smsPhoCon = TextEditingController();
+    smsMsgCon = TextEditingController();
   }
 }
