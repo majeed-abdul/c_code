@@ -113,6 +113,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 minLines: 2,
                 decoration: kDecoration.copyWith(hintText: 'Enter Text'),
                 onChanged: (value) => finalWords = value,
+                controller: stringCon,
               ),
             ),
             moreOptions(),
@@ -127,6 +128,7 @@ class _CreateScreenState extends State<CreateScreen> {
               child: TextField(
                 keyboardType: TextInputType.number,
                 decoration: kDecoration.copyWith(hintText: 'Enter Number'),
+                controller: numberCon,
               ),
             ),
             Padding(
@@ -601,38 +603,38 @@ class _CreateScreenState extends State<CreateScreen> {
     isMore = false;
 
     //  String
-    stringCon = TextEditingController();
+    stringCon.clear();
 
     //  Number
-    numberCon = TextEditingController();
+    numberCon.clear();
 
     //  WiFi
-    wiFiNamCon = TextEditingController();
-    wiFiPasCon = TextEditingController();
+    wiFiNamCon.clear();
+    wiFiPasCon.clear();
 
     //  V-Card
-    vCardFNaCon = TextEditingController();
-    vCardLNaCon = TextEditingController();
-    vCardMobCon = TextEditingController();
-    vCardPhoCon = TextEditingController();
-    vCardFaxCon = TextEditingController();
-    vCardEmaCon = TextEditingController();
-    vCardComCon = TextEditingController();
-    vCardJobCon = TextEditingController();
-    vCardConCon = TextEditingController();
-    vCardStaCon = TextEditingController();
-    vCardCitCon = TextEditingController();
-    vCardZipCon = TextEditingController();
-    vCardStrCon = TextEditingController();
-    vCardWebCon = TextEditingController();
+    vCardFNaCon.clear();
+    vCardLNaCon.clear();
+    vCardMobCon.clear();
+    vCardPhoCon.clear();
+    vCardFaxCon.clear();
+    vCardEmaCon.clear();
+    vCardComCon.clear();
+    vCardJobCon.clear();
+    vCardConCon.clear();
+    vCardStaCon.clear();
+    vCardCitCon.clear();
+    vCardZipCon.clear();
+    vCardStrCon.clear();
+    vCardWebCon.clear();
 
     //  Email
-    emailTooCon = TextEditingController();
-    emailSubCon = TextEditingController();
-    emailMsgCon = TextEditingController();
+    emailTooCon.clear();
+    emailSubCon.clear();
+    emailMsgCon.clear();
 
     //  SMS
-    smsPhoCon = TextEditingController();
-    smsMsgCon = TextEditingController();
+    smsPhoCon.clear();
+    smsMsgCon.clear();
   }
 }
