@@ -581,7 +581,7 @@ class _CreateScreenState extends State<CreateScreen> {
           icon: creates[index].icon,
           selected: context.watch<CreateProvider>().createSelected,
           onTap: () {
-            // textCon = TextEditingController();
+            finalWords = null;
             isMore = false;
             dropDownValueType = textBarcodes.keys.first;
             context.read<CreateProvider>().createSelected == creates[index].name
