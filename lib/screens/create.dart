@@ -16,6 +16,7 @@ class CreateScreen extends StatefulWidget {
 }
 
 class _CreateScreenState extends State<CreateScreen> {
+  int selected = 0;
   //  All
   String? dropDownValueType = textBarcodes.keys.first;
   Barcode selectedCodeType = Barcode.qrCode();
@@ -99,9 +100,10 @@ class _CreateScreenState extends State<CreateScreen> {
 
   Widget entryTextFields() {
     Widget w;
-    switch (creates.indexWhere((element) {
-      return element.name == context.watch<CreateProvider>().createSelected;
-    })) {
+    // switch (creates.indexWhere((element) {
+    //   return element.name == context.watch<CreateProvider>().createSelected;
+    // })) {
+    switch (selected) {
       case 0: ////////////// Text & URL
         w = Column(
           children: [
@@ -592,12 +594,14 @@ class _CreateScreenState extends State<CreateScreen> {
         return gridButton(
           name: creates[index].name,
           icon: creates[index].icon,
-          selected: context.watch<CreateProvider>().createSelected,
+          selected: index == selected,
           onTap: () {
             clearControllers();
-            context.read<CreateProvider>().createSelected == creates[index].name
-                ? context.read<CreateProvider>().setCreate(creates[0].name)
-                : context.read<CreateProvider>().setCreate(creates[index].name);
+            selected = index;
+            setState(() {});
+            // context.read<CreateProvider>().createSelected == creates[index].name
+            //     ? context.read<CreateProvider>().setCreate(creates[0].name)
+            //     : context.read<CreateProvider>().setCreate(creates[index].name);
           },
         );
       },

@@ -19,7 +19,7 @@ Container customButton({
 GestureDetector gridButton({
   required IconData icon,
   required String name,
-  String? selected,
+  bool selected = false,
   Function()? onTap,
 }) {
   return GestureDetector(
@@ -50,7 +50,7 @@ GestureDetector gridButton({
           ),
         ),
         Visibility(
-          visible: selected == name,
+          visible: selected,
           child: Container(
             margin: const EdgeInsets.all(1),
             decoration: BoxDecoration(
