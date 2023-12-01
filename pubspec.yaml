@@ -35,7 +35,6 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   barcode: ^2.2.3 # parent
-  provider: ^6.0.5 # state management
   url_launcher: ^6.1.10
   barcode_widget: ^2.0.4 # child
   icons_launcher: ^2.1.0
