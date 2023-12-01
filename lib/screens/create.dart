@@ -557,7 +557,6 @@ class _CreateScreenState extends State<CreateScreen> {
               builder: (BuildContext context) => CodeDisplayScreen(
                 data: finalWords,
                 barCode: selectedCodeType,
-                // barCode: numberBarcodes[dropDownValueType],=================
               ),
             ),
           );
@@ -594,9 +593,6 @@ class _CreateScreenState extends State<CreateScreen> {
             clearControllers();
             selected = index;
             setState(() {});
-            // context.read<CreateProvider>().createSelected == creates[index].name
-            //     ? context.read<CreateProvider>().setCreate(creates[0].name)
-            //     : context.read<CreateProvider>().setCreate(creates[index].name);
           },
         );
       },
