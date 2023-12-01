@@ -98,9 +98,6 @@ class _CreateScreenState extends State<CreateScreen> {
 
   Widget entryTextFields() {
     Widget w;
-    // switch (creates.indexWhere((element) {
-    //   return element.name == context.watch<CreateProvider>().createSelected;
-    // })) {
     switch (selected) {
       case 0: ////////////// Text & URL
         w = Column(
