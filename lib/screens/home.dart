@@ -31,8 +31,8 @@ class _HomeScreenState extends State<HomeScreen> {
         unselectedItemColor: Colors.black,
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
-        showUnselectedLabels: false,
-        showSelectedLabels: false,
+        // showUnselectedLabels: false,
+        // showSelectedLabels: false,
         currentIndex: _index,
         elevation: 25,
         onTap: (i) {
@@ -47,11 +47,15 @@ class _HomeScreenState extends State<HomeScreen> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.add_box_outlined),
+            activeIcon: Icon(Icons.add_box),
             label: 'Create',
+            tooltip: 'create',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.qr_code_scanner),
+            icon: Icon(Icons.center_focus_weak),
+            activeIcon: Icon(Icons.center_focus_strong),
             label: 'Scan',
+            tooltip: 'scan',
           ),
         ],
       ),
