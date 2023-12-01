@@ -45,8 +45,8 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
     return BarcodeWidget(
       height: MediaQuery.of(context).size.width <=
               MediaQuery.of(context).size.height
-          ? MediaQuery.of(context).size.width - (60 * 2) //  port
-          : MediaQuery.of(context).size.height - (60 * 2) - 56, //  land
+          ? MediaQuery.of(context).size.width - (60 * 2) //  portrait
+          : MediaQuery.of(context).size.height - (60 * 2) - 56, //  landescape
       data: widget.data ?? '',
       barcode: widget.barCode ?? Barcode.qrCode(),
       margin: const EdgeInsets.symmetric(vertical: 40),
