@@ -1,8 +1,6 @@
-import 'package:c_code/data/provider.dart';
 import 'package:c_code/screens/home.dart';
 import 'package:c_code/screens/scan.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,10 +12,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return MultiProvider(
-    // providers: [
-    //   // ChangeNotifierProvider(create: (context) => CreateProvider()),
-    // ],
     return MaterialApp(
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
