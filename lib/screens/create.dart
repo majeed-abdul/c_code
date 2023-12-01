@@ -3,9 +3,7 @@ import 'package:c_code/screens/code_display.dart';
 import 'package:c_code/widgets/text_field.dart';
 import 'package:c_code/widgets/drop_down.dart';
 import 'package:c_code/widgets/buttons.dart';
-import 'package:c_code/data/provider.dart';
 import 'package:c_code/data/create.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 class CreateScreen extends StatefulWidget {
@@ -100,9 +98,6 @@ class _CreateScreenState extends State<CreateScreen> {
 
   Widget entryTextFields() {
     Widget w;
-    // switch (creates.indexWhere((element) {
-    //   return element.name == context.watch<CreateProvider>().createSelected;
-    // })) {
     switch (selected) {
       case 0: ////////////// Text & URL
         w = Column(
@@ -562,7 +557,6 @@ class _CreateScreenState extends State<CreateScreen> {
               builder: (BuildContext context) => CodeDisplayScreen(
                 data: finalWords,
                 barCode: selectedCodeType,
-                // barCode: numberBarcodes[dropDownValueType],=================
               ),
             ),
           );
@@ -599,9 +593,6 @@ class _CreateScreenState extends State<CreateScreen> {
             clearControllers();
             selected = index;
             setState(() {});
-            // context.read<CreateProvider>().createSelected == creates[index].name
-            //     ? context.read<CreateProvider>().setCreate(creates[0].name)
-            //     : context.read<CreateProvider>().setCreate(creates[index].name);
           },
         );
       },
@@ -614,17 +605,13 @@ class _CreateScreenState extends State<CreateScreen> {
     dropDownValueType = textBarcodes.keys.first;
     finalWords = null;
     isMore = false;
-
     //  String
     stringCon.clear();
-
     //  Number
     numberCon.clear();
-
     //  WiFi
     wiFiNamCon.clear();
     wiFiPasCon.clear();
-
     //  V-Card
     vCardFNaCon.clear();
     vCardLNaCon.clear();
@@ -640,12 +627,10 @@ class _CreateScreenState extends State<CreateScreen> {
     vCardZipCon.clear();
     vCardStrCon.clear();
     vCardWebCon.clear();
-
     //  Email
     emailTooCon.clear();
     emailSubCon.clear();
     emailMsgCon.clear();
-
     //  SMS
     smsPhoCon.clear();
     smsMsgCon.clear();
