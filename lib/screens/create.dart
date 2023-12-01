@@ -605,17 +605,13 @@ class _CreateScreenState extends State<CreateScreen> {
     dropDownValueType = textBarcodes.keys.first;
     finalWords = null;
     isMore = false;
-
     //  String
     stringCon.clear();
-
     //  Number
     numberCon.clear();
-
     //  WiFi
     wiFiNamCon.clear();
     wiFiPasCon.clear();
-
     //  V-Card
     vCardFNaCon.clear();
     vCardLNaCon.clear();
@@ -631,12 +627,10 @@ class _CreateScreenState extends State<CreateScreen> {
     vCardZipCon.clear();
     vCardStrCon.clear();
     vCardWebCon.clear();
-
     //  Email
     emailTooCon.clear();
     emailSubCon.clear();
     emailMsgCon.clear();
-
     //  SMS
     smsPhoCon.clear();
     smsMsgCon.clear();
