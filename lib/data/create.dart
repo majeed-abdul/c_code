@@ -41,6 +41,7 @@ Map<String, Barcode> numberBarcodes = {
   'upc A': Barcode.upcA(),
   'upc E': Barcode.upcE(),
 };
+// REMOVED ONES
 // Text
   // 'GS 128': Barcode.gs128(),
 // Number
