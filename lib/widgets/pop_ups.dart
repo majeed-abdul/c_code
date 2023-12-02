@@ -4,7 +4,7 @@ showSnackBar(BuildContext context, String message) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       content: Text(message, textAlign: TextAlign.center),
-      duration: const Duration(milliseconds: 1500),
+      duration: const Duration(milliseconds: 1499),
       padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
       behavior: SnackBarBehavior.floating,
       shape: RoundedRectangleBorder(
