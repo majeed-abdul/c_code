@@ -32,7 +32,6 @@ GestureDetector gridButton({
           padding: const EdgeInsets.all(5),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(7),
-            // color: kButtonColor,
             border: Border.all(),
           ),
           child: Row(
@@ -41,7 +40,6 @@ GestureDetector gridButton({
               const SizedBox(width: 5),
               Text(
                 name,
-                // textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
