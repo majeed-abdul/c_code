@@ -570,10 +570,14 @@ class _CreateScreenState extends State<CreateScreen> {
                 throw 'Enter Number'; //  must not be empty
               }
               break;
-//
-            //
-//           case 3: ////////////// V-Card
-//           vCardFNaCon
+            case 3: ////////////// V-Card
+              if (vCardFNaCon.text.isEmpty || vCardFNaCon.text.isEmpty) {
+                throw 'Enter Name'; //  must not be empty
+              } else if (vCardMobCon.text.isEmpty || vCardPhoCon.text.isEmpty) {
+                throw 'Enter Any Contact Number'; //  must not be empty
+              }
+              break;
+// vCardFNaCon
 // vCardLNaCon
 // vCardMobCon
 // vCardPhoCon
