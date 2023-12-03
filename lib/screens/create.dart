@@ -554,10 +554,14 @@ class _CreateScreenState extends State<CreateScreen> {
         try {
           switch (selected) {
             case 0: ////////////// Text & URL
-              if (stringCon.text.isEmpty) throw 'Enter Text';
+              if (stringCon.text.isEmpty) {
+                throw 'Enter Text'; //  must not be empty
+              }
               break;
             case 1: ////////////// Number
-              if (numberCon.text.isEmpty) throw 'Enter Number';
+              if (numberCon.text.isEmpty) {
+                throw 'Enter Number'; //  must not be empty
+              }
               break;
 //           case 2: ////////////// WIFi
 //                     wiFiNamCon
