@@ -565,9 +565,9 @@ class _CreateScreenState extends State<CreateScreen> {
               break;
             case 2: ////////////// WIFi
               if (wiFiNamCon.text.isEmpty) {
-                throw 'Enter Number'; //  must not be empty
-              } else if (wiFiPasCon.text.isEmpty) {
-                throw 'Enter Number'; //  must not be empty
+                throw 'Enter SSID'; //  must not be empty
+              } else if (wiFiPasCon.text.isEmpty && encryption != 'None') {
+                throw 'Enter Password'; //  must not be empty
               }
               break;
             case 3: ////////////// V-Card
@@ -600,9 +600,6 @@ class _CreateScreenState extends State<CreateScreen> {
                 throw 'Enter Message'; //  must not be empty
               }
               break;
-// emailTooCon
-// emailSubCon
-// emailMsgCon
             case 5: ////////////// SMS
               if (smsPhoCon.text.isEmpty) {
                 throw "Enter Reciever's Phone Number"; //  must not be empty
@@ -610,8 +607,6 @@ class _CreateScreenState extends State<CreateScreen> {
                 throw 'Enter Message'; //  must not be empty
               }
               break;
-// smsPhoCon
-// smsMsgCon
           }
         } catch (e) {
           showSnackBar(context, e.toString());
