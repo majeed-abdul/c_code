@@ -563,10 +563,15 @@ class _CreateScreenState extends State<CreateScreen> {
                 throw 'Enter Number'; //  must not be empty
               }
               break;
-//           case 2: ////////////// WIFi
-//                     wiFiNamCon
-// wiFiPasCon
-            // break;
+            case 2: ////////////// WIFi
+              if (wiFiNamCon.text.isEmpty) {
+                throw 'Enter Number'; //  must not be empty
+              } else if (wiFiPasCon.text.isEmpty) {
+                throw 'Enter Number'; //  must not be empty
+              }
+              break;
+//
+            //
 //           case 3: ////////////// V-Card
 //           vCardFNaCon
 // vCardLNaCon
