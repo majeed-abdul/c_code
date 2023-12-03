@@ -599,14 +599,19 @@ class _CreateScreenState extends State<CreateScreen> {
               } else if (emailMsgCon.text.isEmpty) {
                 throw 'Enter Message'; //  must not be empty
               }
+              break;
 // emailTooCon
 // emailSubCon
 // emailMsgCon
-            // break;
-//           case 5: ////////////// SMS
-//           smsPhoCon
+            case 5: ////////////// SMS
+              if (smsPhoCon.text.isEmpty) {
+                throw "Enter Reciever's Phone Number"; //  must not be empty
+              } else if (smsMsgCon.text.isEmpty) {
+                throw 'Enter Message'; //  must not be empty
+              }
+              break;
+// smsPhoCon
 // smsMsgCon
-            // break;
           }
         } catch (e) {
           showSnackBar(context, e.toString());
