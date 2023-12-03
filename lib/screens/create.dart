@@ -591,9 +591,15 @@ class _CreateScreenState extends State<CreateScreen> {
 // vCardZipCon
 // vCardStrCon
 // vCardWebCon
-            // break;
-//           case 4: ////////////// Email
-//           emailTooCon
+            case 4: ////////////// Email
+              if (emailTooCon.text.isEmpty) {
+                throw "Enter Reciever's email"; //  must not be empty
+              } else if (emailSubCon.text.isEmpty) {
+                throw 'Enter Email Subject'; //  must not be empty
+              } else if (emailMsgCon.text.isEmpty) {
+                throw 'Enter Message'; //  must not be empty
+              }
+// emailTooCon
 // emailSubCon
 // emailMsgCon
             // break;
