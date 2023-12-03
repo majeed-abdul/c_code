@@ -1,5 +1,6 @@
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:c_code/screens/code_display.dart';
+import 'package:c_code/widgets/pop_ups.dart';
 import 'package:c_code/widgets/text_field.dart';
 import 'package:c_code/widgets/drop_down.dart';
 import 'package:c_code/widgets/buttons.dart';
@@ -550,17 +551,57 @@ class _CreateScreenState extends State<CreateScreen> {
   ElevatedButton createButton() {
     return ElevatedButton(
       onPressed: () {
-        if (finalWords!.isNotEmpty) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (BuildContext context) => CodeDisplayScreen(
-                data: finalWords,
-                barCode: selectedCodeType,
-              ),
-            ),
-          );
+        try {
+          switch (selected) {
+            case 0: ////////////// Text & URL
+              if (stringCon.text.isEmpty) throw 'Enter Text';
+              break;
+            case 1: ////////////// Number
+              if (numberCon.text.isEmpty) throw 'Enter Number';
+              break;
+//           case 2: ////////////// WIFi
+//                     wiFiNamCon
+// wiFiPasCon
+            // break;
+//           case 3: ////////////// V-Card
+//           vCardFNaCon
+// vCardLNaCon
+// vCardMobCon
+// vCardPhoCon
+// vCardFaxCon
+// vCardEmaCon
+// vCardComCon
+// vCardJobCon
+// vCardConCon
+// vCardStaCon
+// vCardCitCon
+// vCardZipCon
+// vCardStrCon
+// vCardWebCon
+            // break;
+//           case 4: ////////////// Email
+//           emailTooCon
+// emailSubCon
+// emailMsgCon
+            // break;
+//           case 5: ////////////// SMS
+//           smsPhoCon
+// smsMsgCon
+            // break;
+          }
+        } catch (e) {
+          showSnackBar(context, e.toString());
+          return;
         }
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => CodeDisplayScreen(
+              data: finalWords,
+              barCode: selectedCodeType,
+            ),
+          ),
+        );
       },
       child: const Padding(
         padding: EdgeInsets.symmetric(vertical: 10),
