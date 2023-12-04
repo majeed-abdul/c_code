@@ -127,6 +127,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 keyboardType: TextInputType.number,
                 decoration: kDecoration.copyWith(hintText: 'Enter Number'),
                 controller: numberCon,
+                onChanged: (value) => finalWords = value,
               ),
             ),
             Padding(
@@ -561,6 +562,12 @@ class _CreateScreenState extends State<CreateScreen> {
             case 1: ////////////// Number
               if (numberCon.text.isEmpty) {
                 throw 'Enter Number'; //  must not be empty
+              } else {
+                try {
+                  double.parse(numberCon.text);
+                } on FormatException {
+                  throw 'Enter Number only';
+                }
               }
               break;
             case 2: ////////////// WIFi
