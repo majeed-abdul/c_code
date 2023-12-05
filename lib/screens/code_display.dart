@@ -1,5 +1,4 @@
 import 'package:barcode_widget/barcode_widget.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class CodeDisplayScreen extends StatefulWidget {
@@ -30,7 +29,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [displayOutputCode(context), Text(widget.data ?? '')],
+          children: [displayOutputCode(context), Text(widget.data)],
         ),
       ),
     );

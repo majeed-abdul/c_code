@@ -721,4 +721,9 @@ class _CreateScreenState extends State<CreateScreen> {
     finalWords =
         "WIFI:T:$encryption;S:${wiFiNamCon.text};P:${encryption == 'nopass' ? 'null' : wiFiPasCon.text};H:${hidden ? 'true' : 'false'};;";
   }
+
+  setVCard() {
+    finalWords =
+        "WIFI:T:$encryption;S:${wiFiNamCon.text};P:${encryption == 'nopass' ? 'null' : wiFiPasCon.text};H:${hidden ? 'true' : 'false'};;";
+  }
 }
