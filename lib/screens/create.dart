@@ -179,11 +179,11 @@ class _CreateScreenState extends State<CreateScreen> {
               child: TextField(
                 decoration: kDecoration.copyWith(hintText: 'Enter SSID'),
                 controller: wiFiNamCon,
-                onChanged: (value) => finalWords = value,
+                onChanged: (value) => setWiFi(),
               ),
             ),
             Visibility(
-              visible: encryption != 'None',
+              visible: encryption != 'nopass',
               child: entryBar(
                 text: 'Password',
                 child: TextField(
@@ -439,16 +439,16 @@ class _CreateScreenState extends State<CreateScreen> {
           children: [
             InkWell(
               borderRadius: BorderRadius.circular(30),
-              onTap: () => setState(() => encryption = 'None'),
+              onTap: () => setState(() => encryption = 'nopass'),
               child: Padding(
                 padding: const EdgeInsets.all(5),
                 child: Row(
                   children: [
                     Icon(
-                      encryption == 'None'
+                      encryption == 'nopass'
                           ? Icons.check_box
                           : Icons.check_box_outline_blank,
-                      color: encryption == 'None'
+                      color: encryption == 'nopass'
                           ? Theme.of(context).primaryColor
                           : null,
                       size: 21,
@@ -574,7 +574,7 @@ class _CreateScreenState extends State<CreateScreen> {
             case 2: ////////////// WIFi
               if (wiFiNamCon.text.isEmpty) {
                 throw 'Enter SSID'; //  must not be empty
-              } else if (wiFiPasCon.text.isEmpty && encryption != 'None') {
+              } else if (wiFiPasCon.text.isEmpty && encryption != 'nopass') {
                 throw 'Enter Password'; //  must not be empty
               }
               break;
@@ -624,7 +624,7 @@ class _CreateScreenState extends State<CreateScreen> {
           context,
           MaterialPageRoute(
             builder: (BuildContext context) => CodeDisplayScreen(
-              data: finalWords,
+              data: '$finalWords',
               barCode: selectedCodeType,
             ),
           ),
@@ -702,5 +702,10 @@ class _CreateScreenState extends State<CreateScreen> {
     //  SMS
     smsPhoCon.clear();
     smsMsgCon.clear();
+  }
+
+  setWiFi() {
+    finalWords =
+        "WIFI:T:$encryption;S:${wiFiNamCon.text};P:${wiFiPasCon.text};H:${hidden ? 'true' : 'false'};;";
   }
 }
