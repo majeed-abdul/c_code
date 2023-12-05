@@ -235,6 +235,7 @@ class _CreateScreenState extends State<CreateScreen> {
                   hintText: 'Enter First tName',
                 ),
                 controller: vCardFNaCon,
+                onChanged: (v) => setVCard(),
               ),
             ),
             entryBar(
@@ -592,7 +593,7 @@ class _CreateScreenState extends State<CreateScreen> {
               }
               break;
             case 3: ////////////// V-Card
-              if (vCardFNaCon.text.isEmpty || vCardFNaCon.text.isEmpty) {
+              if (vCardFNaCon.text.isEmpty && vCardFNaCon.text.isEmpty) {
                 throw 'Enter Name'; //  must not be empty
               } else if (vCardMobCon.text.isEmpty || vCardPhoCon.text.isEmpty) {
                 throw 'Enter Any Contact Number'; //  must not be empty
@@ -724,6 +725,6 @@ class _CreateScreenState extends State<CreateScreen> {
 
   setVCard() {
     finalWords =
-        "WIFI:T:$encryption;S:${wiFiNamCon.text};P:${encryption == 'nopass' ? 'null' : wiFiPasCon.text};H:${hidden ? 'true' : 'false'};;";
+        "BEGIN:VCARD\nVERSION:3.0\nN:lname;fname\nFN:fname lname\nORG:company\nTITLE:yourJob\nADR:;;street;City;state;Zip;country\nTEL;WORK;VOICE:pho\nTEL;CELL:mob\nTEL;FAX:fax\nEMAIL;WORK;INTERNET:ema@\nURL:web\nEND:VCARD";
   }
 }
