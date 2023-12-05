@@ -245,6 +245,7 @@ class _CreateScreenState extends State<CreateScreen> {
                   hintText: 'Enter Last Name',
                 ),
                 controller: vCardLNaCon,
+                onChanged: (v) => setVCard(),
               ),
             ),
             entryBar(
@@ -255,6 +256,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 ),
                 keyboardType: TextInputType.phone,
                 controller: vCardMobCon,
+                onChanged: (v) => setVCard(),
               ),
             ),
             entryBar(
@@ -265,6 +267,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 ),
                 keyboardType: TextInputType.phone,
                 controller: vCardPhoCon,
+                onChanged: (v) => setVCard(),
               ),
             ),
             entryBar(
@@ -275,6 +278,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 ),
                 keyboardType: TextInputType.phone,
                 controller: vCardFaxCon,
+                onChanged: (v) => setVCard(),
               ),
             ),
             entryBar(
@@ -285,6 +289,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 ),
                 keyboardType: TextInputType.emailAddress,
                 controller: vCardEmaCon,
+                onChanged: (v) => setVCard(),
               ),
             ),
             entryBar(
@@ -294,6 +299,7 @@ class _CreateScreenState extends State<CreateScreen> {
                   hintText: 'Enter Company Name',
                 ),
                 controller: vCardComCon,
+                onChanged: (v) => setVCard(),
               ),
             ),
             entryBar(
@@ -303,6 +309,7 @@ class _CreateScreenState extends State<CreateScreen> {
                   hintText: 'Enter Job Title',
                 ),
                 controller: vCardJobCon,
+                onChanged: (v) => setVCard(),
               ),
             ),
             entryBar(
@@ -312,6 +319,7 @@ class _CreateScreenState extends State<CreateScreen> {
                   hintText: 'Enter Country Name',
                 ),
                 controller: vCardConCon,
+                onChanged: (v) => setVCard(),
               ),
             ),
             entryBar(
@@ -321,6 +329,7 @@ class _CreateScreenState extends State<CreateScreen> {
                   hintText: 'Enter State/Province Name',
                 ),
                 controller: vCardStaCon,
+                onChanged: (v) => setVCard(),
               ),
             ),
             entryBar(
@@ -330,6 +339,7 @@ class _CreateScreenState extends State<CreateScreen> {
                   hintText: 'Enter City Name',
                 ),
                 controller: vCardCitCon,
+                onChanged: (v) => setVCard(),
               ),
             ),
             entryBar(
@@ -340,6 +350,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 ),
                 keyboardType: TextInputType.number,
                 controller: vCardZipCon,
+                onChanged: (v) => setVCard(),
               ),
             ),
             entryBar(
@@ -350,6 +361,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 ),
                 keyboardType: TextInputType.streetAddress,
                 controller: vCardStrCon,
+                onChanged: (v) => setVCard(),
               ),
             ),
             entryBar(
@@ -360,6 +372,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 ),
                 keyboardType: TextInputType.emailAddress,
                 controller: vCardWebCon,
+                onChanged: (v) => setVCard(),
               ),
             ),
             moreOptions(),
@@ -593,9 +606,9 @@ class _CreateScreenState extends State<CreateScreen> {
               }
               break;
             case 3: ////////////// V-Card
-              if (vCardFNaCon.text.isEmpty && vCardFNaCon.text.isEmpty) {
+              if (vCardFNaCon.text.isEmpty && vCardLNaCon.text.isEmpty) {
                 throw 'Enter Name'; //  must not be empty
-              } else if (vCardMobCon.text.isEmpty || vCardPhoCon.text.isEmpty) {
+              } else if (vCardMobCon.text.isEmpty && vCardPhoCon.text.isEmpty) {
                 throw 'Enter Any Contact Number'; //  must not be empty
               }
               break;
@@ -725,6 +738,6 @@ class _CreateScreenState extends State<CreateScreen> {
 
   setVCard() {
     finalWords =
-        "BEGIN:VCARD\nVERSION:3.0\nN:lname;fname\nFN:fname lname\nORG:company\nTITLE:yourJob\nADR:;;street;City;state;Zip;country\nTEL;WORK;VOICE:pho\nTEL;CELL:mob\nTEL;FAX:fax\nEMAIL;WORK;INTERNET:ema@\nURL:web\nEND:VCARD";
+        "BEGIN:VCARD\nVERSION:3.0\nN:${vCardLNaCon.text};${vCardFNaCon.text}\nFN:${vCardFNaCon.text} ${vCardLNaCon.text}\nORG:${vCardComCon.text}\nTITLE:${vCardJobCon.text}\nADR:;;${vCardStrCon.text};${vCardCitCon.text};${vCardStaCon.text};${vCardZipCon.text};${vCardConCon.text}\nTEL;WORK;VOICE:${vCardPhoCon.text}\nTEL;CELL:${vCardMobCon.text}\nTEL;FAX:${vCardFaxCon.text}\nEMAIL;WORK;INTERNET:${vCardEmaCon.text}\nURL:${vCardWebCon.text}\nEND:VCARD";
   }
 }
