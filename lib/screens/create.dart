@@ -179,6 +179,7 @@ class _CreateScreenState extends State<CreateScreen> {
               child: TextField(
                 decoration: kDecoration.copyWith(hintText: 'Enter SSID'),
                 controller: wiFiNamCon,
+                onChanged: (value) => finalWords = value,
               ),
             ),
             Visibility(
