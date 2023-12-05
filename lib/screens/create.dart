@@ -189,6 +189,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 child: TextField(
                   decoration: kDecoration.copyWith(hintText: 'Enter Password'),
                   controller: wiFiPasCon,
+                  onChanged: (value) => setWiFi(),
                 ),
               ),
             ),
@@ -199,7 +200,10 @@ class _CreateScreenState extends State<CreateScreen> {
                 padding: const EdgeInsets.only(top: 8),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(30),
-                  onTap: () => setState(() => hidden = !hidden),
+                  onTap: () => setState(() {
+                    hidden = !hidden;
+                    setWiFi();
+                  }),
                   child: Padding(
                     padding: const EdgeInsets.all(5),
                     child: Row(
@@ -439,7 +443,10 @@ class _CreateScreenState extends State<CreateScreen> {
           children: [
             InkWell(
               borderRadius: BorderRadius.circular(30),
-              onTap: () => setState(() => encryption = 'nopass'),
+              onTap: () {
+                setState(() => encryption = 'nopass');
+                setWiFi();
+              },
               child: Padding(
                 padding: const EdgeInsets.all(5),
                 child: Row(
@@ -460,7 +467,10 @@ class _CreateScreenState extends State<CreateScreen> {
             ),
             InkWell(
               borderRadius: BorderRadius.circular(30),
-              onTap: () => setState(() => encryption = 'WPA'),
+              onTap: () {
+                setState(() => encryption = 'WPA');
+                setWiFi();
+              },
               child: Padding(
                 padding: const EdgeInsets.all(5),
                 child: Row(
@@ -481,7 +491,10 @@ class _CreateScreenState extends State<CreateScreen> {
             ),
             InkWell(
               borderRadius: BorderRadius.circular(30),
-              onTap: () => setState(() => encryption = 'WEP'),
+              onTap: () {
+                setState(() => encryption = 'WEP');
+                setWiFi();
+              },
               child: Padding(
                 padding: const EdgeInsets.all(5),
                 child: Row(
@@ -706,6 +719,6 @@ class _CreateScreenState extends State<CreateScreen> {
 
   setWiFi() {
     finalWords =
-        "WIFI:T:$encryption;S:${wiFiNamCon.text};P:${wiFiPasCon.text};H:${hidden ? 'true' : 'false'};;";
+        "WIFI:T:$encryption;S:${wiFiNamCon.text};P:${encryption == 'nopass' ? 'null' : wiFiPasCon.text};H:${hidden ? 'true' : 'false'};;";
   }
 }
