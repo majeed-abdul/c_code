@@ -110,7 +110,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 maxLines: 6,
                 minLines: 3,
                 decoration: kDecoration.copyWith(hintText: 'Enter Text'),
-                onChanged: (value) => finalWords = value,
+                onChanged: (value) => finalWords = value.trim(),
                 controller: stringCon,
               ),
             ),
@@ -127,7 +127,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 keyboardType: TextInputType.number,
                 decoration: kDecoration.copyWith(hintText: 'Enter Number'),
                 controller: numberCon,
-                onChanged: (value) => finalWords = value,
+                onChanged: (value) => finalWords = value.trim(),
               ),
             ),
             Padding(
@@ -671,12 +671,15 @@ class _CreateScreenState extends State<CreateScreen> {
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisSpacing: 7,
         childAspectRatio: 3,
         mainAxisSpacing: 7,
         mainAxisExtent: 45,
-        crossAxisCount: 2,
+        crossAxisCount: MediaQuery.of(context).size.width >=
+                MediaQuery.of(context).size.height
+            ? 3
+            : 2,
       ),
       itemCount: creates.length,
       itemBuilder: (context, index) {
@@ -733,11 +736,11 @@ class _CreateScreenState extends State<CreateScreen> {
 
   setWiFi() {
     finalWords =
-        "WIFI:T:$encryption;S:${wiFiNamCon.text};P:${encryption == 'nopass' ? 'null' : wiFiPasCon.text};H:${hidden ? 'true' : 'false'};;";
+        "WIFI:T:$encryption;S:${wiFiNamCon.text.trim()};P:${encryption == 'nopass' ? 'null' : wiFiPasCon.text};H:${hidden ? 'true' : 'false'};;";
   }
 
   setVCard() {
     finalWords =
-        "BEGIN:VCARD\nVERSION:3.0\nN:${vCardLNaCon.text};${vCardFNaCon.text}\nFN:${vCardFNaCon.text} ${vCardLNaCon.text}\nORG:${vCardComCon.text}\nTITLE:${vCardJobCon.text}\nADR:;;${vCardStrCon.text};${vCardCitCon.text};${vCardStaCon.text};${vCardZipCon.text};${vCardConCon.text}\nTEL;WORK;VOICE:${vCardPhoCon.text}\nTEL;CELL:${vCardMobCon.text}\nTEL;FAX:${vCardFaxCon.text}\nEMAIL;WORK;INTERNET:${vCardEmaCon.text}\nURL:${vCardWebCon.text}\nEND:VCARD";
+        "BEGIN:VCARD\nVERSION:3.0\nN:${vCardLNaCon.text.trim()};${vCardFNaCon.text.trim()}\nFN:${vCardFNaCon.text.trim()} ${vCardLNaCon.text.trim()}\nORG:${vCardComCon.text.trim()}\nTITLE:${vCardJobCon.text.trim()}\nADR:;;${vCardStrCon.text.trim()};${vCardCitCon.text.trim()};${vCardStaCon.text.trim()};${vCardZipCon.text.trim()};${vCardConCon.text.trim()}\nTEL;WORK;VOICE:${vCardPhoCon.text.trim()}\nTEL;CELL:${vCardMobCon.text.trim()}\nTEL;FAX:${vCardFaxCon.text.trim()}\nEMAIL;WORK;INTERNET:${vCardEmaCon.text.trim()}\nURL:${vCardWebCon.text.trim()}\nEND:VCARD";
   }
 }
