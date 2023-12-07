@@ -743,4 +743,9 @@ class _CreateScreenState extends State<CreateScreen> {
     finalWords =
         "BEGIN:VCARD\nVERSION:3.0\nN:${vCardLNaCon.text.trim()};${vCardFNaCon.text.trim()}\nFN:${vCardFNaCon.text.trim()} ${vCardLNaCon.text.trim()}\nORG:${vCardComCon.text.trim()}\nTITLE:${vCardJobCon.text.trim()}\nADR:;;${vCardStrCon.text.trim()};${vCardCitCon.text.trim()};${vCardStaCon.text.trim()};${vCardZipCon.text.trim()};${vCardConCon.text.trim()}\nTEL;WORK;VOICE:${vCardPhoCon.text.trim()}\nTEL;CELL:${vCardMobCon.text.trim()}\nTEL;FAX:${vCardFaxCon.text.trim()}\nEMAIL;WORK;INTERNET:${vCardEmaCon.text.trim()}\nURL:${vCardWebCon.text.trim()}\nEND:VCARD";
   }
+
+  setMail() {
+    finalWords =
+        "mailto:${emailTooCon.text.trim()}?body=${emailMsgCon.text.trim()}&subject=${emailSubCon.text.trim()}";
+  }
 }
