@@ -751,4 +751,8 @@ class _CreateScreenState extends State<CreateScreen> {
     finalWords =
         "mailto:${emailTooCon.text.trim()}?body=${emailMsgCon.text.trim()}&subject=${emailSubCon.text.trim()}";
   }
+
+  setSMS() {
+    finalWords = "SMSTO:${smsPhoCon.text.trim()}:${smsMsgCon.text.trim()}";
+  }
 }
