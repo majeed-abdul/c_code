@@ -609,8 +609,10 @@ class _CreateScreenState extends State<CreateScreen> {
             case 3: ////////////// V-Card
               if (vCardFNaCon.text.isEmpty && vCardLNaCon.text.isEmpty) {
                 throw 'Enter Name'; //  must not be empty
-              } else if (vCardMobCon.text.isEmpty && vCardPhoCon.text.isEmpty) {
-                throw 'Enter Any Contact Number'; //  must not be empty
+              } else if (vCardMobCon.text.isEmpty &&
+                  vCardPhoCon.text.isEmpty &&
+                  vCardEmaCon.text.isEmpty) {
+                throw 'Enter Any Contact Number or Email'; //  must not be empty
               }
               isNumber(vCardMobCon.text) ? null : throw 'Invalid Mobile Number';
               isNumber(vCardPhoCon.text) ? null : throw 'Invalid Phone Number';
@@ -633,12 +635,13 @@ class _CreateScreenState extends State<CreateScreen> {
 // vCardWebCon
             case 4: ////////////// Email
               if (emailTooCon.text.isEmpty) {
-                throw "Enter Reciever's email"; //  must not be empty
+                throw "Enter Email"; //  must not be empty
               } else if (emailSubCon.text.isEmpty) {
-                throw 'Enter Email Subject'; //  must not be empty
+                throw 'Enter Subject'; //  must not be empty
               } else if (emailMsgCon.text.isEmpty) {
                 throw 'Enter Message'; //  must not be empty
               }
+              isEmail(emailTooCon.text) ? null : throw 'Invalid Email';
               break;
             case 5: ////////////// SMS
               if (smsPhoCon.text.isEmpty) {
@@ -704,13 +707,20 @@ class _CreateScreenState extends State<CreateScreen> {
   }
 
   bool isNumber(String num) {
-    if (num.isEmpty) return true;
     try {
       double.parse(num);
     } on FormatException {
+      if (num.isEmpty) return true;
       return false;
     }
     return true;
+  }
+
+  bool isEmail(String email) {
+    if (email.isEmpty) return true;
+    final emailRegExp = RegExp(
+        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+    return emailRegExp.hasMatch(email);
   }
 
   clearControllers() {
