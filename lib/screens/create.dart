@@ -429,6 +429,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 ),
                 keyboardType: TextInputType.phone,
                 controller: smsPhoCon,
+                onChanged: (v) => setSMS(),
               ),
             ),
             entryBar(
@@ -440,6 +441,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 maxLines: 6,
                 minLines: 3,
                 controller: smsMsgCon,
+                onChanged: (v) => setSMS(),
               ),
             ),
             moreOptions(),
