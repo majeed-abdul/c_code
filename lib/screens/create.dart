@@ -389,6 +389,7 @@ class _CreateScreenState extends State<CreateScreen> {
                   hintText: 'Enter Email',
                 ),
                 controller: emailTooCon,
+                onChanged: (v) => setMail(),
               ),
             ),
             entryBar(
@@ -398,6 +399,7 @@ class _CreateScreenState extends State<CreateScreen> {
                   hintText: 'Enter Subject',
                 ),
                 controller: emailSubCon,
+                onChanged: (v) => setMail(),
               ),
             ),
             entryBar(
@@ -409,6 +411,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 maxLines: 6,
                 minLines: 3,
                 controller: emailMsgCon,
+                onChanged: (v) => setMail(),
               ),
             ),
             moreOptions(),
