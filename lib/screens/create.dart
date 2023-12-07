@@ -596,11 +596,7 @@ class _CreateScreenState extends State<CreateScreen> {
               if (numberCon.text.isEmpty) {
                 throw 'Enter Number'; //  must not be empty
               } else {
-                try {
-                  double.parse(numberCon.text);
-                } on FormatException {
-                  throw 'Enter Number only';
-                }
+                isNumber(numberCon.text) ? null : throw 'Invalid Number';
               }
               break;
             case 2: ////////////// WIFi
@@ -616,6 +612,10 @@ class _CreateScreenState extends State<CreateScreen> {
               } else if (vCardMobCon.text.isEmpty && vCardPhoCon.text.isEmpty) {
                 throw 'Enter Any Contact Number'; //  must not be empty
               }
+              isNumber(vCardMobCon.text) ? null : throw 'Invalid Mobile Number';
+              isNumber(vCardPhoCon.text) ? null : throw 'Invalid Phone Number';
+              isNumber(vCardFaxCon.text) ? null : throw 'Invalid Fax Number';
+              isNumber(vCardZipCon.text) ? null : throw 'Invalid Zip Code';
               break;
 // vCardFNaCon
 // vCardLNaCon
@@ -642,10 +642,11 @@ class _CreateScreenState extends State<CreateScreen> {
               break;
             case 5: ////////////// SMS
               if (smsPhoCon.text.isEmpty) {
-                throw "Enter Reciever's Phone Number"; //  must not be empty
+                throw "Enter Phone Number"; //  must not be empty
               } else if (smsMsgCon.text.isEmpty) {
                 throw 'Enter Message'; //  must not be empty
               }
+              isNumber(smsPhoCon.text) ? null : throw 'Invalid Phone Number';
               break;
           }
         } catch (e) {
@@ -700,6 +701,16 @@ class _CreateScreenState extends State<CreateScreen> {
         );
       },
     );
+  }
+
+  bool isNumber(String num) {
+    if (num.isEmpty) return true;
+    try {
+      double.parse(num);
+    } on FormatException {
+      return false;
+    }
+    return true;
   }
 
   clearControllers() {
