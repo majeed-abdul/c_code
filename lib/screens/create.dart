@@ -6,6 +6,7 @@ import 'package:c_code/widgets/drop_down.dart';
 import 'package:c_code/widgets/buttons.dart';
 import 'package:c_code/data/create.dart';
 import 'package:flutter/material.dart';
+import 'package:email_validator/email_validator.dart';
 
 class CreateScreen extends StatefulWidget {
   const CreateScreen({Key? key}) : super(key: key);
@@ -618,19 +619,20 @@ class _CreateScreenState extends State<CreateScreen> {
               isNumber(vCardPhoCon.text) ? null : throw 'Invalid Phone Number';
               isNumber(vCardFaxCon.text) ? null : throw 'Invalid Fax Number';
               isNumber(vCardZipCon.text) ? null : throw 'Invalid Zip Code';
+              isEmail(vCardEmaCon.text) ? null : throw 'Invalid Email';
               break;
-// vCardFNaCon
-// vCardLNaCon
-// vCardMobCon
-// vCardPhoCon
-// vCardFaxCon
-// vCardEmaCon
+// vCardFNaCon  v
+// vCardLNaCon  v
+// vCardMobCon  v
+// vCardPhoCon  v
+// vCardFaxCon  v
+// vCardEmaCon  v
 // vCardComCon
 // vCardJobCon
 // vCardConCon
 // vCardStaCon
 // vCardCitCon
-// vCardZipCon
+// vCardZipCon  v
 // vCardStrCon
 // vCardWebCon
             case 4: ////////////// Email
@@ -718,9 +720,7 @@ class _CreateScreenState extends State<CreateScreen> {
 
   bool isEmail(String email) {
     if (email.isEmpty) return true;
-    final emailRegExp = RegExp(
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-    return emailRegExp.hasMatch(email);
+    return EmailValidator.validate(email);
   }
 
   clearControllers() {
