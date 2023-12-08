@@ -621,18 +621,11 @@ class _CreateScreenState extends State<CreateScreen> {
               isNumber(vCardZipCon.text) ? null : throw 'Invalid Zip Code';
               isEmail(vCardEmaCon.text) ? null : throw 'Invalid Email';
               break;
-// vCardFNaCon  v
-// vCardLNaCon  v
-// vCardMobCon  v
-// vCardPhoCon  v
-// vCardFaxCon  v
-// vCardEmaCon  v
 // vCardComCon
 // vCardJobCon
 // vCardConCon
 // vCardStaCon
 // vCardCitCon
-// vCardZipCon  v
 // vCardStrCon
 // vCardWebCon
             case 4: ////////////// Email
