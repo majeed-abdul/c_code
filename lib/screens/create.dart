@@ -718,7 +718,7 @@ class _CreateScreenState extends State<CreateScreen> {
 
   clearControllers() {
     //  Default Values
-    FocusScope.of(context).unfocus(); //  For SKeyboard Dismis
+    FocusScope.of(context).unfocus(); //  For Keyboard Dismis
     dropDownValueType = textBarcodes.keys.first;
     finalWords = null;
     isMore = false;
