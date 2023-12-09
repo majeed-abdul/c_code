@@ -33,14 +33,11 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Colors.white,
         currentIndex: _index,
         elevation: 25,
-        onTap: (i) {
-          _index = i;
-          setState(() {});
-        },
+        onTap: (i) => setState(() => _index = i),
         selectedLabelStyle: const TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.bold,
-          // color: Colors.amber,
+          color: Colors.amber,
         ),
         items: const [
           BottomNavigationBarItem(
