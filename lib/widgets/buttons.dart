@@ -9,9 +9,8 @@ Container customButton({
     width: 55,
     height: 55,
     decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(69),
-      border: Border.all(color: color, width: 3),
-    ),
+        borderRadius: BorderRadius.circular(69),
+        border: Border.all(color: color, width: 3)),
     child: GestureDetector(onTap: onPress, child: Icon(icon, color: color)),
   );
 }
@@ -38,12 +37,7 @@ GestureDetector gridButton({
             children: [
               Icon(icon, size: 30),
               const SizedBox(width: 5),
-              Text(
-                name,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              Text(name, style: const TextStyle(fontWeight: FontWeight.bold)),
             ],
           ),
         ),

@@ -113,10 +113,10 @@ class _ScanScreenState extends State<ScanScreen> {
       onQRViewCreated: _onQRViewCreated,
       overlay: QrScannerOverlayShape(
         borderColor: Theme.of(context).primaryColor,
+        cutOutSize: scanArea,
         borderLength: 40,
         borderRadius: 1,
         borderWidth: 9,
-        cutOutSize: scanArea,
       ),
     );
   }
@@ -133,8 +133,9 @@ class _ScanScreenState extends State<ScanScreen> {
     await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (BuildContext context) => ResultScreen(result: code),
-      ),
-    ).then((value) => controller?.resumeCamera());
+          builder: (BuildContext context) => ResultScreen(result: code)),
+    ).then(
+      (value) => controller?.resumeCamera(),
+    );
   }
 }
