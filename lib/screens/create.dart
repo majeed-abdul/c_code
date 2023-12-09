@@ -16,7 +16,7 @@ class CreateScreen extends StatefulWidget {
 }
 
 class _CreateScreenState extends State<CreateScreen> {
-  int selected = 0;
+  int selected = 0; // grid selector
   //  All
   String? dropDownValueType = textBarcodes.keys.first;
   Barcode selectedCodeType = Barcode.qrCode();
