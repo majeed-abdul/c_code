@@ -213,8 +213,8 @@ class _CreateScreenState extends State<CreateScreen> {
                           hidden
                               ? Icons.check_box
                               : Icons.check_box_outline_blank,
-                          size: 21,
                           color: hidden ? Theme.of(context).primaryColor : null,
+                          size: 21,
                         ),
                       ],
                     ),
@@ -456,7 +456,9 @@ class _CreateScreenState extends State<CreateScreen> {
   }
 
   Widget encryptionRadioButtons() {
-    bool isNoPass = encryption == 'nopass';
+    bool isNon = encryption == 'nopass';
+    bool isWPA = encryption == 'WPA';
+    bool isWEP = encryption == 'WEP';
     return entryBar(
         text: 'Encryption',
         child: Column(
@@ -473,10 +475,8 @@ class _CreateScreenState extends State<CreateScreen> {
                 child: Row(
                   children: [
                     Icon(
-                      isNoPass
-                          ? Icons.check_box
-                          : Icons.check_box_outline_blank,
-                      color: isNoPass ? Theme.of(context).primaryColor : null,
+                      isNon ? Icons.check_box : Icons.check_box_outline_blank,
+                      color: isNon ? Theme.of(context).primaryColor : null,
                       size: 21,
                     ),
                     const Text(' None'),
@@ -495,12 +495,8 @@ class _CreateScreenState extends State<CreateScreen> {
                 child: Row(
                   children: [
                     Icon(
-                      encryption == 'WPA'
-                          ? Icons.check_box
-                          : Icons.check_box_outline_blank,
-                      color: encryption == 'WPA'
-                          ? Theme.of(context).primaryColor
-                          : null,
+                      isWPA ? Icons.check_box : Icons.check_box_outline_blank,
+                      color: isWPA ? Theme.of(context).primaryColor : null,
                       size: 21,
                     ),
                     const Text(' WPA/WPA-2'),
@@ -519,12 +515,8 @@ class _CreateScreenState extends State<CreateScreen> {
                 child: Row(
                   children: [
                     Icon(
-                      encryption == 'WEP'
-                          ? Icons.check_box
-                          : Icons.check_box_outline_blank,
-                      color: encryption == 'WEP'
-                          ? Theme.of(context).primaryColor
-                          : null,
+                      isWEP ? Icons.check_box : Icons.check_box_outline_blank,
+                      color: isWEP ? Theme.of(context).primaryColor : null,
                       size: 21,
                     ),
                     const Text(' WEP'),
