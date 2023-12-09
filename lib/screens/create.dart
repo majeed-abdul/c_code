@@ -138,9 +138,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    const Text(
-                      'More options',
-                    ),
+                    const Text('More options'),
                     const SizedBox(width: 10),
                     isMore
                         ? Icon(
@@ -161,10 +159,7 @@ class _CreateScreenState extends State<CreateScreen> {
               visible: isMore,
               child: dropDown(
                 items: numberBarcodes.keys.toList(),
-                onChanged: (value) {
-                  dropDownValueTypeNum = value;
-                  setState(() {});
-                },
+                onChanged: (v) => setState(() => dropDownValueTypeNum = v),
                 dropDownValue: dropDownValueTypeNum,
                 text: 'Type',
               ),
@@ -201,23 +196,21 @@ class _CreateScreenState extends State<CreateScreen> {
                 padding: const EdgeInsets.only(top: 8),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(30),
-                  onTap: () => setState(() {
+                  onTap: () {
                     hidden = !hidden;
                     setWiFi();
-                  }),
-                  child: Padding(
-                    padding: const EdgeInsets.all(5),
-                    child: Row(
-                      children: [
-                        Icon(
-                          hidden
-                              ? Icons.check_box
-                              : Icons.check_box_outline_blank,
-                          color: hidden ? Theme.of(context).primaryColor : null,
-                          size: 21,
-                        ),
-                      ],
-                    ),
+                    setState(() {});
+                  },
+                  child: Row(
+                    children: [
+                      Icon(
+                        hidden
+                            ? Icons.check_box
+                            : Icons.check_box_outline_blank,
+                        color: hidden ? Theme.of(context).primaryColor : null,
+                        size: 21,
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -654,10 +647,7 @@ class _CreateScreenState extends State<CreateScreen> {
       },
       child: const Padding(
         padding: EdgeInsets.symmetric(vertical: 10),
-        child: Text(
-          'Create',
-          style: TextStyle(fontSize: 15),
-        ),
+        child: Text('Create', style: TextStyle(fontSize: 15)),
       ),
     );
   }
