@@ -456,6 +456,7 @@ class _CreateScreenState extends State<CreateScreen> {
   }
 
   Widget encryptionRadioButtons() {
+    bool isNoPass = encryption == 'nopass';
     return entryBar(
         text: 'Encryption',
         child: Column(
@@ -472,12 +473,10 @@ class _CreateScreenState extends State<CreateScreen> {
                 child: Row(
                   children: [
                     Icon(
-                      encryption == 'nopass'
+                      isNoPass
                           ? Icons.check_box
                           : Icons.check_box_outline_blank,
-                      color: encryption == 'nopass'
-                          ? Theme.of(context).primaryColor
-                          : null,
+                      color: isNoPass ? Theme.of(context).primaryColor : null,
                       size: 21,
                     ),
                     const Text(' None'),
@@ -672,6 +671,7 @@ class _CreateScreenState extends State<CreateScreen> {
   }
 
   GridView buttonsGrid() {
+    Size size = MediaQuery.of(context).size;
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -680,10 +680,7 @@ class _CreateScreenState extends State<CreateScreen> {
         childAspectRatio: 3,
         mainAxisSpacing: 7,
         mainAxisExtent: 45,
-        crossAxisCount: MediaQuery.of(context).size.width >=
-                MediaQuery.of(context).size.height
-            ? 3
-            : 2,
+        crossAxisCount: size.width >= size.height ? 3 : 2,
       ),
       itemCount: creates.length,
       itemBuilder: (context, index) {
@@ -717,7 +714,6 @@ class _CreateScreenState extends State<CreateScreen> {
   }
 
   clearControllers() {
-    //  Default Values
     FocusScope.of(context).unfocus(); //  For Keyboard Dismis
     dropDownValueType = textBarcodes.keys.first;
     finalWords = null;
