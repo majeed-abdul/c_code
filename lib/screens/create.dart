@@ -743,7 +743,7 @@ class _CreateScreenState extends State<CreateScreen> {
 
   setMail() {
     finalWords =
-        "mailto:${emailTooCon.text.trim()}?body=${emailMsgCon.text.trim()}&subject=${emailSubCon.text.trim()}";
+        "MAILTO:${emailTooCon.text.trim()}?BODY=${emailMsgCon.text.trim()}&SUBJECT=${emailSubCon.text.trim()}";
   }
 
   setSMS() {
