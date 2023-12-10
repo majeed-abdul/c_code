@@ -40,7 +40,6 @@ class MyApp extends StatelessWidget {
         HomeScreen.id: (context) => const HomeScreen(),
         ScanScreen.id: (context) => const ScanScreen()
       },
-      // ),
     );
   }
 }

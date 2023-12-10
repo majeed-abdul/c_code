@@ -78,14 +78,8 @@ class _ResultScreenState extends State<ResultScreen> {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        SizedBox(
-          width: 55,
-          child: Text('Browse', textAlign: TextAlign.center),
-        ),
-        SizedBox(
-          width: 55,
-          child: Text('Copy', textAlign: TextAlign.center),
-        ),
+        SizedBox(width: 55, child: Text('Browse', textAlign: TextAlign.center)),
+        SizedBox(width: 55, child: Text('Copy', textAlign: TextAlign.center)),
       ],
     );
   }
@@ -118,7 +112,9 @@ class _ResultScreenState extends State<ResultScreen> {
   void _copy() async {
     await Clipboard.setData(
       ClipboardData(text: '${widget.result.code}'),
-    ).then((value) => showSnackBar(context, 'Coppied'));
+    ).then(
+      (value) => showSnackBar(context, 'Coppied'),
+    );
   }
 
   void _browse() {}
