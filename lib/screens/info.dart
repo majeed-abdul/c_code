@@ -85,7 +85,7 @@ class _InfoScreenState extends State<InfoScreen> {
               ),
               trailing: const Icon(Icons.more_vert),
               onTap: () {
-                // setHomePage(context);
+                donate(context);
               },
             ),
             const Divider(),
@@ -151,6 +151,34 @@ class _InfoScreenState extends State<InfoScreen> {
               ),
             ),
           ],
+        ),
+      );
+    });
+  }
+
+  Future<dynamic> donate(BuildContext context) async {
+    await SharedPreferences.getInstance().then((pref) {
+      showDialog(
+        context: context,
+        builder: (context) => const AlertDialog(
+          titlePadding: EdgeInsets.only(top: 15, bottom: 5),
+          // actionsPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          contentPadding: EdgeInsets.only(left: 15, right: 15, bottom: 15),
+          actionsAlignment: MainAxisAlignment.center,
+          title: Text('Donate', textAlign: TextAlign.center),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                // minLeadingWidth: 50,
+                leading: Text(
+                  'Binance:',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                ),
+                title: Text('address'),
+              ),
+            ],
+          ),
         ),
       );
     });
