@@ -1,4 +1,6 @@
+import 'package:c_code/widgets/pop_ups.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -160,22 +162,51 @@ class _InfoScreenState extends State<InfoScreen> {
     await SharedPreferences.getInstance().then((pref) {
       showDialog(
         context: context,
-        builder: (context) => const AlertDialog(
-          titlePadding: EdgeInsets.only(top: 15, bottom: 5),
-          // actionsPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-          contentPadding: EdgeInsets.only(left: 15, right: 15, bottom: 15),
+        builder: (context) => AlertDialog(
+          titlePadding: const EdgeInsets.only(top: 15, bottom: 3),
+          contentPadding:
+              const EdgeInsets.only(left: 15, right: 15, bottom: 15),
           actionsAlignment: MainAxisAlignment.center,
-          title: Text('Donate', textAlign: TextAlign.center),
+          title: const Text('Donate', textAlign: TextAlign.center),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               ListTile(
-                // minLeadingWidth: 50,
-                leading: Text(
-                  'Binance:',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                title: const Text(
+                  'Binance ID:',
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                title: Text('address'),
+                trailing: const Icon(Icons.copy),
+                subtitle: const Text('776869887'),
+                onTap: () async {
+                  await Clipboard.setData(
+                    const ClipboardData(text: '776869887'),
+                  ).then(
+                    (value) {
+                      showSnackBar(context, 'Coppied binance address');
+                      Navigator.pop(context);
+                    },
+                  );
+                },
+              ),
+              ListTile(
+                title: const Text(
+                  'Ethereum:',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                trailing: const Icon(Icons.copy),
+                subtitle: const Text('0x7a74E821f...a82e33738'),
+                onTap: () async {
+                  await Clipboard.setData(
+                    const ClipboardData(
+                        text: '0x7a74E821fd1033176613dBf504919a2a82e33738'),
+                  ).then(
+                    (value) {
+                      showSnackBar(context, 'Coppied Ethereum address');
+                      Navigator.pop(context);
+                    },
+                  );
+                },
               ),
             ],
           ),
