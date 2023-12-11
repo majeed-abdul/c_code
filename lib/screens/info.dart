@@ -183,7 +183,7 @@ class _InfoScreenState extends State<InfoScreen> {
                     const ClipboardData(text: '776869887'),
                   ).then(
                     (value) {
-                      showSnackBar(context, 'Coppied binance address');
+                      showSnackBar(context, 'Binance ID copied');
                       Navigator.pop(context);
                     },
                   );
@@ -202,7 +202,7 @@ class _InfoScreenState extends State<InfoScreen> {
                         text: '0x7a74E821fd1033176613dBf504919a2a82e33738'),
                   ).then(
                     (value) {
-                      showSnackBar(context, 'Coppied Ethereum address');
+                      showSnackBar(context, 'Ethereum Address copied');
                       Navigator.pop(context);
                     },
                   );
