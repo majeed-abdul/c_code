@@ -54,12 +54,13 @@ class _InfoScreenState extends State<InfoScreen> {
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ListTile(
               title: Text(appName ?? 'null'),
               subtitle: Text('version: $version'),
               leading: const Icon(
-                Icons.file_download_rounded,
+                Icons.adb,
                 size: 40,
               ),
             ),
@@ -75,6 +76,19 @@ class _InfoScreenState extends State<InfoScreen> {
                 setHomePage(context);
               },
             ),
+            ListTile(
+              title: const Text('Donate'),
+              subtitle: const Text('for maintanance and ❤️'),
+              leading: const Icon(
+                Icons.volunteer_activism_rounded,
+                size: 40,
+              ),
+              trailing: const Icon(Icons.more_vert),
+              onTap: () {
+                // setHomePage(context);
+              },
+            ),
+            const Divider(),
           ],
         ),
       ),
