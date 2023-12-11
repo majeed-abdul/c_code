@@ -1,7 +1,8 @@
 import 'package:c_code/screens/create.dart';
 import 'package:c_code/screens/scan.dart';
-import 'package:c_code/screens/setting.dart';
+import 'package:c_code/screens/info.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -16,6 +17,16 @@ late Widget bodyWidget;
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
+  void initState() {
+    SharedPreferences.getInstance().then((pref) {
+      _index = pref.getInt('home') ?? 0;
+      print(_index);
+      setState(() {});
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     switch (_index) {
       case 0:
@@ -25,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
         bodyWidget = const ScanScreen();
         break;
       case 2:
-        bodyWidget = const SettingScreen();
+        bodyWidget = const InfoScreen();
         break;
     }
     return Scaffold(
@@ -48,19 +59,19 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Icon(Icons.add_box_outlined),
             activeIcon: Icon(Icons.add_box),
             label: 'Create',
-            tooltip: 'Create',
+            tooltip: 'Create QR',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.center_focus_weak),
             activeIcon: Icon(Icons.center_focus_strong),
             label: 'Scan',
-            tooltip: 'Scan',
+            tooltip: 'Scan QR',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.settings_outlined),
-            activeIcon: Icon(Icons.settings),
-            label: 'Scan',
-            tooltip: 'Scan',
+            icon: Icon(Icons.info_outline),
+            activeIcon: Icon(Icons.info),
+            label: 'Info',
+            tooltip: 'Information',
           ),
         ],
       ),
