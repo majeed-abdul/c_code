@@ -20,7 +20,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     SharedPreferences.getInstance().then((pref) {
       _index = pref.getInt('home') ?? 0;
-      print(_index);
       setState(() {});
     });
     super.initState();
