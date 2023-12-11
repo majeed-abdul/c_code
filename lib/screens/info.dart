@@ -81,6 +81,16 @@ class _InfoScreenState extends State<InfoScreen> {
     );
   }
 
+//
+
+//
+
+//                  E X T R A S
+
+//
+
+//
+
   Future<dynamic> setHomePage(BuildContext context) async {
     await SharedPreferences.getInstance().then((pref) {
       showDialog(
