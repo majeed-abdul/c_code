@@ -1,5 +1,6 @@
 import 'package:c_code/screens/create.dart';
 import 'package:c_code/screens/scan.dart';
+import 'package:c_code/screens/setting.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,6 +23,9 @@ class _HomeScreenState extends State<HomeScreen> {
         break;
       case 1:
         bodyWidget = const ScanScreen();
+        break;
+      case 2:
+        bodyWidget = const SettingScreen();
         break;
     }
     return Scaffold(
@@ -49,6 +53,12 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.center_focus_weak),
             activeIcon: Icon(Icons.center_focus_strong),
+            label: 'Scan',
+            tooltip: 'Scan',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings_outlined),
+            activeIcon: Icon(Icons.settings),
             label: 'Scan',
             tooltip: 'Scan',
           ),
