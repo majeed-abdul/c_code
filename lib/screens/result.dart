@@ -91,7 +91,7 @@ class _ResultScreenState extends State<ResultScreen> {
       children: [
         customButton(onPress: () => _browse(), icon: Icons.link),
         Visibility(
-            visible: true,
+            visible: isURL(widget.result.code ?? ''),
             child: customButton(onPress: () => _copy(), icon: Icons.copy)),
       ],
     );
@@ -122,5 +122,12 @@ class _ResultScreenState extends State<ResultScreen> {
 
   void _browse() async {
     launchUrl(Uri.parse(widget.result.code ?? ''));
+  }
+
+  bool isURL(String url) {
+    if (url.isEmpty) return false;
+    bool validURL = Uri.parse(url).isAbsolute;
+    print('===is Valid  $validURL');
+    return validURL;
   }
 }
