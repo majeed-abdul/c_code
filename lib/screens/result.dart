@@ -2,6 +2,7 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:c_code/widgets/buttons.dart';
 import 'package:c_code/widgets/pop_ups.dart';
 import 'package:flutter/foundation.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -89,7 +90,9 @@ class _ResultScreenState extends State<ResultScreen> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         customButton(onPress: () => _browse(), icon: Icons.link),
-        customButton(onPress: () => _copy(), icon: Icons.copy),
+        Visibility(
+            visible: true,
+            child: customButton(onPress: () => _copy(), icon: Icons.copy)),
       ],
     );
   }
@@ -117,5 +120,7 @@ class _ResultScreenState extends State<ResultScreen> {
     );
   }
 
-  void _browse() {}
+  void _browse() async {
+    launchUrl(Uri.parse(widget.result.code ?? ''));
+  }
 }
