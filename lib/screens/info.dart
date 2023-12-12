@@ -56,7 +56,7 @@ class _InfoScreenState extends State<InfoScreen> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Divider(),
             ListTile(
