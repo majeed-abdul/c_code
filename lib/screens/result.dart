@@ -113,7 +113,7 @@ class _ResultScreenState extends State<ResultScreen> {
     await Clipboard.setData(
       ClipboardData(text: '${widget.result.code}'),
     ).then(
-      (value) => showSnackBar(context, 'Coppied'),
+      (value) => showSnackBar(context, 'Copied'),
     );
   }
 
