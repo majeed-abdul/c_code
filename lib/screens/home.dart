@@ -69,8 +69,8 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.info_outline),
             activeIcon: Icon(Icons.info),
-            label: 'Info',
-            tooltip: 'Information',
+            label: 'About',
+            tooltip: 'About',
           ),
         ],
       ),

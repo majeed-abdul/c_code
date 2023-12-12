@@ -58,6 +58,7 @@ class _InfoScreenState extends State<InfoScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const Divider(),
             ListTile(
               title: Text(appName ?? 'null'),
               subtitle: Text('version: $version'),
@@ -66,6 +67,7 @@ class _InfoScreenState extends State<InfoScreen> {
                 size: 40,
               ),
             ),
+            const Divider(),
             ListTile(
               title: const Text('Home Screen'),
               subtitle: Text(_home ?? ''),
@@ -90,6 +92,7 @@ class _InfoScreenState extends State<InfoScreen> {
                 donate(context);
               },
             ),
+            // const Text('OR', style: TextStyle(color: Colors.black54)),
             const Divider(),
           ],
         ),
