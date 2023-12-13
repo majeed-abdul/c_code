@@ -2,6 +2,7 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:c_code/widgets/buttons.dart';
 import 'package:c_code/widgets/pop_ups.dart';
 import 'package:flutter/foundation.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -47,15 +48,15 @@ class _ResultScreenState extends State<ResultScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text(
-                'Text',
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+              Text(
+                isURL() ? 'URL' : 'Text',
+                style:
+                    const TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
               ),
               const SizedBox(height: 10),
               resultText(),
               const SizedBox(height: 20),
               buttonsRow(),
-              buttonsLabelRow(),
               const SizedBox(height: 55),
             ],
           ),
@@ -74,23 +75,27 @@ class _ResultScreenState extends State<ResultScreen> {
 
 //
 
-  Row buttonsLabelRow() {
-    return const Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        SizedBox(width: 55, child: Text('Browse', textAlign: TextAlign.center)),
-        SizedBox(width: 55, child: Text('Copy', textAlign: TextAlign.center)),
-      ],
-    );
-  }
-
   Row buttonsRow() {
+    Widget w = const SizedBox();
+    if (isURL()) {
+      w = Column(
+        children: [
+          customButton(onPress: () => _browse(), icon: Icons.link),
+          const Text('Browse', textAlign: TextAlign.center),
+        ],
+      );
+    }
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        customButton(onPress: () => _browse(), icon: Icons.link),
-        customButton(onPress: () => _copy(), icon: Icons.copy),
-      ],
+        w,
+        Column(
+          children: [
+            customButton(onPress: () => _copy(), icon: Icons.copy),
+            const Text('Copy', textAlign: TextAlign.center),
+          ],
+        ),
+      ].sublist((w != const SizedBox()) ? 0 : 1),
     );
   }
 
@@ -113,9 +118,38 @@ class _ResultScreenState extends State<ResultScreen> {
     await Clipboard.setData(
       ClipboardData(text: '${widget.result.code}'),
     ).then(
-      (value) => showSnackBar(context, 'Coppied'),
+      (value) => showSnackBar(context, 'Copied'),
     );
   }
 
-  void _browse() {}
+  void _browse() async {
+    Uri url = Uri.parse(widget.result.code ?? '');
+    launchUrl(url, mode: LaunchMode.externalApplication);
+  }
+
+  bool isURL() {
+    bool valid =
+        Uri.tryParse(widget.result.code ?? 's')?.hasAbsolutePath ?? false;
+    return valid;
+  }
+
+  // bool isWiFi() {String s=widget.result.code??'';
+  //   bool valid = (s.);
+  //   return valid;
+  // }
+
+  bool isVCard() {
+    bool validURL = Uri.parse(widget.result.code ?? 'xxxx').isAbsolute;
+    return validURL;
+  }
+
+  bool isEmail() {
+    bool validURL = Uri.parse(widget.result.code ?? 'xxxx').isAbsolute;
+    return validURL;
+  }
+
+  bool isSMS() {
+    bool validURL = Uri.parse(widget.result.code ?? 'xxxx').isAbsolute;
+    return validURL;
+  }
 }
