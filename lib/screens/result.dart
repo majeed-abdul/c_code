@@ -79,8 +79,8 @@ class _ResultScreenState extends State<ResultScreen> {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        SizedBox(width: 55, child: Text('Browse', textAlign: TextAlign.center)),
-        SizedBox(width: 55, child: Text('Copy', textAlign: TextAlign.center)),
+        // SizedBox(width: 55, child: Text('Browse', textAlign: TextAlign.center)),
+        // SizedBox(width: 55, child: Text('Copy', textAlign: TextAlign.center)),
       ],
     );
   }
@@ -89,10 +89,21 @@ class _ResultScreenState extends State<ResultScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        customButton(onPress: () => _browse(), icon: Icons.link),
         Visibility(
-            visible: isURL(widget.result.code ?? ''),
-            child: customButton(onPress: () => _copy(), icon: Icons.copy)),
+          visible: isURL(),
+          child: Column(
+            children: [
+              customButton(onPress: () => _browse(), icon: Icons.link),
+              const Text('Browse', textAlign: TextAlign.center),
+            ],
+          ),
+        ),
+        Column(
+          children: [
+            customButton(onPress: () => _copy(), icon: Icons.copy),
+            const Text('Copy', textAlign: TextAlign.center),
+          ],
+        ),
       ],
     );
   }
@@ -121,12 +132,12 @@ class _ResultScreenState extends State<ResultScreen> {
   }
 
   void _browse() async {
-    launchUrl(Uri.parse(widget.result.code ?? ''));
+    Uri url = Uri.parse(widget.result.code ?? '');
+    launchUrl(url, mode: LaunchMode.externalApplication);
   }
 
-  bool isURL(String url) {
-    if (url.isEmpty) return false;
-    bool validURL = Uri.parse(url).isAbsolute;
+  bool isURL() {
+    bool validURL = Uri.parse(widget.result.code ?? 'xxxx').isAbsolute;
     print('===is Valid  $validURL');
     return validURL;
   }
