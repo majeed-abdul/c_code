@@ -68,6 +68,7 @@ class _InfoScreenState extends State<InfoScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Divider(),
+            const Text('  App', style: TextStyle(color: Colors.black54)),
             ListTile(
               title: Text(appName ?? 'null'),
               subtitle: Text('version: $version'),
@@ -77,6 +78,7 @@ class _InfoScreenState extends State<InfoScreen> {
               ),
             ),
             const Divider(),
+            const Text('  Setting', style: TextStyle(color: Colors.black54)),
             ListTile(
               title: const Text('Home Screen'),
               subtitle: Text(_home ?? ''),
@@ -89,6 +91,8 @@ class _InfoScreenState extends State<InfoScreen> {
                 setHomePage(context);
               },
             ),
+            const Divider(),
+            const Text('  Support Us', style: TextStyle(color: Colors.black54)),
             ListTile(
               title: const Text('Donate'),
               subtitle: const Text('for maintanance and ❤️'),
@@ -102,7 +106,6 @@ class _InfoScreenState extends State<InfoScreen> {
               },
             ),
             // const Text('OR', style: TextStyle(color: Colors.black54)),
-            const Divider(),
             ListTile(
               title: const Text('Watch an Ad'),
               subtitle: const Text('feel free to watch Ads.'),
