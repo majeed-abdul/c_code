@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'dart:io';
 
 class InfoScreen extends StatefulWidget {
   const InfoScreen({super.key});
@@ -16,9 +15,7 @@ class InfoScreen extends StatefulWidget {
 class _InfoScreenState extends State<InfoScreen> {
   RewardedAd? _rewardedAd;
 
-  final adUnitId = Platform.isAndroid
-      ? 'ca-app-pub-3940256099942544/5224354917'
-      : 'ca-app-pub-3940256099942544/1712485313';
+  final adUnitId = 'ca-app-pub-9338573690135257/6850625011';
 
   String? _home;
   @override
