@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'dart:io';
 
 class InfoScreen extends StatefulWidget {
   const InfoScreen({super.key});
@@ -12,9 +14,16 @@ class InfoScreen extends StatefulWidget {
 }
 
 class _InfoScreenState extends State<InfoScreen> {
+  RewardedAd? _rewardedAd;
+
+  final adUnitId = Platform.isAndroid
+      ? 'ca-app-pub-3940256099942544/5224354917'
+      : 'ca-app-pub-3940256099942544/1712485313';
+
   String? _home;
   @override
   void initState() {
+    loadAd();
     SharedPreferences.getInstance().then((pref) {
       int i = pref.getInt('home') ?? 0;
       if (i == 1) {
@@ -51,7 +60,7 @@ class _InfoScreenState extends State<InfoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Information'),
+        title: const Text('About'),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -59,6 +68,7 @@ class _InfoScreenState extends State<InfoScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Divider(),
+            const Text('  App', style: TextStyle(color: Colors.black54)),
             ListTile(
               title: Text(appName ?? 'null'),
               subtitle: Text('version: $version'),
@@ -68,6 +78,7 @@ class _InfoScreenState extends State<InfoScreen> {
               ),
             ),
             const Divider(),
+            const Text('  Setting', style: TextStyle(color: Colors.black54)),
             ListTile(
               title: const Text('Home Screen'),
               subtitle: Text(_home ?? ''),
@@ -80,6 +91,8 @@ class _InfoScreenState extends State<InfoScreen> {
                 setHomePage(context);
               },
             ),
+            const Divider(),
+            const Text('  Support Us', style: TextStyle(color: Colors.black54)),
             ListTile(
               title: const Text('Donate'),
               subtitle: const Text('for maintanance and ❤️'),
@@ -93,7 +106,23 @@ class _InfoScreenState extends State<InfoScreen> {
               },
             ),
             // const Text('OR', style: TextStyle(color: Colors.black54)),
-            const Divider(),
+            ListTile(
+              title: const Text('Watch an Ad'),
+              subtitle: const Text('feel free to watch Ads.'),
+              leading: const Icon(
+                Icons.ads_click,
+                size: 40,
+              ),
+              trailing: const Icon(Icons.more_vert),
+              onTap: () {
+                _rewardedAd?.show(
+                  onUserEarnedReward:
+                      (AdWithoutView ad, RewardItem rewardItem) {
+                    // Reward the user for watching an ad.
+                  },
+                );
+              },
+            ),
           ],
         ),
       ),
@@ -216,5 +245,42 @@ class _InfoScreenState extends State<InfoScreen> {
         ),
       );
     });
+  }
+
+  void loadAd() {
+    RewardedAd.load(
+        adUnitId: adUnitId,
+        request: const AdRequest(),
+        rewardedAdLoadCallback: RewardedAdLoadCallback(
+          // Called when an ad is successfully received.
+          onAdLoaded: (ad) {
+            ad.fullScreenContentCallback = FullScreenContentCallback(
+                // Called when the ad showed the full screen content.
+                onAdShowedFullScreenContent: (ad) {},
+                // Called when an impression occurs on the ad.
+                onAdImpression: (ad) {},
+                // Called when the ad failed to show full screen content.
+                onAdFailedToShowFullScreenContent: (ad, err) {
+                  // Dispose the ad here to free resources.
+                  ad.dispose();
+                },
+                // Called when the ad dismissed full screen content.
+                onAdDismissedFullScreenContent: (ad) {
+                  // Dispose the ad here to free resources.
+                  ad.dispose();
+                },
+                // Called when a click is recorded for an ad.
+                onAdClicked: (ad) {});
+
+            debugPrint('==$ad loaded.');
+            // Keep a reference to the ad so you can show it later.
+            _rewardedAd = ad;
+          },
+          // Called when an ad request failed.
+          onAdFailedToLoad: (LoadAdError error) {
+            showSnackBar(context, 'Failde to load Ad');
+            debugPrint('==RewardedAd failed to load: $error');
+          },
+        ));
   }
 }

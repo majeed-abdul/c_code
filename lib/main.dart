@@ -1,9 +1,12 @@
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:c_code/screens/home.dart';
 import 'package:c_code/screens/scan.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
   return runApp(const MyApp());
 }
 
