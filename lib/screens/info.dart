@@ -18,9 +18,9 @@ class _InfoScreenState extends State<InfoScreen> {
   final adUnitId = 'ca-app-pub-9338573690135257/6850625011';
 
   String? _home;
+  bool ads = false;
   @override
   void initState() {
-    loadAd();
     SharedPreferences.getInstance().then((pref) {
       int i = pref.getInt('home') ?? 0;
       if (i == 1) {
@@ -34,6 +34,9 @@ class _InfoScreenState extends State<InfoScreen> {
       version = packageInfo.version;
       setState(() {});
     });
+    do {
+      loadAd();
+    } while (ads == false);
     super.initState();
   }
 
@@ -245,6 +248,7 @@ class _InfoScreenState extends State<InfoScreen> {
   }
 
   void loadAd() {
+    ads = false;
     RewardedAd.load(
         adUnitId: adUnitId,
         request: const AdRequest(),
@@ -270,6 +274,7 @@ class _InfoScreenState extends State<InfoScreen> {
                 onAdClicked: (ad) {});
 
             debugPrint('==$ad loaded.');
+            ads = true;
             // Keep a reference to the ad so you can show it later.
             _rewardedAd = ad;
           },
