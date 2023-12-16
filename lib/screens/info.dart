@@ -20,7 +20,8 @@ class _InfoScreenState extends State<InfoScreen> {
   String? _home;
   bool ads = false;
   @override
-  void initState() {
+  void initState() async {
+    print('==initstate');
     SharedPreferences.getInstance().then((pref) {
       int i = pref.getInt('home') ?? 0;
       if (i == 1) {
@@ -34,14 +35,15 @@ class _InfoScreenState extends State<InfoScreen> {
       version = packageInfo.version;
       setState(() {});
     });
-    do {
-      loadAd();
-    } while (ads == false);
     super.initState();
+    do {
+      await loadAd();
+    } while (ads == false);
   }
 
   @override
-  void reassemble() {
+  void reassemble() async {
+    print('==reassemble');
     SharedPreferences.getInstance().then((pref) {
       int i = pref.getInt('home') ?? 0;
       if (i == 1) {
@@ -51,6 +53,7 @@ class _InfoScreenState extends State<InfoScreen> {
       }
       setState(() {});
     });
+    setState(() {});
     super.reassemble();
   }
 
@@ -247,7 +250,7 @@ class _InfoScreenState extends State<InfoScreen> {
     });
   }
 
-  void loadAd() {
+  Future loadAd() async {
     ads = false;
     RewardedAd.load(
         adUnitId: adUnitId,
