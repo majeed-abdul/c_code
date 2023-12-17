@@ -266,9 +266,10 @@ class _InfoScreenState extends State<InfoScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text(
-            'Thank You!',
-            textAlign: TextAlign.center,
+          title: Image.asset(
+            'assets/loader.gif',
+            width: 100,
+            height: 100,
           ),
           content: const Text(
             'Thanks for viewing the ad!',
