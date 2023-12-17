@@ -39,20 +39,20 @@ class _InfoScreenState extends State<InfoScreen> {
     super.initState();
   }
 
-  @override
-  void reassemble() {
-    print('====Re-Assemble');
-    SharedPreferences.getInstance().then((pref) {
-      int i = pref.getInt('home') ?? 0;
-      if (i == 1) {
-        _home = 'Scan';
-      } else {
-        _home = 'Create';
-      }
-      setState(() {});
-    });
-    super.reassemble();
-  }
+  // @override
+  // void reassemble() {
+  //   print('====Re-Assemble');
+  //   SharedPreferences.getInstance().then((pref) {
+  //     int i = pref.getInt('home') ?? 0;
+  //     if (i == 1) {
+  //       _home = 'Scan';
+  //     } else {
+  //       _home = 'Create';
+  //     }
+  //     setState(() {});
+  //   });
+  //   super.reassemble();
+  // }
 
   String? appName;
   String? version;
@@ -117,7 +117,9 @@ class _InfoScreenState extends State<InfoScreen> {
                   size: 40,
                 ),
                 trailing: const Icon(Icons.more_vert),
-                onTap: () {},
+                onTap: () {
+                  loadAndShowAd();
+                },
               ),
             ],
           ),
