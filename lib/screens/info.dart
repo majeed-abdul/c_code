@@ -1,3 +1,4 @@
+import 'package:c_code/widgets/loader.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -13,14 +14,15 @@ class InfoScreen extends StatefulWidget {
 }
 
 class _InfoScreenState extends State<InfoScreen> {
-  RewardedAd? _rewardedAd;
+  // RewardedAd? _rewardedAd;
+  bool loading = false;
 
   final adUnitId = 'ca-app-pub-9338573690135257/6850625011';
 
   String? _home;
-  bool ads = false;
   @override
   void initState() {
+    print('====Initial');
     SharedPreferences.getInstance().then((pref) {
       int i = pref.getInt('home') ?? 0;
       if (i == 1) {
@@ -39,7 +41,7 @@ class _InfoScreenState extends State<InfoScreen> {
 
   @override
   void reassemble() {
-    print('==reassemble');
+    print('====Re-Assemble');
     SharedPreferences.getInstance().then((pref) {
       int i = pref.getInt('home') ?? 0;
       if (i == 1) {
@@ -56,57 +58,58 @@ class _InfoScreenState extends State<InfoScreen> {
   String? version;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('About'),
-        centerTitle: true,
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Divider(),
-            const Text('  App', style: TextStyle(color: Colors.black54)),
-            ListTile(
-              title: Text(appName ?? 'null'),
-              subtitle: Text('version: $version'),
-              leading: const Icon(
-                Icons.adb,
-                size: 40,
+    return Spinner(
+      spinning: loading,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('About'),
+          centerTitle: true,
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Divider(),
+              const Text('  App', style: TextStyle(color: Colors.black54)),
+              ListTile(
+                title: Text(appName ?? 'null'),
+                subtitle: Text('version: $version'),
+                leading: const Icon(
+                  Icons.adb,
+                  size: 40,
+                ),
               ),
-            ),
-            const Divider(),
-            const Text('  Setting', style: TextStyle(color: Colors.black54)),
-            ListTile(
-              title: const Text('Home Screen'),
-              subtitle: Text(_home ?? ''),
-              leading: const Icon(
-                Icons.home_rounded,
-                size: 40,
+              const Divider(),
+              const Text('  Setting', style: TextStyle(color: Colors.black54)),
+              ListTile(
+                title: const Text('Home Screen'),
+                subtitle: Text(_home ?? ''),
+                leading: const Icon(
+                  Icons.home_rounded,
+                  size: 40,
+                ),
+                trailing: const Icon(Icons.more_vert),
+                onTap: () {
+                  setHomePage(context);
+                },
               ),
-              trailing: const Icon(Icons.more_vert),
-              onTap: () {
-                setHomePage(context);
-              },
-            ),
-            const Divider(),
-            const Text('  Support Us', style: TextStyle(color: Colors.black54)),
-            ListTile(
-              title: const Text('Donate'),
-              subtitle: const Text('for maintanance and ❤️'),
-              leading: const Icon(
-                Icons.volunteer_activism_rounded,
-                size: 40,
+              const Divider(),
+              const Text('  Support Us',
+                  style: TextStyle(color: Colors.black54)),
+              ListTile(
+                title: const Text('Donate'),
+                subtitle: const Text('for maintanance and ❤️'),
+                leading: const Icon(
+                  Icons.volunteer_activism_rounded,
+                  size: 40,
+                ),
+                trailing: const Icon(Icons.more_vert),
+                onTap: () {
+                  donate(context);
+                },
               ),
-              trailing: const Icon(Icons.more_vert),
-              onTap: () {
-                donate(context);
-              },
-            ),
-            // const Text('OR', style: TextStyle(color: Colors.black54)),
-            Visibility(
-              visible: _rewardedAd != null,
-              child: ListTile(
+              // const Text('OR', style: TextStyle(color: Colors.black54)),
+              ListTile(
                 title: const Text('Watch an Ad'),
                 subtitle: const Text('feel free to watch Ads.'),
                 leading: const Icon(
@@ -114,17 +117,10 @@ class _InfoScreenState extends State<InfoScreen> {
                   size: 40,
                 ),
                 trailing: const Icon(Icons.more_vert),
-                onTap: () {
-                  _rewardedAd?.show(
-                    onUserEarnedReward:
-                        (AdWithoutView ad, RewardItem rewardItem) {
-                      // Reward the user for watching an ad.
-                    },
-                  );
-                },
+                onTap: () {},
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -249,6 +245,7 @@ class _InfoScreenState extends State<InfoScreen> {
   }
 
   Future loadAndShowAd() async {
+    setState(() => loading = true);
     RewardedAd.load(
       adUnitId: adUnitId,
       request: const AdRequest(),
@@ -272,15 +269,19 @@ class _InfoScreenState extends State<InfoScreen> {
               },
               // Called when a click is recorded for an ad.
               onAdClicked: (ad) {});
-          debugPrint('==$ad loaded.');
-          ads = true;
+          debugPrint('====$ad loaded.');
           // Keep a reference to the ad so you can show it later.
-          _rewardedAd = ad;
+          ad.show(
+            onUserEarnedReward: (AdWithoutView ad, RewardItem rewardItem) {
+              // Reward the user for watching an ad.
+            },
+          ).then((value) => setState(() => loading = false));
         },
         // Called when an ad request failed.
         onAdFailedToLoad: (LoadAdError error) {
           showSnackBar(context, 'Failde to load Ad');
-          debugPrint('==RewardedAd failed to load: $error');
+          debugPrint('====RewardedAd failed to load: $error');
+          setState(() => loading = false);
         },
       ),
     );
