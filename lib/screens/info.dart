@@ -1,9 +1,9 @@
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:c_code/widgets/pop_ups.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:package_info_plus/package_info_plus.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class InfoScreen extends StatefulWidget {
   const InfoScreen({super.key});
@@ -20,8 +20,7 @@ class _InfoScreenState extends State<InfoScreen> {
   String? _home;
   bool ads = false;
   @override
-  void initState() async {
-    print('==initstate');
+  void initState() {
     SharedPreferences.getInstance().then((pref) {
       int i = pref.getInt('home') ?? 0;
       if (i == 1) {
@@ -36,13 +35,10 @@ class _InfoScreenState extends State<InfoScreen> {
       setState(() {});
     });
     super.initState();
-    do {
-      await loadAd();
-    } while (ads == false);
   }
 
   @override
-  void reassemble() async {
+  void reassemble() {
     print('==reassemble');
     SharedPreferences.getInstance().then((pref) {
       int i = pref.getInt('home') ?? 0;
@@ -53,7 +49,6 @@ class _InfoScreenState extends State<InfoScreen> {
       }
       setState(() {});
     });
-    setState(() {});
     super.reassemble();
   }
 
@@ -109,22 +104,25 @@ class _InfoScreenState extends State<InfoScreen> {
               },
             ),
             // const Text('OR', style: TextStyle(color: Colors.black54)),
-            ListTile(
-              title: const Text('Watch an Ad'),
-              subtitle: const Text('feel free to watch Ads.'),
-              leading: const Icon(
-                Icons.ads_click,
-                size: 40,
+            Visibility(
+              visible: _rewardedAd != null,
+              child: ListTile(
+                title: const Text('Watch an Ad'),
+                subtitle: const Text('feel free to watch Ads.'),
+                leading: const Icon(
+                  Icons.ads_click,
+                  size: 40,
+                ),
+                trailing: const Icon(Icons.more_vert),
+                onTap: () {
+                  _rewardedAd?.show(
+                    onUserEarnedReward:
+                        (AdWithoutView ad, RewardItem rewardItem) {
+                      // Reward the user for watching an ad.
+                    },
+                  );
+                },
               ),
-              trailing: const Icon(Icons.more_vert),
-              onTap: () {
-                _rewardedAd?.show(
-                  onUserEarnedReward:
-                      (AdWithoutView ad, RewardItem rewardItem) {
-                    // Reward the user for watching an ad.
-                  },
-                );
-              },
             ),
           ],
         ),
@@ -250,42 +248,41 @@ class _InfoScreenState extends State<InfoScreen> {
     });
   }
 
-  Future loadAd() async {
-    ads = false;
+  Future loadAndShowAd() async {
     RewardedAd.load(
-        adUnitId: adUnitId,
-        request: const AdRequest(),
-        rewardedAdLoadCallback: RewardedAdLoadCallback(
-          // Called when an ad is successfully received.
-          onAdLoaded: (ad) {
-            ad.fullScreenContentCallback = FullScreenContentCallback(
-                // Called when the ad showed the full screen content.
-                onAdShowedFullScreenContent: (ad) {},
-                // Called when an impression occurs on the ad.
-                onAdImpression: (ad) {},
-                // Called when the ad failed to show full screen content.
-                onAdFailedToShowFullScreenContent: (ad, err) {
-                  // Dispose the ad here to free resources.
-                  ad.dispose();
-                },
-                // Called when the ad dismissed full screen content.
-                onAdDismissedFullScreenContent: (ad) {
-                  // Dispose the ad here to free resources.
-                  ad.dispose();
-                },
-                // Called when a click is recorded for an ad.
-                onAdClicked: (ad) {});
-
-            debugPrint('==$ad loaded.');
-            ads = true;
-            // Keep a reference to the ad so you can show it later.
-            _rewardedAd = ad;
-          },
-          // Called when an ad request failed.
-          onAdFailedToLoad: (LoadAdError error) {
-            showSnackBar(context, 'Failde to load Ad');
-            debugPrint('==RewardedAd failed to load: $error');
-          },
-        ));
+      adUnitId: adUnitId,
+      request: const AdRequest(),
+      rewardedAdLoadCallback: RewardedAdLoadCallback(
+        // Called when an ad is successfully received.
+        onAdLoaded: (ad) {
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+              // Called when the ad showed the full screen content.
+              onAdShowedFullScreenContent: (ad) {},
+              // Called when an impression occurs on the ad.
+              onAdImpression: (ad) {},
+              // Called when the ad failed to show full screen content.
+              onAdFailedToShowFullScreenContent: (ad, err) {
+                // Dispose the ad here to free resources.
+                ad.dispose();
+              },
+              // Called when the ad dismissed full screen content.
+              onAdDismissedFullScreenContent: (ad) {
+                // Dispose the ad here to free resources.
+                ad.dispose();
+              },
+              // Called when a click is recorded for an ad.
+              onAdClicked: (ad) {});
+          debugPrint('==$ad loaded.');
+          ads = true;
+          // Keep a reference to the ad so you can show it later.
+          _rewardedAd = ad;
+        },
+        // Called when an ad request failed.
+        onAdFailedToLoad: (LoadAdError error) {
+          showSnackBar(context, 'Failde to load Ad');
+          debugPrint('==RewardedAd failed to load: $error');
+        },
+      ),
+    );
   }
 }
