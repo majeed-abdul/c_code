@@ -14,12 +14,11 @@ class InfoScreen extends StatefulWidget {
 }
 
 class _InfoScreenState extends State<InfoScreen> {
-  // RewardedAd? _rewardedAd;
   bool loading = false;
-
+  bool rewarded = false;
   final adUnitId = 'ca-app-pub-9338573690135257/6850625011';
-
   String? _home;
+
   @override
   void initState() {
     print('====Initial');
@@ -38,21 +37,6 @@ class _InfoScreenState extends State<InfoScreen> {
     });
     super.initState();
   }
-
-  // @override
-  // void reassemble() {
-  //   print('====Re-Assemble');
-  //   SharedPreferences.getInstance().then((pref) {
-  //     int i = pref.getInt('home') ?? 0;
-  //     if (i == 1) {
-  //       _home = 'Scan';
-  //     } else {
-  //       _home = 'Create';
-  //     }
-  //     setState(() {});
-  //   });
-  //   super.reassemble();
-  // }
 
   String? appName;
   String? version;
@@ -271,17 +255,18 @@ class _InfoScreenState extends State<InfoScreen> {
               },
               // Called when a click is recorded for an ad.
               onAdClicked: (ad) {});
-          debugPrint('====$ad loaded.');
           // Keep a reference to the ad so you can show it later.
+          debugPrint('====$ad loaded.');
           ad.show(
             onUserEarnedReward: (AdWithoutView ad, RewardItem rewardItem) {
               // Reward the user for watching an ad.
+              print("====earned reward");
             },
           ).then((value) => setState(() => loading = false));
         },
         // Called when an ad request failed.
         onAdFailedToLoad: (LoadAdError error) {
-          showSnackBar(context, 'Failde to load Ad');
+          showSnackBar(context, 'Unable to show Ad, thanks for your move.');
           debugPrint('====RewardedAd failed to load: $error');
           setState(() => loading = false);
         },
