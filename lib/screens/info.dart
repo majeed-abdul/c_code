@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:c_code/widgets/loader.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -281,5 +283,10 @@ class _InfoScreenState extends State<InfoScreen> {
         );
       },
     );
+  }
+
+  int getRandomNumber() {
+    Random random = Random();
+    return random.nextInt(8) + 1;
   }
 }
