@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:c_code/widgets/loader.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -21,7 +23,6 @@ class _InfoScreenState extends State<InfoScreen> {
 
   @override
   void initState() {
-    print('====Initial');
     SharedPreferences.getInstance().then((pref) {
       int i = pref.getInt('home') ?? 0;
       if (i == 1) {
@@ -267,7 +268,7 @@ class _InfoScreenState extends State<InfoScreen> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Image.asset(
-            'assets/loader.gif',
+            'assets/thankyou/${getR()}.gif',
             width: 100,
             height: 100,
           ),
@@ -281,5 +282,10 @@ class _InfoScreenState extends State<InfoScreen> {
         );
       },
     );
+  }
+
+  int getR() {
+    Random random = Random();
+    return random.nextInt(7) + 1;
   }
 }
