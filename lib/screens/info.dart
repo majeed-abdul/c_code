@@ -240,32 +240,18 @@ class _InfoScreenState extends State<InfoScreen> {
         // Called when an ad is successfully received.
         onAdLoaded: (ad) {
           ad.fullScreenContentCallback = FullScreenContentCallback(
-              // Called when the ad showed the full screen content.
-              onAdShowedFullScreenContent: (ad) {},
-              // Called when an impression occurs on the ad.
-              onAdImpression: (ad) {},
-              // Called when the ad failed to show full screen content.
-              onAdFailedToShowFullScreenContent: (ad, err) {
-                // Dispose the ad here to free resources.
-                ad.dispose();
-              },
-              // Called when the ad dismissed full screen content.
-              onAdDismissedFullScreenContent: (ad) {
-                // Dispose the ad here to free resources.
-                ad.dispose();
-              },
-              // Called when a click is recorded for an ad.
-              onAdClicked: (ad) {});
-          // Keep a reference to the ad so you can show it later.
+            onAdShowedFullScreenContent: (ad) {},
+            onAdImpression: (ad) {},
+            onAdFailedToShowFullScreenContent: ((ad, err) => ad.dispose()),
+            onAdDismissedFullScreenContent: ((ad) => ad.dispose()),
+            onAdClicked: (ad) {},
+          );
           ad.show(
             onUserEarnedReward: (AdWithoutView ad, RewardItem rewardItem) {
-              // Reward the user for watching an ad.
-              rewarded = true;
               showThankYouPopup();
             },
           ).then((value) => setState(() => loading = false));
         },
-        // Called when an ad request failed.
         onAdFailedToLoad: (LoadAdError error) {
           showSnackBar(context, 'Unable to show Ad, thanks for your move.');
           setState(() => loading = false);
@@ -280,8 +266,14 @@ class _InfoScreenState extends State<InfoScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Thank You!'),
-          content: const Text('Thanks for viewing the ad!'),
+          title: const Text(
+            'Thank You!',
+            textAlign: TextAlign.center,
+          ),
+          content: const Text(
+            'Thanks for viewing the ad!',
+            textAlign: TextAlign.center,
+          ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           ),
