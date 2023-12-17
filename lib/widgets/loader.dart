@@ -24,7 +24,7 @@ class Spinner extends StatelessWidget {
               color: Colors.transparent,
               child: Center(
                 child: Image.asset(
-                  'assets/images/wheelloader.gif',
+                  'assets/loader.gif',
                   width: 100,
                   height: 100,
                 ),
