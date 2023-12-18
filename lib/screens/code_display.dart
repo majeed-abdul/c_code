@@ -1,7 +1,8 @@
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:c_code/widgets/buttons.dart';
 import 'package:flutter/material.dart';
-import 'package:image/image.dart' as img;
+// import 'package:image/image.dart' as img;
+import 'package:barcode_image/barcode_image.dart';
 
 class CodeDisplayScreen extends StatefulWidget {
   const CodeDisplayScreen({
