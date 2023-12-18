@@ -73,4 +73,18 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
       message.substring(message.indexOf('Barcode, '), message.length - 1),
     );
   }
+
+  void saveit() {
+    // Create an image
+    final image = Image(width: 300, height: 120);
+
+// Fill it with a solid color (white)
+    fill(image, color: ColorRgb8(255, 255, 255));
+
+// Draw the barcode
+    drawBarcode(image, Barcode.code128(), 'Test', font: arial24);
+
+// Save the image
+    File('test.png').writeAsBytesSync(encodePng(image));
+  }
 }
