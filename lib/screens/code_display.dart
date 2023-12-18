@@ -1,4 +1,5 @@
 import 'package:barcode_widget/barcode_widget.dart';
+import 'package:c_code/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 
 class CodeDisplayScreen extends StatefulWidget {
@@ -28,7 +29,17 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [displayOutputCode(context), Text(widget.data)],
+          children: [
+            displayOutputCode(context),
+            Column(
+              children: [
+                customButton(onPress: () {}, icon: Icons.photo_library),
+                const Text('Save', textAlign: TextAlign.center),
+              ],
+            ),
+            const SizedBox(height: 15),
+            Text(widget.data),
+          ],
         ),
       ),
     );

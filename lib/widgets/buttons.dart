@@ -11,7 +11,11 @@ Container customButton({
     decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(69),
         border: Border.all(color: color, width: 3)),
-    child: GestureDetector(onTap: onPress, child: Icon(icon, color: color)),
+    child: InkWell(
+      borderRadius: BorderRadius.circular(69),
+      onTap: onPress,
+      child: Icon(icon, color: color),
+    ),
   );
 }
 

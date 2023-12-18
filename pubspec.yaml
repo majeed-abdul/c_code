@@ -34,17 +34,15 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  barcode: ^2.2.3 # parent
-  url_launcher: ^6.1.10
-  barcode_widget: ^2.0.4 # child
-  icons_launcher: ^2.1.0
   cupertino_icons: ^1.0.2
+  url_launcher: ^6.1.10
+  icons_launcher: ^2.1.0
   qr_code_scanner: ^1.0.1 # scan codes
   email_validator: ^2.1.17
   shared_preferences: ^2.2.2
   package_info_plus: ^4.2.0
   google_mobile_ads: ^4.0.0
-  # barcode_image: ^2.0.2 # child
+  barcode_widget: ^2.0.4  # creat codes
 
 dev_dependencies:
   flutter_test:
