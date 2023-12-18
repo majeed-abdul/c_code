@@ -1,6 +1,7 @@
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:c_code/widgets/buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:image/image.dart' as img;
 
 class CodeDisplayScreen extends StatefulWidget {
   const CodeDisplayScreen({
@@ -76,7 +77,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
 
   void saveit() {
     // Create an image
-    final image = Image(width: 300, height: 120);
+    final image = img.Image(width: 300, height: 120);
 
 // Fill it with a solid color (white)
     fill(image, color: ColorRgb8(255, 255, 255));
