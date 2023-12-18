@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:c_code/widgets/buttons.dart';
 import 'package:flutter/material.dart';
-// import 'package:image/image.dart' as img;
+import 'package:image/image.dart' as img;
 import 'package:barcode_image/barcode_image.dart';
+import 'package:image/image.dart';
 
 class CodeDisplayScreen extends StatefulWidget {
   const CodeDisplayScreen({
@@ -35,7 +38,10 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
             displayOutputCode(context),
             Column(
               children: [
-                customButton(onPress: () {}, icon: Icons.photo_library),
+                customButton(
+                  onPress: () => saveit(),
+                  icon: Icons.photo_library,
+                ),
                 const Text('Save', textAlign: TextAlign.center),
               ],
             ),
@@ -79,14 +85,11 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
   void saveit() {
     // Create an image
     final image = img.Image(width: 300, height: 120);
-
-// Fill it with a solid color (white)
+    // Fill it with a solid color (white)
     fill(image, color: ColorRgb8(255, 255, 255));
-
-// Draw the barcode
+    // Draw the barcode
     drawBarcode(image, Barcode.code128(), 'Test', font: arial24);
-
-// Save the image
+    // Save the image
     File('test.png').writeAsBytesSync(encodePng(image));
   }
 }
