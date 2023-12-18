@@ -76,7 +76,8 @@ class _ResultScreenState extends State<ResultScreen> {
 //
 
   Row buttonsRow() {
-    Widget w = const SizedBox();
+    Widget w = const SizedBox.shrink();
+    bool text = true;
     if (isURL()) {
       w = Column(
         children: [
@@ -84,6 +85,7 @@ class _ResultScreenState extends State<ResultScreen> {
           const Text('Browse', textAlign: TextAlign.center),
         ],
       );
+      text = false;
     }
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -95,7 +97,7 @@ class _ResultScreenState extends State<ResultScreen> {
             const Text('Copy', textAlign: TextAlign.center),
           ],
         ),
-      ].sublist((w != const SizedBox()) ? 0 : 1),
+      ].sublist((text) ? 1 : 0),
     );
   }
 
