@@ -17,7 +17,6 @@ class InfoScreen extends StatefulWidget {
 
 class _InfoScreenState extends State<InfoScreen> {
   bool loading = false;
-  bool rewarded = false;
   final adUnitId = 'ca-app-pub-9338573690135257/6850625011';
   String? _home;
 
@@ -232,6 +231,7 @@ class _InfoScreenState extends State<InfoScreen> {
   }
 
   Future loadAndShowAd() async {
+    setState(() => loading = true);
     RewardedAd.load(
       adUnitId: adUnitId,
       request: const AdRequest(),
