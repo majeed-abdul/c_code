@@ -1,12 +1,12 @@
-import 'dart:math';
-
-import 'package:c_code/widgets/loader.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:c_code/widgets/pop_ups.dart';
+import 'package:c_code/widgets/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'dart:async';
+import 'dart:math';
 
 class InfoScreen extends StatefulWidget {
   const InfoScreen({super.key});
@@ -102,9 +102,9 @@ class _InfoScreenState extends State<InfoScreen> {
                   size: 40,
                 ),
                 trailing: const Icon(Icons.more_vert),
-                onTap: () async {
-                  await loadAndShowAd();
-                  // if (rewarded) {}
+                onTap: () {
+                  setState(() => loading = true);
+                  loadAndShowAd();
                 },
               ),
             ],
@@ -233,7 +233,6 @@ class _InfoScreenState extends State<InfoScreen> {
   }
 
   Future loadAndShowAd() async {
-    setState(() => loading = true);
     RewardedAd.load(
       adUnitId: adUnitId,
       request: const AdRequest(),
@@ -248,10 +247,10 @@ class _InfoScreenState extends State<InfoScreen> {
             onAdClicked: (ad) {},
           );
           ad.show(
-            onUserEarnedReward: (AdWithoutView ad, RewardItem rewardItem) {
-              showThankYouPopup();
-            },
-          ).then((value) => setState(() => loading = false));
+              onUserEarnedReward: (AdWithoutView ad, RewardItem rewardItem) {
+            showThankYouPopup();
+          });
+          setState(() => loading = false);
         },
         onAdFailedToLoad: (LoadAdError error) {
           showSnackBar(context, 'Unable to show Ad, thanks for your move.');
@@ -259,25 +258,24 @@ class _InfoScreenState extends State<InfoScreen> {
         },
       ),
     );
-    setState(() => loading = false);
   }
 
   void showThankYouPopup() {
     showDialog(
       context: context,
       builder: (BuildContext context) {
+        // Future.delayed(const Duration(seconds: 3), () {
+        //   Navigator.of(context).pop();
+        // });
         return AlertDialog(
+          titlePadding: const EdgeInsets.all(20),
           title: Image.asset(
             'assets/thankyou/${getR()}.gif',
-            width: 100,
-            height: 100,
-          ),
-          content: const Text(
-            'Thanks for viewing the ad!',
-            textAlign: TextAlign.center,
+            width: 190,
+            height: 190,
           ),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(20),
           ),
         );
       },
