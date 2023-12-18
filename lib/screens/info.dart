@@ -103,7 +103,6 @@ class _InfoScreenState extends State<InfoScreen> {
                 ),
                 trailing: const Icon(Icons.more_vert),
                 onTap: () {
-                  setState(() => loading = true);
                   loadAndShowAd();
                 },
               ),
@@ -261,6 +260,7 @@ class _InfoScreenState extends State<InfoScreen> {
   }
 
   void showThankYouPopup() {
+    setState(() => loading = true);
     showDialog(
       context: context,
       builder: (BuildContext context) {
