@@ -1,5 +1,12 @@
 import 'package:barcode_widget/barcode_widget.dart';
+import 'package:c_code/widgets/buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:barcode_image/barcode_image.dart';
+import 'package:image/image.dart' as img;
+import 'package:image/image.dart';
+import 'dart:io';
+
+import 'package:permission_handler/permission_handler.dart';
 
 class CodeDisplayScreen extends StatefulWidget {
   const CodeDisplayScreen({
@@ -28,7 +35,20 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: [displayOutputCode(context), Text(widget.data)],
+          children: [
+            displayOutputCode(context),
+            Column(
+              children: [
+                customButton(
+                  onPress: () => saveit(),
+                  icon: Icons.photo_library,
+                ),
+                const Text('Save', textAlign: TextAlign.center),
+              ],
+            ),
+            const SizedBox(height: 15),
+            Text(widget.data),
+          ],
         ),
       ),
     );
@@ -61,5 +81,17 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
     return Text(
       message.substring(message.indexOf('Barcode, '), message.length - 1),
     );
+  }
+
+  void saveit() async {
+    await Permission.manageExternalStorage.request();
+    // Create an image
+    final image = img.Image(width: 300, height: 120);
+    // Fill it with a solid color (white)
+    fill(image, color: ColorRgb8(255, 255, 255));
+    // Draw the barcode
+    drawBarcode(image, Barcode.code128(), 'Test', font: arial24);
+    // Save the image
+    File('test.png').writeAsBytes(encodePng(image));
   }
 }
