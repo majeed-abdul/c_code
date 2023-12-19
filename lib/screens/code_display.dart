@@ -7,9 +7,6 @@ import 'package:barcode_image/barcode_image.dart';
 import 'package:image/image.dart' as img;
 import 'package:image/image.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'dart:typed_data';
-import 'dart:ui' as ui;
 
 class CodeDisplayScreen extends StatefulWidget {
   const CodeDisplayScreen({
