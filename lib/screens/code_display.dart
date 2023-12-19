@@ -20,6 +20,13 @@ class CodeDisplayScreen extends StatefulWidget {
 }
 
 class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
+  String name = '';
+  @override
+  void initState() {
+    name = DateTime.now().toString().substring(0, 19);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,6 +93,6 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
     fill(image, color: ColorRgb8(255, 255, 255));
     drawBarcode(image, widget.barCode, widget.data);
     final png = img.encodePng(image);
-    await ImageGallerySaver.saveImage(png);
+    await ImageGallerySaver.saveImage(png, name: name);
   }
 }
