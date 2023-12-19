@@ -1,12 +1,15 @@
+import 'dart:io';
+
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:c_code/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:barcode_image/barcode_image.dart';
 import 'package:image/image.dart' as img;
 import 'package:image/image.dart';
-import 'dart:io';
-
 import 'package:permission_handler/permission_handler.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'dart:typed_data';
+import 'dart:ui' as ui;
 
 class CodeDisplayScreen extends StatefulWidget {
   const CodeDisplayScreen({
@@ -86,12 +89,23 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
   void saveit() async {
     await Permission.manageExternalStorage.request();
     // Create an image
-    final image = img.Image(width: 300, height: 120);
+    final image = img.Image(width: 300, height: 300);
     // Fill it with a solid color (white)
     fill(image, color: ColorRgb8(255, 255, 255));
     // Draw the barcode
-    drawBarcode(image, Barcode.code128(), 'Test', font: arial24);
+    drawBarcode(image, Barcode.qrCode(), 'Test', font: arial24);
     // Save the image
-    File('test.png').writeAsBytes(encodePng(image));
+    // Directory root = await getTemporaryDirectory();
+    // String directoryPath = '${root.path}';
+    // await Directory(directoryPath).create(recursive: false);
+    // File(directoryPath).writeAsBytes(encodePng(image));
+    //
+    // final byteData = image.;
+    // Encode the resulting image to the PNG image format.
+    final png = img.encodePng(image);
+    // Write the PNG formatted data to a file.
+    await File('image.png').writeAsBytes(png).then(
+          (value) => print('QR Code image saved to Pictures'),
+        );
   }
 }
