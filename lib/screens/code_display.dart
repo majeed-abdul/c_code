@@ -100,7 +100,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
     drawBarcode(image, widget.barCode, widget.data,
         height: 428, width: 428, x: 42, y: 42);
     final png = img.encodePng(image);
-    ImageGallerySaver.saveImage(png, name: name);
+    ImageGallerySaver.saveImage(png);
     showSnackBar(context, 'Image Saved to Pictures. ✔️');
     saved = true;
   }
