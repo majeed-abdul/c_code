@@ -92,7 +92,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
 
   void saveit() {
     if (saved) {
-      showSnackBar(context, 'Image Already Saved. 😠');
+      showSnackBar(context, 'Image Already Saved.');
       return;
     }
     final image = img.Image(width: 300, height: 300);
