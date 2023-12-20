@@ -1,5 +1,6 @@
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:c_code/widgets/buttons.dart';
+import 'package:c_code/widgets/pop_ups.dart';
 import 'package:flutter/material.dart';
 import 'package:barcode_image/barcode_image.dart';
 import 'package:image/image.dart' as img;
@@ -21,6 +22,7 @@ class CodeDisplayScreen extends StatefulWidget {
 
 class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
   String name = '';
+  bool saved = false;
   @override
   void initState() {
     name = DateTime.now().toString().substring(0, 19);
@@ -88,11 +90,16 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
     );
   }
 
-  void saveit() async {
+  void saveit() {
+    if (saved) {
+      showSnackBar(context, 'Image Already Saved');
+      return;
+    }
     final image = img.Image(width: 300, height: 300);
     fill(image, color: ColorRgb8(255, 255, 255));
     drawBarcode(image, widget.barCode, widget.data);
     final png = img.encodePng(image);
-    await ImageGallerySaver.saveImage(png, name: name);
+    ImageGallerySaver.saveImage(png, name: name);
+    saved = true;
   }
 }
