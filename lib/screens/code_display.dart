@@ -91,8 +91,15 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
     }
     final image = img.Image(width: 512, height: 512);
     fill(image, color: ColorRgb8(255, 255, 255));
-    drawBarcode(image, widget.barCode, widget.data,
-        height: 428, width: 428, x: 42, y: 42);
+    drawBarcode(
+      image,
+      widget.barCode,
+      widget.data,
+      height: 427, //  427 insted of 428 for 42px even padding across 4 sides
+      width: 427,
+      x: 42,
+      y: 42,
+    );
     final png = img.encodePng(image);
     ImageGallerySaver.saveImage(png);
     showSnackBar(context, 'Image Saved to Pictures. ✔️');
