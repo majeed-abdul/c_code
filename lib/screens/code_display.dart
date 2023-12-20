@@ -32,7 +32,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
         centerTitle: true,
         title: Text(widget.barCode.name),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -48,7 +48,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
               ],
             ),
             const SizedBox(height: 15),
-            Text(widget.data),
+            // Text(widget.data),
           ],
         ),
       ),
