@@ -92,7 +92,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
 
   void saveit() {
     if (saved) {
-      showSnackBar(context, 'Image Already Saved');
+      showSnackBar(context, 'Image Already Saved. 😡');
       return;
     }
     final image = img.Image(width: 300, height: 300);
@@ -100,6 +100,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
     drawBarcode(image, widget.barCode, widget.data);
     final png = img.encodePng(image);
     ImageGallerySaver.saveImage(png, name: name);
+    showSnackBar(context, 'Image Saved to Pictures. ❤️');
     saved = true;
   }
 }
