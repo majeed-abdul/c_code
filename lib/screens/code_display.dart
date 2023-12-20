@@ -21,13 +21,7 @@ class CodeDisplayScreen extends StatefulWidget {
 }
 
 class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
-  String name = '';
   bool saved = false;
-  @override
-  void initState() {
-    name = DateTime.now().toString().substring(0, 19);
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
