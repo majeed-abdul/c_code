@@ -1,5 +1,6 @@
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:c_code/widgets/buttons.dart';
+import 'package:c_code/widgets/pop_ups.dart';
 import 'package:flutter/material.dart';
 import 'package:barcode_image/barcode_image.dart';
 import 'package:image/image.dart' as img;
@@ -20,12 +21,7 @@ class CodeDisplayScreen extends StatefulWidget {
 }
 
 class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
-  String name = '';
-  @override
-  void initState() {
-    name = DateTime.now().toString().substring(0, 19);
-    super.initState();
-  }
+  bool saved = false;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +32,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
         centerTitle: true,
         title: Text(widget.barCode.name),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -52,7 +48,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
               ],
             ),
             const SizedBox(height: 15),
-            Text(widget.data),
+            // Text(widget.data),
           ],
         ),
       ),
@@ -88,11 +84,25 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
     );
   }
 
-  void saveit() async {
-    final image = img.Image(width: 300, height: 300);
+  void saveit() {
+    if (saved) {
+      showSnackBar(context, 'Image Already Saved.');
+      return;
+    }
+    final image = img.Image(width: 512, height: 512);
     fill(image, color: ColorRgb8(255, 255, 255));
-    drawBarcode(image, widget.barCode, widget.data);
+    drawBarcode(
+      image,
+      widget.barCode,
+      widget.data,
+      height: 427, //  427 insted of 428 for 42px even padding across 4 sides
+      width: 427,
+      x: 42,
+      y: 42,
+    );
     final png = img.encodePng(image);
-    await ImageGallerySaver.saveImage(png, name: name);
+    ImageGallerySaver.saveImage(png);
+    showSnackBar(context, 'Image Saved to Pictures. ✔️');
+    saved = true;
   }
 }
