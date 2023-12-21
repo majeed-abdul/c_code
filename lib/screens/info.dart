@@ -97,7 +97,7 @@ class _InfoScreenState extends State<InfoScreen> {
                 ),
                 trailing: const Icon(Icons.more_vert),
                 onTap: () async {
-                  setState(() => loading = true);
+                  // setState(() => loading = true);
                   await loadAndShowAd(context);
                 },
               ),
