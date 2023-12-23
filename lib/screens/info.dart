@@ -40,7 +40,7 @@ class _InfoScreenState extends State<InfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Spinner(
-      spinning: loading,
+      spinning: context.watch<Ads>().loader,
       child: Scaffold(
         appBar: AppBar(
           title: const Text('About'),
