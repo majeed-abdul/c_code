@@ -54,35 +54,28 @@ class _InfoScreenState extends State<InfoScreen> {
               ListTile(
                 title: Text(appName ?? 'null'),
                 subtitle: Text('version: $version'),
-                leading: const Icon(
-                  Icons.adb,
-                  size: 40,
-                ),
+                leading: const Icon(Icons.adb, size: 40),
               ),
               const Divider(),
               const Text('  Setting', style: TextStyle(color: Colors.black54)),
               ListTile(
                 title: const Text('Home Screen'),
                 subtitle: Text(_home ?? ''),
-                leading: const Icon(
-                  Icons.home_rounded,
-                  size: 40,
-                ),
+                leading: const Icon(Icons.home_rounded, size: 40),
                 trailing: const Icon(Icons.more_vert),
                 onTap: () {
                   setHomePage(context);
                 },
               ),
               const Divider(),
-              const Text('  Support Us',
-                  style: TextStyle(color: Colors.black54)),
+              const Text(
+                '  Support Us',
+                style: TextStyle(color: Colors.black54),
+              ),
               ListTile(
                 title: const Text('Donate'),
                 subtitle: const Text('for maintanance and ❤️'),
-                leading: const Icon(
-                  Icons.volunteer_activism_rounded,
-                  size: 40,
-                ),
+                leading: const Icon(Icons.volunteer_activism_rounded, size: 40),
                 trailing: const Icon(Icons.more_vert),
                 onTap: () {
                   donate(context);
@@ -91,13 +84,9 @@ class _InfoScreenState extends State<InfoScreen> {
               ListTile(
                 title: const Text('Watch an Ad'),
                 subtitle: const Text('feel free to watch Ads.'),
-                leading: const Icon(
-                  Icons.ads_click,
-                  size: 40,
-                ),
+                leading: const Icon(Icons.ads_click, size: 40),
                 trailing: const Icon(Icons.more_vert),
                 onTap: () async {
-                  setState(() => loading = true);
                   await loadAndShowAd(context);
                 },
               ),
