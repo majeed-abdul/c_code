@@ -108,5 +108,14 @@ void loadAndShowAd(BuildContext context) {
 }
 
 class Ads extends ChangeNotifier {
-  bool loader = false;
+  bool? loader;
+  loaderOn() {
+    loader = true;
+    notifyListeners();
+  }
+
+  loaderOff() {
+    loader = false;
+    notifyListeners();
+  }
 }
