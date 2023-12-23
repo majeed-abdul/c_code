@@ -108,7 +108,7 @@ void loadAndShowAd(BuildContext context) {
 }
 
 class Ads extends ChangeNotifier {
-  bool? loader;
+  bool loader = false;
   loaderOn() {
     loader = true;
     notifyListeners();
@@ -117,5 +117,11 @@ class Ads extends ChangeNotifier {
   loaderOff() {
     loader = false;
     notifyListeners();
+  }
+
+  loaderTogel() {
+    loader = !loader;
+    print('===$loader');
+    ;
   }
 }

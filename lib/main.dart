@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
+  // Provider.debugCheckInvalidValueType = null;
   return runApp(const MyApp());
 }
 
