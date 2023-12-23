@@ -1,4 +1,5 @@
 import 'package:c_code/functions/ads.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:c_code/widgets/loader.dart';
@@ -39,7 +40,7 @@ class _InfoScreenState extends State<InfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Spinner(
-      spinning: loading,
+      spinning: Provider.of<Ads>(context, listen: true).loader,
       child: Scaffold(
         appBar: AppBar(
           title: const Text('About'),
@@ -83,11 +84,12 @@ class _InfoScreenState extends State<InfoScreen> {
               ),
               ListTile(
                 title: const Text('Watch an Ad'),
-                subtitle: const Text('feel free to watch Ads.'),
+                subtitle: Text(
+                    'feel free to watch Ads.${Provider.of<Ads>(context, listen: true).loader}'),
                 leading: const Icon(Icons.ads_click, size: 40),
                 trailing: const Icon(Icons.more_vert),
                 onTap: () async {
-                  await loadAndShowAd(context);
+                  context.read<Ads>().loadAndShowAd(context);
                 },
               ),
             ],
