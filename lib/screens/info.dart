@@ -40,7 +40,7 @@ class _InfoScreenState extends State<InfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Spinner(
-      spinning: context.watch<Ads>().loader,
+      spinning: Provider.of<Ads>(context, listen: true).loader,
       child: Scaffold(
         appBar: AppBar(
           title: const Text('About'),
@@ -84,7 +84,8 @@ class _InfoScreenState extends State<InfoScreen> {
               ),
               ListTile(
                 title: const Text('Watch an Ad'),
-                subtitle: const Text('feel free to watch Ads.'),
+                subtitle: Text(
+                    'feel free to watch Ads.${Provider.of<Ads>(context, listen: true).loader}'),
                 leading: const Icon(Icons.ads_click, size: 40),
                 trailing: const Icon(Icons.more_vert),
                 onTap: () async {
