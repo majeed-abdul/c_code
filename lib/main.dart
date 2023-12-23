@@ -1,3 +1,4 @@
+import 'package:c_code/functions/ads.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:c_code/screens/home.dart';
@@ -18,9 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        //   Provider<Something>(create: (_) => Something()),
-        //   Provider<SomethingElse>(create: (_) => SomethingElse()),
-        //   Provider<AnotherThing>(create: (_) => AnotherThing()),
+        Provider<Ads>(create: (_) => Ads()),
       ],
       child: MaterialApp(
         theme: ThemeData(
