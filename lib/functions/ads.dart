@@ -83,36 +83,30 @@ int getR7() {
   return random.nextInt(7) + 1;
 }
 
+void loadAndShowAd(BuildContext context) {
+  RewardedAd.load(
+    adUnitId: adUnitId,
+    request: const AdRequest(),
+    rewardedAdLoadCallback: RewardedAdLoadCallback(
+      onAdLoaded: (ad) {
+        ad.fullScreenContentCallback = FullScreenContentCallback(
+          onAdShowedFullScreenContent: (ad) {},
+          onAdImpression: (ad) {},
+          onAdFailedToShowFullScreenContent: ((ad, err) => ad.dispose()),
+          onAdDismissedFullScreenContent: ((ad) => ad.dispose()),
+          onAdClicked: (ad) {},
+        );
+        ad.show(onUserEarnedReward: (AdWithoutView ad, RewardItem rewardItem) {
+          showThankYouPopup(context);
+        });
+      },
+      onAdFailedToLoad: (LoadAdError error) {
+        showSnackBar(context, 'Unable to show Ad, thanks for your move.');
+      },
+    ),
+  );
+}
+
 class Ads extends ChangeNotifier {
   bool loader = false;
-  void loadAndShowAd(BuildContext context) {
-    loader = true;
-    notifyListeners();
-    // RewardedAd.load(
-    //   adUnitId: adUnitId,
-    //   request: const AdRequest(),
-    //   rewardedAdLoadCallback: RewardedAdLoadCallback(
-    //     onAdLoaded: (ad) {
-    //       ad.fullScreenContentCallback = FullScreenContentCallback(
-    //         onAdShowedFullScreenContent: (ad) {},
-    //         onAdImpression: (ad) {},
-    //         onAdFailedToShowFullScreenContent: ((ad, err) => ad.dispose()),
-    //         onAdDismissedFullScreenContent: ((ad) => ad.dispose()),
-    //         onAdClicked: (ad) {},
-    //       );
-    //       ad.show(
-    //           onUserEarnedReward: (AdWithoutView ad, RewardItem rewardItem) {
-    //         loader = false;
-    //         notifyListeners();
-    //         showThankYouPopup(context);
-    //       });
-    //     },
-    //     onAdFailedToLoad: (LoadAdError error) {
-    //       loader = false;
-    //       notifyListeners();
-    //       showSnackBar(context, 'Unable to show Ad, thanks for your move.');
-    //     },
-    //   ),
-    // );
-  }
 }
