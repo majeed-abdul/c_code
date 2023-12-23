@@ -1,4 +1,5 @@
 import 'package:c_code/functions/ads.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:c_code/widgets/loader.dart';
@@ -87,7 +88,7 @@ class _InfoScreenState extends State<InfoScreen> {
                 leading: const Icon(Icons.ads_click, size: 40),
                 trailing: const Icon(Icons.more_vert),
                 onTap: () async {
-                  await loadAndShowAd(context);
+                  context.read<Ads>().loadAndShowAd(context);
                 },
               ),
             ],
