@@ -40,7 +40,8 @@ class _InfoScreenState extends State<InfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Spinner(
-      spinning: Provider.of<Ads>(context, listen: true).loader,
+      // spinning: context.watch<Ads>().loader ?? false,
+      spinning: false,
       child: Scaffold(
         appBar: AppBar(
           title: const Text('About'),
@@ -74,7 +75,7 @@ class _InfoScreenState extends State<InfoScreen> {
                 style: TextStyle(color: Colors.black54),
               ),
               ListTile(
-                title: const Text('Donate'),
+                title: Text('Donate ${Provider.of<Ads>(context).loader}'),
                 subtitle: const Text('for maintanance and ❤️'),
                 leading: const Icon(Icons.volunteer_activism_rounded, size: 40),
                 trailing: const Icon(Icons.more_vert),
@@ -84,12 +85,12 @@ class _InfoScreenState extends State<InfoScreen> {
               ),
               ListTile(
                 title: const Text('Watch an Ad'),
-                subtitle: Text(
-                    'feel free to watch Ads.${Provider.of<Ads>(context, listen: true).loader}'),
+                subtitle: const Text('feel free to watch Ads.'),
                 leading: const Icon(Icons.ads_click, size: 40),
                 trailing: const Icon(Icons.more_vert),
                 onTap: () async {
-                  context.read<Ads>().loadAndShowAd(context);
+                  context.read<Ads>().loaderTogel();
+                  // loadAndShowAd(context);
                 },
               ),
             ],
