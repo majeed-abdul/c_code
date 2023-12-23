@@ -75,7 +75,7 @@ class _InfoScreenState extends State<InfoScreen> {
                 style: TextStyle(color: Colors.black54),
               ),
               ListTile(
-                title: const Text('Donate'),
+                title: Text('Donate ${Provider.of<Ads>(context).loader}'),
                 subtitle: const Text('for maintanance and ❤️'),
                 leading: const Icon(Icons.volunteer_activism_rounded, size: 40),
                 trailing: const Icon(Icons.more_vert),
@@ -85,9 +85,7 @@ class _InfoScreenState extends State<InfoScreen> {
               ),
               ListTile(
                 title: const Text('Watch an Ad'),
-                subtitle: Consumer<Ads>(builder: (context, provider, _) {
-                  return Text('feel free to watch Ads.${provider.loader}');
-                }),
+                subtitle: const Text('feel free to watch Ads.'),
                 leading: const Icon(Icons.ads_click, size: 40),
                 trailing: const Icon(Icons.more_vert),
                 onTap: () async {

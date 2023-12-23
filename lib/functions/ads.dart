@@ -121,7 +121,7 @@ class Ads extends ChangeNotifier {
 
   loaderTogel() {
     loader = !loader;
-    print('===$loader');
+    // print('===$loader');
     ;
   }
 }
