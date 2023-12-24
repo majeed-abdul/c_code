@@ -21,8 +21,8 @@ class AdLoader extends ChangeNotifier {
 
 const List<String> _adUnitIDs = [
   'ca-app-pub-9338573690135257/6850625011', // high
-  'ca-app-pub-9338573690135257/6850625011', // medium
-  'ca-app-pub-9338573690135257/6850625011', // low
+  'ca-app-pub-9338573690135257/8643310143', // medium
+  'ca-app-pub-9338573690135257/3828616098', // all
 ];
 
 Future<void> loadAndShowAd(BuildContext context) async {
