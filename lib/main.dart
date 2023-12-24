@@ -11,9 +11,7 @@ void main() {
   MobileAds.instance.initialize();
   return runApp(
     MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => AdLoader()),
-      ],
+      providers: [ChangeNotifierProvider(create: (_) => AdLoader())],
       child: const MyApp(),
     ),
   );
@@ -50,7 +48,7 @@ class MyApp extends StatelessWidget {
       initialRoute: HomeScreen.id,
       routes: {
         HomeScreen.id: (context) => const HomeScreen(),
-        ScanScreen.id: (context) => const ScanScreen()
+        ScanScreen.id: (context) => const ScanScreen(),
       },
     );
   }

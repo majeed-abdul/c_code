@@ -66,12 +66,12 @@ class _InfoScreenState extends State<InfoScreen> {
               ),
               const Divider(),
               const Text(
-                '  Support Us',
+                '  Support',
                 style: TextStyle(color: Colors.black54),
               ),
               ListTile(
                 title: const Text('Donate'),
-                subtitle: const Text('for maintanance and ❤️'),
+                subtitle: const Text('We need support for maintanance.'),
                 leading: const Icon(Icons.volunteer_activism_rounded, size: 40),
                 trailing: const Icon(Icons.more_vert),
                 onTap: () {
@@ -88,8 +88,7 @@ class _InfoScreenState extends State<InfoScreen> {
                   loadAndShowAd(context);
                 },
               ),
-              Text(context.watch<AdLoader>().loader.toString()),
-              const SizedBox(height: 200),
+              const SizedBox(height: 20),
               Center(
                 child: TextButton(
                   onPressed: () {},
