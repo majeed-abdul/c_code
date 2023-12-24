@@ -27,6 +27,7 @@ const List<String> _adUnitIDs = [
 ];
 
 Future<void> loadAndShowAd(BuildContext context) async {
+  context.read<AdLoader>().loaderOn();
   await RewardedAd.load(
     adUnitId: _adUnitIDs[0],
     request: const AdRequest(),

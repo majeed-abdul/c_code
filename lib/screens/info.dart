@@ -83,8 +83,7 @@ class _InfoScreenState extends State<InfoScreen> {
                 subtitle: const Text('Support us by watching Ads.'),
                 leading: const Icon(Icons.ads_click, size: 40),
                 trailing: const Icon(Icons.more_vert),
-                onTap: () async {
-                  context.read<AdLoader>().loaderOn();
+                onTap: () {
                   loadAndShowAd(context);
                 },
               ),
