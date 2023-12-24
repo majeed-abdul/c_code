@@ -1,10 +1,15 @@
+import 'package:c_code/screens/info.dart';
 import 'package:c_code/widgets/pop_ups.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'dart:math';
 
-const adUnitId = 'ca-app-pub-9338573690135257/6850625011';
+import 'package:provider/provider.dart';
+
+const List<String> adUnitIDs = [
+  'ca-app-pub-9338573690135257/6850625011',
+];
 void donate(BuildContext context) {
   showDialog(
     context: context,
@@ -84,25 +89,30 @@ int getR7() {
 }
 
 void loadAndShowAd(BuildContext context) {
-  RewardedAd.load(
-    adUnitId: adUnitId,
-    request: const AdRequest(),
-    rewardedAdLoadCallback: RewardedAdLoadCallback(
-      onAdLoaded: (ad) {
-        ad.fullScreenContentCallback = FullScreenContentCallback(
-          onAdShowedFullScreenContent: (ad) {},
-          onAdImpression: (ad) {},
-          onAdFailedToShowFullScreenContent: ((ad, err) => ad.dispose()),
-          onAdDismissedFullScreenContent: ((ad) => ad.dispose()),
-          onAdClicked: (ad) {},
-        );
-        ad.show(onUserEarnedReward: (AdWithoutView ad, RewardItem rewardItem) {
-          showThankYouPopup(context);
-        });
-      },
-      onAdFailedToLoad: (LoadAdError error) {
-        showSnackBar(context, 'Unable to show Ad, thanks for your move.');
-      },
-    ),
-  );
+  for (String adUnitID in adUnitIDs) {
+    RewardedAd.load(
+      adUnitId: adUnitID,
+      request: const AdRequest(),
+      rewardedAdLoadCallback: RewardedAdLoadCallback(
+        onAdLoaded: (ad) {
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdShowedFullScreenContent: (ad) {},
+            onAdImpression: (ad) {},
+            onAdFailedToShowFullScreenContent: ((ad, err) => ad.dispose()),
+            onAdDismissedFullScreenContent: ((ad) => ad.dispose()),
+            onAdClicked: (ad) {},
+          );
+          ad.show(
+              onUserEarnedReward: (AdWithoutView ad, RewardItem rewardItem) {
+            showThankYouPopup(context);
+            context.read<AdLoader>().loaderOff();
+          });
+        },
+        onAdFailedToLoad: (LoadAdError error) {
+          context.read<AdLoader>().loaderOff();
+          showSnackBar(context, 'Unable to show Ad, thanks for your move.');
+        },
+      ),
+    );
+  }
 }
