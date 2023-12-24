@@ -1,4 +1,3 @@
-import 'package:c_code/screens/info.dart';
 import 'package:c_code/widgets/pop_ups.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -114,5 +113,19 @@ void loadAndShowAd(BuildContext context) {
         },
       ),
     );
+  }
+}
+
+class AdLoader extends ChangeNotifier {
+  bool loader = false;
+
+  void loaderOn() {
+    loader = true;
+    notifyListeners();
+  }
+
+  void loaderOff() {
+    loader = false;
+    notifyListeners();
   }
 }

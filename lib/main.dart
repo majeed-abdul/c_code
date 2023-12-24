@@ -1,4 +1,4 @@
-import 'package:c_code/screens/info.dart';
+import 'package:c_code/functions/ads.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:c_code/screens/home.dart';
@@ -13,7 +13,6 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AdLoader()),
-        // Provider<Ads>(create: (_) => Ads()),
       ],
       child: const MyApp(),
     ),
