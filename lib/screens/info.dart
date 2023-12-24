@@ -88,13 +88,18 @@ class _InfoScreenState extends State<InfoScreen> {
                   loadAndShowAd(context);
                 },
               ),
+              const Divider(),
               const SizedBox(height: 20),
               Center(
-                child: TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    'Privacy Policy',
-                    style: TextStyle(color: Colors.grey),
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(30),
+                  onTap: () {},
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 11),
+                    child: Text(
+                      'Privacy Policy',
+                      style: TextStyle(color: Colors.black54),
+                    ),
                   ),
                 ),
               ),
