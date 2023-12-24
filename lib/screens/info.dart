@@ -192,8 +192,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 class AdLoader extends ChangeNotifier {
   bool loader = false;
 
-  void increment() {
-    loader = !loader;
+  void loaderOn() {
+    loader = true;
+    notifyListeners();
+  }
+
+  void loaderOff() {
+    loader = false;
     notifyListeners();
   }
 
@@ -239,11 +244,10 @@ class _InfoScreenState extends State<InfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Spinner(
-      spinning: context.watch<AdLoader>().loader,
+      // spinning: context.watch<AdLoader>().loader,
+      spinning: false,
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Example'),
-        ),
+        appBar: AppBar(title: const Text('About'), centerTitle: true),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -272,8 +276,7 @@ class _InfoScreenState extends State<InfoScreen> {
                 style: TextStyle(color: Colors.black54),
               ),
               ListTile(
-                title: Text('Donate ${context.watch<AdLoader>().loader}'),
-                // title: Text(' ${context.watch<Counter>().load}'),
+                title: const Text('Donate'),
                 subtitle: const Text('for maintanance and ❤️'),
                 leading: const Icon(Icons.volunteer_activism_rounded, size: 40),
                 trailing: const Icon(Icons.more_vert),
@@ -287,7 +290,7 @@ class _InfoScreenState extends State<InfoScreen> {
                 leading: const Icon(Icons.ads_click, size: 40),
                 trailing: const Icon(Icons.more_vert),
                 onTap: () async {
-                  context.read<AdLoader>().increment();
+                  context.read<AdLoader>().loaderOn();
                   // loadAndShowAd(context);
                 },
               ),
