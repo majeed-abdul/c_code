@@ -106,22 +106,3 @@ void loadAndShowAd(BuildContext context) {
     ),
   );
 }
-
-class Ads extends ChangeNotifier {
-  bool loader = false;
-  loaderOn() {
-    loader = true;
-    notifyListeners();
-  }
-
-  loaderOff() {
-    loader = false;
-    notifyListeners();
-  }
-
-  loaderTogel() {
-    loader = !loader;
-    // print('===$loader');
-    ;
-  }
-}
