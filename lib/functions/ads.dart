@@ -3,12 +3,110 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'dart:math';
-
 import 'package:provider/provider.dart';
 
-const List<String> adUnitIDs = [
-  'ca-app-pub-9338573690135257/6850625011',
+class AdLoader extends ChangeNotifier {
+  bool loader = false;
+
+  void loaderOn() {
+    loader = true;
+    notifyListeners();
+  }
+
+  void loaderOff() {
+    loader = false;
+    notifyListeners();
+  }
+}
+
+const List<String> _adUnitIDs = [
+  'ca-app-pub-9338573690135257/6850625011', // high
+  'ca-app-pub-9338573690135257/6850625011', // medium
+  'ca-app-pub-9338573690135257/6850625011', // low
 ];
+
+Future<void> loadAndShowAd(BuildContext context) async {
+  await RewardedAd.load(
+    adUnitId: _adUnitIDs[0],
+    request: const AdRequest(),
+    rewardedAdLoadCallback: RewardedAdLoadCallback(
+      onAdLoaded: (ad) {
+        ad.fullScreenContentCallback = FullScreenContentCallback(
+          onAdFailedToShowFullScreenContent: ((ad, err) => ad.dispose()),
+          onAdDismissedFullScreenContent: ((ad) => ad.dispose()),
+        );
+        ad.show(onUserEarnedReward: (
+          AdWithoutView ad,
+          RewardItem rewardItem,
+        ) {
+          showThankYouPopup(context);
+          context.read<AdLoader>().loaderOff();
+        });
+      },
+      onAdFailedToLoad: (LoadAdError error) {
+        print('=== Failed 1 ===');
+        _loadAndShowAd1(context);
+      },
+    ),
+  );
+  print('=== Loop 1 ===');
+}
+
+Future<void> _loadAndShowAd1(BuildContext context) async {
+  await RewardedAd.load(
+    adUnitId: _adUnitIDs[1],
+    request: const AdRequest(),
+    rewardedAdLoadCallback: RewardedAdLoadCallback(
+      onAdLoaded: (ad) {
+        ad.fullScreenContentCallback = FullScreenContentCallback(
+          onAdFailedToShowFullScreenContent: ((ad, err) => ad.dispose()),
+          onAdDismissedFullScreenContent: ((ad) => ad.dispose()),
+        );
+        ad.show(onUserEarnedReward: (
+          AdWithoutView ad,
+          RewardItem rewardItem,
+        ) {
+          showThankYouPopup(context);
+          context.read<AdLoader>().loaderOff();
+        });
+      },
+      onAdFailedToLoad: (LoadAdError error) {
+        print('=== Failed 2 ===');
+        _loadAndShowAd2(context);
+      },
+    ),
+  );
+  print('=== Loop 2 ===');
+}
+
+Future<void> _loadAndShowAd2(BuildContext context) async {
+  await RewardedAd.load(
+    adUnitId: _adUnitIDs[2],
+    request: const AdRequest(),
+    rewardedAdLoadCallback: RewardedAdLoadCallback(
+      onAdLoaded: (ad) {
+        ad.fullScreenContentCallback = FullScreenContentCallback(
+          onAdFailedToShowFullScreenContent: ((ad, err) => ad.dispose()),
+          onAdDismissedFullScreenContent: ((ad) => ad.dispose()),
+        );
+        ad.show(onUserEarnedReward: (
+          AdWithoutView ad,
+          RewardItem rewardItem,
+        ) {
+          showThankYouPopup(context);
+          context.read<AdLoader>().loaderOff();
+        });
+      },
+      onAdFailedToLoad: (LoadAdError error) {
+        context.read<AdLoader>().loaderOff();
+        print('=== Failed 3 ===');
+        showSnackBar(context, 'Unable to show Ad, thanks for your move.');
+      },
+    ),
+  );
+  print('=== Loop 3 ===');
+}
+
 void donate(BuildContext context) {
   showDialog(
     context: context,
@@ -70,7 +168,7 @@ void showThankYouPopup(BuildContext context) {
       return AlertDialog(
         titlePadding: const EdgeInsets.all(20),
         title: Image.asset(
-          'assets/thankyou/${getR7()}.gif',
+          'assets/thankyou/${_getR7()}.gif',
           width: 190,
           height: 190,
         ),
@@ -82,50 +180,7 @@ void showThankYouPopup(BuildContext context) {
   );
 }
 
-int getR7() {
+int _getR7() {
   Random random = Random();
   return random.nextInt(7) + 1;
-}
-
-void loadAndShowAd(BuildContext context) {
-  for (String adUnitID in adUnitIDs) {
-    RewardedAd.load(
-      adUnitId: adUnitID,
-      request: const AdRequest(),
-      rewardedAdLoadCallback: RewardedAdLoadCallback(
-        onAdLoaded: (ad) {
-          ad.fullScreenContentCallback = FullScreenContentCallback(
-            onAdShowedFullScreenContent: (ad) {},
-            onAdImpression: (ad) {},
-            onAdFailedToShowFullScreenContent: ((ad, err) => ad.dispose()),
-            onAdDismissedFullScreenContent: ((ad) => ad.dispose()),
-            onAdClicked: (ad) {},
-          );
-          ad.show(
-              onUserEarnedReward: (AdWithoutView ad, RewardItem rewardItem) {
-            showThankYouPopup(context);
-            context.read<AdLoader>().loaderOff();
-          });
-        },
-        onAdFailedToLoad: (LoadAdError error) {
-          context.read<AdLoader>().loaderOff();
-          showSnackBar(context, 'Unable to show Ad, thanks for your move.');
-        },
-      ),
-    );
-  }
-}
-
-class AdLoader extends ChangeNotifier {
-  bool loader = false;
-
-  void loaderOn() {
-    loader = true;
-    notifyListeners();
-  }
-
-  void loaderOff() {
-    loader = false;
-    notifyListeners();
-  }
 }
