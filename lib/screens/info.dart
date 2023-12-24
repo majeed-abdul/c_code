@@ -249,6 +249,7 @@ class _InfoScreenState extends State<InfoScreen> {
       child: Scaffold(
         appBar: AppBar(title: const Text('About'), centerTitle: true),
         body: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -285,16 +286,27 @@ class _InfoScreenState extends State<InfoScreen> {
                 },
               ),
               ListTile(
-                title: const Text('Watch an Ad'),
-                subtitle: const Text('feel free to watch Ads.'),
+                title: const Text('Support (See ads)'),
+                subtitle: const Text('Support us by watching Ads.'),
                 leading: const Icon(Icons.ads_click, size: 40),
                 trailing: const Icon(Icons.more_vert),
                 onTap: () async {
                   context.read<AdLoader>().loaderOn();
-                  // loadAndShowAd(context);
+                  loadAndShowAd(context);
                 },
               ),
               Text(context.watch<AdLoader>().loader.toString()),
+              const SizedBox(height: 200),
+              Center(
+                child: TextButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'Privacy Policy',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
             ],
           ),
         ),
