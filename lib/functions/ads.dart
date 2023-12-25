@@ -19,13 +19,15 @@ class AdLoader extends ChangeNotifier {
   }
 }
 
+// order is important for better outcomes must be == 3
 const List<String> _adUnitIDs = [
-  'ca-app-pub-9338573690135257/6850625011', // high
-  'ca-app-pub-9338573690135257/6850625011', // medium
-  'ca-app-pub-9338573690135257/6850625011', // low
+  'ca-app-pub-9338573690135257/6850625011', //  1 high
+  'ca-app-pub-9338573690135257/8643310143', //  2 medium
+  'ca-app-pub-9338573690135257/3828616098', //  3 all
 ];
 
 Future<void> loadAndShowAd(BuildContext context) async {
+  context.read<AdLoader>().loaderOn();
   await RewardedAd.load(
     adUnitId: _adUnitIDs[0],
     request: const AdRequest(),
@@ -44,12 +46,10 @@ Future<void> loadAndShowAd(BuildContext context) async {
         });
       },
       onAdFailedToLoad: (LoadAdError error) {
-        print('=== Failed 1 ===');
         _loadAndShowAd1(context);
       },
     ),
   );
-  print('=== Loop 1 ===');
 }
 
 Future<void> _loadAndShowAd1(BuildContext context) async {
@@ -71,12 +71,10 @@ Future<void> _loadAndShowAd1(BuildContext context) async {
         });
       },
       onAdFailedToLoad: (LoadAdError error) {
-        print('=== Failed 2 ===');
         _loadAndShowAd2(context);
       },
     ),
   );
-  print('=== Loop 2 ===');
 }
 
 Future<void> _loadAndShowAd2(BuildContext context) async {
@@ -99,12 +97,10 @@ Future<void> _loadAndShowAd2(BuildContext context) async {
       },
       onAdFailedToLoad: (LoadAdError error) {
         context.read<AdLoader>().loaderOff();
-        print('=== Failed 3 ===');
         showSnackBar(context, 'Unable to show Ad, thanks for your move.');
       },
     ),
   );
-  print('=== Loop 3 ===');
 }
 
 void donate(BuildContext context) {

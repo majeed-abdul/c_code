@@ -83,18 +83,22 @@ class _InfoScreenState extends State<InfoScreen> {
                 subtitle: const Text('Support us by watching Ads.'),
                 leading: const Icon(Icons.ads_click, size: 40),
                 trailing: const Icon(Icons.more_vert),
-                onTap: () async {
-                  context.read<AdLoader>().loaderOn();
+                onTap: () {
                   loadAndShowAd(context);
                 },
               ),
+              const Divider(),
               const SizedBox(height: 20),
               Center(
-                child: TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    'Privacy Policy',
-                    style: TextStyle(color: Colors.grey),
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(30),
+                  onTap: () {},
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 11),
+                    child: Text(
+                      'Privacy Policy',
+                      style: TextStyle(color: Colors.black54),
+                    ),
                   ),
                 ),
               ),
