@@ -162,7 +162,6 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
                 leading: const Icon(Icons.ads_click, size: 40),
                 trailing: const Icon(Icons.more_vert),
                 onTap: () {
-                  Navigator.pop(context);
                   loadAndShowAd(context);
                 },
               ),
