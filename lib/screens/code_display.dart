@@ -52,6 +52,10 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          child: const Icon(Icons.volunteer_activism_rounded)),
+      // label: const Icon(Icons.volunteer_activism_rounded)),  //  for extended
     );
   }
 
