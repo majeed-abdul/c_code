@@ -137,7 +137,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
       context: context,
       builder: (BuildContext context) {
         return SizedBox(
-          height: 100,
+          height: 250,
           child: Column(
             children: [
               const Padding(
