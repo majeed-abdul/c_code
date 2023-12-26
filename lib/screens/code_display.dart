@@ -1,12 +1,14 @@
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:c_code/functions/ads.dart';
 import 'package:c_code/widgets/buttons.dart';
+import 'package:c_code/widgets/loader.dart';
 import 'package:c_code/widgets/pop_ups.dart';
 import 'package:flutter/material.dart';
 import 'package:barcode_image/barcode_image.dart';
 import 'package:image/image.dart' as img;
 import 'package:image/image.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:provider/provider.dart';
 
 class CodeDisplayScreen extends StatefulWidget {
   const CodeDisplayScreen({
@@ -26,60 +28,49 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0, // toolbarHeight: 56,
-        centerTitle: true,
-        title: Text(widget.barCode.name),
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 40),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            displayOutputCode(context),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Column(
-                  children: [
-                    customButton(
-                      onPress: () => support(context),
-                      icon: Icons.volunteer_activism_rounded,
-                    ),
-                    const Text('Support', textAlign: TextAlign.center),
-                  ],
-                ),
-                Column(
-                  children: [
-                    customButton(
-                      onPress: () => saveit(),
-                      icon: Icons.photo_library,
-                    ),
-                    const Text('Save', textAlign: TextAlign.center),
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(height: 15),
-            // Text(widget.data),
-          ],
+    return Spinner(
+      spinning: context.watch<AdLoader>().loader,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          elevation: 0, // toolbarHeight: 56,
+          centerTitle: true,
+          title: Text(widget.barCode.name),
         ),
-        // ),
-        // floatingActionButton: FloatingActionButton(
-        //     onPressed: () {},
-        //     child: const Column(
-        //       mainAxisAlignment: MainAxisAlignment.center,
-        //       children: [
-        //         Icon(Icons.volunteer_activism_rounded),
-        //         Text(
-        //           'help',
-        //           style: TextStyle(fontSize: 12),
-        //         )
-        //       ],
-        //     )
-        // // label: const Icon(Icons.volunteer_activism_rounded)),  //  for extended
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 40),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              displayOutputCode(context),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Column(
+                    children: [
+                      customButton(
+                        onPress: () => support(context),
+                        icon: Icons.volunteer_activism_rounded,
+                      ),
+                      const Text('Support', textAlign: TextAlign.center),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      customButton(
+                        onPress: () => saveit(),
+                        icon: Icons.photo_library,
+                      ),
+                      const Text('Save', textAlign: TextAlign.center),
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(height: 15),
+              // Text(widget.data),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -160,7 +151,8 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
               const Divider(),
               ListTile(
                 title: const Text('Donate ❤️'),
-                subtitle: const Text('We need support for maintanance.'),
+                subtitle: const Text(
+                    'We need support to keep you up to date.'), ///////////////////copy to info.dart///////////////////
                 leading: const Icon(Icons.volunteer_activism_rounded, size: 40),
                 trailing: const Icon(Icons.more_vert),
                 onTap: () {
