@@ -154,9 +154,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
                 subtitle: const Text('We need support to keep you up to date.'),
                 leading: const Icon(Icons.volunteer_activism_rounded, size: 40),
                 trailing: const Icon(Icons.more_vert),
-                onTap: () {
-                  donate(context);
-                },
+                onTap: () => donate(context),
               ),
               ListTile(
                 title: const Text('Support (See ads)'),
@@ -164,6 +162,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
                 leading: const Icon(Icons.ads_click, size: 40),
                 trailing: const Icon(Icons.more_vert),
                 onTap: () {
+                  Navigator.pop(context);
                   loadAndShowAd(context);
                 },
               ),
