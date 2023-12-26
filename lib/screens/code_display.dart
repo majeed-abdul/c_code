@@ -51,11 +51,21 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
             // Text(widget.data),
           ],
         ),
+        // ),
+        // floatingActionButton: FloatingActionButton(
+        //     onPressed: () {},
+        //     child: const Column(
+        //       mainAxisAlignment: MainAxisAlignment.center,
+        //       children: [
+        //         Icon(Icons.volunteer_activism_rounded),
+        //         Text(
+        //           'help',
+        //           style: TextStyle(fontSize: 12),
+        //         )
+        //       ],
+        //     )
+        // // label: const Icon(Icons.volunteer_activism_rounded)),  //  for extended
       ),
-      floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          child: const Icon(Icons.volunteer_activism_rounded)),
-      // label: const Icon(Icons.volunteer_activism_rounded)),  //  for extended
     );
   }
 
