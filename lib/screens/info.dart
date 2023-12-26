@@ -71,21 +71,17 @@ class _InfoScreenState extends State<InfoScreen> {
               ),
               ListTile(
                 title: const Text('Donate'),
-                subtitle: const Text('We need support for maintanance.'),
+                subtitle: const Text('We need support to keep you up to date.'),
                 leading: const Icon(Icons.volunteer_activism_rounded, size: 40),
                 trailing: const Icon(Icons.more_vert),
-                onTap: () {
-                  donate(context);
-                },
+                onTap: () => donate(context),
               ),
               ListTile(
                 title: const Text('Support (See ads)'),
                 subtitle: const Text('Support us by watching Ads.'),
                 leading: const Icon(Icons.ads_click, size: 40),
                 trailing: const Icon(Icons.more_vert),
-                onTap: () {
-                  loadAndShowAd(context);
-                },
+                onTap: () => loadAndShowAd(context),
               ),
               const Divider(),
               const SizedBox(height: 20),
@@ -116,14 +112,15 @@ class _InfoScreenState extends State<InfoScreen> {
         context: context,
         builder: (context) => AlertDialog(
           actionsAlignment: MainAxisAlignment.center,
-          title: const Text(
-            'Set Home Screen',
-            textAlign: TextAlign.center,
+          title: const Text('Set Home Screen', textAlign: TextAlign.center),
+          titlePadding: const EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 10,
           ),
-          titlePadding:
-              const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-          actionsPadding:
-              const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          actionsPadding: const EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 15,
+          ),
           contentPadding: const EdgeInsets.symmetric(horizontal: 20),
           content: const Text(
               'This screen will apear on app start up. Default screen is "Create"'),
