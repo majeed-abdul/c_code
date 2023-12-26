@@ -151,8 +151,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
               const Divider(),
               ListTile(
                 title: const Text('Donate ❤️'),
-                subtitle: const Text(
-                    'We need support to keep you up to date.'), ///////////////////copy to info.dart///////////////////
+                subtitle: const Text('We need support to keep you up to date.'),
                 leading: const Icon(Icons.volunteer_activism_rounded, size: 40),
                 trailing: const Icon(Icons.more_vert),
                 onTap: () {
