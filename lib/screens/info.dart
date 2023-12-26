@@ -71,21 +71,17 @@ class _InfoScreenState extends State<InfoScreen> {
               ),
               ListTile(
                 title: const Text('Donate'),
-                subtitle: const Text('We need support for maintanance.'),
+                subtitle: const Text('We need support to keep you up to date.'),
                 leading: const Icon(Icons.volunteer_activism_rounded, size: 40),
                 trailing: const Icon(Icons.more_vert),
-                onTap: () {
-                  donate(context);
-                },
+                onTap: () => donate(context),
               ),
               ListTile(
                 title: const Text('Support (See ads)'),
                 subtitle: const Text('Support us by watching Ads.'),
                 leading: const Icon(Icons.ads_click, size: 40),
                 trailing: const Icon(Icons.more_vert),
-                onTap: () {
-                  loadAndShowAd(context);
-                },
+                onTap: () => loadAndShowAd(context),
               ),
               const Divider(),
               const SizedBox(height: 20),
