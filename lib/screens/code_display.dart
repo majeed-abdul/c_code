@@ -38,13 +38,27 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             displayOutputCode(context),
-            Column(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                customButton(
-                  onPress: () => saveit(),
-                  icon: Icons.photo_library,
+                Column(
+                  children: [
+                    customButton(
+                      onPress: () => support(context),
+                      icon: Icons.volunteer_activism_rounded,
+                    ),
+                    const Text('Support', textAlign: TextAlign.center),
+                  ],
                 ),
-                const Text('Save', textAlign: TextAlign.center),
+                Column(
+                  children: [
+                    customButton(
+                      onPress: () => saveit(),
+                      icon: Icons.photo_library,
+                    ),
+                    const Text('Save', textAlign: TextAlign.center),
+                  ],
+                ),
               ],
             ),
             const SizedBox(height: 15),
@@ -118,5 +132,21 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
     ImageGallerySaver.saveImage(png);
     showSnackBar(context, 'Image Saved to Pictures. ✔️');
     saved = true;
+  }
+
+  void support(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+            height: 200,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
+              ),
+            ),
+          );
+        });
   }
 }
