@@ -112,14 +112,15 @@ class _InfoScreenState extends State<InfoScreen> {
         context: context,
         builder: (context) => AlertDialog(
           actionsAlignment: MainAxisAlignment.center,
-          title: const Text(
-            'Set Home Screen',
-            textAlign: TextAlign.center,
+          title: const Text('Set Home Screen', textAlign: TextAlign.center),
+          titlePadding: const EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 10,
           ),
-          titlePadding:
-              const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-          actionsPadding:
-              const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          actionsPadding: const EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 15,
+          ),
           contentPadding: const EdgeInsets.symmetric(horizontal: 20),
           content: const Text(
               'This screen will apear on app start up. Default screen is "Create"'),
