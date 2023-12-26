@@ -159,7 +159,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
               ),
               const Divider(),
               ListTile(
-                title: const Text('Donate'),
+                title: const Text('Donate ❤️'),
                 subtitle: const Text('We need support for maintanance.'),
                 leading: const Icon(Icons.volunteer_activism_rounded, size: 40),
                 trailing: const Icon(Icons.more_vert),
