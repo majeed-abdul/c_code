@@ -1,4 +1,5 @@
 import 'package:barcode_widget/barcode_widget.dart';
+import 'package:c_code/functions/ads.dart';
 import 'package:c_code/widgets/buttons.dart';
 import 'package:c_code/widgets/pop_ups.dart';
 import 'package:flutter/material.dart';
@@ -38,19 +39,47 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             displayOutputCode(context),
-            Column(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                customButton(
-                  onPress: () => saveit(),
-                  icon: Icons.photo_library,
+                Column(
+                  children: [
+                    customButton(
+                      onPress: () => support(context),
+                      icon: Icons.volunteer_activism_rounded,
+                    ),
+                    const Text('Support', textAlign: TextAlign.center),
+                  ],
                 ),
-                const Text('Save', textAlign: TextAlign.center),
+                Column(
+                  children: [
+                    customButton(
+                      onPress: () => saveit(),
+                      icon: Icons.photo_library,
+                    ),
+                    const Text('Save', textAlign: TextAlign.center),
+                  ],
+                ),
               ],
             ),
             const SizedBox(height: 15),
             // Text(widget.data),
           ],
         ),
+        // ),
+        // floatingActionButton: FloatingActionButton(
+        //     onPressed: () {},
+        //     child: const Column(
+        //       mainAxisAlignment: MainAxisAlignment.center,
+        //       children: [
+        //         Icon(Icons.volunteer_activism_rounded),
+        //         Text(
+        //           'help',
+        //           style: TextStyle(fontSize: 12),
+        //         )
+        //       ],
+        //     )
+        // // label: const Icon(Icons.volunteer_activism_rounded)),  //  for extended
       ),
     );
   }
@@ -104,5 +133,54 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
     ImageGallerySaver.saveImage(png);
     showSnackBar(context, 'Image Saved to Pictures. ✔️');
     saved = true;
+  }
+
+  void support(BuildContext context) {
+    showModalBottomSheet(
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
+      context: context,
+      // radius: 20.0,
+      builder: (BuildContext context) {
+        return SizedBox(
+          child: Column(
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(top: 20, bottom: 14),
+                child: Text(
+                  'Support Us',
+                  style: TextStyle(fontSize: 16),
+                  selectionColor: Colors.black54,
+                ),
+              ),
+              const Divider(),
+              ListTile(
+                title: const Text('Donate'),
+                subtitle: const Text('We need support for maintanance.'),
+                leading: const Icon(Icons.volunteer_activism_rounded, size: 40),
+                trailing: const Icon(Icons.more_vert),
+                onTap: () {
+                  donate(context);
+                },
+              ),
+              ListTile(
+                title: const Text('Support (See ads)'),
+                subtitle: const Text('Support us by watching Ads.'),
+                leading: const Icon(Icons.ads_click, size: 40),
+                trailing: const Icon(Icons.more_vert),
+                onTap: () {
+                  loadAndShowAd(context);
+                },
+              ),
+              const Divider(),
+            ],
+          ),
+        );
+      },
+    );
   }
 }
