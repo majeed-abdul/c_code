@@ -59,7 +59,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
                         Column(
                           children: [
                             customButton(
-                              onPress: () => setState(() => support = !support),
+                              onPress: () => setState(() => support = true),
                               icon: Icons.volunteer_activism_rounded,
                             ),
                             const Text('Support', textAlign: TextAlign.center),
@@ -130,6 +130,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
                           trailing: const Icon(Icons.more_vert),
                           onTap: () {
                             loadAndShowAd(context);
+                            setState(() => support = false);
                           },
                         ),
                         const Divider(),
