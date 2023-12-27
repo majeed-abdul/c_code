@@ -513,9 +513,7 @@ class _CreateScreenState extends State<CreateScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                const Text(
-                  'More options',
-                ),
+                const Text('More options'),
                 const SizedBox(width: 10),
                 isMore
                     ? Icon(
