@@ -50,8 +50,10 @@ class _ResultScreenState extends State<ResultScreen> {
             children: [
               Text(
                 isURL() ? 'URL' : 'Text',
-                style:
-                    const TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+                style: const TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
               const SizedBox(height: 10),
               resultText(),
@@ -134,11 +136,6 @@ class _ResultScreenState extends State<ResultScreen> {
         Uri.tryParse(widget.result.code ?? 's')?.hasAbsolutePath ?? false;
     return valid;
   }
-
-  // bool isWiFi() {String s=widget.result.code??'';
-  //   bool valid = (s.);
-  //   return valid;
-  // }
 
   bool isVCard() {
     bool validURL = Uri.parse(widget.result.code ?? 'xxxx').isAbsolute;
