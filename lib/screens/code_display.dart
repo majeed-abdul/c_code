@@ -26,21 +26,26 @@ class CodeDisplayScreen extends StatefulWidget {
 class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
   bool saved = false;
   bool support = false;
+  @override
+  // void dispose() {
+  //   // : implement dispose dispose fake botom sheet if its visible and poped contex
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Spinner(
       spinning: context.watch<AdLoader>().loader,
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          elevation: 0, // toolbarHeight: 56,
-          centerTitle: true,
-          title: Text(widget.barCode.name),
-        ),
-        body: Stack(
-          children: [
-            SingleChildScrollView(
+      child: Stack(
+        children: [
+          Scaffold(
+            backgroundColor: Colors.white,
+            appBar: AppBar(
+              elevation: 0, // toolbarHeight: 56,
+              centerTitle: true,
+              title: Text(widget.barCode.name),
+            ),
+            body: SingleChildScrollView(
               // padding: const EdgeInsets.symmetric(horizontal: 40),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -77,62 +82,65 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
                 ],
               ),
             ),
-            Visibility(
-              visible: support,
-              child: Container(
-                color: Colors.black54,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: (() => setState(() => support = false)),
+          ),
+          Visibility(
+            visible: support,
+            child: Scaffold(
+              backgroundColor: Colors.black54,
+              body: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: (() => setState(() => support = false)),
+                    ),
+                  ),
+                  Container(
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
                       ),
                     ),
-                    Container(
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                      ),
-                      child: Column(
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.only(top: 20, bottom: 14),
-                            child: Text(
-                              'Support Us',
-                              style: TextStyle(fontSize: 16),
-                              selectionColor: Colors.black54,
-                            ),
+                    child: Column(
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(top: 20, bottom: 14),
+                          child: Text(
+                            'Support Us',
+                            style: TextStyle(fontSize: 16),
+                            selectionColor: Colors.black54,
                           ),
-                          const Divider(),
-                          ListTile(
-                            title: const Text('Donate ❤️'),
-                            subtitle: const Text(
-                                'We need support to keep you up to date.'),
-                            leading: const Icon(
-                                Icons.volunteer_activism_rounded,
-                                size: 40),
-                            trailing: const Icon(Icons.more_vert),
-                            onTap: () => donate(context),
-                          ),
-                          ListTile(
-                            title: const Text('Support (See ads)'),
-                            subtitle: const Text('Support us by watching Ads.'),
-                            leading: const Icon(Icons.ads_click, size: 40),
-                            trailing: const Icon(Icons.more_vert),
-                            onTap: () {
-                              loadAndShowAd(context);
-                            },
-                          ),
-                          const Divider(),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
+                        ),
+                        const Divider(),
+                        ListTile(
+                          title: const Text('Donate ❤️'),
+                          subtitle: const Text(
+                              'We need support to keep you up to date.'),
+                          leading: const Icon(Icons.volunteer_activism_rounded,
+                              size: 40),
+                          trailing: const Icon(Icons.more_vert),
+                          onTap: () => donate(context),
+                        ),
+                        ListTile(
+                          title: const Text('Support (See ads)'),
+                          subtitle: const Text('Support us by watching Ads.'),
+                          leading: const Icon(Icons.ads_click, size: 40),
+                          trailing: const Icon(Icons.more_vert),
+                          onTap: () {
+                            loadAndShowAd(context);
+                          },
+                        ),
+                        const Divider(),
+                      ],
+                    ),
+                  )
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
