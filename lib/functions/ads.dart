@@ -37,10 +37,7 @@ Future<void> loadAndShowAd(BuildContext context) async {
           onAdFailedToShowFullScreenContent: ((ad, err) => ad.dispose()),
           onAdDismissedFullScreenContent: ((ad) => ad.dispose()),
         );
-        ad.show(onUserEarnedReward: (
-          AdWithoutView ad,
-          RewardItem rewardItem,
-        ) {
+        ad.show(onUserEarnedReward: (AdWithoutView ad, RewardItem rewardItem) {
           showThankYouPopup(context);
           context.read<AdLoader>().loaderOff();
         });
@@ -62,10 +59,7 @@ Future<void> _loadAndShowAd1(BuildContext context) async {
           onAdFailedToShowFullScreenContent: ((ad, err) => ad.dispose()),
           onAdDismissedFullScreenContent: ((ad) => ad.dispose()),
         );
-        ad.show(onUserEarnedReward: (
-          AdWithoutView ad,
-          RewardItem rewardItem,
-        ) {
+        ad.show(onUserEarnedReward: (AdWithoutView ad, RewardItem rewardItem) {
           showThankYouPopup(context);
           context.read<AdLoader>().loaderOff();
         });
@@ -87,16 +81,14 @@ Future<void> _loadAndShowAd2(BuildContext context) async {
           onAdFailedToShowFullScreenContent: ((ad, err) => ad.dispose()),
           onAdDismissedFullScreenContent: ((ad) => ad.dispose()),
         );
-        ad.show(onUserEarnedReward: (
-          AdWithoutView ad,
-          RewardItem rewardItem,
-        ) {
+        ad.show(onUserEarnedReward: (AdWithoutView ad, RewardItem rewardItem) {
           showThankYouPopup(context);
           context.read<AdLoader>().loaderOff();
         });
       },
       onAdFailedToLoad: (LoadAdError error) {
         context.read<AdLoader>().loaderOff();
+        print('=========Ad Failed');
         showSnackBar(context, 'Unable to show Ad, thanks for your move.');
       },
     ),

@@ -25,52 +25,123 @@ class CodeDisplayScreen extends StatefulWidget {
 
 class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
   bool saved = false;
+  bool support = false;
+  @override
+  // void dispose() {
+  //   // : implement dispose dispose fake botom sheet if its visible and poped contex
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Spinner(
       spinning: context.watch<AdLoader>().loader,
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          elevation: 0, // toolbarHeight: 56,
-          centerTitle: true,
-          title: Text(widget.barCode.name),
-        ),
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 40),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              displayOutputCode(context),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      child: Stack(
+        children: [
+          Scaffold(
+            backgroundColor: Colors.white,
+            appBar: AppBar(
+              elevation: 0, // toolbarHeight: 56,
+              centerTitle: true,
+              title: Text(widget.barCode.name),
+            ),
+            body: SingleChildScrollView(
+              // padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Column(
-                    children: [
-                      customButton(
-                        onPress: () => support(context),
-                        icon: Icons.volunteer_activism_rounded,
-                      ),
-                      const Text('Support', textAlign: TextAlign.center),
-                    ],
+                  displayOutputCode(context),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Column(
+                          children: [
+                            customButton(
+                              onPress: () => setState(() => support = true),
+                              icon: Icons.volunteer_activism_rounded,
+                            ),
+                            const Text('Support', textAlign: TextAlign.center),
+                          ],
+                        ),
+                        Column(
+                          children: [
+                            customButton(
+                              onPress: () => saveit(),
+                              icon: Icons.photo_library,
+                            ),
+                            const Text('Save', textAlign: TextAlign.center),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                  Column(
-                    children: [
-                      customButton(
-                        onPress: () => saveit(),
-                        icon: Icons.photo_library,
-                      ),
-                      const Text('Save', textAlign: TextAlign.center),
-                    ],
-                  ),
+                  const SizedBox(height: 15),
+                  // Text(widget.data),
                 ],
               ),
-              const SizedBox(height: 15),
-              // Text(widget.data),
-            ],
+            ),
           ),
-        ),
+          Visibility(
+            visible: support,
+            child: Scaffold(
+              backgroundColor: Colors.black54,
+              body: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: (() => setState(() => support = false)),
+                    ),
+                  ),
+                  Container(
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(top: 20, bottom: 14),
+                          child: Text(
+                            'Support Us',
+                            style: TextStyle(fontSize: 16),
+                            selectionColor: Colors.black54,
+                          ),
+                        ),
+                        const Divider(),
+                        ListTile(
+                          title: const Text('Donate ❤️'),
+                          subtitle: const Text(
+                              'We need support to keep you up to date.'),
+                          leading: const Icon(Icons.volunteer_activism_rounded,
+                              size: 40),
+                          trailing: const Icon(Icons.more_vert),
+                          onTap: () => donate(context),
+                        ),
+                        ListTile(
+                          title: const Text('Support (See ads)'),
+                          subtitle: const Text('Support us by watching Ads.'),
+                          leading: const Icon(Icons.ads_click, size: 40),
+                          trailing: const Icon(Icons.more_vert),
+                          onTap: () {
+                            loadAndShowAd(context);
+                            setState(() => support = false);
+                          },
+                        ),
+                        const Divider(),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -126,50 +197,53 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
     saved = true;
   }
 
-  void support(BuildContext context) {
-    showModalBottomSheet(
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
-        ),
-      ),
-      context: context,
-      builder: (BuildContext context) {
-        return SizedBox(
-          height: 250,
-          child: Column(
-            children: [
-              const Padding(
-                padding: EdgeInsets.only(top: 20, bottom: 14),
-                child: Text(
-                  'Support Us',
-                  style: TextStyle(fontSize: 16),
-                  selectionColor: Colors.black54,
-                ),
-              ),
-              const Divider(),
-              ListTile(
-                title: const Text('Donate ❤️'),
-                subtitle: const Text('We need support to keep you up to date.'),
-                leading: const Icon(Icons.volunteer_activism_rounded, size: 40),
-                trailing: const Icon(Icons.more_vert),
-                onTap: () => donate(context),
-              ),
-              ListTile(
-                title: const Text('Support (See ads)'),
-                subtitle: const Text('Support us by watching Ads.'),
-                leading: const Icon(Icons.ads_click, size: 40),
-                trailing: const Icon(Icons.more_vert),
-                onTap: () {
-                  loadAndShowAd(context);
-                },
-              ),
-              const Divider(),
-            ],
-          ),
-        );
-      },
-    );
-  }
+  // void support(BuildContext context) {
+  //   showModalBottomSheet(
+  //     shape: const RoundedRectangleBorder(
+  //       borderRadius: BorderRadius.only(
+  //         topLeft: Radius.circular(20),
+  //         topRight: Radius.circular(20),
+  //       ),
+  //     ),
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return SizedBox(
+  //         height: 250,
+  //         child: Column(
+  //           children: [
+  //             const Padding(
+  //               padding: EdgeInsets.only(top: 20, bottom: 14),
+  //               child: Text(
+  //                 'Support Us',
+  //                 style: TextStyle(fontSize: 16),
+  //                 selectionColor: Colors.black54,
+  //               ),
+  //             ),
+  //             const Divider(),
+  //             ListTile(
+  //               title: const Text('Donate ❤️'),
+  //               subtitle: const Text('We need support to keep you up to date.'),
+  //               leading: const Icon(Icons.volunteer_activism_rounded, size: 40),
+  //               trailing: const Icon(Icons.more_vert),
+  //               onTap: () => donate(context),
+  //             ),
+  //             ListTile(
+  //               title: const Text('Support (See ads)'),
+  //               subtitle: const Text('Support us by watching Ads.'),
+  //               leading: const Icon(Icons.ads_click, size: 40),
+  //               trailing: const Icon(Icons.more_vert),
+  //               onTap: () {
+  //                 loadAndShowAd(context).then(
+  //                   (value) => Navigator.pop(context),
+  //                 );
+  //                 // Navigator.pop(context);
+  //               },
+  //             ),
+  //             const Divider(),
+  //           ],
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
 }

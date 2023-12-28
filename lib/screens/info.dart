@@ -60,15 +60,10 @@ class _InfoScreenState extends State<InfoScreen> {
                 subtitle: Text(_home ?? ''),
                 leading: const Icon(Icons.home_rounded, size: 40),
                 trailing: const Icon(Icons.more_vert),
-                onTap: () {
-                  setHomePage(context);
-                },
+                onTap: () => setHomePage(context),
               ),
               const Divider(),
-              const Text(
-                '  Support',
-                style: TextStyle(color: Colors.black54),
-              ),
+              const Text('  Support', style: TextStyle(color: Colors.black54)),
               ListTile(
                 title: const Text('Donate'),
                 subtitle: const Text('We need support to keep you up to date.'),
@@ -123,7 +118,8 @@ class _InfoScreenState extends State<InfoScreen> {
           ),
           contentPadding: const EdgeInsets.symmetric(horizontal: 20),
           content: const Text(
-              'This screen will apear on app start up. Default screen is "Create"'),
+            'This screen will apear on app start up. Default screen is "Create"',
+          ),
           actions: [
             ElevatedButton(
               onPressed: () async {
