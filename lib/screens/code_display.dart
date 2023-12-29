@@ -39,7 +39,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
     return WillPopScope(
       onWillPop: () async {
         if (support) {
-          support = false;
+          setState(() => support = false);
           return false;
         } else {
           return true;
