@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:c_code/functions/ads.dart';
 import 'package:c_code/widgets/buttons.dart';
@@ -34,114 +36,126 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Spinner(
-      spinning: context.watch<AdLoader>().loader,
-      child: Stack(
-        children: [
-          Scaffold(
-            backgroundColor: Colors.white,
-            appBar: AppBar(
-              elevation: 0, // toolbarHeight: 56,
-              centerTitle: true,
-              title: Text(widget.barCode.name),
-            ),
-            body: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  displayOutputCode(context),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 40),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Column(
-                          children: [
-                            customButton(
-                              onPress: () => setState(() => support = true),
-                              icon: Icons.volunteer_activism_rounded,
-                            ),
-                            const Text('Support', textAlign: TextAlign.center),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            customButton(
-                              onPress: () => saveit(),
-                              icon: Icons.photo_library,
-                            ),
-                            const Text('Save', textAlign: TextAlign.center),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 15),
-                  // Text(widget.data),
-                ],
+    return WillPopScope(
+      onWillPop: () async {
+        if (support) {
+          support = false;
+          return false;
+        } else {
+          return true;
+        }
+      },
+      child: Spinner(
+        spinning: context.watch<AdLoader>().loader,
+        child: Stack(
+          children: [
+            Scaffold(
+              backgroundColor: Colors.white,
+              appBar: AppBar(
+                elevation: 0, // toolbarHeight: 56,
+                centerTitle: true,
+                title: Text(widget.barCode.name),
               ),
-            ),
-          ),
-          Visibility(
-            visible: support,
-            child: Scaffold(
-              backgroundColor: Colors.black54,
-              body: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: (() => setState(() => support = false)),
-                    ),
-                  ),
-                  Container(
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
+              body: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    displayOutputCode(context),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 40),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Column(
+                            children: [
+                              customButton(
+                                onPress: () => setState(() => support = true),
+                                icon: Icons.volunteer_activism_rounded,
+                              ),
+                              const Text('Support',
+                                  textAlign: TextAlign.center),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              customButton(
+                                onPress: () => saveit(),
+                                icon: Icons.photo_library,
+                              ),
+                              const Text('Save', textAlign: TextAlign.center),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
-                    child: Column(
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.only(top: 20, bottom: 14),
-                          child: Text(
-                            'Support Us',
-                            style: TextStyle(fontSize: 16),
-                            selectionColor: Colors.black54,
-                          ),
-                        ),
-                        const Divider(),
-                        ListTile(
-                          title: const Text('Donate ❤️'),
-                          subtitle: const Text(
-                              'We need support to keep you up to date.'),
-                          leading: const Icon(Icons.volunteer_activism_rounded,
-                              size: 40),
-                          trailing: const Icon(Icons.more_vert),
-                          onTap: () => donate(context),
-                        ),
-                        ListTile(
-                          title: const Text('Support (See ads)'),
-                          subtitle: const Text('Support us by watching Ads.'),
-                          leading: const Icon(Icons.ads_click, size: 40),
-                          trailing: const Icon(Icons.more_vert),
-                          onTap: () {
-                            loadAndShowAd(context);
-                            setState(() => support = false);
-                          },
-                        ),
-                        const Divider(),
-                        const SizedBox(height: 15),
-                      ],
-                    ),
-                  )
-                ],
+                    const SizedBox(height: 15),
+                    // Text(widget.data),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+            Visibility(
+              visible: support,
+              child: Scaffold(
+                backgroundColor: Colors.black54,
+                body: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: (() => setState(() => support = false)),
+                      ),
+                    ),
+                    Container(
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                        ),
+                      ),
+                      child: Column(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(top: 20, bottom: 14),
+                            child: Text(
+                              'Support Us',
+                              style: TextStyle(fontSize: 16),
+                              selectionColor: Colors.black54,
+                            ),
+                          ),
+                          const Divider(),
+                          ListTile(
+                            title: const Text('Donate ❤️'),
+                            subtitle: const Text(
+                                'We need support to keep you up to date.'),
+                            leading: const Icon(
+                                Icons.volunteer_activism_rounded,
+                                size: 40),
+                            trailing: const Icon(Icons.more_vert),
+                            onTap: () => donate(context),
+                          ),
+                          ListTile(
+                            title: const Text('Support (See ads)'),
+                            subtitle: const Text('Support us by watching Ads.'),
+                            leading: const Icon(Icons.ads_click, size: 40),
+                            trailing: const Icon(Icons.more_vert),
+                            onTap: () {
+                              loadAndShowAd(context);
+                              setState(() => support = false);
+                            },
+                          ),
+                          const Divider(),
+                          const SizedBox(height: 15),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
