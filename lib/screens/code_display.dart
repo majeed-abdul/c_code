@@ -133,6 +133,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
                           },
                         ),
                         const Divider(),
+                        const SizedBox(height: 15),
                       ],
                     ),
                   )
