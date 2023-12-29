@@ -88,7 +88,7 @@ Future<void> _loadAndShowAd2(BuildContext context) async {
       },
       onAdFailedToLoad: (LoadAdError error) {
         context.read<AdLoader>().loaderOff();
-        print('=========Ad Failed');
+        // print('=========Ad Failed');////////////////////////////////////
         showSnackBar(context, 'Unable to show Ad, thanks for your move.');
       },
     ),
