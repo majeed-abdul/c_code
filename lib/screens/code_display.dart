@@ -26,11 +26,6 @@ class CodeDisplayScreen extends StatefulWidget {
 class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
   bool saved = false;
   bool support = false;
-  // @override
-  // void dispose() {
-  //   // : implement dispose dispose fake botom sheet if its visible and poped contex
-  //   super.dispose();
-  // }
 
   @override
   Widget build(BuildContext context) {
