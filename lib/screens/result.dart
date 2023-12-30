@@ -91,14 +91,14 @@ class _ResultScreenState extends State<ResultScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        w,
         Column(
           children: [
             customButton(onPress: () => _copy(), icon: Icons.copy),
             const Text('Copy', textAlign: TextAlign.center),
           ],
         ),
-      ].sublist((text) ? 1 : 0),
+        w,
+      ].sublist(0, (text) ? 1 : 2),
     );
   }
 
