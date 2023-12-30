@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:c_code/functions/ads.dart';
 import 'package:c_code/widgets/buttons.dart';
