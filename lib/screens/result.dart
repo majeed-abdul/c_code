@@ -88,6 +88,18 @@ class _ResultScreenState extends State<ResultScreen> {
       );
       text = false;
     }
+    if (isVCard()) {
+      w = Column(
+        children: [
+          customButton(
+            // onPress: () => _browse(),
+            icon: Icons.contact_emergency_outlined,
+          ),
+          const Text('V-Card', textAlign: TextAlign.center),
+        ],
+      );
+      text = false;
+    }
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
