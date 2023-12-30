@@ -92,9 +92,8 @@ class _ResultScreenState extends State<ResultScreen> {
       w = Column(
         children: [
           customButton(
-            // onPress: () => _browse(),
-            icon: Icons.contact_emergency_outlined,
-          ),
+              // onPress: () => _browse(),
+              icon: Icons.contact_emergency_outlined),
           const Text('V-Card', textAlign: TextAlign.center),
         ],
       );
