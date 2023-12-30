@@ -137,7 +137,7 @@ class _ResultScreenState extends State<ResultScreen> {
   }
 
   bool isVCard() {
-    bool validURL = Uri.parse(widget.result.code ?? 'xxxx').isAbsolute;
+    bool validURL = widget.result.code!.toUpperCase().startsWith('BEGIN:VCARD');
     return validURL;
   }
 
