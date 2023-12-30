@@ -88,6 +88,17 @@ class _ResultScreenState extends State<ResultScreen> {
       );
       text = false;
     }
+    if (isVCard()) {
+      w = Column(
+        children: [
+          customButton(
+              // onPress: () => _browse(),
+              icon: Icons.contact_emergency_outlined),
+          const Text('V-Card', textAlign: TextAlign.center),
+        ],
+      );
+      text = false;
+    }
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -137,7 +148,9 @@ class _ResultScreenState extends State<ResultScreen> {
   }
 
   bool isVCard() {
-    bool validURL = Uri.parse(widget.result.code ?? 'xxxx').isAbsolute;
+    bool validURL =
+        widget.result.code!.toUpperCase().startsWith('BEGIN:VCARD') &&
+            widget.result.code!.toUpperCase().endsWith('END:VCARD');
     return validURL;
   }
 

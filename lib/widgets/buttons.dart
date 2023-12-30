@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 Container customButton({
-  required void Function() onPress,
   required IconData icon,
+  void Function()? onPress,
   Color color = Colors.black,
 }) {
   return Container(
