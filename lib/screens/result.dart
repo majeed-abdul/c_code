@@ -35,7 +35,7 @@ class _ResultScreenState extends State<ResultScreen> {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: Text(describeEnum(widget.result.format)),
+        title: const Text('Result'),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.pop(context),
