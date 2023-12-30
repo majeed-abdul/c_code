@@ -137,7 +137,9 @@ class _ResultScreenState extends State<ResultScreen> {
   }
 
   bool isVCard() {
-    bool validURL = widget.result.code!.toUpperCase().startsWith('BEGIN:VCARD');
+    bool validURL =
+        widget.result.code!.toUpperCase().startsWith('BEGIN:VCARD') &&
+            widget.result.code!.toUpperCase().endsWith('END:VCARD');
     return validURL;
   }
 
