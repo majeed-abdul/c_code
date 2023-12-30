@@ -1,7 +1,6 @@
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:c_code/widgets/buttons.dart';
 import 'package:c_code/widgets/pop_ups.dart';
-import 'package:flutter/foundation.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -35,7 +34,7 @@ class _ResultScreenState extends State<ResultScreen> {
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: Text(describeEnum(widget.result.format)),
+        title: const Text('Result'),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.pop(context),
@@ -92,14 +91,14 @@ class _ResultScreenState extends State<ResultScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        w,
         Column(
           children: [
             customButton(onPress: () => _copy(), icon: Icons.copy),
             const Text('Copy', textAlign: TextAlign.center),
           ],
         ),
-      ].sublist((text) ? 1 : 0),
+        w,
+      ].sublist(0, (text) ? 1 : 2),
     );
   }
 
