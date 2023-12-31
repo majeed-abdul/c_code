@@ -660,16 +660,6 @@ class _CreateScreenState extends State<CreateScreen> {
     );
   }
 
-  bool isNumber(String num) {
-    try {
-      double.parse(num);
-    } on FormatException {
-      if (num.isEmpty) return true;
-      return false;
-    }
-    return true;
-  }
-
   bool isEmail(String email) {
     if (email.isEmpty) return true;
     return EmailValidator.validate(email);
@@ -729,4 +719,14 @@ class _CreateScreenState extends State<CreateScreen> {
   setSMS() {
     finalWords = "SMSTO:${smsPhoCon.text.trim()}:${smsMsgCon.text.trim()}";
   }
+}
+
+bool isNumber(String num) {
+  try {
+    double.parse(num);
+  } on FormatException {
+    if (num.isEmpty) return true;
+    return false;
+  }
+  return true;
 }
