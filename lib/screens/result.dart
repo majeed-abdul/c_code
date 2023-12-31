@@ -115,7 +115,10 @@ class _ResultScreenState extends State<ResultScreen> {
     if (isEmail()) {
       w = Column(
         children: [
-          customButton(onPress: () => _mail(), icon: Icons.email_outlined),
+          customButton(
+            onPress: () => _mail(),
+            icon: Icons.email_outlined,
+          ),
           const Text('Email', textAlign: TextAlign.center),
         ],
       );
