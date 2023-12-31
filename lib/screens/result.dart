@@ -15,6 +15,7 @@ class ResultScreen extends StatefulWidget {
 
 class _ResultScreenState extends State<ResultScreen> {
   ScrollController scrollCon = ScrollController();
+
   @override
   void initState() {
     Future.delayed(const Duration(milliseconds: 500)).then(
@@ -48,7 +49,19 @@ class _ResultScreenState extends State<ResultScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                isURL() ? 'URL' : 'Text',
+                isURL()
+                    ? 'URL'
+                    : isWiFi()
+                        ? 'WiFi'
+                        : isNum()
+                            ? 'Number'
+                            : isVCard()
+                                ? 'V-Card'
+                                : isEmail()
+                                    ? 'Email'
+                                    : isSMS()
+                                        ? 'SMS'
+                                        : 'Text',
                 style: const TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.w500,
@@ -99,6 +112,18 @@ class _ResultScreenState extends State<ResultScreen> {
       );
       text = false;
     }
+    if (isEmail()) {
+      w = Column(
+        children: [
+          customButton(
+            onPress: () => _mail(),
+            icon: Icons.email_outlined,
+          ),
+          const Text('Email', textAlign: TextAlign.center),
+        ],
+      );
+      text = false;
+    }
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -141,10 +166,44 @@ class _ResultScreenState extends State<ResultScreen> {
     launchUrl(url, mode: LaunchMode.externalApplication);
   }
 
+  void _mail() async {
+    String word = '${widget.result.code}';
+    String? encodeQueryParameters(Map<String, String> params) {
+      return params.entries
+          .map((MapEntry<String, String> e) =>
+              '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+          .join('&');
+    }
+
+    final Uri emailLaunchUri = Uri(
+      scheme: 'mailto',
+      path: word.substring(
+        word.toUpperCase().indexOf('TO:') + 3,
+        word.indexOf(';'),
+      ),
+      query: encodeQueryParameters(
+        <String, String>{
+          'subject': word.substring(
+            word.toUpperCase().indexOf('TO:') + 3,
+            word.indexOf(';'),
+          ),
+        },
+      ),
+    );
+    launchUrl(emailLaunchUri);
+  }
+
   bool isURL() {
     bool valid =
         Uri.tryParse(widget.result.code ?? 's')?.hasAbsolutePath ?? false;
     return valid;
+  }
+
+  bool isWiFi() {
+    bool validURL =
+        widget.result.code!.toUpperCase().startsWith('BEGIN:VCARD') &&
+            widget.result.code!.toUpperCase().endsWith('END:VCARD');
+    return validURL;
   }
 
   bool isVCard() {
@@ -155,12 +214,24 @@ class _ResultScreenState extends State<ResultScreen> {
   }
 
   bool isEmail() {
-    bool validURL = Uri.parse(widget.result.code ?? 'xxxx').isAbsolute;
+    bool validURL =
+        widget.result.code!.toUpperCase().startsWith("MATMSG:TO:") ||
+            widget.result.code!.toUpperCase().startsWith("MAILTO:");
     return validURL;
   }
 
   bool isSMS() {
-    bool validURL = Uri.parse(widget.result.code ?? 'xxxx').isAbsolute;
+    bool validURL = widget.result.code!.toUpperCase().startsWith("SMSTO:");
     return validURL;
+  }
+
+  bool isNum() {
+    try {
+      double.parse('${widget.result.code}');
+    } on FormatException {
+      if (widget.result.code!.isEmpty) return true;
+      return false;
+    }
+    return true;
   }
 }
