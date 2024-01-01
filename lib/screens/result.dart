@@ -177,16 +177,34 @@ class _ResultScreenState extends State<ResultScreen> {
 
     final Uri emailLaunchUri = Uri(
       scheme: 'mailto',
-      path: word.substring(
-        word.toUpperCase().indexOf('TO:') + 3,
-        word.indexOf(';'),
-      ),
+      path: word.toUpperCase().startsWith('MAILTO:')
+          ? word.substring(
+              word.toUpperCase().indexOf('TO:') + 3, // mailto:
+              word.indexOf('?'),
+            )
+          : word.substring(
+              word.toUpperCase().indexOf(':TO:') + 4,
+              word.indexOf(';SUB:'),
+            ),
       query: encodeQueryParameters(
         <String, String>{
-          'subject': word.substring(
-            word.toUpperCase().indexOf('TO:') + 3,
-            word.indexOf(';'),
-          ),
+          'subject': word.toUpperCase().startsWith('MAILTO:')
+              ? word.substring(
+                  word.toUpperCase().indexOf('SUBJECT=') + 8, // mailto:
+                  word.toUpperCase().indexOf('&BODY='),
+                )
+              : word.substring(
+                  word.toUpperCase().indexOf(';SUB:') + 5,
+                  word.indexOf(';BODY:'),
+                ),
+          'body': word.toUpperCase().startsWith('MAILTO:')
+              ? word.substring(
+                  word.toUpperCase().indexOf('&BODY=') + 6, // mailto:
+                )
+              : word.substring(
+                  word.toUpperCase().indexOf(';BODY:') + 6,
+                  word.lastIndexOf(';') - 1,
+                ),
         },
       ),
     );
