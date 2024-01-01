@@ -124,6 +124,18 @@ class _ResultScreenState extends State<ResultScreen> {
       );
       text = false;
     }
+    if (isSMS()) {
+      w = Column(
+        children: [
+          customButton(
+            onPress: () => _sms(),
+            icon: Icons.sms_outlined,
+          ),
+          const Text('SMS', textAlign: TextAlign.center),
+        ],
+      );
+      text = false;
+    }
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -168,29 +180,56 @@ class _ResultScreenState extends State<ResultScreen> {
 
   void _mail() async {
     String word = '${widget.result.code}';
-    String? encodeQueryParameters(Map<String, String> params) {
-      return params.entries
-          .map((MapEntry<String, String> e) =>
-              '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
-          .join('&');
-    }
 
     final Uri emailLaunchUri = Uri(
       scheme: 'mailto',
-      path: word.substring(
-        word.toUpperCase().indexOf('TO:') + 3,
-        word.indexOf(';'),
-      ),
-      query: encodeQueryParameters(
+      path: word.toUpperCase().startsWith('MAILTO:')
+          ? word.substring(
+              word.toUpperCase().indexOf('TO:') + 3, // mailto:
+              word.indexOf('?'),
+            )
+          : word.substring(
+              word.toUpperCase().indexOf(':TO:') + 4,
+              word.indexOf(';SUB:'),
+            ),
+      query: _encodeQueryParameters(
         <String, String>{
-          'subject': word.substring(
-            word.toUpperCase().indexOf('TO:') + 3,
-            word.indexOf(';'),
-          ),
+          'subject': word.toUpperCase().startsWith('MAILTO:')
+              ? word.substring(
+                  word.toUpperCase().indexOf('SUBJECT=') + 8, // mailto:
+                  word.toUpperCase().indexOf('&BODY='),
+                )
+              : word.substring(
+                  word.toUpperCase().indexOf(';SUB:') + 5,
+                  word.indexOf(';BODY:'),
+                ),
+          'body': word.toUpperCase().startsWith('MAILTO:')
+              ? word.substring(
+                  word.toUpperCase().indexOf('&BODY=') + 6, // mailto:
+                )
+              : word.substring(
+                  word.toUpperCase().indexOf(';BODY:') + 6,
+                  word.lastIndexOf(';') - 1,
+                ),
         },
       ),
     );
     launchUrl(emailLaunchUri);
+  }
+
+  void _sms() async {
+    String word = '${widget.result.code}';
+
+    final Uri smsLaunchUri = Uri(
+      scheme: 'sms',
+      path: word.substring(6, word.substring(7).indexOf(':') + 7),
+      query: _encodeQueryParameters(
+        <String, String>{
+          'body': word.substring(word.substring(7).indexOf(':') + 8),
+        },
+      ),
+    );
+    launchUrl(smsLaunchUri);
   }
 
   bool isURL() {
@@ -234,4 +273,11 @@ class _ResultScreenState extends State<ResultScreen> {
     }
     return true;
   }
+}
+
+String? _encodeQueryParameters(Map<String, String> params) {
+  return params.entries
+      .map((MapEntry<String, String> e) =>
+          '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+      .join('&');
 }
