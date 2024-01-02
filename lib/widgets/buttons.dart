@@ -9,8 +9,9 @@ Container customButton({
     width: 55,
     height: 55,
     decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(69),
-        border: Border.all(color: color, width: 3)),
+      borderRadius: BorderRadius.circular(69),
+      border: Border.all(color: color, width: 3),
+    ),
     child: InkWell(
       borderRadius: BorderRadius.circular(69),
       onTap: onPress,
