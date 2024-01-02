@@ -11,7 +11,9 @@ void main() {
   MobileAds.instance.initialize();
   return runApp(
     MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => AdLoader())],
+      providers: [
+        ChangeNotifierProvider(create: (_) => AdLoader()),
+      ],
       child: const MyApp(),
     ),
   );
