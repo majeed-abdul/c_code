@@ -18,10 +18,7 @@ InputDecoration kDecoration = const InputDecoration(
     borderRadius: BorderRadius.all(Radius.circular(6.0)),
   ),
 );
-Widget entryBar({
-  Widget? child,
-  String? text,
-}) {
+Widget entryBar({Widget? child, String? text}) {
   return ListTile(
     contentPadding: const EdgeInsets.all(0),
     minLeadingWidth: 88,
