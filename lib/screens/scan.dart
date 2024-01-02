@@ -133,7 +133,8 @@ class _ScanScreenState extends State<ScanScreen> {
     await Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (BuildContext context) => ResultScreen(result: code)),
+        builder: (BuildContext context) => ResultScreen(result: code),
+      ),
     ).then(
       (value) => controller?.resumeCamera(),
     );
