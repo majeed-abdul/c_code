@@ -45,45 +45,48 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
             Scaffold(
               backgroundColor: Colors.white,
               appBar: AppBar(
-                elevation: 0, // toolbarHeight: 56,
+                elevation: 0,
+                // toolbarHeight: 56,
                 centerTitle: true,
                 title: Text(widget.barCode.name),
               ),
-              body: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    displayOutputCode(context),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 40),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Column(
-                            children: [
-                              customButton(
-                                onPress: () => setState(() => support = true),
-                                icon: Icons.volunteer_activism_rounded,
-                              ),
-                              const Text('Support',
-                                  textAlign: TextAlign.center),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              customButton(
-                                onPress: () => saveit(),
-                                icon: Icons.photo_library,
-                              ),
-                              const Text('Save', textAlign: TextAlign.center),
-                            ],
-                          ),
-                        ],
+              body: SafeArea(
+                child: SingleChildScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      displayOutputCode(context),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 40),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Column(
+                              children: [
+                                customButton(
+                                  onPress: () => setState(() => support = true),
+                                  icon: Icons.volunteer_activism_rounded,
+                                ),
+                                const Text('Support',
+                                    textAlign: TextAlign.center),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                customButton(
+                                  onPress: () => saveit(),
+                                  icon: Icons.photo_library,
+                                ),
+                                const Text('Save', textAlign: TextAlign.center),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 15),
-                    // Text(widget.data),
-                  ],
+                      const SizedBox(height: 15),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -167,11 +170,11 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
     return BarcodeWidget(
       height: MediaQuery.of(context).size.width <=
               MediaQuery.of(context).size.height
-          ? MediaQuery.of(context).size.width - (60 * 2) //  portrait
-          : MediaQuery.of(context).size.height - (60 * 2) - 56, //  landescape
+          ? MediaQuery.of(context).size.width - 80 // (40*2)  portrait
+          : MediaQuery.of(context).size.height - 160, // (40*2)+24+56
       data: widget.data,
       barcode: widget.barCode,
-      margin: const EdgeInsets.symmetric(vertical: 40),
+      margin: const EdgeInsets.all(40),
       errorBuilder: (context, error) => _onError(error),
     );
   }
@@ -187,16 +190,16 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
       showSnackBar(context, 'Image Already Saved.');
       return;
     }
-    final image = img.Image(width: 512, height: 512);
+    final image = img.Image(width: 1000, height: 1000);
     fill(image, color: ColorRgb8(255, 255, 255));
     drawBarcode(
       image,
       widget.barCode,
       widget.data,
-      height: 427, //  427 insted of 428 for 42px even padding across 4 sides
-      width: 427,
-      x: 42,
-      y: 42,
+      height: 899, //  899 insted of 900 for 42px even padding across 4 sides
+      width: 899, //  1000-(50*2)-1
+      x: 50,
+      y: 50,
     );
     final png = img.encodePng(image);
     ImageGallerySaver.saveImage(png);
