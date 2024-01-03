@@ -708,18 +708,18 @@ class _CreateScreenState extends State<CreateScreen> {
 
   setVCard() {
     finalWords = '''BEGIN:VCARD
-    VERSION:3.0
-    N:${vCardLNaCon.text.trim()};${vCardFNaCon.text.trim()}
-    FN:${vCardFNaCon.text.trim()} ${vCardLNaCon.text.trim()}
-    ORG:${vCardComCon.text.trim()}
-    TITLE:${vCardJobCon.text.trim()}
-    ADR:;;${vCardStrCon.text.trim()};${vCardCitCon.text.trim()};${vCardStaCon.text.trim()};${vCardZipCon.text.trim()};${vCardConCon.text.trim()}
-    TEL;WORK;VOICE:${vCardPhoCon.text.trim()}
-    TEL;CELL:${vCardMobCon.text.trim()}
-    TEL;FAX:${vCardFaxCon.text.trim()}
-    EMAIL;WORK;INTERNET:${vCardEmaCon.text.trim()}
-    URL:${vCardWebCon.text.trim()}
-    END:VCARD''';
+VERSION:3.0
+N:${vCardLNaCon.text.trim()};${vCardFNaCon.text.trim()}
+FN:${vCardFNaCon.text.trim()} ${vCardLNaCon.text.trim()}
+ORG:${vCardComCon.text.trim()}
+TITLE:${vCardJobCon.text.trim()}
+ADR:;;${vCardStrCon.text.trim()};${vCardCitCon.text.trim()};${vCardStaCon.text.trim()};${vCardZipCon.text.trim()};${vCardConCon.text.trim()}
+TEL;WORK;VOICE:${vCardPhoCon.text.trim()}
+TEL;CELL:${vCardMobCon.text.trim()}
+TEL;FAX:${vCardFaxCon.text.trim()}
+EMAIL;WORK;INTERNET:${vCardEmaCon.text.trim()}
+URL:${vCardWebCon.text.trim()}
+END:VCARD''';
   }
 
   setMail() {
