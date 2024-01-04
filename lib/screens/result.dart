@@ -144,7 +144,7 @@ Message : ${word.toUpperCase().startsWith('MAILTO:') ? word.substring(
       w = Column(
         children: [
           customButton(
-              // onPress: () => _browse(),
+              // onPress: () => _contact(),
               icon: Icons.contact_emergency_outlined),
           const Text('V-Card', textAlign: TextAlign.center),
         ],
