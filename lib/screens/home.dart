@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
         selectedLabelStyle: const TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.bold,
-          color: Colors.amber,
+          // color: Colors.amber,
         ),
         items: const [
           BottomNavigationBarItem(
