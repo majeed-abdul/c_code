@@ -15,6 +15,7 @@ class ResultScreen extends StatefulWidget {
 
 class _ResultScreenState extends State<ResultScreen> {
   ScrollController scrollCon = ScrollController();
+  String? formated;
 
   @override
   void initState() {
@@ -25,6 +26,44 @@ class _ResultScreenState extends State<ResultScreen> {
         duration: const Duration(milliseconds: 1500),
       ),
     );
+    String word = '${widget.result.code}';
+    if (isWiFi()) {
+      // formated =
+      // '''Email : ${word.toUpperCase().startsWith('MAILTO:') ? word.substring(
+      //     word.toUpperCase().indexOf('TO:') + 3, // mailto:
+      //     word.contains('?') ? word.indexOf('?') : null,
+      //   ) : word.substring(
+      //     word.toUpperCase().indexOf(':TO:') + 4,
+      //     word.indexOf(';SUB:'),
+      //   )}''';
+    }
+    if (isEmail()) {
+      formated =
+          '''Email : ${word.toUpperCase().startsWith('MAILTO:') ? word.substring(
+              word.toUpperCase().indexOf('TO:') + 3, // mailto:
+              word.contains('?') ? word.indexOf('?') : null,
+            ) : word.substring(word.toUpperCase().indexOf(':TO:') + 4, word.toUpperCase().indexOf(';SUB:'))}
+Subject : ${word.toUpperCase().startsWith('MAILTO:') ? word.substring(
+              word.toUpperCase().contains('SUBJECT=')
+                  ? word.toUpperCase().indexOf('SUBJECT=') + 8
+                  : word.length, // mailto:
+              word.toUpperCase().contains('&BODY=')
+                  ? word.toUpperCase().indexOf('&BODY=')
+                  : null,
+            ) : word.substring(
+              word.toUpperCase().indexOf(';SUB:') + 5,
+              word.indexOf(';BODY:'),
+            )}
+Message : ${word.toUpperCase().startsWith('MAILTO:') ? word.substring(
+              word.toUpperCase().contains('BODY=')
+                  ? word.toUpperCase().indexOf('BODY=') + 5
+                  : word.length, // mailto:
+            ) : word.substring(
+              word.toUpperCase().indexOf(';BODY:') + 6,
+              word.lastIndexOf(';') - 1,
+            )}''';
+    }
+    setState(() {});
     super.initState();
   }
 
@@ -49,18 +88,18 @@ class _ResultScreenState extends State<ResultScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                isURL()
-                    ? 'URL'
-                    : isWiFi()
-                        ? 'WiFi'
-                        : isNum()
-                            ? 'Number'
-                            : isVCard()
-                                ? 'V-Card'
-                                : isEmail()
-                                    ? 'Email'
-                                    : isSMS()
-                                        ? 'SMS'
+                isWiFi()
+                    ? 'WiFi'
+                    : isNum()
+                        ? 'Number'
+                        : isVCard()
+                            ? 'V-Card'
+                            : isEmail()
+                                ? 'Email'
+                                : isSMS()
+                                    ? 'SMS'
+                                    : isURL()
+                                        ? 'URL'
                                         : 'Text',
                 style: const TextStyle(
                   fontSize: 25,
@@ -159,7 +198,8 @@ class _ResultScreenState extends State<ResultScreen> {
       width: double.infinity,
       padding: const EdgeInsets.all(9),
       child: SelectableText(
-        '${widget.result.code}',
+        formated ?? widget.result.code ?? '',
+        // widget.result.code ?? '',
         style: const TextStyle(fontSize: 15),
       ),
     );
@@ -186,7 +226,7 @@ class _ResultScreenState extends State<ResultScreen> {
       path: word.toUpperCase().startsWith('MAILTO:')
           ? word.substring(
               word.toUpperCase().indexOf('TO:') + 3, // mailto:
-              word.indexOf('?'),
+              word.contains('?') ? word.indexOf('?') : null,
             )
           : word.substring(
               word.toUpperCase().indexOf(':TO:') + 4,
@@ -196,8 +236,12 @@ class _ResultScreenState extends State<ResultScreen> {
         <String, String>{
           'subject': word.toUpperCase().startsWith('MAILTO:')
               ? word.substring(
-                  word.toUpperCase().indexOf('SUBJECT=') + 8, // mailto:
-                  word.toUpperCase().indexOf('&BODY='),
+                  word.toUpperCase().contains('SUBJECT=')
+                      ? word.toUpperCase().indexOf('SUBJECT=') + 8
+                      : word.length, // mailto:
+                  word.toUpperCase().contains('&BODY=')
+                      ? word.toUpperCase().indexOf('&BODY=')
+                      : null,
                 )
               : word.substring(
                   word.toUpperCase().indexOf(';SUB:') + 5,
@@ -205,7 +249,9 @@ class _ResultScreenState extends State<ResultScreen> {
                 ),
           'body': word.toUpperCase().startsWith('MAILTO:')
               ? word.substring(
-                  word.toUpperCase().indexOf('&BODY=') + 6, // mailto:
+                  word.toUpperCase().contains('BODY=')
+                      ? word.toUpperCase().indexOf('BODY=') + 5
+                      : word.length, // mailto:
                 )
               : word.substring(
                   word.toUpperCase().indexOf(';BODY:') + 6,
