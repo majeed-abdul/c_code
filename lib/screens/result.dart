@@ -233,9 +233,12 @@ class _ResultScreenState extends State<ResultScreen> {
   }
 
   bool isURL() {
-    bool valid =
-        Uri.tryParse(widget.result.code ?? 's')?.hasAbsolutePath ?? false;
-    return valid;
+    try {
+      Uri.tryParse(widget.result.code ?? 'sss');
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
   bool isWiFi() {
