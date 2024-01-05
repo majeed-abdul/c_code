@@ -87,6 +87,11 @@ $word''';
             );
       formated = 'Email : $email\nSubject : $subje\nMessage : $messa';
     }
+    if (isSMS()) {
+      String num = word.substring(6, word.substring(7).indexOf(':') + 7);
+      String msg = word.substring(word.substring(7).indexOf(':') + 8);
+      formated = 'Number : $num\nMessage : $msg\n$word';
+    }
     setState(() {});
     super.initState();
   }
