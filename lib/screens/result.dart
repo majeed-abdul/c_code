@@ -170,7 +170,7 @@ $word''';
       w = Column(
         children: [
           customButton(
-              // onPress: () => _contact(),
+              onPress: () => _contact(),
               icon: Icons.contact_emergency_outlined),
           const Text('V-Card', textAlign: TextAlign.center),
         ],
@@ -243,6 +243,8 @@ $word''';
     Uri url = Uri.parse(widget.result.code ?? '');
     launchUrl(url, mode: LaunchMode.externalApplication);
   }
+
+  void _contact() async {}
 
   void _mail() async {
     String word = '${widget.result.code}';
