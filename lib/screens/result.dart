@@ -50,37 +50,44 @@ class _ResultScreenState extends State<ResultScreen> {
       );
       formated = '''
 Name : $name
-Password : $pass
-Encryption : $encr
+Password : ${encr.toUpperCase() == "NOPASS" ? '' : pass}
+Encryption : ${encr.toUpperCase() == "NOPASS" ? 'None' : encr}
 Hidden : $hidd
 
 $word''';
     }
     if (isEmail()) {
-      formated =
-          '''Email : ${word.toUpperCase().startsWith('MAILTO:') ? word.substring(
+      String email = word.toUpperCase().startsWith('MAILTO:')
+          ? word.substring(
               word.toUpperCase().indexOf('TO:') + 3, // mailto:
               word.contains('?') ? word.indexOf('?') : null,
-            ) : word.substring(word.toUpperCase().indexOf(':TO:') + 4, word.toUpperCase().indexOf(';SUB:'))}
-Subject : ${word.toUpperCase().startsWith('MAILTO:') ? word.substring(
+            )
+          : word.substring(word.toUpperCase().indexOf(':TO:') + 4,
+              word.toUpperCase().indexOf(';SUB:'));
+      String subje = word.toUpperCase().startsWith('MAILTO:')
+          ? word.substring(
               word.toUpperCase().contains('SUBJECT=')
                   ? word.toUpperCase().indexOf('SUBJECT=') + 8
                   : word.length, // mailto:
               word.toUpperCase().contains('&BODY=')
                   ? word.toUpperCase().indexOf('&BODY=')
                   : null,
-            ) : word.substring(
+            )
+          : word.substring(
               word.toUpperCase().indexOf(';SUB:') + 5,
               word.indexOf(';BODY:'),
-            )}
-Message : ${word.toUpperCase().startsWith('MAILTO:') ? word.substring(
+            );
+      String messa = word.toUpperCase().startsWith('MAILTO:')
+          ? word.substring(
               word.toUpperCase().contains('BODY=')
                   ? word.toUpperCase().indexOf('BODY=') + 5
                   : word.length, // mailto:
-            ) : word.substring(
+            )
+          : word.substring(
               word.toUpperCase().indexOf(';BODY:') + 6,
               word.lastIndexOf(';') - 1,
-            )}''';
+            );
+      formated = 'Email : $email\nSubject : $subje\nMessage : $messa';
     }
     setState(() {});
     super.initState();
