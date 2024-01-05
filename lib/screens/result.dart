@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:c_code/widgets/buttons.dart';
 import 'package:c_code/widgets/pop_ups.dart';
@@ -28,22 +30,29 @@ class _ResultScreenState extends State<ResultScreen> {
     );
     String word = '${widget.result.code}';
     if (isWiFi()) {
-      formated = '''Name : ${word.substring(
-        word.toUpperCase().indexOf(':S:') + 3,
-        word.toUpperCase().indexOf(';P:'),
-      )}
-Password : ${word.substring(
-        word.toUpperCase().indexOf(';P:') + 3,
-        word.toUpperCase().indexOf(';H:'),
-      )}
-// Encryption : {word.substring(
-//         word.toUpperCase().indexOf(':T:') + 3,
-//         word.toUpperCase().indexOf(';S:'),
-//       )}
-// Hidden : {word.substring(
-//         word.toUpperCase().indexOf(';H:') + 3,
-//         word.length - 2,
-      // )}
+      String name = word.substring(
+        word.toUpperCase().indexOf('S:') + 2,
+        word.indexOf(';', word.toUpperCase().indexOf('S:') + 1),
+      );
+      String pass = word.substring(
+        word.toUpperCase().indexOf('P:') + 2,
+        word.indexOf(';', word.toUpperCase().indexOf('P:') + 1),
+      );
+      String encr = word.substring(
+        word.toUpperCase().indexOf('T:') + 2,
+        word.indexOf(';', word.toUpperCase().indexOf('T:') + 1),
+      );
+      String hidd = word.substring(
+        word.toUpperCase().contains('H:')
+            ? word.toUpperCase().indexOf('H:') + 2
+            : word.indexOf(';'),
+        word.indexOf(';', word.toUpperCase().indexOf('H:') + 1),
+      );
+      formated = '''
+Name : $name
+Password : $pass
+Encryption : $encr
+Hidden : $hidd
 
 $word''';
     }
