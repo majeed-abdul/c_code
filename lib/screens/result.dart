@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:c_code/widgets/buttons.dart';
 import 'package:c_code/widgets/pop_ups.dart';
@@ -28,14 +30,31 @@ class _ResultScreenState extends State<ResultScreen> {
     );
     String word = '${widget.result.code}';
     if (isWiFi()) {
-      // formated =
-      // '''Email : ${word.toUpperCase().startsWith('MAILTO:') ? word.substring(
-      //     word.toUpperCase().indexOf('TO:') + 3, // mailto:
-      //     word.contains('?') ? word.indexOf('?') : null,
-      //   ) : word.substring(
-      //     word.toUpperCase().indexOf(':TO:') + 4,
-      //     word.indexOf(';SUB:'),
-      //   )}''';
+      String name = word.substring(
+        word.toUpperCase().indexOf('S:') + 2,
+        word.indexOf(';', word.toUpperCase().indexOf('S:') + 1),
+      );
+      String pass = word.substring(
+        word.toUpperCase().indexOf('P:') + 2,
+        word.indexOf(';', word.toUpperCase().indexOf('P:') + 1),
+      );
+      String encr = word.substring(
+        word.toUpperCase().indexOf('T:') + 2,
+        word.indexOf(';', word.toUpperCase().indexOf('T:') + 1),
+      );
+      String hidd = word.substring(
+        word.toUpperCase().contains('H:')
+            ? word.toUpperCase().indexOf('H:') + 2
+            : word.indexOf(';'),
+        word.indexOf(';', word.toUpperCase().indexOf('H:') + 1),
+      );
+      formated = '''
+Name : $name
+Password : $pass
+Encryption : $encr
+Hidden : $hidd
+
+$word''';
     }
     if (isEmail()) {
       formated =
@@ -288,9 +307,8 @@ Message : ${word.toUpperCase().startsWith('MAILTO:') ? word.substring(
   }
 
   bool isWiFi() {
-    bool validURL =
-        widget.result.code!.toUpperCase().startsWith('BEGIN:VCARD') &&
-            widget.result.code!.toUpperCase().endsWith('END:VCARD');
+    bool validURL = widget.result.code!.toUpperCase().startsWith('WIFI:') &&
+        widget.result.code!.endsWith(';');
     return validURL;
   }
 
