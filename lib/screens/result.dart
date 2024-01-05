@@ -28,14 +28,24 @@ class _ResultScreenState extends State<ResultScreen> {
     );
     String word = '${widget.result.code}';
     if (isWiFi()) {
-      // formated =
-      // '''Email : ${word.toUpperCase().startsWith('MAILTO:') ? word.substring(
-      //     word.toUpperCase().indexOf('TO:') + 3, // mailto:
-      //     word.contains('?') ? word.indexOf('?') : null,
-      //   ) : word.substring(
-      //     word.toUpperCase().indexOf(':TO:') + 4,
-      //     word.indexOf(';SUB:'),
-      //   )}''';
+      formated = '''Name : ${word.substring(
+        word.toUpperCase().indexOf(':S:') + 3,
+        word.toUpperCase().indexOf(';P:'),
+      )}
+Password : ${word.substring(
+        word.toUpperCase().indexOf(';P:') + 3,
+        word.toUpperCase().indexOf(';H:'),
+      )}
+// Encryption : {word.substring(
+//         word.toUpperCase().indexOf(':T:') + 3,
+//         word.toUpperCase().indexOf(';S:'),
+//       )}
+// Hidden : {word.substring(
+//         word.toUpperCase().indexOf(';H:') + 3,
+//         word.length - 2,
+      // )}
+
+$word''';
     }
     if (isEmail()) {
       formated =
@@ -288,9 +298,8 @@ Message : ${word.toUpperCase().startsWith('MAILTO:') ? word.substring(
   }
 
   bool isWiFi() {
-    bool validURL =
-        widget.result.code!.toUpperCase().startsWith('BEGIN:VCARD') &&
-            widget.result.code!.toUpperCase().endsWith('END:VCARD');
+    bool validURL = widget.result.code!.toUpperCase().startsWith('WIFI:') &&
+        widget.result.code!.endsWith(';');
     return validURL;
   }
 
