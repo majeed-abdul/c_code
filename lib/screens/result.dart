@@ -51,9 +51,7 @@ class _ResultScreenState extends State<ResultScreen> {
 Name : $name
 Password : ${encr.toUpperCase() == "NOPASS" ? '' : pass}
 Encryption : ${encr.toUpperCase() == "NOPASS" ? 'None' : encr}
-Hidden : $hidd
-
-$word''';
+Hidden : $hidd''';
     }
     if (isEmail()) {
       String email = word.toUpperCase().startsWith('MAILTO:')
