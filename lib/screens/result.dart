@@ -317,7 +317,10 @@ Websites : $websites
     launchUrl(url, mode: LaunchMode.externalApplication);
   }
 
-  void _contact() async {}
+  void _contact() async {
+    // Contact contact = Contact.fromVCard('${widget.result.code}');
+    // await contact.insert();
+  }
 
   void _mail() async {
     String word = '${widget.result.code}';
