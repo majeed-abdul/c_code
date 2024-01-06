@@ -141,16 +141,6 @@ $word''';
         websites = '$websites    ${i.customLabel} number: ${i.url}';
         multipleWeb = true;
       }
-      // String pho = '';
-      // String fax = '';
-      // String ema = '';
-      // String org = '';
-      // String con = '';
-      // String sta = '';
-      // String cit = '';
-      // String zip = '';
-      // String str = '';
-      // String web = '';
 // accounts : {vc.accounts}//
 // events : ${vc.events}
 // groups : ${vc.groups}
