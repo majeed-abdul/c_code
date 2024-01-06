@@ -4,6 +4,7 @@ import 'package:c_code/widgets/pop_ups.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_contacts/flutter_contacts.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({super.key, required this.result});
@@ -91,6 +92,87 @@ $word''';
       String num = word.substring(6, word.substring(7).indexOf(':') + 7);
       String msg = word.substring(word.substring(7).indexOf(':') + 8);
       formated = 'Number : $num\nMessage : $msg';
+    }
+    if (isVCard()) {
+      Contact vc = Contact.fromVCard(word);
+      String name = vc.displayName;
+      String addresses = '\n';
+      bool multipleAddresses = false;
+      for (Address i in vc.addresses) {
+        if (multipleAddresses) {
+          addresses = '$addresses\n';
+        }
+        addresses = '$addresses    ${i.label.name} address :  ${i.address}';
+        multipleAddresses = true;
+      }
+      String emails = '\n';
+      bool multipleEmails = false;
+      for (Email i in vc.emails) {
+        if (multipleEmails) {
+          emails = '$emails\n';
+        }
+        emails = '$emails    ${i.label.name} email :  ${i.address}';
+        multipleEmails = true;
+      }
+      String orgs = '\n';
+      bool multipleOrgs = false;
+      for (Organization i in vc.organizations) {
+        if (multipleOrgs) {
+          orgs = '$orgs\n';
+        }
+        orgs = '$orgs    ${i.company}, Job: ${i.title}';
+        multipleOrgs = true;
+      }
+      String phones = '\n';
+      bool multiplePhone = false;
+      for (Phone i in vc.phones) {
+        if (multiplePhone) {
+          phones = '$phones\n';
+        }
+        phones = '$phones    ${i.label.name} number: ${i.number}';
+        multiplePhone = true;
+      }
+      String websites = '\n';
+      bool multipleWeb = false;
+      for (Website i in vc.websites) {
+        if (multipleWeb) {
+          websites = '$websites\n';
+        }
+        websites = '$websites    ${i.customLabel} number: ${i.url}';
+        multipleWeb = true;
+      }
+      // String pho = '';
+      // String fax = '';
+      // String ema = '';
+      // String org = '';
+      // String con = '';
+      // String sta = '';
+      // String cit = '';
+      // String zip = '';
+      // String str = '';
+      // String web = '';
+// accounts : {vc.accounts}//
+// events : ${vc.events}
+// groups : ${vc.groups}
+// id : ${vc.id}
+// isStarred : ${vc.isStarred}
+// isUnified : ${vc.isUnified}
+// name : ${vc.name}
+// notes : ${vc.notes}
+// photoFetched : ${vc.photoFetched}
+// photoOrThumbnail : ${vc.photoOrThumbnail}
+// propertiesFetched : ${vc.propertiesFetched}
+// socialMedias : ${vc.socialMedias}
+// thumbnail : ${vc.thumbnail}
+// thumbnailFetched : ${vc.thumbnailFetched}
+      formated = '''
+Name: $name
+Address: $addresses
+Email: $emails
+Organizations: $orgs
+Contact: $phones
+Websites : $websites
+''';
     }
     setState(() {});
     super.initState();
