@@ -3,6 +3,7 @@ import 'package:c_code/screens/info.dart';
 import 'package:c_code/screens/scan.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:contacts_service/contacts_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -40,6 +41,13 @@ class _HomeScreenState extends State<HomeScreen> {
     }
     return Scaffold(
       body: bodyWidget,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        backgroundColor: Theme.of(context).primaryColorDark,
+        onPressed: () {
+          ContactsService.openContactForm();
+        },
+      ),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Theme.of(context).primaryColor,
         unselectedItemColor: Colors.black,
