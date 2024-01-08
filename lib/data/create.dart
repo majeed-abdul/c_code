@@ -14,8 +14,8 @@ List<Item> creates = [
   Item(name: 'TEXT & URL', icon: Icons.text_snippet_outlined),
   Item(name: 'NUMBERS', icon: Icons.numbers_outlined),
   Item(name: 'WIFI', icon: Icons.wifi_rounded),
-  Item(name: 'V-CARD', icon: Icons.person_outline),
   Item(name: 'EMAIL', icon: Icons.email_outlined),
+  Item(name: 'V-CARD', icon: Icons.person_outline),
   Item(name: 'SMS', icon: Icons.sms_outlined),
 ];
 

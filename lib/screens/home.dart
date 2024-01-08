@@ -1,9 +1,10 @@
 import 'package:c_code/screens/create.dart';
 import 'package:c_code/screens/info.dart';
 import 'package:c_code/screens/scan.dart';
+import 'package:contacts_service/contacts_service.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:contacts_service/contacts_service.dart';
+// import 'package:contacts_service/contacts_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -42,10 +43,18 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: bodyWidget,
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        backgroundColor: Theme.of(context).primaryColorDark,
-        onPressed: () {
-          ContactsService.openContactForm();
+        child: const Icon(Icons.add),
+        // backgroundColor: Theme.of(context).primaryColorDark,
+        onPressed: () async {
+          // ContactsService.openContactForm();
+          await ContactsService.addContact(
+            Contact(
+              displayName: 'majeed',
+              phones: [
+                Item(label: 'mobile', value: '076434676'),
+              ],
+            ),
+          );
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
