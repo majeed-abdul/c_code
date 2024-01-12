@@ -320,6 +320,19 @@ Websites : $websites
   void _contact() async {
     // Contact contact = Contact.fromVCard('${widget.result.code}');
     // await contact.insert();
+    String word = '${widget.result.code}';
+    Contact vc = Contact.fromVCard(word);
+    String num = vc.phones[0].number;
+    if (num.isEmpty) {
+      showSnackBar(context, 'No number exists');
+    } else {
+      launchUrl(
+        Uri(
+          scheme: 'tel',
+          path: num,
+        ),
+      );
+    }
   }
 
   void _mail() async {
