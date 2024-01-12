@@ -3,8 +3,6 @@ import 'package:c_code/screens/info.dart';
 import 'package:c_code/screens/scan.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:io';
-import 'package:contacts_service/contacts_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -42,38 +40,39 @@ class _HomeScreenState extends State<HomeScreen> {
     }
     return Scaffold(
       body: bodyWidget,
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        // backgroundColor: Theme.of(context).primaryColorDark,
-        onPressed: () {
-          // ContactsService.openContactForm();1
+      // floatingActionButton: FloatingActionButton(
+      //   child: const Icon(Icons.add),
+      //   // backgroundColor: Theme.of(context).primaryColorDark,
+      //   onPressed: () {
+      //     // ContactsService.openContactForm();1
 
-          // await ContactsService.addContact(
-          //   Contact(
-          //     displayName: 'majeed',
-          //     phones: [
-          //       Item(label: 'mobile', value: '076434676'),
-          //     ],
-          //   ),
-          // );2
+      //     // await ContactsService.addContact(
+      //     //   Contact(
+      //     //     displayName: 'majeed',
+      //     //     phones: [
+      //     //       Item(label: 'mobile', value: '076434676'),
+      //     //     ],
+      //     //   ),
+      //     // );2
 
-          //         if (Platform.isAndroid) {
-          // final AndroidIntent intent = AndroidIntent(
-          //   action: 'ContactsContract.Intents.Insert.ACTION',
-          //   category: 'ContactsContract.RawContacts.CONTENT_TYPE',
-          // );
-          // await intent.launch();
-          //} 3
-          ContactsService.openExistingContact(
-            Contact(
-              displayName: 'aaaa',
-              phones: [
-                Item(label: 'Mobile', value: '097643'),
-              ],
-            ),
-          ).then((value) => print('======= tappp'));
-        },
-      ),
+      //     //         if (Platform.isAndroid) {
+      //     // final AndroidIntent intent = AndroidIntent(
+      //     //   action: 'ContactsContract.Intents.Insert.ACTION',
+      //     //   category: 'ContactsContract.RawContacts.CONTENT_TYPE',
+      //     // );
+      //     // await intent.launch();
+      //     //} 3
+
+      //     // ContactsService.openExistingContact(
+      //     //   Contact(
+      //     //     displayName: 'aaaa',
+      //     //     phones: [
+      //     //       Item(label: 'Mobile', value: '097643'),
+      //     //     ],
+      //     //   ),
+      //     // ).then((value) => print('======= tappp'));4
+      //   },
+      // ),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Theme.of(context).primaryColor,
         unselectedItemColor: Colors.black,
