@@ -114,20 +114,6 @@ Hidden : $hidd''';
       for (Website i in vc.websites) {
         websites = '$websites\n    ${i.customLabel} number: ${i.url}';
       }
-// accounts : {vc.accounts}//
-// events : ${vc.events}
-// groups : ${vc.groups}
-// id : ${vc.id}
-// isStarred : ${vc.isStarred}
-// isUnified : ${vc.isUnified}
-// name : ${vc.name}
-// notes : ${vc.notes}
-// photoFetched : ${vc.photoFetched}
-// photoOrThumbnail : ${vc.photoOrThumbnail}
-// propertiesFetched : ${vc.propertiesFetched}
-// socialMedias : ${vc.socialMedias}
-// thumbnail : ${vc.thumbnail}
-// thumbnailFetched : ${vc.thumbnailFetched}
       formated = '''Name: $name
 Address: $addresses
 Email: $emails
