@@ -47,8 +47,7 @@ class _ResultScreenState extends State<ResultScreen> {
             : word.indexOf(';'),
         word.indexOf(';', word.toUpperCase().indexOf('H:') + 1),
       );
-      formated = '''
-Name : $name
+      formated = '''Name : $name
 Password : ${encr.toUpperCase() == "NOPASS" ? '' : pass}
 Encryption : ${encr.toUpperCase() == "NOPASS" ? 'None' : encr}
 Hidden : $hidd''';
