@@ -128,8 +128,7 @@ Hidden : $hidd''';
 // socialMedias : ${vc.socialMedias}
 // thumbnail : ${vc.thumbnail}
 // thumbnailFetched : ${vc.thumbnailFetched}
-      formated = '''
-Name: $name
+      formated = '''Name: $name
 Address: $addresses
 Email: $emails
 Organizations: $orgs
