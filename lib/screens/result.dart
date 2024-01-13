@@ -94,50 +94,25 @@ Hidden : $hidd''';
     if (isVCard()) {
       Contact vc = Contact.fromVCard(word);
       String name = vc.displayName;
-      String addresses = '\n';
-      bool multipleAddresses = false;
+      String addresses = '';
       for (Address i in vc.addresses) {
-        if (multipleAddresses) {
-          addresses = '$addresses\n';
-        }
-        addresses = '$addresses    ${i.label.name} address :  ${i.address}';
-        multipleAddresses = true;
+        addresses = '$addresses\n    ${i.label.name} address :  ${i.address}';
       }
-      String emails = '\n';
-      bool multipleEmails = false;
+      String emails = '';
       for (Email i in vc.emails) {
-        if (multipleEmails) {
-          emails = '$emails\n';
-        }
         emails = '$emails    ${i.label.name} email :  ${i.address}';
-        multipleEmails = true;
       }
-      String orgs = '\n';
-      bool multipleOrgs = false;
+      String orgs = '';
       for (Organization i in vc.organizations) {
-        if (multipleOrgs) {
-          orgs = '$orgs\n';
-        }
-        orgs = '$orgs    ${i.company}, Job: ${i.title}';
-        multipleOrgs = true;
+        orgs = '$orgs\n    ${i.company}, Job: ${i.title}';
       }
-      String phones = '\n';
-      bool multiplePhone = false;
+      String phones = '';
       for (Phone i in vc.phones) {
-        if (multiplePhone) {
-          phones = '$phones\n';
-        }
-        phones = '$phones    ${i.label.name} number: ${i.number}';
-        multiplePhone = true;
+        phones = '$phones\n    ${i.label.name} number: ${i.number}';
       }
-      String websites = '\n';
-      bool multipleWeb = false;
+      String websites = '';
       for (Website i in vc.websites) {
-        if (multipleWeb) {
-          websites = '$websites\n';
-        }
-        websites = '$websites    ${i.customLabel} number: ${i.url}';
-        multipleWeb = true;
+        websites = '$websites\n    ${i.customLabel} number: ${i.url}';
       }
 // accounts : {vc.accounts}//
 // events : ${vc.events}
@@ -159,8 +134,7 @@ Address: $addresses
 Email: $emails
 Organizations: $orgs
 Contact: $phones
-Websites : $websites
-''';
+Websites : $websites''';
     }
     setState(() {});
     super.initState();
@@ -242,9 +216,7 @@ Websites : $websites
     if (isVCard()) {
       w = Column(
         children: [
-          customButton(
-              onPress: () => _contact(),
-              icon: Icons.contact_emergency_outlined),
+          customButton(onPress: () => _contact(), icon: Icons.call),
           const Text('V-Card', textAlign: TextAlign.center),
         ],
       );
