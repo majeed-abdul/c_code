@@ -47,8 +47,7 @@ class _ResultScreenState extends State<ResultScreen> {
             : word.indexOf(';'),
         word.indexOf(';', word.toUpperCase().indexOf('H:') + 1),
       );
-      formated = '''
-Name : $name
+      formated = '''Name : $name
 Password : ${encr.toUpperCase() == "NOPASS" ? '' : pass}
 Encryption : ${encr.toUpperCase() == "NOPASS" ? 'None' : encr}
 Hidden : $hidd''';
@@ -114,22 +113,7 @@ Hidden : $hidd''';
       for (Website i in vc.websites) {
         websites = '$websites\n    ${i.customLabel} number: ${i.url}';
       }
-// accounts : {vc.accounts}//
-// events : ${vc.events}
-// groups : ${vc.groups}
-// id : ${vc.id}
-// isStarred : ${vc.isStarred}
-// isUnified : ${vc.isUnified}
-// name : ${vc.name}
-// notes : ${vc.notes}
-// photoFetched : ${vc.photoFetched}
-// photoOrThumbnail : ${vc.photoOrThumbnail}
-// propertiesFetched : ${vc.propertiesFetched}
-// socialMedias : ${vc.socialMedias}
-// thumbnail : ${vc.thumbnail}
-// thumbnailFetched : ${vc.thumbnailFetched}
-      formated = '''
-Name: $name
+      formated = '''Name: $name
 Address: $addresses
 Email: $emails
 Organizations: $orgs
