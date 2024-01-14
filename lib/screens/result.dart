@@ -49,7 +49,7 @@ class _ResultScreenState extends State<ResultScreen> {
         word.indexOf(';', word.toUpperCase().indexOf('H:') + 1),
       );
       formated = '''Name : $name
-Password : ${encr.toUpperCase() == "NOPASS" ? '' : pass}
+Password : ${encr.toUpperCase() == "NOPASS" ? '' : '*' * pass.length}
 Encryption : ${encr.toUpperCase() == "NOPASS" ? 'None' : encr}
 Hidden : $hidd''';
     }
@@ -367,16 +367,35 @@ Websites : $websites''';
   void _wifiConect() async {
     String word = '${widget.result.code}';
     try {
-      // Obtain SSID and password from user input or any other source
-      String ssid = '723129';
-      String password = '12341234';
-      // );
+      String ssid = word.substring(
+        word.toUpperCase().indexOf('S:') + 2,
+        word.indexOf(';', word.toUpperCase().indexOf('S:') + 1),
+      );
+      String password = word.substring(
+        word.toUpperCase().indexOf('P:') + 2,
+        word.indexOf(';', word.toUpperCase().indexOf('P:') + 1),
+      );
+      String security = word.substring(
+        word.toUpperCase().indexOf('T:') + 2,
+        word.indexOf(';', word.toUpperCase().indexOf('T:') + 1),
+      );
+      String hidden = word.substring(
+        word.toUpperCase().contains('H:')
+            ? word.toUpperCase().indexOf('H:') + 2
+            : word.indexOf(';'),
+        word.indexOf(';', word.toUpperCase().indexOf('H:') + 1),
+      );
       await WiFiForIoTPlugin.registerWifiNetwork(
         ssid,
-        password: password, ///////////   ✅ WIFI REGISTER TESTING ✅
-        security: NetworkSecurity.WPA,
+        password: password,
+        security: security.toUpperCase() == "WPA"
+            ? NetworkSecurity.WPA
+            : security.toUpperCase() == "WEP"
+                ? NetworkSecurity.WEP
+                : NetworkSecurity.NONE,
+        isHidden: hidden.toUpperCase() == 'TRUE',
       );
-      // print('Connected to Wi-Fi: $ssid');
+      print('Connected to Wi-Fi: $ssid');
     } catch (e) {
       print('Error connecting to Wi-Fi: $e');
     }
