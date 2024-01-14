@@ -3,6 +3,7 @@ import 'package:c_code/screens/info.dart';
 import 'package:c_code/screens/scan.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wifi_iot/wifi_iot.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -74,7 +75,30 @@ class _HomeScreenState extends State<HomeScreen> {
       //   },
       // ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () async {
+          try {
+            // Obtain SSID and password from user input or any other source
+            String ssid = 'www';
+            String password = '12345678';
+
+            // Connect to the Wi-Fi network
+            // await WiFiForIoTPlugin.connect(
+            //   ssid,
+            //   password: password,
+            //   security: NetworkSecurity.WPA,
+            //   joinOnce: false,
+
+            // );
+            await WiFiForIoTPlugin.registerWifiNetwork(
+              ssid,
+              password: password,
+              security: NetworkSecurity.WPA,
+            );
+            // print('Connected to Wi-Fi: $ssid');
+          } catch (e) {
+            print('Error connecting to Wi-Fi: $e');
+          }
+        },
         child: const Icon(Icons.connect_without_contact_outlined),
       ),
       bottomNavigationBar: BottomNavigationBar(
