@@ -73,6 +73,10 @@ class _HomeScreenState extends State<HomeScreen> {
       //     // ).then((value) => print('======= tappp'));4
       //   },
       // ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.connect_without_contact_outlined),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Theme.of(context).primaryColor,
         unselectedItemColor: Colors.black,
