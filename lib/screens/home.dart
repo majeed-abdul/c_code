@@ -74,33 +74,25 @@ class _HomeScreenState extends State<HomeScreen> {
       //     // ).then((value) => print('======= tappp'));4
       //   },
       // ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          try {
-            // Obtain SSID and password from user input or any other source
-            String ssid = '723129';
-            String password = '12341234';
-
-            // Connect to the Wi-Fi network
-            // await WiFiForIoTPlugin.connect(
-            //   ssid,
-            //   password: password,
-            //   security: NetworkSecurity.WPA,
-            //   joinOnce: false,
-
-            // );
-            await WiFiForIoTPlugin.registerWifiNetwork(
-              ssid,
-              password: password,
-              security: NetworkSecurity.WPA,
-            );
-            // print('Connected to Wi-Fi: $ssid');
-          } catch (e) {
-            print('Error connecting to Wi-Fi: $e');
-          }
-        },
-        child: const Icon(Icons.connect_without_contact_outlined),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () async {
+      //     try {
+      //       // Obtain SSID and password from user input or any other source
+      //       String ssid = '723129';
+      //       String password = '12341234';
+      //       // );
+      //       await WiFiForIoTPlugin.registerWifiNetwork(
+      //         ssid,
+      //         password: password,///////////   ✅ WIFI REGISTER TESTING ✅
+      //         security: NetworkSecurity.WPA,
+      //       );
+      //       // print('Connected to Wi-Fi: $ssid');
+      //     } catch (e) {
+      //       print('Error connecting to Wi-Fi: $e');
+      //     }
+      //   },
+      //   child: const Icon(Icons.connect_without_contact_outlined),
+      // ),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Theme.of(context).primaryColor,
         unselectedItemColor: Colors.black,
