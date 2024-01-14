@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
+import 'package:wifi_iot/wifi_iot.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({super.key, required this.result});
@@ -230,6 +231,18 @@ Websites : $websites''';
       );
       text = false;
     }
+    if (isWiFi()) {
+      w = Column(
+        children: [
+          customButton(
+            onPress: () => _wifiConect(),
+            icon: Icons.sms_outlined,
+          ),
+          const Text('SMS', textAlign: TextAlign.center),
+        ],
+      );
+      text = false;
+    }
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -349,6 +362,24 @@ Websites : $websites''';
       ),
     );
     launchUrl(smsLaunchUri);
+  }
+
+  void _wifiConect() async {
+    String word = '${widget.result.code}';
+    try {
+      // Obtain SSID and password from user input or any other source
+      String ssid = '723129';
+      String password = '12341234';
+      // );
+      await WiFiForIoTPlugin.registerWifiNetwork(
+        ssid,
+        password: password, ///////////   ✅ WIFI REGISTER TESTING ✅
+        security: NetworkSecurity.WPA,
+      );
+      // print('Connected to Wi-Fi: $ssid');
+    } catch (e) {
+      print('Error connecting to Wi-Fi: $e');
+    }
   }
 
   bool isURL() {
