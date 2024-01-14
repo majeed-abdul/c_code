@@ -78,8 +78,8 @@ class _HomeScreenState extends State<HomeScreen> {
         onPressed: () async {
           try {
             // Obtain SSID and password from user input or any other source
-            String ssid = 'www';
-            String password = '12345678';
+            String ssid = '723129';
+            String password = '12341234';
 
             // Connect to the Wi-Fi network
             // await WiFiForIoTPlugin.connect(
