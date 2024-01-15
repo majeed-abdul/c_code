@@ -379,12 +379,12 @@ Websites : $websites''';
       word.toUpperCase().indexOf('T:') + 2,
       word.indexOf(';', word.toUpperCase().indexOf('T:') + 1),
     );
-    String hidden = word.substring(
-      word.toUpperCase().contains('H:')
-          ? word.toUpperCase().indexOf('H:') + 2
-          : word.indexOf(';'),
-      word.indexOf(';', word.toUpperCase().indexOf('H:') + 1),
-    );
+    // String hidden = word.substring(
+    //   word.toUpperCase().contains('H:')
+    //       ? word.toUpperCase().indexOf('H:') + 2
+    //       : word.indexOf(';'),
+    //   word.indexOf(';', word.toUpperCase().indexOf('H:') + 1),
+    // );
     try {
       await WifiConnector.connectToWifi(
         ssid: ssid,
@@ -403,6 +403,7 @@ Websites : $websites''';
       //   isHidden: hidden.toUpperCase() == 'TRUE',
       // );
     } catch (e) {
+      // ignore: use_build_context_synchronously
       showSnackBar(context, e.toString());
     }
   }
