@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:wifi_iot/wifi_iot.dart';
+import 'package:wifi_connector/wifi_connector.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({super.key, required this.result});
@@ -378,22 +379,33 @@ Websites : $websites''';
       word.toUpperCase().indexOf('T:') + 2,
       word.indexOf(';', word.toUpperCase().indexOf('T:') + 1),
     );
-    String hidden = word.substring(
-      word.toUpperCase().contains('H:')
-          ? word.toUpperCase().indexOf('H:') + 2
-          : word.indexOf(';'),
-      word.indexOf(';', word.toUpperCase().indexOf('H:') + 1),
-    );
-    await WiFiForIoTPlugin.registerWifiNetwork(
-      ssid,
-      password: password,
-      security: security.toUpperCase() == "WPA"
-          ? NetworkSecurity.WPA
-          : security.toUpperCase() == "WEP"
-              ? NetworkSecurity.WEP
-              : NetworkSecurity.NONE,
-      isHidden: hidden.toUpperCase() == 'TRUE',
-    );
+    // String hidden = word.substring(
+    //   word.toUpperCase().contains('H:')
+    //       ? word.toUpperCase().indexOf('H:') + 2
+    //       : word.indexOf(';'),
+    //   word.indexOf(';', word.toUpperCase().indexOf('H:') + 1),
+    // );
+    try {
+      await WifiConnector.connectToWifi(
+        ssid: ssid,
+        password: password,
+        isWEP: security.toUpperCase() == 'WEP',
+      );
+
+      // await WiFiForIoTPlugin.registerWifiNetwork(
+      //   ssid,
+      //   password: password,
+      //   security: security.toUpperCase() == "WPA"
+      //       ? NetworkSecurity.WPA
+      //       : security.toUpperCase() == "WEP"
+      //           ? NetworkSecurity.WEP
+      //           : NetworkSecurity.NONE,
+      //   isHidden: hidden.toUpperCase() == 'TRUE',
+      // );
+    } catch (e) {
+      // ignore: use_build_context_synchronously
+      showSnackBar(context, e.toString());
+    }
   }
 
   bool isURL() {
