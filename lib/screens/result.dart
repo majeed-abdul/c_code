@@ -384,16 +384,20 @@ Websites : $websites''';
           : word.indexOf(';'),
       word.indexOf(';', word.toUpperCase().indexOf('H:') + 1),
     );
-    await WiFiForIoTPlugin.registerWifiNetwork(
-      ssid,
-      password: password,
-      security: security.toUpperCase() == "WPA"
-          ? NetworkSecurity.WPA
-          : security.toUpperCase() == "WEP"
-              ? NetworkSecurity.WEP
-              : NetworkSecurity.NONE,
-      isHidden: hidden.toUpperCase() == 'TRUE',
-    );
+    try {
+      await WiFiForIoTPlugin.registerWifiNetwork(
+        ssid,
+        password: password,
+        security: security.toUpperCase() == "WPA"
+            ? NetworkSecurity.WPA
+            : security.toUpperCase() == "WEP"
+                ? NetworkSecurity.WEP
+                : NetworkSecurity.NONE,
+        isHidden: hidden.toUpperCase() == 'TRUE',
+      );
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
   }
 
   bool isURL() {
