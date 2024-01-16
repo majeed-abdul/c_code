@@ -92,6 +92,28 @@ class _HomeScreenState extends State<HomeScreen> {
       //   },
       //   child: const Icon(Icons.connect_without_contact_outlined),
       // ), 4
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        void connectionTest() async {
+          String ssid = '';
+          String password = '';
+          if (ssid.isEmpty) {
+            throw ("SSID can't be empty");
+          }
+          if (password.isEmpty) {
+            throw ("Password can't be empty");
+          }
+          debugPrint('Ssid: $ssid, Password: $password');
+
+          ///Return boolean value
+          ///If true then connection is success
+          ///If false then connection failed due to authentication
+          var result =
+              await AndroidFlutterWifi.connectToNetwork(ssid, password);
+
+          debugPrint(
+              '---------Connection result-----------: ${result.toString()}');
+        }
+      }),
 
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Theme.of(context).primaryColor,
