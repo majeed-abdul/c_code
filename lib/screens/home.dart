@@ -91,7 +91,8 @@ class _HomeScreenState extends State<HomeScreen> {
       //     }
       //   },
       //   child: const Icon(Icons.connect_without_contact_outlined),
-      // ),
+      // ), 4
+
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Theme.of(context).primaryColor,
         unselectedItemColor: Colors.black,
