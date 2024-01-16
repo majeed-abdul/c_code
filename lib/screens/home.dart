@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
       //     //       Item(label: 'mobile', value: '076434676'),
       //     //     ],
       //     //   ),
-      //     // );2
+      //     // );//2
 
       //     //         if (Platform.isAndroid) {
       //     // final AndroidIntent intent = AndroidIntent(
@@ -61,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
       //     //   category: 'ContactsContract.RawContacts.CONTENT_TYPE',
       //     // );
       //     // await intent.launch();
-      //     //} 3
+      //     //} //3
 
       //     // ContactsService.openExistingContact(
       //     //   Contact(
@@ -91,29 +91,27 @@ class _HomeScreenState extends State<HomeScreen> {
       //     }
       //   },
       //   child: const Icon(Icons.connect_without_contact_outlined),
-      // ), 4
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        void connectionTest() async {
-          String ssid = '';
-          String password = '';
-          if (ssid.isEmpty) {
-            throw ("SSID can't be empty");
-          }
-          if (password.isEmpty) {
-            throw ("Password can't be empty");
-          }
-          debugPrint('Ssid: $ssid, Password: $password');
+      // ),// 4
+      // floatingActionButton: FloatingActionButton(onPressed: () async {
+      //   await Permission.nearbyWifiDevices.request();
+      //   String ssid = '7237';
+      //   String password = '12341234';
+      //   if (ssid.isEmpty) {
+      //     throw ("SSID can't be empty");
+      //   }
+      //   if (password.isEmpty) {
+      //     throw ("Password can't be empty");
+      //   }
+      //   debugPrint('Ssid: $ssid, Password: $password');
 
-          ///Return boolean value
-          ///If true then connection is success
-          ///If false then connection failed due to authentication
-          var result =
-              await AndroidFlutterWifi.connectToNetwork(ssid, password);
+      //   ///Return boolean value
+      //   ///If true then connection is success
+      //   ///If false then connection failed due to authentication
+      //   var result = await AndroidFlutterWifi.connectToNetwork(ssid, password);
 
-          debugPrint(
-              '---------Connection result-----------: ${result.toString()}');
-        }
-      }),
+      //   debugPrint(
+      //       '---------Connection result-----------: ${result.toString()}');
+      // }),//.. 5
 
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Theme.of(context).primaryColor,

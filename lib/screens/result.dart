@@ -50,10 +50,10 @@ class _ResultScreenState extends State<ResultScreen> {
         word.indexOf(';', word.toUpperCase().indexOf('H:') + 1),
       );
       formated = '''Name : $name
-Password : ${encr.toUpperCase() == "NOPASS" ? '' : '*' * pass.length}
+Password : ${encr.toUpperCase() == "NOPASS" ? '' : pass}
 Encryption : ${encr.toUpperCase() == "NOPASS" ? 'None' : encr}
 Hidden : $hidd''';
-    }
+    } //'*' * pass.length
     if (isEmail()) {
       String email = word.toUpperCase().startsWith('MAILTO:')
           ? word.substring(
@@ -404,7 +404,7 @@ Websites : $websites''';
       );
     } catch (e) {
       // ignore: use_build_context_synchronously
-      showSnackBar(context, e.toString());
+      showSnackBar(context, 'Try ti connect Manually\n ($e)');
     }
   }
 

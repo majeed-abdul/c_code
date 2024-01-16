@@ -4,6 +4,7 @@ import 'package:c_code/widgets/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class InfoScreen extends StatefulWidget {
   const InfoScreen({Key? key}) : super(key: key);
@@ -83,7 +84,12 @@ class _InfoScreenState extends State<InfoScreen> {
               Center(
                 child: InkWell(
                   borderRadius: BorderRadius.circular(30),
-                  onTap: () {},
+                  onTap: () async {
+                    Uri url = Uri.parse(
+                      'https://qrscancreate.blogspot.com/2024/01/privacy-policy-for-qr-scancreate.html',
+                    );
+                    launchUrl(url, mode: LaunchMode.externalApplication);
+                  },
                   child: const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 15, vertical: 11),
                     child: Text(
