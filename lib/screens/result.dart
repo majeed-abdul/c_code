@@ -140,6 +140,7 @@ Websites : $websites''';
         child: const Icon(Icons.qr_code_scanner_outlined, size: 30),
       ),
       body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         controller: scrollCon,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
