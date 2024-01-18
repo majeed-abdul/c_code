@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:wifi_iot/wifi_iot.dart';
-import 'package:wifi_connector/wifi_connector.dart';
+// import 'package:wifi_iot/wifi_iot.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({super.key, required this.result});
@@ -50,10 +50,10 @@ class _ResultScreenState extends State<ResultScreen> {
         word.indexOf(';', word.toUpperCase().indexOf('H:') + 1),
       );
       formated = '''Name : $name
-Password : ${encr.toUpperCase() == "NOPASS" ? '' : '*' * pass.length}
+Password : ${encr.toUpperCase() == "NOPASS" ? '' : pass}
 Encryption : ${encr.toUpperCase() == "NOPASS" ? 'None' : encr}
 Hidden : $hidd''';
-    }
+    } //'*' * pass.length
     if (isEmail()) {
       String email = word.toUpperCase().startsWith('MAILTO:')
           ? word.substring(
@@ -379,32 +379,32 @@ Websites : $websites''';
       word.toUpperCase().indexOf('T:') + 2,
       word.indexOf(';', word.toUpperCase().indexOf('T:') + 1),
     );
-    // String hidden = word.substring(
-    //   word.toUpperCase().contains('H:')
-    //       ? word.toUpperCase().indexOf('H:') + 2
-    //       : word.indexOf(';'),
-    //   word.indexOf(';', word.toUpperCase().indexOf('H:') + 1),
-    // );
+    String hidden = word.substring(
+      word.toUpperCase().contains('H:')
+          ? word.toUpperCase().indexOf('H:') + 2
+          : word.indexOf(';'),
+      word.indexOf(';', word.toUpperCase().indexOf('H:') + 1),
+    );
     try {
-      await WifiConnector.connectToWifi(
-        ssid: ssid,
-        password: password,
-        isWEP: security.toUpperCase() == 'WEP',
-      );
-
-      // await WiFiForIoTPlugin.registerWifiNetwork(
-      //   ssid,
+      // await WifiConnector.connectToWifi(
+      //   ssid: ssid,
       //   password: password,
-      //   security: security.toUpperCase() == "WPA"
-      //       ? NetworkSecurity.WPA
-      //       : security.toUpperCase() == "WEP"
-      //           ? NetworkSecurity.WEP
-      //           : NetworkSecurity.NONE,
-      //   isHidden: hidden.toUpperCase() == 'TRUE',
+      //   isWEP: security.toUpperCase() == 'WEP',      TEST
       // );
+
+      await WiFiForIoTPlugin.registerWifiNetwork(
+        ssid,
+        password: password,
+        security: security.toUpperCase() == "WPA"
+            ? NetworkSecurity.WPA
+            : security.toUpperCase() == "WEP"
+                ? NetworkSecurity.WEP
+                : NetworkSecurity.NONE,
+        isHidden: hidden.toUpperCase() == 'TRUE',
+      );
     } catch (e) {
       // ignore: use_build_context_synchronously
-      showSnackBar(context, e.toString());
+      showSnackBar(context, 'Try ti connect Manually\n ($e)');
     }
   }
 

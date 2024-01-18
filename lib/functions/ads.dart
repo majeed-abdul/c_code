@@ -170,5 +170,5 @@ void showThankYouPopup(BuildContext context) {
 
 int _getR7() {
   Random random = Random();
-  return random.nextInt(7) + 1;
+  return random.nextInt(5) + 1;
 }
