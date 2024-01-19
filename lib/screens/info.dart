@@ -33,8 +33,8 @@ class _InfoScreenState extends State<InfoScreen> {
   }
 
   String? _home;
-  String? appName;
-  String? version;
+  // String? appName;
+  // String? version;
 
   @override
   Widget build(BuildContext context) {
