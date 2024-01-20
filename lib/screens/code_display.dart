@@ -197,10 +197,10 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
       image,
       widget.barCode,
       widget.data,
-      height: 823, //  899 insted of 900 for 42 px even padding across 4 sides
-      width: 823, //  1000-(50*2)-1
-      x: 100,
-      y: 100,
+      height: 871, //  899 insted of 900 for 76 px even padding across 4 sides
+      width: 871, //  1000-(76*2)-1
+      x: 76,
+      y: 76,
     );
     final png = img.encodePng(image);
     ImageGallerySaver.saveImage(png);
