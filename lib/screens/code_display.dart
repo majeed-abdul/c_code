@@ -197,8 +197,8 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
       image,
       widget.barCode,
       widget.data,
-      height: 871, //  899 insted of 900 for 76 px even padding across 4 sides
-      width: 871, //  1000-(76*2)-1
+      height: 871, //  871 insted of 872 for 76 px even padding across 4 sides
+      width: 871, //  1024-(76*2)-1
       x: 76,
       y: 76,
     );
