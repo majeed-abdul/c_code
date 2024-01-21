@@ -2,7 +2,7 @@ import 'package:c_code/functions/ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:c_code/widgets/loader.dart';
 import 'package:flutter/material.dart';
-import 'package:package_info_plus/package_info_plus.dart';
+// import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -24,17 +24,17 @@ class _InfoScreenState extends State<InfoScreen> {
         _home = 'Create';
       }
     });
-    PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
-      appName = packageInfo.appName;
-      version = packageInfo.version;
-      setState(() {});
-    });
+    // PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
+    //   appName = packageInfo.appName;
+    //   version = packageInfo.version;
+    //   setState(() {});
+    // });
     super.initState();
   }
 
   String? _home;
-  String? appName;
-  String? version;
+  // String? appName;
+  // String? version;
 
   @override
   Widget build(BuildContext context) {
@@ -48,12 +48,12 @@ class _InfoScreenState extends State<InfoScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Divider(),
-              const Text('  App', style: TextStyle(color: Colors.black54)),
-              ListTile(
-                title: Text(appName ?? 'null'),
-                subtitle: Text('version: $version'),
-                leading: const Icon(Icons.adb, size: 40),
-              ),
+              // const Text('  App', style: TextStyle(color: Colors.black54)),
+              // ListTile(
+              //   title: Text(appName ?? 'null'),
+              //   subtitle: Text('version: $version'),
+              //   leading: const Icon(Icons.adb, size: 40),
+              // ),
               const Divider(),
               const Text('  Setting', style: TextStyle(color: Colors.black54)),
               ListTile(
