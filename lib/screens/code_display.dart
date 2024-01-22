@@ -182,7 +182,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
   }
 
   Widget _onError(String message) {
-    setState(() => error = true);
+    error = true;
     return Text(
       message.substring(message.indexOf('Barcode, '), message.length - 1),
     );
