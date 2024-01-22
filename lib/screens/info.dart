@@ -47,7 +47,7 @@ class _InfoScreenState extends State<InfoScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Divider(),
+              // const Divider(),
               // const Text('  App', style: TextStyle(color: Colors.black54)),
               // ListTile(
               //   title: Text(appName ?? 'null'),

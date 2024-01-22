@@ -9,7 +9,7 @@ Widget dropDown({
   String? hint,
 }) {
   return entryBar(
-    text: '$text :',
+    text: text,
     child: Container(
       padding: const EdgeInsets.symmetric(horizontal: 5),
       decoration: BoxDecoration(

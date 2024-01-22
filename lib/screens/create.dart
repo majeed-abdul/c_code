@@ -160,7 +160,11 @@ class _CreateScreenState extends State<CreateScreen> {
               visible: isMore,
               child: dropDown(
                 items: numberBarcodes.keys.toList(),
-                onChanged: (v) => setState(() => dropDownValueTypeNum = v),
+                onChanged: (v) {
+                  dropDownValueTypeNum = v;
+                  selectedCodeType = numberBarcodes[v] ?? Barcode.qrCode();
+                  setState(() {});
+                },
                 dropDownValue: dropDownValueTypeNum,
                 text: 'Type',
               ),
@@ -653,6 +657,7 @@ class _CreateScreenState extends State<CreateScreen> {
           selected: index == selected,
           onTap: () {
             clearControllers();
+            dropDownValueType = 'QR Code';
             selected = index;
             setState(() {});
           },
@@ -668,6 +673,7 @@ class _CreateScreenState extends State<CreateScreen> {
 
   clearControllers() {
     FocusScope.of(context).unfocus(); //  For Keyboard Dismis
+    selectedCodeType = Barcode.qrCode(); //defasult value
     dropDownValueType = textBarcodes.keys.first;
     finalWords = null;
     isMore = false;
