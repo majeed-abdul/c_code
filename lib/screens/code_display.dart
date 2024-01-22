@@ -26,6 +26,7 @@ class CodeDisplayScreen extends StatefulWidget {
 class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
   bool saved = false;
   bool support = false;
+  bool error = false;
 
   @override
   Widget build(BuildContext context) {
@@ -181,6 +182,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
   }
 
   Widget _onError(String message) {
+    setState(() => error = true);
     return Text(
       message.substring(message.indexOf('Barcode, '), message.length - 1),
     );
@@ -189,6 +191,10 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
   void saveit() {
     if (saved) {
       showSnackBar(context, 'Image Already Saved.');
+      return;
+    }
+    if (error) {
+      showSnackBar(context, 'No code Generated.');
       return;
     }
     final image = img.Image(width: 1024, height: 1024);
