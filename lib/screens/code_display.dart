@@ -169,16 +169,22 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
 //
 
   Widget displayOutputCode(BuildContext context) {
-    return BarcodeWidget(
-      height: MediaQuery.of(context).size.width <=
-              MediaQuery.of(context).size.height
-          ? MediaQuery.of(context).size.width - 80 // (40*2)  portrait
-          : MediaQuery.of(context).size.height - 160, // (40*2)+24+56
-      data: widget.data,
-      barcode: widget.barCode,
-      margin: const EdgeInsets.all(40),
-      errorBuilder: (context, error) => _onError(error),
-    );
+    late String e;
+    try {
+      return BarcodeWidget(
+        height: MediaQuery.of(context).size.width <=
+                MediaQuery.of(context).size.height
+            ? MediaQuery.of(context).size.width - 80 // (40*2)  portrait
+            : MediaQuery.of(context).size.height - 160, // (40*2)+24+56
+        data: widget.data,
+        barcode: widget.barCode,
+        margin: const EdgeInsets.all(40),
+        errorBuilder: (context, error) => _onError(error),
+      );
+    } catch (er) {
+      e = er.toString();
+    }
+    return _onError(e);
   }
 
   Widget _onError(String message) {
