@@ -26,6 +26,7 @@ class CodeDisplayScreen extends StatefulWidget {
 class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
   bool saved = false;
   bool support = false;
+  bool error = false;
 
   @override
   Widget build(BuildContext context) {
@@ -168,19 +169,26 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
 //
 
   Widget displayOutputCode(BuildContext context) {
-    return BarcodeWidget(
-      height: MediaQuery.of(context).size.width <=
-              MediaQuery.of(context).size.height
-          ? MediaQuery.of(context).size.width - 80 // (40*2)  portrait
-          : MediaQuery.of(context).size.height - 160, // (40*2)+24+56
-      data: widget.data,
-      barcode: widget.barCode,
-      margin: const EdgeInsets.all(40),
-      errorBuilder: (context, error) => _onError(error),
-    );
+    late String e;
+    try {
+      return BarcodeWidget(
+        height: MediaQuery.of(context).size.width <=
+                MediaQuery.of(context).size.height
+            ? MediaQuery.of(context).size.width - 80 // (40*2)  portrait
+            : MediaQuery.of(context).size.height - 160, // (40*2)+24+56
+        data: widget.data,
+        barcode: widget.barCode,
+        margin: const EdgeInsets.all(40),
+        errorBuilder: (context, error) => _onError(error),
+      );
+    } catch (er) {
+      e = er.toString();
+    }
+    return _onError(e);
   }
 
   Widget _onError(String message) {
+    error = true;
     return Text(
       message.substring(message.indexOf('Barcode, '), message.length - 1),
     );
@@ -191,14 +199,18 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
       showSnackBar(context, 'Image Already Saved.');
       return;
     }
+    if (error) {
+      showSnackBar(context, 'No code Generated.');
+      return;
+    }
     final image = img.Image(width: 1024, height: 1024);
     fill(image, color: ColorRgb8(255, 255, 255));
     drawBarcode(
       image,
       widget.barCode,
       widget.data,
-      height: 871, //  899 insted of 900 for 76 px even padding across 4 sides
-      width: 871, //  1000-(76*2)-1
+      height: 871, //  871 insted of 872 for 76 px even padding across 4 sides
+      width: 871, //  1024-(76*2)-1
       x: 76,
       y: 76,
     );

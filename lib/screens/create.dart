@@ -160,7 +160,11 @@ class _CreateScreenState extends State<CreateScreen> {
               visible: isMore,
               child: dropDown(
                 items: numberBarcodes.keys.toList(),
-                onChanged: (v) => setState(() => dropDownValueTypeNum = v),
+                onChanged: (v) {
+                  dropDownValueTypeNum = v;
+                  selectedCodeType = numberBarcodes[v] ?? Barcode.qrCode();
+                  setState(() {});
+                },
                 dropDownValue: dropDownValueTypeNum,
                 text: 'Type',
               ),
@@ -564,6 +568,21 @@ class _CreateScreenState extends State<CreateScreen> {
               } else {
                 isNumber(numberCon.text) ? null : throw 'Invalid Number';
               }
+              if (selectedCodeType == Barcode.ean5()) {
+                numberCon.text.length == 5
+                    ? null
+                    : throw 'Number is not 5 digit';
+              }
+              if (selectedCodeType == Barcode.ean2()) {
+                numberCon.text.length == 2
+                    ? null
+                    : throw 'Number is not 2 digit';
+              }
+              if (selectedCodeType == Barcode.ean8()) {
+                numberCon.text.length == 8
+                    ? null
+                    : throw 'Number is not 8 digit';
+              }
               break;
             case 2: ////////////// WIFi
               if (wiFiNamCon.text.isEmpty) {
@@ -653,6 +672,7 @@ class _CreateScreenState extends State<CreateScreen> {
           selected: index == selected,
           onTap: () {
             clearControllers();
+            dropDownValueType = 'QR Code';
             selected = index;
             setState(() {});
           },
@@ -668,6 +688,7 @@ class _CreateScreenState extends State<CreateScreen> {
 
   clearControllers() {
     FocusScope.of(context).unfocus(); //  For Keyboard Dismis
+    selectedCodeType = Barcode.qrCode(); //defasult value
     dropDownValueType = textBarcodes.keys.first;
     finalWords = null;
     isMore = false;

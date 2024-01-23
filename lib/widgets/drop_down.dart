@@ -1,25 +1,16 @@
+import 'package:c_code/widgets/text_field.dart';
 import 'package:flutter/material.dart';
 
-ListTile dropDown({
+Widget dropDown({
   required List<String> items,
   required void Function(String?)? onChanged,
   String? dropDownValue,
   String? text,
   String? hint,
 }) {
-  return ListTile(
-    contentPadding: const EdgeInsets.all(0),
-    minLeadingWidth: 60,
-    horizontalTitleGap: 0,
-    leading: Text(
-      '$text :',
-      style: const TextStyle(
-        fontWeight: FontWeight.bold,
-        fontSize: 16,
-        height: 1.5,
-      ),
-    ),
-    title: Container(
+  return entryBar(
+    text: text,
+    child: Container(
       padding: const EdgeInsets.symmetric(horizontal: 5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(6),
