@@ -32,6 +32,12 @@ class _InfoScreenState extends State<InfoScreen> {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    print('====disposed');
+    super.dispose();
+  }
+
   String? _home;
   // String? appName;
   // String? version;
