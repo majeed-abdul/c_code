@@ -30,7 +30,7 @@ class _InfoScreenState extends State<InfoScreen> {
     //   version = packageInfo.version;
     //   setState(() {});
     // });
-    print('===init');
+    // print('===init');
     context.read<AdLoader>().loaderOff();
   }
 
