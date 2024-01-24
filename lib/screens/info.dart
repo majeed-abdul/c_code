@@ -34,7 +34,7 @@ class _InfoScreenState extends State<InfoScreen> {
 
   @override
   void dispose() {
-    print('====disposed');
+    context.read<AdLoader>().loaderOff();
     super.dispose();
   }
 
