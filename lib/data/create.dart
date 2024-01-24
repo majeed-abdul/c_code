@@ -41,13 +41,11 @@ Map<String, Barcode> numberBarcodes = {
   'ISBN': Barcode.isbn(),
   'ITF': Barcode.itf(),
   'upc A': Barcode.upcA(),
-  'upc E': Barcode.upcE(),
 };
 // REMOVED ONES
 // Text
   // 'GS 128': Barcode.gs128(),
 // Number
-  // 'QR Code': Barcode.qrCode(),
   // 'Data Matrix': Barcode.dataMatrix(),
   // 'Aztec': Barcode.aztec(),
   // 'PDF 417': Barcode.pdf417(),
@@ -57,3 +55,4 @@ Map<String, Barcode> numberBarcodes = {
   // 'ITF 16': Barcode.itf16(),
   // 'RM4SSC': Barcode.rm4scc(),
   // 'Telepen': Barcode.telepen(),
+  // 'upc E': Barcode.upcE(),

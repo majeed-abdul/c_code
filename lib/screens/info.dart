@@ -16,6 +16,7 @@ class InfoScreen extends StatefulWidget {
 class _InfoScreenState extends State<InfoScreen> {
   @override
   void initState() {
+    super.initState();
     SharedPreferences.getInstance().then((pref) {
       int i = pref.getInt('home') ?? 0;
       if (i == 1) {
@@ -29,8 +30,22 @@ class _InfoScreenState extends State<InfoScreen> {
     //   version = packageInfo.version;
     //   setState(() {});
     // });
-    super.initState();
+    print('===init');
+    context.read<AdLoader>().loaderOff();
   }
+
+  // @override
+  // void dispose() {
+  //   print('===dispose');
+  //   context.read<AdLoader>().loaderOff();
+  //   super.dispose();
+  // }
+
+  // @override
+  // void didChangeDependencies() {
+  //   print('===didChange');
+  //   super.didChangeDependencies();
+  // }
 
   String? _home;
   // String? appName;
@@ -77,7 +92,9 @@ class _InfoScreenState extends State<InfoScreen> {
                 subtitle: const Text('Support us by watching Ads.'),
                 leading: const Icon(Icons.ads_click, size: 40),
                 trailing: const Icon(Icons.more_vert),
-                onTap: () => loadAndShowAd(context),
+                onTap: () {
+                  loadAndShowAd(context);
+                },
               ),
               const Divider(),
               const SizedBox(height: 20),
