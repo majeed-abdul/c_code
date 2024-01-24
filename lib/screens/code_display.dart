@@ -27,11 +27,17 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
   bool saved = false;
   bool support = false;
   bool error = false;
+
   @override
-  void dispose() {
+  void initState() {
     context.read<AdLoader>().loaderOff();
-    super.dispose();
+    super.initState();
   }
+  // @override
+  // void didChangeDependencies() {
+  //   print('=====didChange');
+  //   super.didChangeDependencies();
+  // }
 
   @override
   Widget build(BuildContext context) {
