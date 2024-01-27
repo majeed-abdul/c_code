@@ -214,16 +214,19 @@ Websites : $websites''';
   Row buttonsRow() {
     Widget w = const SizedBox.shrink();
     bool text = true;
-    if (isURL()) {
+    if (isWiFi()) {
       w = Column(
         children: [
-          customButton(onPress: () => _browse(), icon: Icons.link),
-          const Text('Browse', textAlign: TextAlign.center),
+          customButton(
+            onPress: () => _wifiConect(),
+            icon: Icons.wifi_rounded,
+          ),
+          const Text('Conect', textAlign: TextAlign.center),
         ],
       );
       text = false;
-    }
-    if (isVCard()) {
+    } else if (isNum()) {
+    } else if (isVCard()) {
       w = Column(
         children: [
           customButton(onPress: () => _contact(), icon: Icons.call),
@@ -231,8 +234,7 @@ Websites : $websites''';
         ],
       );
       text = false;
-    }
-    if (isEmail()) {
+    } else if (isEmail()) {
       w = Column(
         children: [
           customButton(
@@ -243,8 +245,7 @@ Websites : $websites''';
         ],
       );
       text = false;
-    }
-    if (isSMS()) {
+    } else if (isSMS()) {
       w = Column(
         children: [
           customButton(
@@ -255,15 +256,11 @@ Websites : $websites''';
         ],
       );
       text = false;
-    }
-    if (isWiFi()) {
+    } else if (isURL()) {
       w = Column(
         children: [
-          customButton(
-            onPress: () => _wifiConect(),
-            icon: Icons.wifi_rounded,
-          ),
-          const Text('Conect', textAlign: TextAlign.center),
+          customButton(onPress: () => _browse(), icon: Icons.link),
+          const Text('Browse', textAlign: TextAlign.center),
         ],
       );
       text = false;
@@ -287,7 +284,7 @@ Websites : $websites''';
           ],
         ),
         w,
-      ].sublist(0, (text) ? 1 : 2),
+      ].sublist(0, (text) ? 2 : 3),
     );
   }
 
