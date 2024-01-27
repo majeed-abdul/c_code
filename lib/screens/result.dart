@@ -250,6 +250,15 @@ Websites : $websites''';
       children: [
         Column(
           children: [
+            customButton(
+              onPress: () => setState(() => support = true),
+              icon: Icons.volunteer_activism_rounded,
+            ),
+            const Text('Support', textAlign: TextAlign.center),
+          ],
+        ),
+        Column(
+          children: [
             customButton(onPress: () => _copy(), icon: Icons.copy),
             const Text('Copy', textAlign: TextAlign.center),
           ],
