@@ -1,12 +1,12 @@
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:c_code/screens/code_display.dart';
 import 'package:c_code/widgets/pop_ups.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:c_code/widgets/text_field.dart';
 import 'package:c_code/widgets/drop_down.dart';
 import 'package:c_code/widgets/buttons.dart';
 import 'package:c_code/data/create.dart';
 import 'package:flutter/material.dart';
-import 'package:email_validator/email_validator.dart';
 
 class CreateScreen extends StatefulWidget {
   const CreateScreen({Key? key}) : super(key: key);
