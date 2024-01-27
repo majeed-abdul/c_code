@@ -24,6 +24,7 @@ class _InfoScreenState extends State<InfoScreen> {
       } else {
         _home = 'Create';
       }
+      setState(() {});
     });
     // PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
     //   appName = packageInfo.appName;
