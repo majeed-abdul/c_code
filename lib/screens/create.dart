@@ -662,7 +662,7 @@ class _CreateScreenState extends State<CreateScreen> {
         childAspectRatio: 3,
         mainAxisSpacing: 7,
         mainAxisExtent: 45,
-        crossAxisCount: size.width >= size.height ? 3 : 2,
+        crossAxisCount: size.width >= 1000 ? 3 : 2,
       ),
       itemCount: creates.length,
       itemBuilder: (context, index) {
