@@ -1,3 +1,5 @@
+import 'package:c_code/functions/ads.dart';
+import 'package:c_code/widgets/loader.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:c_code/widgets/buttons.dart';
 import 'package:c_code/widgets/pop_ups.dart';
@@ -6,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:wifi_iot/wifi_iot.dart';
+import 'package:provider/provider.dart';
 // import 'package:wifi_iot/wifi_iot.dart';
 
 class ResultScreen extends StatefulWidget {
@@ -19,6 +22,7 @@ class ResultScreen extends StatefulWidget {
 class _ResultScreenState extends State<ResultScreen> {
   ScrollController scrollCon = ScrollController();
   String? formated;
+  bool support = false;
 
   @override
   void initState() {
@@ -128,51 +132,70 @@ Websites : $websites''';
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        elevation: 0,
-        centerTitle: true,
-        title: const Text('Result'),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.pop(context),
-        child: const Icon(Icons.qr_code_scanner_outlined, size: 30),
-      ),
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        controller: scrollCon,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                isWiFi()
-                    ? 'WiFi'
-                    : isNum()
-                        ? 'Number'
-                        : isVCard()
-                            ? 'V-Card'
-                            : isEmail()
-                                ? 'Email'
-                                : isSMS()
-                                    ? 'SMS'
-                                    : isURL()
-                                        ? 'URL'
-                                        : 'Text',
-                style: const TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.w500,
+    // ignore: deprecated_member_use
+    return WillPopScope(
+      onWillPop: () async {
+        if (support) {
+          setState(() => support = false);
+          return false;
+        } else {
+          return true;
+        }
+      },
+      child: Spinner(
+        spinning: context.watch<AdLoader>().loader,
+        child: Stack(
+          children: [
+            Scaffold(
+              backgroundColor: Colors.white,
+              appBar: AppBar(
+                elevation: 0,
+                centerTitle: true,
+                title: const Text('Result'),
+              ),
+              floatingActionButton: FloatingActionButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Icon(Icons.qr_code_scanner_outlined, size: 30),
+              ),
+              body: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                controller: scrollCon,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        isWiFi()
+                            ? 'WiFi'
+                            : isNum()
+                                ? 'Number'
+                                : isVCard()
+                                    ? 'V-Card'
+                                    : isEmail()
+                                        ? 'Email'
+                                        : isSMS()
+                                            ? 'SMS'
+                                            : isURL()
+                                                ? 'URL'
+                                                : 'Text',
+                        style: const TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      resultText(),
+                      const SizedBox(height: 20),
+                      buttonsRow(),
+                      const SizedBox(height: 55),
+                    ],
+                  ),
                 ),
               ),
-              const SizedBox(height: 10),
-              resultText(),
-              const SizedBox(height: 20),
-              buttonsRow(),
-              const SizedBox(height: 55),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -191,48 +214,6 @@ Websites : $websites''';
   Row buttonsRow() {
     Widget w = const SizedBox.shrink();
     bool text = true;
-    if (isURL()) {
-      w = Column(
-        children: [
-          customButton(onPress: () => _browse(), icon: Icons.link),
-          const Text('Browse', textAlign: TextAlign.center),
-        ],
-      );
-      text = false;
-    }
-    if (isVCard()) {
-      w = Column(
-        children: [
-          customButton(onPress: () => _contact(), icon: Icons.call),
-          const Text('V-Card', textAlign: TextAlign.center),
-        ],
-      );
-      text = false;
-    }
-    if (isEmail()) {
-      w = Column(
-        children: [
-          customButton(
-            onPress: () => _mail(),
-            icon: Icons.email_outlined,
-          ),
-          const Text('Email', textAlign: TextAlign.center),
-        ],
-      );
-      text = false;
-    }
-    if (isSMS()) {
-      w = Column(
-        children: [
-          customButton(
-            onPress: () => _sms(),
-            icon: Icons.sms_outlined,
-          ),
-          const Text('SMS', textAlign: TextAlign.center),
-        ],
-      );
-      text = false;
-    }
     if (isWiFi()) {
       w = Column(
         children: [
@@ -244,10 +225,58 @@ Websites : $websites''';
         ],
       );
       text = false;
+    } else if (isNum()) {
+    } else if (isVCard()) {
+      w = Column(
+        children: [
+          customButton(onPress: () => _contact(), icon: Icons.call),
+          const Text('V-Card', textAlign: TextAlign.center),
+        ],
+      );
+      text = false;
+    } else if (isEmail()) {
+      w = Column(
+        children: [
+          customButton(
+            onPress: () => _mail(),
+            icon: Icons.email_outlined,
+          ),
+          const Text('Email', textAlign: TextAlign.center),
+        ],
+      );
+      text = false;
+    } else if (isSMS()) {
+      w = Column(
+        children: [
+          customButton(
+            onPress: () => _sms(),
+            icon: Icons.sms_outlined,
+          ),
+          const Text('SMS', textAlign: TextAlign.center),
+        ],
+      );
+      text = false;
+    } else if (isURL()) {
+      w = Column(
+        children: [
+          customButton(onPress: () => _browse(), icon: Icons.link),
+          const Text('Browse', textAlign: TextAlign.center),
+        ],
+      );
+      text = false;
     }
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
+        Column(
+          children: [
+            customButton(
+              onPress: () => setState(() => support = true),
+              icon: Icons.volunteer_activism_rounded,
+            ),
+            const Text('Support', textAlign: TextAlign.center),
+          ],
+        ),
         Column(
           children: [
             customButton(onPress: () => _copy(), icon: Icons.copy),
@@ -255,7 +284,7 @@ Websites : $websites''';
           ],
         ),
         w,
-      ].sublist(0, (text) ? 1 : 2),
+      ].sublist(0, (text) ? 2 : 3),
     );
   }
 
@@ -411,8 +440,7 @@ Websites : $websites''';
 
   bool isURL() {
     try {
-      Uri.tryParse(widget.result.code ?? 'sss');
-      return true;
+      return Uri.tryParse(widget.result.code ?? '')?.hasAbsolutePath ?? false;
     } catch (e) {
       return false;
     }
