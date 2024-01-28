@@ -440,8 +440,7 @@ Websites : $websites''';
 
   bool isURL() {
     try {
-      Uri.tryParse(widget.result.code ?? 'sss');
-      return true;
+      return Uri.tryParse(widget.result.code ?? '')?.hasAbsolutePath ?? false;
     } catch (e) {
       return false;
     }
