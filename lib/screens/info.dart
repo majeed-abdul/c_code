@@ -58,7 +58,9 @@ class _InfoScreenState extends State<InfoScreen> {
     return Spinner(
       spinning: context.watch<AdLoader>().loader,
       child: Scaffold(
-        appBar: AppBar(title: const Text('About'), centerTitle: true),
+        appBar: AppBar(
+          title: const Text('About'),
+        ),
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Column(
