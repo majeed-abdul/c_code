@@ -48,7 +48,7 @@ dependencies:
   image_gallery_saver: ^2.0.3 # save code image
   provider: ^6.1.1  # state management
   flutter_contacts: ^1.1.7+1  # vcard formating and contact save
-  contacts_service: ^0.6.3  # akhsvcbaslcbasjhcvaskd TEST
+  # contacts_service: ^0.6.3  # akhsvcbaslcbasjhcvaskd TEST
   wifi_iot: ^0.3.19
   # wifi_connector: ^2.0.0  # test 2 not working
   # android_flutter_wifi: ^0.1.2
