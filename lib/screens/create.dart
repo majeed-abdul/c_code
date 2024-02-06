@@ -799,7 +799,7 @@ class _CreateScreenState extends State<CreateScreen> {
             builder: (BuildContext context) => CodeDisplayScreen(
               data: '$finalWords',
               barCode: selectedCodeType,
-              bcon: context,
+              // bcon: context,
             ),
           ),
         ).then((value) {
