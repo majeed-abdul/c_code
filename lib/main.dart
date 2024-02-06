@@ -1,8 +1,8 @@
-import 'package:c_code/functions/ads.dart';
+import 'package:qr_maze/functions/ads.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
-import 'package:c_code/screens/home.dart';
-import 'package:c_code/screens/scan.dart';
+import 'package:qr_maze/screens/home.dart';
+import 'package:qr_maze/screens/scan.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 

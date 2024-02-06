@@ -1,4 +1,4 @@
-import 'package:c_code/widgets/pop_ups.dart';
+import 'package:qr_maze/widgets/pop_ups.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';

@@ -1,11 +1,11 @@
 import 'package:barcode_widget/barcode_widget.dart';
-import 'package:c_code/screens/code_display.dart';
-import 'package:c_code/widgets/pop_ups.dart';
+import 'package:qr_maze/screens/code_display.dart';
+import 'package:qr_maze/widgets/pop_ups.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:c_code/widgets/text_field.dart';
-import 'package:c_code/widgets/drop_down.dart';
-import 'package:c_code/widgets/buttons.dart';
-import 'package:c_code/data/create.dart';
+import 'package:qr_maze/widgets/text_field.dart';
+import 'package:qr_maze/widgets/drop_down.dart';
+import 'package:qr_maze/widgets/buttons.dart';
+import 'package:qr_maze/data/create.dart';
 import 'package:flutter/material.dart';
 
 class CreateScreen extends StatefulWidget {

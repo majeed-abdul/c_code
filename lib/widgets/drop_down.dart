@@ -1,4 +1,4 @@
-import 'package:c_code/widgets/text_field.dart';
+import 'package:qr_maze/widgets/text_field.dart';
 import 'package:flutter/material.dart';
 
 Widget dropDown({

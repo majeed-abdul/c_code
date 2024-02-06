@@ -1,8 +1,8 @@
 import 'package:barcode_widget/barcode_widget.dart';
-import 'package:c_code/functions/ads.dart';
-import 'package:c_code/widgets/buttons.dart';
-import 'package:c_code/widgets/loader.dart';
-import 'package:c_code/widgets/pop_ups.dart';
+import 'package:qr_maze/functions/ads.dart';
+import 'package:qr_maze/widgets/buttons.dart';
+import 'package:qr_maze/widgets/loader.dart';
+import 'package:qr_maze/widgets/pop_ups.dart';
 import 'package:flutter/material.dart';
 import 'package:barcode_image/barcode_image.dart';
 import 'package:image/image.dart' as img;
