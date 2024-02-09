@@ -1,4 +1,4 @@
-package com.abdul.c_code
+package com.abdul.qr_maze
 
 import io.flutter.embedding.android.FlutterActivity
 

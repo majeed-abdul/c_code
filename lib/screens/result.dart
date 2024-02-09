@@ -1,8 +1,8 @@
-import 'package:c_code/functions/ads.dart';
-import 'package:c_code/widgets/loader.dart';
+import 'package:qr_maze/functions/ads.dart';
+import 'package:qr_maze/widgets/loader.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'package:c_code/widgets/buttons.dart';
-import 'package:c_code/widgets/pop_ups.dart';
+import 'package:qr_maze/widgets/buttons.dart';
+import 'package:qr_maze/widgets/pop_ups.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

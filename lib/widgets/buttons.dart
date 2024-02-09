@@ -20,13 +20,14 @@ Container customButton({
   );
 }
 
-GestureDetector gridButton({
+InkWell gridButton({
   required IconData icon,
   required String name,
   bool selected = false,
   Function()? onTap,
 }) {
-  return GestureDetector(
+  return InkWell(
+    borderRadius: BorderRadius.circular(7),
     onTap: onTap,
     child: Stack(
       children: [
@@ -51,7 +52,7 @@ GestureDetector gridButton({
           child: Container(
             margin: const EdgeInsets.all(1),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(6),
+              borderRadius: BorderRadius.circular(7),
               color: const Color(0x44000000),
             ),
           ),
