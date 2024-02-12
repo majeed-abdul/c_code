@@ -144,6 +144,7 @@ class _InfoScreenState extends State<InfoScreen> {
 
   Future<dynamic> setHomePage(BuildContext context) async {
     await SharedPreferences.getInstance().then((pref) {
+      bool i = pref.getInt('home') == 0 ? true : false;
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -165,8 +166,23 @@ class _InfoScreenState extends State<InfoScreen> {
             Column(
               children: [
                 ListTile(
-                  leading: Icon(Icons.toggle_off_outlined),
-                )
+                  minLeadingWidth: 0,
+                  minVerticalPadding: 0,
+                  leading: Icon(
+                    i ? Icons.radio_button_checked : Icons.radio_button_off,
+                    color: i ? Theme.of(context).primaryColor : null,
+                  ),
+                  title: const Text('Create'),
+                ),
+                ListTile(
+                  minLeadingWidth: 0,
+                  minVerticalPadding: 0,
+                  leading: Icon(
+                    i ? Icons.radio_button_off : Icons.radio_button_checked,
+                    color: i ? null : Theme.of(context).primaryColor,
+                  ),
+                  title: const Text('Scan'),
+                ),
               ],
             ),
             ElevatedButton(
