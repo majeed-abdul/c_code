@@ -2,7 +2,6 @@ import 'package:qr_maze/functions/ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:qr_maze/widgets/loader.dart';
 import 'package:flutter/material.dart';
-// import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -81,6 +80,15 @@ class _InfoScreenState extends State<InfoScreen> {
               ),
               const Divider(),
               const Text('  Support', style: TextStyle(color: Colors.black54)),
+              ListTile(
+                title: const Text('Rate'),
+                subtitle: const Text('Rate us on Play Store.'),
+                leading: const Icon(Icons.rate_review_outlined, size: 40),
+                trailing: const Icon(Icons.more_vert),
+                onTap: () {
+                  loadAndShowAd(context);
+                },
+              ),
               ListTile(
                 title: const Text('Donate'),
                 subtitle: const Text('We need support to keep you up to date.'),
