@@ -185,33 +185,33 @@ class _InfoScreenState extends State<InfoScreen> {
                 ),
               ],
             ),
-            ElevatedButton(
-              onPressed: () async {
-                await pref.setInt('home', 0).then((value) {
-                  _home = 'Create';
-                  setState(() {});
-                  Navigator.pop(context);
-                });
-              },
-              child: const Padding(
-                padding: EdgeInsets.all(11),
-                child: Text('Create'),
-              ),
-            ),
-            const Text('OR'),
-            ElevatedButton(
-              onPressed: () async {
-                await pref.setInt('home', 1).then((value) {
-                  _home = 'Scan';
-                  setState(() {});
-                  Navigator.pop(context);
-                });
-              },
-              child: const Padding(
-                padding: EdgeInsets.all(11),
-                child: Text('Scan'),
-              ),
-            ),
+            // ElevatedButton(
+            //   onPressed: () async {
+            //     await pref.setInt('home', 0).then((value) {
+            //       _home = 'Create';
+            //       setState(() {});
+            //       Navigator.pop(context);
+            //     });
+            //   },
+            //   child: const Padding(
+            //     padding: EdgeInsets.all(11),
+            //     child: Text('Create'),
+            //   ),
+            // ),//////////////////////////////         OLD
+            // const Text('OR'),
+            // ElevatedButton(
+            //   onPressed: () async {
+            //     await pref.setInt('home', 1).then((value) {
+            //       _home = 'Scan';
+            //       setState(() {});
+            //       Navigator.pop(context);
+            //     });
+            //   },
+            //   child: const Padding(
+            //     padding: EdgeInsets.all(11),
+            //     child: Text('Scan'),
+            //   ),
+            // ),
           ],
         ),
       );
