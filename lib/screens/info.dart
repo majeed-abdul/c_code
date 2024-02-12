@@ -173,6 +173,13 @@ class _InfoScreenState extends State<InfoScreen> {
                     color: i ? Theme.of(context).primaryColor : null,
                   ),
                   title: const Text('Create'),
+                  onTap: () async {
+                    await pref.setInt('home', 0).then((value) {
+                      _home = 'Create';
+                      setState(() {});
+                      Navigator.pop(context);
+                    });
+                  },
                 ),
                 ListTile(
                   minLeadingWidth: 0,
@@ -182,6 +189,13 @@ class _InfoScreenState extends State<InfoScreen> {
                     color: i ? null : Theme.of(context).primaryColor,
                   ),
                   title: const Text('Scan'),
+                  onTap: () async {
+                    await pref.setInt('home', 1).then((value) {
+                      _home = 'Scan';
+                      setState(() {});
+                      Navigator.pop(context);
+                    });
+                  },
                 ),
               ],
             ),
