@@ -84,17 +84,17 @@ class _InfoScreenState extends State<InfoScreen> {
               const Divider(),
               const Text('  Support', style: TextStyle(color: Colors.black54)),
               ListTile(
-                title: const Text('Rate'),
+                title: const Text('Rating'),
                 subtitle: const Text('Rate us on Play Store.'),
-                leading: const Icon(Icons.star_half_rounded, size: 40),
+                leading: const Icon(Icons.star_rate_rounded, size: 40),
                 trailing: const Icon(Icons.more_vert),
                 onTap: () async {
-                  // String id = 'com.abdul.qr_maze';
+                  String id = 'com.abdul.qr_maze';
                   // if (await inAppReview.isAvailable()) {
-                  inAppReview.requestReview();
+                  // inAppReview.requestReview();
                   // } else {
                   // debugPrint('====in_App_Review_Not_Available');
-                  // inAppReview.openStoreListing(appStoreId: id);
+                  inAppReview.openStoreListing(appStoreId: id);
                   // }
                 },
               ),
