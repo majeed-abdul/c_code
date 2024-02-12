@@ -81,6 +81,15 @@ class _InfoScreenState extends State<InfoScreen> {
               const Divider(),
               const Text('  Support', style: TextStyle(color: Colors.black54)),
               ListTile(
+                title: const Text('Rate'),
+                subtitle: const Text('Rate us on Play Store.'),
+                leading: const Icon(Icons.rate_review_outlined, size: 40),
+                trailing: const Icon(Icons.more_vert),
+                onTap: () {
+                  loadAndShowAd(context);
+                },
+              ),
+              ListTile(
                 title: const Text('Donate'),
                 subtitle: const Text('We need support to keep you up to date.'),
                 leading: const Icon(Icons.volunteer_activism_rounded, size: 40),
