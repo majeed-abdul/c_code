@@ -162,6 +162,13 @@ class _InfoScreenState extends State<InfoScreen> {
             'This screen will apear on app start up. Default screen is "Create"',
           ),
           actions: [
+            Column(
+              children: [
+                ListTile(
+                  leading: Icon(Icons.toggle_off_outlined),
+                )
+              ],
+            ),
             ElevatedButton(
               onPressed: () async {
                 await pref.setInt('home', 0).then((value) {
