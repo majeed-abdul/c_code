@@ -89,15 +89,17 @@ class _InfoScreenState extends State<InfoScreen> {
                 leading: const Icon(Icons.star_half_rounded, size: 40),
                 trailing: const Icon(Icons.more_vert),
                 onTap: () async {
-                  if (await inAppReview.isAvailable()) {
-                    inAppReview.requestReview();
-                  } else {
-                    debugPrint('====in_App_Review_Not_Available');
-                  }
+                  // String id = 'com.abdul.qr_maze';
+                  // if (await inAppReview.isAvailable()) {
+                  inAppReview.requestReview();
+                  // } else {
+                  // debugPrint('====in_App_Review_Not_Available');
+                  // inAppReview.openStoreListing(appStoreId: id);
+                  // }
                 },
               ),
               ListTile(
-                title: const Text('Donate'),
+                title: const Text('Donate ❤️'),
                 subtitle: const Text('We need support to keep you up to date.'),
                 leading: const Icon(Icons.volunteer_activism_rounded, size: 40),
                 trailing: const Icon(Icons.more_vert),
