@@ -1,10 +1,10 @@
 import 'package:qr_maze/functions/ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:qr_maze/widgets/loader.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:in_app_review/in_app_review.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class InfoScreen extends StatefulWidget {
   const InfoScreen({Key? key}) : super(key: key);
