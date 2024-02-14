@@ -39,7 +39,6 @@ Map<String, Barcode> numberBarcodes = {
   'EAN 5': Barcode.ean5(),
   'EAN 8': Barcode.ean8(),
   'ISBN': Barcode.isbn(),
-  'ITF': Barcode.itf(),
   'upc A': Barcode.upcA(),
 };
 // REMOVED ONES
@@ -56,3 +55,4 @@ Map<String, Barcode> numberBarcodes = {
   // 'RM4SSC': Barcode.rm4scc(),
   // 'Telepen': Barcode.telepen(),
   // 'upc E': Barcode.upcE(),
+  // 'ITF': Barcode.itf(),
