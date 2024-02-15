@@ -99,9 +99,7 @@ void donate(BuildContext context) {
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(15)),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       titlePadding: const EdgeInsets.only(top: 15, bottom: 3),
       contentPadding: const EdgeInsets.only(left: 15, right: 15, bottom: 15),
       actionsAlignment: MainAxisAlignment.center,
