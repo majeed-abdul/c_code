@@ -163,9 +163,7 @@ void showThankYouPopup(BuildContext context) {
           width: 190,
           height: 190,
         ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       );
     },
   );
