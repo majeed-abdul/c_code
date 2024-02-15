@@ -58,7 +58,7 @@ Password : ${encr.toUpperCase() == "NOPASS" ? '' : pass}
 Encryption : ${encr.toUpperCase() == "NOPASS" ? 'None' : encr}
 Hidden : $hidd''';
     } //'*' * pass.length
-    if (isEmail()) {
+    else if (isEmail()) {
       String email = word.toUpperCase().startsWith('MAILTO:')
           ? word.substring(
               word.toUpperCase().indexOf('TO:') + 3, // mailto:
@@ -90,13 +90,11 @@ Hidden : $hidd''';
               word.lastIndexOf(';') - 1,
             );
       formated = 'Email : $email\nSubject : $subje\nMessage : $messa';
-    }
-    if (isSMS()) {
+    } else if (isSMS()) {
       String num = word.substring(6, word.substring(7).indexOf(':') + 7);
       String msg = word.substring(word.substring(7).indexOf(':') + 8);
       formated = 'Number : $num\nMessage : $msg';
-    }
-    if (isVCard()) {
+    } else if (isVCard()) {
       Contact vc = Contact.fromVCard(word);
       String name = vc.displayName;
       String addresses = '';
