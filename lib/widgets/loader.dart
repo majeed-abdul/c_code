@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 
 class Spinner extends StatelessWidget {
-  const Spinner({
-    Key? key,
-    required this.spinning,
-    this.child = const SizedBox(),
-  }) : super(key: key);
+  const Spinner(
+      {Key? key, required this.spinning, this.child = const SizedBox()})
+      : super(key: key);
 
   final bool spinning;
   final Widget child;
