@@ -1,9 +1,10 @@
 import 'package:qr_maze/functions/ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:qr_maze/widgets/loader.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class InfoScreen extends StatefulWidget {
   const InfoScreen({Key? key}) : super(key: key);
@@ -48,6 +49,8 @@ class _InfoScreenState extends State<InfoScreen> {
   // }
 
   String? _home;
+  final InAppReview inAppReview = InAppReview.instance;
+
   // String? appName;
   // String? version;
 
@@ -81,16 +84,22 @@ class _InfoScreenState extends State<InfoScreen> {
               const Divider(),
               const Text('  Support', style: TextStyle(color: Colors.black54)),
               ListTile(
-                title: const Text('Rate'),
+                title: const Text('Rating'),
                 subtitle: const Text('Rate us on Play Store.'),
-                leading: const Icon(Icons.rate_review_outlined, size: 40),
+                leading: const Icon(Icons.star_rate_rounded, size: 40),
                 trailing: const Icon(Icons.more_vert),
-                onTap: () {
-                  loadAndShowAd(context);
+                onTap: () async {
+                  String id = 'com.abdul.qr_maze';
+                  // if (await inAppReview.isAvailable()) {
+                  // inAppReview.requestReview();
+                  // } else {
+                  // debugPrint('====in_App_Review_Not_Available');
+                  inAppReview.openStoreListing(appStoreId: id);
+                  // }
                 },
               ),
               ListTile(
-                title: const Text('Donate'),
+                title: const Text('Donate ❤️'),
                 subtitle: const Text('We need support to keep you up to date.'),
                 leading: const Icon(Icons.volunteer_activism_rounded, size: 40),
                 trailing: const Icon(Icons.more_vert),
@@ -135,6 +144,7 @@ class _InfoScreenState extends State<InfoScreen> {
 
   Future<dynamic> setHomePage(BuildContext context) async {
     await SharedPreferences.getInstance().then((pref) {
+      bool i = pref.getInt('home') == 0 ? true : false;
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -153,33 +163,69 @@ class _InfoScreenState extends State<InfoScreen> {
             'This screen will apear on app start up. Default screen is "Create"',
           ),
           actions: [
-            ElevatedButton(
-              onPressed: () async {
-                await pref.setInt('home', 0).then((value) {
-                  _home = 'Create';
-                  setState(() {});
-                  Navigator.pop(context);
-                });
-              },
-              child: const Padding(
-                padding: EdgeInsets.all(11),
-                child: Text('Create'),
-              ),
+            Column(
+              children: [
+                ListTile(
+                  minLeadingWidth: 0,
+                  minVerticalPadding: 0,
+                  leading: Icon(
+                    i ? Icons.radio_button_checked : Icons.radio_button_off,
+                    color: i ? Theme.of(context).primaryColor : null,
+                  ),
+                  title: const Text('Create'),
+                  onTap: () async {
+                    await pref.setInt('home', 0).then((value) {
+                      _home = 'Create';
+                      setState(() {});
+                      Navigator.pop(context);
+                    });
+                  },
+                ),
+                ListTile(
+                  minLeadingWidth: 0,
+                  minVerticalPadding: 0,
+                  leading: Icon(
+                    i ? Icons.radio_button_off : Icons.radio_button_checked,
+                    color: i ? null : Theme.of(context).primaryColor,
+                  ),
+                  title: const Text('Scan'),
+                  onTap: () async {
+                    await pref.setInt('home', 1).then((value) {
+                      _home = 'Scan';
+                      setState(() {});
+                      Navigator.pop(context);
+                    });
+                  },
+                ),
+              ],
             ),
-            const Text('OR'),
-            ElevatedButton(
-              onPressed: () async {
-                await pref.setInt('home', 1).then((value) {
-                  _home = 'Scan';
-                  setState(() {});
-                  Navigator.pop(context);
-                });
-              },
-              child: const Padding(
-                padding: EdgeInsets.all(11),
-                child: Text('Scan'),
-              ),
-            ),
+            // ElevatedButton(
+            //   onPressed: () async {
+            //     await pref.setInt('home', 0).then((value) {
+            //       _home = 'Create';
+            //       setState(() {});
+            //       Navigator.pop(context);
+            //     });
+            //   },
+            //   child: const Padding(
+            //     padding: EdgeInsets.all(11),
+            //     child: Text('Create'),
+            //   ),
+            // ),//////////////////////////////         OLD
+            // const Text('OR'),
+            // ElevatedButton(
+            //   onPressed: () async {
+            //     await pref.setInt('home', 1).then((value) {
+            //       _home = 'Scan';
+            //       setState(() {});
+            //       Navigator.pop(context);
+            //     });
+            //   },
+            //   child: const Padding(
+            //     padding: EdgeInsets.all(11),
+            //     child: Text('Scan'),
+            //   ),
+            // ),
           ],
         ),
       );
