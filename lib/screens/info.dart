@@ -154,12 +154,12 @@ class _InfoScreenState extends State<InfoScreen> {
           actionsAlignment: MainAxisAlignment.center,
           title: const Text('Set Home Screen', textAlign: TextAlign.center),
           titlePadding: const EdgeInsets.symmetric(
-            horizontal: 15,
             vertical: 10,
+            horizontal: 15,
           ),
           actionsPadding: const EdgeInsets.symmetric(
-            horizontal: 15,
             vertical: 15,
+            horizontal: 15,
           ),
           contentPadding: const EdgeInsets.symmetric(horizontal: 20),
           content: const Text(
