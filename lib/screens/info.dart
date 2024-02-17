@@ -148,6 +148,9 @@ class _InfoScreenState extends State<InfoScreen> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15)),
+          ),
           actionsAlignment: MainAxisAlignment.center,
           title: const Text('Set Home Screen', textAlign: TextAlign.center),
           titlePadding: const EdgeInsets.symmetric(
