@@ -19,16 +19,20 @@ class CustomTheme {
       ),
       useMaterial3: true,
       appBarTheme: const AppBarTheme(
-        color: Color(0xFFD42027),
-        elevation: 5,
-        foregroundColor: Colors.white,
-        systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: Colors.black,
-        ),
+        color: Colors.white,
+        elevation: 0,
+        shadowColor: Colors.black,
+        centerTitle: true,
+        systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.black),
+        titleTextStyle: TextStyle(
+            color: Color(0xFFD42027),
+            fontSize: 22, //default
+            fontWeight: FontWeight.w500),
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        selectedItemColor: Color(0xFFD42027),
-      ),
+          selectedItemColor: Color(0xFFD42027),
+          elevation: 25,
+          type: BottomNavigationBarType.fixed),
       dialogTheme: const DialogTheme(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(30)),
