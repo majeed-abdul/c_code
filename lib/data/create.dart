@@ -27,7 +27,7 @@ Map<String, Barcode> textBarcodes = {
 };
 
 Map<String, Barcode> numberBarcodes = {
-  'QR Code': Barcode.qrCode(), //not for numbers
+  'QR Code': Barcode.qrCode(), //not for numbers its nessary to add R11
   'Coda Bar': Barcode.codabar(),
   'Code 39': Barcode.code39(),
   'Code 93': Barcode.code93(),
@@ -38,6 +38,9 @@ Map<String, Barcode> numberBarcodes = {
   'ISBN': Barcode.isbn(),
   'upc A': Barcode.upcA(),
 };
+
+//--R11 index 0 of both maps must be Barcode.qrCode()
+
 // REMOVED ONES
 // Text
   // 'GS 128': Barcode.gs128(),
