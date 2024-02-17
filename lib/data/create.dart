@@ -7,7 +7,7 @@ class Item {
   Item({required this.name, required this.icon});
 }
 
-// order os required
+// order os REQUIRED
 List<Item> creates = [
   Item(name: 'TEXT & URL', icon: Icons.text_snippet_outlined),
   Item(name: 'NUMBERS', icon: Icons.numbers_outlined),
