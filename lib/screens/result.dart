@@ -124,6 +124,7 @@ Organizations: $orgs
 Contact: $phones
 Websites : $websites''';
     }
+    context.read<AdLoader>().loaderOff();
     setState(() {});
     super.initState();
   }
@@ -452,8 +453,8 @@ Websites : $websites''';
 
   bool isVCard() {
     bool validURL =
-        widget.result.code!.toUpperCase().startsWith('BEGIN:VCARD') &&
-            widget.result.code!.toUpperCase().endsWith('END:VCARD');
+        "${widget.result.code}".toUpperCase().startsWith('BEGIN:VCARD') &&
+            "${widget.result.code}".toUpperCase().contains('END:VCARD');
     return validURL;
   }
 
