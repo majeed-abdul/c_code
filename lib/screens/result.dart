@@ -454,7 +454,10 @@ Websites : $websites''';
   bool isVCard() {
     bool validURL =
         "${widget.result.code}".toUpperCase().startsWith('BEGIN:VCARD') &&
-            "${widget.result.code}".toUpperCase().contains('END:VCARD');
+            "${widget.result.code}"
+                .trim()
+                .toUpperCase()
+                .endsWith('END:VCARD'); //need testing
     return validURL;
   }
 
