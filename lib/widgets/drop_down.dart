@@ -17,15 +17,15 @@ Widget dropDown({
         border: Border.all(color: const Color(0xff999999), width: 1),
       ),
       child: DropdownButton<String>(
-        hint: Text(hint ?? 'null'),
         borderRadius: BorderRadius.circular(6),
         focusColor: Colors.white,
-        isExpanded: true,
+        hint: Text(hint ?? 'null'),
         value: dropDownValue,
+        isExpanded: true,
         elevation: 16,
-        style: const TextStyle(color: Colors.black, fontSize: 15),
-        underline: const SizedBox(),
         onChanged: onChanged,
+        underline: const SizedBox(),
+        style: const TextStyle(color: Colors.black, fontSize: 15),
         icon: const Icon(Icons.keyboard_arrow_down_rounded, size: 30),
         items: items
             .map<DropdownMenuItem<String>>(
