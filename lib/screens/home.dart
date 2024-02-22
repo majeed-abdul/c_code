@@ -1,5 +1,5 @@
-import 'package:qr_maze/screens/create.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:qr_maze/screens/create.dart';
 import 'package:qr_maze/screens/info.dart';
 import 'package:qr_maze/screens/scan.dart';
 import 'package:flutter/material.dart';
