@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:email_validator/email_validator.dart';
 import 'package:qr_maze/screens/code_display.dart';
 import 'package:barcode_widget/barcode_widget.dart';
@@ -7,6 +9,7 @@ import 'package:qr_maze/widgets/text_field.dart';
 import 'package:qr_maze/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_maze/data/create.dart';
+// import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class CreateScreen extends StatefulWidget {
   const CreateScreen({Key? key}) : super(key: key);
@@ -16,6 +19,30 @@ class CreateScreen extends StatefulWidget {
 }
 
 class _CreateScreenState extends State<CreateScreen> {
+  // @override
+  // void initState() {
+  //   FocusScope.of(context).unfocus();
+  //   print('===============DISMIS initState');
+  //   super.initState();
+  // }
+  // @override
+  // void reassemble() {
+  //   print('===============DISMIS reassemble');
+  //   super.reassemble();
+  // }
+  // @override
+  // void dispose() {
+  //   print('===============DISMIS dispose');
+  //   super.dispose();
+  // }
+  // @override
+  // void didChangeDependencies() {
+  //   print('===============DISMIS didChangeDependencies create');
+  //   // FocusScope.of(context).unfocus(); //  For Keyboard Dismis
+  //   clearControllers();
+  //   super.didChangeDependencies();
+  // }
+
   int selected = 0; // grid selector
   //  All
   String? dropDownValueType = textBarcodes.keys.first;
@@ -61,12 +88,25 @@ class _CreateScreenState extends State<CreateScreen> {
   TextEditingController smsPhoCon = TextEditingController();
   TextEditingController smsMsgCon = TextEditingController();
 
+  //  Geo-Location
+  TextEditingController geoLatCon = TextEditingController();
+  TextEditingController geoLonCon = TextEditingController();
+  // static const CameraPosition _kGooglePlex = CameraPosition(
+  //   target: LatLng(35, 135),
+  //   zoom: 10,
+  // );
+  // final Completer<GoogleMapController> _controller =
+  //     Completer<GoogleMapController>();
+
+  //  Phone
+  TextEditingController phoneCon = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        centerTitle: true,
+        // elevation: 0,
+        // centerTitle: true,
         title: const Text('Create'),
       ),
       body: SafeArea(
@@ -80,9 +120,9 @@ class _CreateScreenState extends State<CreateScreen> {
               //   color: Theme.of(context).appBarTheme.backgroundColor,
               //   child: buttonsGrid(), /////////////////////// Grid Buttons
               // ),
-              const SizedBox(height: 15),
+              const SizedBox(height: 9),
               buttonsGrid(),
-              const SizedBox(height: 11),
+              const SizedBox(height: 15),
               // const Divider(),
               entryTextFields(), /////////////////////////// Inputs Fields
               const SizedBox(height: 11),
@@ -109,38 +149,14 @@ class _CreateScreenState extends State<CreateScreen> {
     Widget w;
     switch (selected) {
       case 0: ////////////// Text & URL
-        w = Column(
-          children: [
-            // const Tes
-            entryBar(
-              text: 'Text / url',
-              child: TextField(
-                keyboardType: TextInputType.multiline,
-                maxLines: 6,
-                minLines: 3,
-                decoration: const InputDecoration(hintText: 'Enter Text'),
-                onChanged: (value) => finalWords = value.trim(),
-                controller: stringCon,
-              ),
-            ),
-            moreOptions(),
-          ],
-        );
+        w = textInputs();
         break;
       case 1: ////////////// Numbers
         w = Column(
           children: [
-            // const Text(
-            //   'Number',
-            //   style: TextStyle(
-            //     fontSize: 19,
-            //     fontWeight: FontWeight.bold,
-            //     color: Colors.black87,
-            //   ),
-            // ),
             entryBar(
               text: 'Number',
-              child: TextField(
+              child: TextFormField(
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(hintText: 'Enter Number'),
                 controller: numberCon,
@@ -193,7 +209,7 @@ class _CreateScreenState extends State<CreateScreen> {
             // ),
             entryBar(
               text: 'WiFi Name',
-              child: TextField(
+              child: TextFormField(
                 decoration: const InputDecoration(hintText: 'Enter SSId'),
                 controller: wiFiNamCon,
                 onChanged: (value) => setWiFi(),
@@ -203,7 +219,7 @@ class _CreateScreenState extends State<CreateScreen> {
               visible: encryption != 'nopass',
               child: entryBar(
                 text: 'Password',
-                child: TextField(
+                child: TextFormField(
                   decoration: const InputDecoration(hintText: 'Enter Password'),
                   controller: wiFiPasCon,
                   onChanged: (value) => setWiFi(),
@@ -250,7 +266,7 @@ class _CreateScreenState extends State<CreateScreen> {
             // ),
             entryBar(
               text: 'First Name',
-              child: TextField(
+              child: TextFormField(
                 decoration:
                     const InputDecoration(hintText: 'Enter First tName'),
                 controller: vCardFNaCon,
@@ -259,7 +275,7 @@ class _CreateScreenState extends State<CreateScreen> {
             ),
             entryBar(
               text: 'Last Name',
-              child: TextField(
+              child: TextFormField(
                 decoration: const InputDecoration(hintText: 'Enter Last Name'),
                 controller: vCardLNaCon,
                 onChanged: (v) => setVCard(),
@@ -267,7 +283,7 @@ class _CreateScreenState extends State<CreateScreen> {
             ),
             entryBar(
               text: 'Mobile No',
-              child: TextField(
+              child: TextFormField(
                 decoration: const InputDecoration(
                   hintText: 'Enter Mobile Number',
                 ),
@@ -278,7 +294,7 @@ class _CreateScreenState extends State<CreateScreen> {
             ),
             entryBar(
               text: 'Phone No',
-              child: TextField(
+              child: TextFormField(
                 decoration: const InputDecoration(
                   hintText: 'Enter Phone Number',
                 ),
@@ -289,7 +305,7 @@ class _CreateScreenState extends State<CreateScreen> {
             ),
             entryBar(
               text: 'Fax',
-              child: TextField(
+              child: TextFormField(
                 decoration: const InputDecoration(hintText: 'Enter Fax Number'),
                 keyboardType: TextInputType.phone,
                 controller: vCardFaxCon,
@@ -298,7 +314,7 @@ class _CreateScreenState extends State<CreateScreen> {
             ),
             entryBar(
               text: 'Email',
-              child: TextField(
+              child: TextFormField(
                 decoration: const InputDecoration(
                   hintText: 'Enter Email Address',
                 ),
@@ -309,7 +325,7 @@ class _CreateScreenState extends State<CreateScreen> {
             ),
             entryBar(
               text: 'Company',
-              child: TextField(
+              child: TextFormField(
                 decoration: const InputDecoration(
                   hintText: 'Enter Company Name',
                 ),
@@ -319,7 +335,7 @@ class _CreateScreenState extends State<CreateScreen> {
             ),
             entryBar(
               text: 'Job',
-              child: TextField(
+              child: TextFormField(
                 decoration: const InputDecoration(
                   hintText: 'Enter Job Title',
                 ),
@@ -329,7 +345,7 @@ class _CreateScreenState extends State<CreateScreen> {
             ),
             entryBar(
               text: 'Country',
-              child: TextField(
+              child: TextFormField(
                 decoration: const InputDecoration(
                   hintText: 'Enter Country Name',
                 ),
@@ -339,7 +355,7 @@ class _CreateScreenState extends State<CreateScreen> {
             ),
             entryBar(
               text: 'State',
-              child: TextField(
+              child: TextFormField(
                 decoration: const InputDecoration(
                   hintText: 'Enter State/Province Name',
                 ),
@@ -349,7 +365,7 @@ class _CreateScreenState extends State<CreateScreen> {
             ),
             entryBar(
               text: 'City',
-              child: TextField(
+              child: TextFormField(
                 decoration: const InputDecoration(
                   hintText: 'Enter City Name',
                 ),
@@ -359,7 +375,7 @@ class _CreateScreenState extends State<CreateScreen> {
             ),
             entryBar(
               text: 'Zip',
-              child: TextField(
+              child: TextFormField(
                 decoration:
                     const InputDecoration(hintText: 'Enter Postal Code'),
                 keyboardType: TextInputType.number,
@@ -369,7 +385,7 @@ class _CreateScreenState extends State<CreateScreen> {
             ),
             entryBar(
               text: 'Street',
-              child: TextField(
+              child: TextFormField(
                 decoration: const InputDecoration(
                   hintText: 'Enter Street Address',
                 ),
@@ -380,7 +396,7 @@ class _CreateScreenState extends State<CreateScreen> {
             ),
             entryBar(
               text: 'Website',
-              child: TextField(
+              child: TextFormField(
                 decoration: const InputDecoration(hintText: 'Enter Web URL'),
                 keyboardType: TextInputType.emailAddress,
                 controller: vCardWebCon,
@@ -405,7 +421,7 @@ class _CreateScreenState extends State<CreateScreen> {
             // ),
             entryBar(
               text: 'To',
-              child: TextField(
+              child: TextFormField(
                 decoration: const InputDecoration(hintText: 'Enter Email'),
                 controller: emailTooCon,
                 onChanged: (v) => setMail(),
@@ -413,7 +429,7 @@ class _CreateScreenState extends State<CreateScreen> {
             ),
             entryBar(
               text: 'Subject',
-              child: TextField(
+              child: TextFormField(
                 decoration: const InputDecoration(hintText: 'Enter Subject'),
                 controller: emailSubCon,
                 onChanged: (v) => setMail(),
@@ -421,7 +437,7 @@ class _CreateScreenState extends State<CreateScreen> {
             ),
             entryBar(
               text: 'Message',
-              child: TextField(
+              child: TextFormField(
                 decoration: const InputDecoration(hintText: 'Enter Message'),
                 maxLines: 6,
                 minLines: 3,
@@ -446,7 +462,7 @@ class _CreateScreenState extends State<CreateScreen> {
             // ),
             entryBar(
               text: 'Phone No',
-              child: TextField(
+              child: TextFormField(
                 decoration: const InputDecoration(
                   hintText: 'Enter Phone Number',
                 ),
@@ -457,7 +473,7 @@ class _CreateScreenState extends State<CreateScreen> {
             ),
             entryBar(
               text: 'Message',
-              child: TextField(
+              child: TextFormField(
                 decoration: const InputDecoration(hintText: 'Enter Message'),
                 maxLines: 6,
                 minLines: 3,
@@ -482,18 +498,57 @@ class _CreateScreenState extends State<CreateScreen> {
             // ),
             entryBar(
               text: 'Latitude',
-              child: TextField(
+              child: TextFormField(
                 decoration: const InputDecoration(hintText: 'Enter Latitude'),
-                controller: emailTooCon,
-                // onChanged: (v) => setMail(),
+                keyboardType: TextInputType.number,
+                controller: geoLatCon,
+                onChanged: (v) => setGeo(),
               ),
             ),
             entryBar(
               text: 'Longitude',
-              child: TextField(
+              child: TextFormField(
                 decoration: const InputDecoration(hintText: 'Enter Longitude'),
-                controller: emailSubCon,
-                // onChanged: (v) => setMail(),
+                keyboardType: TextInputType.number,
+                controller: geoLonCon,
+                onChanged: (v) => setGeo(),
+              ),
+            ),
+            // SizedBox(
+            //   height: 300,
+            //   child: GoogleMap(
+            //     mapType: MapType.hybrid,
+            //     initialCameraPosition: _kGooglePlex,
+            //     onMapCreated: (GoogleMapController controller) {
+            //       _controller.complete(controller);
+            //     },
+            //   ),
+            // ),
+            moreOptions(),
+          ],
+        );
+        break;
+
+      case 7: //////////// Phone
+        w = Column(
+          children: [
+            // const Text(
+            //   'Phone',
+            //   style: TextStyle(
+            //     fontSize: 19,
+            //     fontWeight: FontWeight.bold,
+            //     color: Colors.black87,
+            //   ),
+            // ),
+            entryBar(
+              text: 'Phone',
+              child: TextFormField(
+                decoration: const InputDecoration(
+                  hintText: 'Enter Phone Number',
+                ),
+                keyboardType: TextInputType.phone,
+                controller: phoneCon,
+                onChanged: (v) => setPhone(),
               ),
             ),
             moreOptions(),
@@ -506,6 +561,25 @@ class _CreateScreenState extends State<CreateScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: w,
+    );
+  }
+
+  Column textInputs() {
+    return Column(
+      children: [
+        entryBar(
+          text: 'Text / url',
+          child: TextFormField(
+            keyboardType: TextInputType.multiline,
+            maxLines: 6,
+            minLines: 3,
+            decoration: const InputDecoration(hintText: 'Enter Text'),
+            onChanged: (value) => finalWords = value.trim(),
+            controller: stringCon,
+          ),
+        ),
+        moreOptions(),
+      ],
     );
   }
 
@@ -626,7 +700,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 throw 'Enter Text'; //  must not be empty
               }
               break;
-            case 4: ////////////// Number
+            case 1: ////////////// Number
               if (numberCon.text.isEmpty) {
                 throw 'Enter Number'; //  must not be empty
               } else {
@@ -648,7 +722,7 @@ class _CreateScreenState extends State<CreateScreen> {
                     : throw 'Number is not 8 digit';
               }
               break;
-            case 1: ////////////// WIFi
+            case 2: ////////////// WIFi
               if (wiFiNamCon.text.trim().isEmpty) {
                 throw 'Enter SSID'; //  must not be empty
               } else if (wiFiPasCon.text.isEmpty && encryption != 'nopass') {
@@ -677,7 +751,7 @@ class _CreateScreenState extends State<CreateScreen> {
             // vCardCitCon
             // vCardStrCon
             // vCardWebCon
-            case 5: ////////////// Email
+            case 4: ////////////// Email
               if (emailTooCon.text.trim().isEmpty) {
                 throw "Enter Email"; //  must not be empty
               } else if (emailSubCon.text.trim().isEmpty) {
@@ -687,7 +761,7 @@ class _CreateScreenState extends State<CreateScreen> {
               }
               isEmail(emailTooCon.text) ? null : throw 'Invalid Email';
               break;
-            case 6: ////////////// SMS
+            case 5: ////////////// SMS
               if (smsPhoCon.text.trim().isEmpty) {
                 throw "Enter Phone Number"; //  must not be empty
               } else if (smsPhoCon.text.trim().length < 3) {
@@ -696,6 +770,23 @@ class _CreateScreenState extends State<CreateScreen> {
                 throw 'Enter Message'; //  must not be empty
               }
               isNumber(smsPhoCon.text) ? null : throw 'Invalid Phone Number';
+              break;
+
+            case 6: ////////////// Geo-Location
+              if (geoLatCon.text.trim().isEmpty) {
+                throw "Enter Latitude"; //  must not be empty
+              } else if (geoLonCon.text.trim().isEmpty) {
+                throw 'Enter Longitude'; //  must not be empty
+              }
+              isNumber(geoLatCon.text) ? null : throw 'Invalid Latitude';
+              isNumber(geoLonCon.text) ? null : throw 'Invalid Longitude';
+              break;
+
+            case 7: ////////////// Phone
+              if (phoneCon.text.trim().isEmpty) {
+                throw "Enter Phone Number"; //  must not be empty
+              }
+              isNumber(phoneCon.text) ? null : throw 'Invalid Phone Number';
               break;
           }
         } catch (e) {
@@ -708,9 +799,12 @@ class _CreateScreenState extends State<CreateScreen> {
             builder: (BuildContext context) => CodeDisplayScreen(
               data: '$finalWords',
               barCode: selectedCodeType,
+              bcon: context,
             ),
           ),
-        );
+        ).then((value) {
+          setState(() {});
+        });
       },
       child: const Padding(
         padding: EdgeInsets.all(12),
@@ -794,6 +888,11 @@ class _CreateScreenState extends State<CreateScreen> {
     //  SMS
     smsPhoCon.clear();
     smsMsgCon.clear();
+    //  Geo-Location
+    geoLatCon.clear();
+    geoLonCon.clear();
+    //  Phone
+    phoneCon.clear();
   }
 
   setWiFi() {
@@ -824,6 +923,14 @@ END:VCARD''';
 
   setSMS() {
     finalWords = "SMSTO:${smsPhoCon.text.trim()}:${smsMsgCon.text.trim()}";
+  }
+
+  setGeo() {
+    finalWords = "GEO:${geoLatCon.text.trim()},${geoLonCon.text.trim()}";
+  }
+
+  setPhone() {
+    finalWords = 'TEL:${phoneCon.text.trim()}';
   }
 }
 
