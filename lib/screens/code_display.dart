@@ -16,9 +16,11 @@ class CodeDisplayScreen extends StatefulWidget {
     super.key,
     required this.data,
     required this.barCode,
+    required this.bcon,
   });
   final String data;
   final Barcode barCode;
+  final BuildContext bcon;
 
   @override
   State<CodeDisplayScreen> createState() => _CodeDisplayScreenState();
@@ -34,10 +36,16 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
     context.read<AdLoader>().loaderOff();
     super.initState();
   }
+
   // @override
   // void didChangeDependencies() {
   //   print('=====didChange');
   //   super.didChangeDependencies();
+  // }
+  // @override
+  // void dispose() {
+  //   print('=====dispose');
+  //   super.dispose();
   // }
 
   @override
@@ -60,7 +68,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
               backgroundColor: Colors.white,
               appBar: AppBar(
                 elevation: 0, //toolbarHeight: 56,
-                centerTitle: true,
+                // centerTitle: true,
                 title: Text(widget.barCode.name),
               ),
               body: SafeArea(
@@ -70,6 +78,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       displayOutputCode(context),
+                      // Text(widget.data),// Testing Only
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 40),
                         child: Row(
