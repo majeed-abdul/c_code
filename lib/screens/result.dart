@@ -3,10 +3,10 @@ import 'package:qr_maze/widgets/loader.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:qr_maze/widgets/buttons.dart';
 import 'package:qr_maze/widgets/pop_ups.dart';
+import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:wifi_iot/wifi_iot.dart';
 import 'package:provider/provider.dart';
 // import 'package:wifi_iot/wifi_iot.dart';
@@ -58,7 +58,7 @@ Password : ${encr.toUpperCase() == "NOPASS" ? '' : pass}
 Encryption : ${encr.toUpperCase() == "NOPASS" ? 'None' : encr}
 Hidden : $hidd''';
     } //'*' * pass.length
-    if (isEmail()) {
+    else if (isEmail()) {
       String email = word.toUpperCase().startsWith('MAILTO:')
           ? word.substring(
               word.toUpperCase().indexOf('TO:') + 3, // mailto:
@@ -90,13 +90,11 @@ Hidden : $hidd''';
               word.lastIndexOf(';') - 1,
             );
       formated = 'Email : $email\nSubject : $subje\nMessage : $messa';
-    }
-    if (isSMS()) {
+    } else if (isSMS()) {
       String num = word.substring(6, word.substring(7).indexOf(':') + 7);
       String msg = word.substring(word.substring(7).indexOf(':') + 8);
       formated = 'Number : $num\nMessage : $msg';
-    }
-    if (isVCard()) {
+    } else if (isVCard()) {
       Contact vc = Contact.fromVCard(word);
       String name = vc.displayName;
       String addresses = '';
@@ -126,6 +124,7 @@ Organizations: $orgs
 Contact: $phones
 Websites : $websites''';
     }
+    context.read<AdLoader>().loaderOff();
     setState(() {});
     super.initState();
   }
@@ -454,8 +453,11 @@ Websites : $websites''';
 
   bool isVCard() {
     bool validURL =
-        widget.result.code!.toUpperCase().startsWith('BEGIN:VCARD') &&
-            widget.result.code!.toUpperCase().endsWith('END:VCARD');
+        "${widget.result.code}".toUpperCase().startsWith('BEGIN:VCARD') &&
+            "${widget.result.code}"
+                .trim()
+                .toUpperCase()
+                .endsWith('END:VCARD'); //need testing
     return validURL;
   }
 

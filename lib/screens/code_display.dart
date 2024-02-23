@@ -5,9 +5,9 @@ import 'package:qr_maze/widgets/loader.dart';
 import 'package:qr_maze/widgets/pop_ups.dart';
 import 'package:flutter/material.dart';
 import 'package:barcode_image/barcode_image.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:image/image.dart' as img;
 import 'package:image/image.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:provider/provider.dart';
 
 class CodeDisplayScreen extends StatefulWidget {

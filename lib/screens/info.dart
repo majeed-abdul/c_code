@@ -1,8 +1,8 @@
-import 'package:qr_maze/functions/ads.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:qr_maze/functions/ads.dart';
+import 'package:in_app_review/in_app_review.dart';
 import 'package:qr_maze/widgets/loader.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:in_app_review/in_app_review.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -148,6 +148,9 @@ class _InfoScreenState extends State<InfoScreen> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
           actionsAlignment: MainAxisAlignment.center,
           title: const Text('Set Home Screen', textAlign: TextAlign.center),
           titlePadding: const EdgeInsets.symmetric(
