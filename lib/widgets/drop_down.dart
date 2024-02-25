@@ -19,9 +19,9 @@ Widget dropDown({
       child: DropdownButton<String>(
         borderRadius: BorderRadius.circular(6),
         focusColor: Colors.white,
+        isExpanded: true,
         hint: Text(hint ?? 'null'),
         value: dropDownValue,
-        isExpanded: true,
         elevation: 16,
         onChanged: onChanged,
         underline: const SizedBox(),
