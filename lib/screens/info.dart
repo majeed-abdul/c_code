@@ -99,6 +99,18 @@ class _InfoScreenState extends State<InfoScreen> {
                 },
               ),
               ListTile(
+                title: const Text('Join Beta'),
+                subtitle: const Text('Rate us on Play Store.'),
+                leading: const Icon(Icons.star_rate_rounded, size: 40),
+                trailing: const Icon(Icons.more_vert),
+                onTap: () async {
+                  Uri url = Uri.parse(
+                    'https://qrscancreate.blogspot.com/2024/01/privacy-policy-for-qr-scancreate.html',
+                  );
+                  launchUrl(url, mode: LaunchMode.externalApplication);
+                },
+              ),
+              ListTile(
                 title: const Text('Donate ❤️'),
                 subtitle: const Text('We need support to keep you up to date.'),
                 leading: const Icon(Icons.volunteer_activism_rounded, size: 40),
