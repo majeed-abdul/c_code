@@ -1,22 +1,28 @@
+import 'package:qr_maze/data/hive/model.dart';
 import 'package:qr_maze/data/theme.dart';
-import 'package:qr_maze/functions/ads.dart';
-import 'package:provider/provider.dart';
+// import 'package:qr_maze/functions/ads.dart';
+// import 'package:provider/provider.dart';
 import 'package:qr_maze/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_maze/screens/scan.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(ScannedDataAdapter());
+  await Hive.openBox<ScannedData>('scannedCodes');
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
   return runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => AdLoader()),
-      ],
-      child: const MyApp(),
-    ),
-  );
+      // MultiProvider(
+      //   providers: [
+      //     ChangeNotifierProvider(create: (_) => AdLoader()),
+      //   ],
+      // child: const MyApp(),
+      // ),
+      // );
+      const MyApp()); //only for without provider
 }
 
 class MyApp extends StatelessWidget {
