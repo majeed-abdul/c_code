@@ -4,8 +4,8 @@ import 'package:qr_maze/widgets/text_field.dart';
 Widget dropDown({
   required List<String> items,
   required void Function(String?)? onChanged,
-  String? dropDownValue,
   String? text,
+  String? dropDownValue,
   String? hint,
 }) {
   return entryBar(
