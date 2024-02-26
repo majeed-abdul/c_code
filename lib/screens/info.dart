@@ -154,12 +154,12 @@ class _InfoScreenState extends State<InfoScreen> {
           actionsAlignment: MainAxisAlignment.center,
           title: const Text('Set Home Screen', textAlign: TextAlign.center),
           titlePadding: const EdgeInsets.symmetric(
-            horizontal: 15,
             vertical: 10,
+            horizontal: 15,
           ),
           actionsPadding: const EdgeInsets.symmetric(
-            horizontal: 15,
             vertical: 15,
+            horizontal: 15,
           ),
           contentPadding: const EdgeInsets.symmetric(horizontal: 20),
           content: const Text(
@@ -185,8 +185,8 @@ class _InfoScreenState extends State<InfoScreen> {
                   },
                 ),
                 ListTile(
-                  minLeadingWidth: 0,
                   minVerticalPadding: 0,
+                  minLeadingWidth: 0,
                   leading: Icon(
                     i ? Icons.radio_button_off : Icons.radio_button_checked,
                     color: i ? null : Theme.of(context).primaryColor,

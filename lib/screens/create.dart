@@ -1,12 +1,12 @@
 import 'package:email_validator/email_validator.dart';
-import 'package:barcode_widget/barcode_widget.dart';
 import 'package:qr_maze/screens/code_display.dart';
-import 'package:qr_maze/widgets/text_field.dart';
+import 'package:barcode_widget/barcode_widget.dart';
 import 'package:qr_maze/widgets/drop_down.dart';
 import 'package:qr_maze/widgets/pop_ups.dart';
+import 'package:qr_maze/widgets/text_field.dart';
 import 'package:qr_maze/widgets/buttons.dart';
-import 'package:qr_maze/data/create.dart';
 import 'package:flutter/material.dart';
+import 'package:qr_maze/data/create.dart';
 
 class CreateScreen extends StatefulWidget {
   const CreateScreen({Key? key}) : super(key: key);

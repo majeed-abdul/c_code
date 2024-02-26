@@ -26,8 +26,8 @@ Widget entryBar({Widget? child, String? text}) {
     leading: Text(
       '$text :',
       style: const TextStyle(
-        height: 1.7,
         fontSize: 16,
+        height: 1.7,
         fontWeight: FontWeight.bold,
       ),
     ),

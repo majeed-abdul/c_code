@@ -24,9 +24,9 @@ class CodeDisplayScreen extends StatefulWidget {
 }
 
 class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
+  bool error = false;
   bool saved = false;
   bool support = false;
-  bool error = false;
 
   @override
   void initState() {
