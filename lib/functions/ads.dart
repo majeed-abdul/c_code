@@ -21,7 +21,7 @@ class AdLoader extends ChangeNotifier {
 
 // order is important for better outcomes must be == 3
 const List<String> _adUnitIDs = [
-  'ca-app-pub-9338573690135257/6850625011', //  1 high
+  'ca-app-pub-8519985134285001/3387102663', //  1 high
   'ca-app-pub-8519985134285001/2979908556', //  2 medium
   'ca-app-pub-8519985134285001/4297639908', //  3 all
 ];
