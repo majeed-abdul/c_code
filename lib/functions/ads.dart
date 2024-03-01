@@ -21,50 +21,77 @@ class AdLoader extends ChangeNotifier {
 
 // order is important for better outcomes must be == 3
 const List<String> _adUnitIDs = [
-  'ca-app-pub-9338573690135257/6850625011', //  1 high
-  'ca-app-pub-9338573690135257/8643310143', //  2 medium
-  'ca-app-pub-9338573690135257/3828616098', //  3 all
+  'ca-app-pub-8519985134285001/3387102663', //  1 high
+  'ca-app-pub-8519985134285001/2979908556', //  2 medium
+  'ca-app-pub-8519985134285001/4297639908', //  3 all
 ];
 
 Future<void> loadAndShowAd(BuildContext context) async {
   context.read<AdLoader>().loaderOn();
-  await RewardedAd.load(
-    adUnitId: _adUnitIDs[0],
+  await InterstitialAd.load(
+    adUnitId: _adUnitIDs[0], //for testing only
     request: const AdRequest(),
-    rewardedAdLoadCallback: RewardedAdLoadCallback(
+    adLoadCallback: InterstitialAdLoadCallback(
       onAdLoaded: (ad) {
         ad.fullScreenContentCallback = FullScreenContentCallback(
-          onAdFailedToShowFullScreenContent: ((ad, err) => ad.dispose()),
-          onAdDismissedFullScreenContent: ((ad) => ad.dispose()),
+          onAdFailedToShowFullScreenContent: ((ad, err) {
+            context.read<AdLoader>().loaderOff();
+            ad.dispose();
+          }),
+          onAdDismissedFullScreenContent: ((ad) {
+            context.read<AdLoader>().loaderOff();
+            ad.dispose();
+          }),
         );
-        ad.show(onUserEarnedReward: (AdWithoutView ad, RewardItem rewardItem) {
-          showThankYouPopup(context);
-          context.read<AdLoader>().loaderOff();
-        });
+        ad.show();
       },
       onAdFailedToLoad: (LoadAdError error) {
+        context.read<AdLoader>().loaderOff();
         _loadAndShowAd1(context);
       },
     ),
   );
+  // await RewardedAd.load(
+  //   adUnitId: _adUnitIDs[0],
+  //   request: const AdRequest(),
+  //   rewardedAdLoadCallback: RewardedAdLoadCallback(
+  //     onAdLoaded: (ad) {
+  //       ad.fullScreenContentCallback = FullScreenContentCallback(
+  //         onAdFailedToShowFullScreenContent: ((ad, err) => ad.dispose()),
+  //         onAdDismissedFullScreenContent: ((ad) => ad.dispose()),
+  //       );
+  //       ad.show(onUserEarnedReward: (AdWithoutView ad, RewardItem rewardItem) {
+  //         showThankYouPopup(context);
+  //         context.read<AdLoader>().loaderOff();
+  //       });
+  //     },
+  //     onAdFailedToLoad: (LoadAdError error) {
+  //       _loadAndShowAd1(context);
+  //     },
+  //   ),
+  // );
 }
 
 Future<void> _loadAndShowAd1(BuildContext context) async {
-  await RewardedAd.load(
-    adUnitId: _adUnitIDs[1],
+  await InterstitialAd.load(
+    adUnitId: _adUnitIDs[1], //for testing only
     request: const AdRequest(),
-    rewardedAdLoadCallback: RewardedAdLoadCallback(
+    adLoadCallback: InterstitialAdLoadCallback(
       onAdLoaded: (ad) {
         ad.fullScreenContentCallback = FullScreenContentCallback(
-          onAdFailedToShowFullScreenContent: ((ad, err) => ad.dispose()),
-          onAdDismissedFullScreenContent: ((ad) => ad.dispose()),
+          onAdFailedToShowFullScreenContent: ((ad, err) {
+            context.read<AdLoader>().loaderOff();
+            ad.dispose();
+          }),
+          onAdDismissedFullScreenContent: ((ad) {
+            context.read<AdLoader>().loaderOff();
+            ad.dispose();
+          }),
         );
-        ad.show(onUserEarnedReward: (AdWithoutView ad, RewardItem rewardItem) {
-          showThankYouPopup(context);
-          context.read<AdLoader>().loaderOff();
-        });
+        ad.show();
       },
       onAdFailedToLoad: (LoadAdError error) {
+        context.read<AdLoader>().loaderOff();
         _loadAndShowAd2(context);
       },
     ),
@@ -72,24 +99,26 @@ Future<void> _loadAndShowAd1(BuildContext context) async {
 }
 
 Future<void> _loadAndShowAd2(BuildContext context) async {
-  await RewardedAd.load(
+  await InterstitialAd.load(
     adUnitId: _adUnitIDs[2],
     request: const AdRequest(),
-    rewardedAdLoadCallback: RewardedAdLoadCallback(
+    adLoadCallback: InterstitialAdLoadCallback(
       onAdLoaded: (ad) {
         ad.fullScreenContentCallback = FullScreenContentCallback(
-          onAdFailedToShowFullScreenContent: ((ad, err) => ad.dispose()),
-          onAdDismissedFullScreenContent: ((ad) => ad.dispose()),
+          onAdFailedToShowFullScreenContent: ((ad, err) {
+            context.read<AdLoader>().loaderOff();
+            ad.dispose();
+          }),
+          onAdDismissedFullScreenContent: ((ad) {
+            context.read<AdLoader>().loaderOff();
+            ad.dispose();
+          }),
         );
-        ad.show(onUserEarnedReward: (AdWithoutView ad, RewardItem rewardItem) {
-          showThankYouPopup(context);
-          context.read<AdLoader>().loaderOff();
-        });
+        ad.show();
       },
       onAdFailedToLoad: (LoadAdError error) {
         context.read<AdLoader>().loaderOff();
-        // print('=========Ad Failed');
-        showSnackBar(context, 'Unable to show Ad, thanks for your move.');
+        // _loadAndShowAd1(context);
       },
     ),
   );
