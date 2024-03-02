@@ -94,7 +94,7 @@ Hidden : $hidd''';
     } else if (isSMS()) {
       String num = word.substring(6, word.substring(7).indexOf(':') + 7);
       String msg = word.substring(word.substring(7).indexOf(':') + 8);
-      formated = 'Number : $num\nMessage : $msg';
+      formated = 'To : $num\nMessage : $msg';
     } else if (isVCard()) {
       Contact vc = Contact.fromVCard(word);
       String name = vc.displayName;
