@@ -250,7 +250,7 @@ Websites : $websites''';
         children: [
           customButton(
             onPress: () => _sms(),
-            icon: Icons.message,
+            icon: Icons.send,
           ),
           const Text('Send', textAlign: TextAlign.center),
         ],
