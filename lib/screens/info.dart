@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:qr_maze/widgets/pop_ups.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:qr_maze/functions/ads.dart';
