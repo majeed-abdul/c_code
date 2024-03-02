@@ -167,8 +167,8 @@ Websites : $websites''';
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        isWiFi()
-                            ? 'WiFi'
+                        isWebURL()
+                            ? 'URL'
                             : isNum()
                                 ? 'Number'
                                 : isVCard()
@@ -177,8 +177,8 @@ Websites : $websites''';
                                         ? 'Email'
                                         : isSMS()
                                             ? 'SMS'
-                                            : isURL()
-                                                ? 'URL'
+                                            : isWiFi()
+                                                ? 'WiFi'
                                                 : 'Text',
                         style: const TextStyle(
                           fontSize: 25,
@@ -256,7 +256,7 @@ Websites : $websites''';
         ],
       );
       text = false;
-    } else if (isURL()) {
+    } else if (isWebURL()) {
       w = Column(
         children: [
           customButton(onPress: () => _browse(), icon: Icons.link),
@@ -438,9 +438,10 @@ Websites : $websites''';
     }
   }
 
-  bool isURL() {
+  bool isWebURL() {
     try {
-      return Uri.tryParse(widget.result.code ?? '')?.isAbsolute ?? false;
+      return isURL(widget.result.code ?? '');
+      // return Uri.tryParse(widget.result.code ?? '')?.isAbsolute ?? false;
     } catch (e) {
       return false;
     }
