@@ -230,7 +230,7 @@ Websites : $websites''';
       w = Column(
         children: [
           customButton(onPress: () => _contact(), icon: Icons.call),
-          const Text('V-Card', textAlign: TextAlign.center),
+          const Text('Call Now', textAlign: TextAlign.center),
         ],
       );
       text = false;
