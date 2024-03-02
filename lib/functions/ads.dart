@@ -35,18 +35,17 @@ Future<void> loadAndShowAd(BuildContext context) async {
       onAdLoaded: (ad) {
         ad.fullScreenContentCallback = FullScreenContentCallback(
           onAdFailedToShowFullScreenContent: ((ad, err) {
-            context.read<AdLoader>().loaderOff();
             ad.dispose();
+            context.read<AdLoader>().loaderOff();
           }),
           onAdDismissedFullScreenContent: ((ad) {
-            context.read<AdLoader>().loaderOff();
             ad.dispose();
+            context.read<AdLoader>().loaderOff();
           }),
         );
-        ad.show();
+        ad.show().then((value) => showThankYouPopup(context));
       },
       onAdFailedToLoad: (LoadAdError error) {
-        context.read<AdLoader>().loaderOff();
         _loadAndShowAd1(context);
       },
     ),
@@ -80,18 +79,17 @@ Future<void> _loadAndShowAd1(BuildContext context) async {
       onAdLoaded: (ad) {
         ad.fullScreenContentCallback = FullScreenContentCallback(
           onAdFailedToShowFullScreenContent: ((ad, err) {
-            context.read<AdLoader>().loaderOff();
             ad.dispose();
+            context.read<AdLoader>().loaderOff();
           }),
           onAdDismissedFullScreenContent: ((ad) {
-            context.read<AdLoader>().loaderOff();
             ad.dispose();
+            context.read<AdLoader>().loaderOff();
           }),
         );
-        ad.show();
+        ad.show().then((value) => showThankYouPopup(context));
       },
       onAdFailedToLoad: (LoadAdError error) {
-        context.read<AdLoader>().loaderOff();
         _loadAndShowAd2(context);
       },
     ),
@@ -106,19 +104,19 @@ Future<void> _loadAndShowAd2(BuildContext context) async {
       onAdLoaded: (ad) {
         ad.fullScreenContentCallback = FullScreenContentCallback(
           onAdFailedToShowFullScreenContent: ((ad, err) {
-            context.read<AdLoader>().loaderOff();
             ad.dispose();
+            context.read<AdLoader>().loaderOff();
           }),
           onAdDismissedFullScreenContent: ((ad) {
-            context.read<AdLoader>().loaderOff();
             ad.dispose();
+            context.read<AdLoader>().loaderOff();
           }),
         );
-        ad.show();
+        ad.show().then((value) => showThankYouPopup(context));
       },
       onAdFailedToLoad: (LoadAdError error) {
         context.read<AdLoader>().loaderOff();
-        // _loadAndShowAd1(context);
+        showSnackBar(context, 'Unable to show Ad this time, But thanks.');
       },
     ),
   );
