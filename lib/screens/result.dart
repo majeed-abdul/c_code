@@ -176,7 +176,7 @@ Websites : $websites''';
                                     : isEmail()
                                         ? 'Email'
                                         : isSMS()
-                                            ? 'SMS'
+                                            ? 'Message'
                                             : isWiFi()
                                                 ? 'WiFi'
                                                 : 'Text',
@@ -250,9 +250,9 @@ Websites : $websites''';
         children: [
           customButton(
             onPress: () => _sms(),
-            icon: Icons.sms_outlined,
+            icon: Icons.message,
           ),
-          const Text('SMS', textAlign: TextAlign.center),
+          const Text('Send', textAlign: TextAlign.center),
         ],
       );
       text = false;
