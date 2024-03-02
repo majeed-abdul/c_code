@@ -90,7 +90,7 @@ Hidden : $hidd''';
               word.toUpperCase().indexOf(';BODY:') + 6,
               word.lastIndexOf(';') - 1,
             );
-      formated = 'Email : $email\nSubject : $subje\nMessage : $messa';
+      formated = 'To : $email\nSubject : $subje\nMessage : $messa';
     } else if (isSMS()) {
       String num = word.substring(6, word.substring(7).indexOf(':') + 7);
       String msg = word.substring(word.substring(7).indexOf(':') + 8);
@@ -221,7 +221,7 @@ Websites : $websites''';
             onPress: () => _wifiConect(),
             icon: Icons.wifi_rounded,
           ),
-          const Text('Conect', textAlign: TextAlign.center),
+          const Text('Connect', textAlign: TextAlign.center),
         ],
       );
       text = false;
@@ -230,7 +230,7 @@ Websites : $websites''';
       w = Column(
         children: [
           customButton(onPress: () => _contact(), icon: Icons.call),
-          const Text('Call Now', textAlign: TextAlign.center),
+          const Text('Call', textAlign: TextAlign.center),
         ],
       );
       text = false;
@@ -239,7 +239,7 @@ Websites : $websites''';
         children: [
           customButton(
             onPress: () => _mail(),
-            icon: Icons.email_outlined,
+            icon: Icons.email,
           ),
           const Text('Email', textAlign: TextAlign.center),
         ],
@@ -259,7 +259,7 @@ Websites : $websites''';
     } else if (isWebURL()) {
       w = Column(
         children: [
-          customButton(onPress: () => _browse(), icon: Icons.link),
+          customButton(onPress: () => _browse(), icon: Icons.language),
           const Text('Browse', textAlign: TextAlign.center),
         ],
       );
