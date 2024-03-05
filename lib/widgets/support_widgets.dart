@@ -85,7 +85,7 @@ ListTile seeAds(BuildContext context) {
 
 const String shareMessage = '''
 Unlock the Next Level in QR Scanning
-with QR Sensor.
+with Our App.
 
 Why Choose Our App?
 
