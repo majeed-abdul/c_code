@@ -316,7 +316,6 @@ Websites : $websites''';
       padding: const EdgeInsets.all(9),
       child: SelectableText(
         formated ?? widget.result.code ?? '',
-        // widget.result.code ?? '',
         style: const TextStyle(fontSize: 15),
       ),
     );
