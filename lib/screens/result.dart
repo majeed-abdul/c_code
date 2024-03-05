@@ -290,12 +290,6 @@ Websites : $websites''';
           children: [
             customButton(
               onPress: () => setState(() => support = true),
-              // onPress: () => Navigator.push(
-              //   context,
-              //   MaterialPageRoute<void>(
-              //     builder: (BuildContext context) => const MyWidget(),
-              //   ),
-              // ),
               icon: Icons.volunteer_activism_rounded,
             ),
             const Text('Support', textAlign: TextAlign.center),
