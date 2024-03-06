@@ -1,4 +1,5 @@
 import 'package:qr_maze/functions/ads.dart';
+import 'package:qr_maze/widgets/bottom_sheet.dart';
 import 'package:qr_maze/widgets/loader.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:qr_maze/widgets/pop_ups.dart';
@@ -192,6 +193,23 @@ Websites : $websites''';
                       const SizedBox(height: 55),
                     ],
                   ),
+                ),
+              ),
+            ),
+            Visibility(
+              visible: support,
+              child: Scaffold(
+                backgroundColor: Colors.black54,
+                body: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: (() => setState(() => support = false)),
+                      ),
+                    ),
+                    supportBottomSheet(context)
+                  ],
                 ),
               ),
             ),
