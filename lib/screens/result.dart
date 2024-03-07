@@ -1,4 +1,5 @@
 import 'package:qr_maze/functions/ads.dart';
+import 'package:qr_maze/widgets/bottom_sheet.dart';
 import 'package:qr_maze/widgets/loader.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:qr_maze/widgets/pop_ups.dart';
@@ -10,6 +11,7 @@ import 'package:wifi_iot/wifi_iot.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 // import 'package:wifi_iot/wifi_iot.dart';
+import 'package:string_validator/string_validator.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({super.key, required this.result});
@@ -89,11 +91,11 @@ Hidden : $hidd''';
               word.toUpperCase().indexOf(';BODY:') + 6,
               word.lastIndexOf(';') - 1,
             );
-      formated = 'Email : $email\nSubject : $subje\nMessage : $messa';
+      formated = 'To : $email\nSubject : $subje\nMessage : $messa';
     } else if (isSMS()) {
       String num = word.substring(6, word.substring(7).indexOf(':') + 7);
       String msg = word.substring(word.substring(7).indexOf(':') + 8);
-      formated = 'Number : $num\nMessage : $msg';
+      formated = 'To : $num\nMessage : $msg';
     } else if (isVCard()) {
       Contact vc = Contact.fromVCard(word);
       String name = vc.displayName;
@@ -166,8 +168,8 @@ Websites : $websites''';
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        isWiFi()
-                            ? 'WiFi'
+                        isWebURL()
+                            ? 'URL'
                             : isNum()
                                 ? 'Number'
                                 : isVCard()
@@ -175,9 +177,9 @@ Websites : $websites''';
                                     : isEmail()
                                         ? 'Email'
                                         : isSMS()
-                                            ? 'SMS'
-                                            : isURL()
-                                                ? 'URL'
+                                            ? 'Message'
+                                            : isWiFi()
+                                                ? 'WiFi'
                                                 : 'Text',
                         style: const TextStyle(
                           fontSize: 25,
@@ -191,6 +193,23 @@ Websites : $websites''';
                       const SizedBox(height: 55),
                     ],
                   ),
+                ),
+              ),
+            ),
+            Visibility(
+              visible: support,
+              child: Scaffold(
+                backgroundColor: Colors.black54,
+                body: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: (() => setState(() => support = false)),
+                      ),
+                    ),
+                    supportBottomSheet(context)
+                  ],
                 ),
               ),
             ),
@@ -220,7 +239,7 @@ Websites : $websites''';
             onPress: () => _wifiConect(),
             icon: Icons.wifi_rounded,
           ),
-          const Text('Conect', textAlign: TextAlign.center),
+          const Text('Connect', textAlign: TextAlign.center),
         ],
       );
       text = false;
@@ -229,7 +248,7 @@ Websites : $websites''';
       w = Column(
         children: [
           customButton(onPress: () => _contact(), icon: Icons.call),
-          const Text('V-Card', textAlign: TextAlign.center),
+          const Text('Call', textAlign: TextAlign.center),
         ],
       );
       text = false;
@@ -238,7 +257,7 @@ Websites : $websites''';
         children: [
           customButton(
             onPress: () => _mail(),
-            icon: Icons.email_outlined,
+            icon: Icons.email,
           ),
           const Text('Email', textAlign: TextAlign.center),
         ],
@@ -249,16 +268,16 @@ Websites : $websites''';
         children: [
           customButton(
             onPress: () => _sms(),
-            icon: Icons.sms_outlined,
+            icon: Icons.send,
           ),
-          const Text('SMS', textAlign: TextAlign.center),
+          const Text('Send', textAlign: TextAlign.center),
         ],
       );
       text = false;
-    } else if (isURL()) {
+    } else if (isWebURL()) {
       w = Column(
         children: [
-          customButton(onPress: () => _browse(), icon: Icons.link),
+          customButton(onPress: () => _browse(), icon: Icons.language),
           const Text('Browse', textAlign: TextAlign.center),
         ],
       );
@@ -297,7 +316,6 @@ Websites : $websites''';
       padding: const EdgeInsets.all(9),
       child: SelectableText(
         formated ?? widget.result.code ?? '',
-        // widget.result.code ?? '',
         style: const TextStyle(fontSize: 15),
       ),
     );
@@ -437,9 +455,10 @@ Websites : $websites''';
     }
   }
 
-  bool isURL() {
+  bool isWebURL() {
     try {
-      return Uri.tryParse(widget.result.code ?? '')?.isAbsolute ?? false;
+      return isURL(widget.result.code ?? '');
+      // return Uri.tryParse(widget.result.code ?? '')?.isAbsolute ?? false;
     } catch (e) {
       return false;
     }
