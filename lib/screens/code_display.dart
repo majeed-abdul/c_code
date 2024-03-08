@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:barcode_image/barcode_image.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:image/image.dart' as img;
-import 'package:image/image.dart';
 import 'package:provider/provider.dart';
+import 'package:image/image.dart';
 
 class CodeDisplayScreen extends StatefulWidget {
   const CodeDisplayScreen({
