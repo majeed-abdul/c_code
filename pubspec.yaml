@@ -38,7 +38,7 @@ dependencies:
   url_launcher: ^6.1.10 # opening default Browser, Email and Messaging applications
   icons_launcher: ^2.1.0
   qr_code_scanner: ^1.0.1 # scan codes
-  email_validator: ^2.1.17  # email validation
+  email_validator: ^2.1.17  # email validation  ###
   shared_preferences: ^2.2.2  # app Data
   package_info_plus: ^4.2.0 # app info
   google_mobile_ads: ^4.0.0 # ads
