@@ -558,7 +558,7 @@ class _CreateScreenState extends State<CreateScreen> {
         try {
           switch (selected) {
             case 0: ////////////// Text & URL
-              if (stringCon.text.isEmpty) {
+              if (stringCon.text.trim().isEmpty) {
                 throw 'Enter Text'; //  must not be empty
               }
               break;
@@ -585,7 +585,7 @@ class _CreateScreenState extends State<CreateScreen> {
               }
               break;
             case 2: ////////////// WIFi
-              if (wiFiNamCon.text.isEmpty) {
+              if (wiFiNamCon.text.trim().isEmpty) {
                 throw 'Enter SSID'; //  must not be empty
               } else if (wiFiPasCon.text.isEmpty && encryption != 'nopass') {
                 throw 'Enter Password'; //  must not be empty
