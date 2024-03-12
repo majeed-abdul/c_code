@@ -10,8 +10,8 @@ import 'package:qr_maze/widgets/pop_ups.dart';
 import 'package:wifi_iot/wifi_iot.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-// import 'package:wifi_iot/wifi_iot.dart';
 import 'package:string_validator/string_validator.dart';
+// import 'package:wifi_iot/wifi_iot.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({super.key, required this.result});
