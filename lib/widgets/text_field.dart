@@ -6,24 +6,24 @@ InputDecoration kDecoration = const InputDecoration(
   contentPadding: EdgeInsets.all(8),
   hintStyle: TextStyle(fontSize: 15),
   errorBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Colors.red, width: 1.0),
     borderRadius: BorderRadius.all(Radius.circular(6.0)),
+    borderSide: BorderSide(color: Colors.red, width: 1.0),
   ),
   focusedBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Color(0xff999999), width: 1.0),
     borderRadius: BorderRadius.all(Radius.circular(6.0)),
+    borderSide: BorderSide(color: Color(0xff999999), width: 1.0),
   ),
   enabledBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Color(0xff999999), width: 1.0),
     borderRadius: BorderRadius.all(Radius.circular(6.0)),
+    borderSide: BorderSide(color: Color(0xff999999), width: 1.0),
   ),
 );
 Widget entryBar({Widget? child, String? text}) {
   return ListTile(
-    contentPadding: const EdgeInsets.all(0),
+    title: child,
     horizontalTitleGap: 7,
     minLeadingWidth: 88,
-    title: child,
+    contentPadding: const EdgeInsets.all(0),
     leading: Text(
       '$text :',
       style: const TextStyle(
