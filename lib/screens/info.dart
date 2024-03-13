@@ -169,8 +169,8 @@ class _InfoScreenState extends State<InfoScreen> {
             Column(
               children: [
                 ListTile(
-                  minLeadingWidth: 0,
                   minVerticalPadding: 0,
+                  minLeadingWidth: 0,
                   leading: Icon(
                     i ? Icons.radio_button_checked : Icons.radio_button_off,
                     color: i ? Theme.of(context).primaryColor : null,
