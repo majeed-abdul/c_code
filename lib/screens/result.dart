@@ -32,7 +32,7 @@ class _ResultScreenState extends State<ResultScreen> {
       (value) => scrollCon.animateTo(
         scrollCon.position.maxScrollExtent,
         curve: Curves.fastOutSlowIn,
-        duration: const Duration(milliseconds: 1500),
+        duration: const Duration(milliseconds: 1400),
       ),
     );
     String word = '${widget.result.code}';
