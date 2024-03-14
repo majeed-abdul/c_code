@@ -21,8 +21,9 @@ InputDecoration kDecoration = const InputDecoration(
 Widget entryBar({Widget? child, String? text}) {
   return ListTile(
     contentPadding: const EdgeInsets.all(0),
-    minLeadingWidth: 88,
     horizontalTitleGap: 7,
+    minLeadingWidth: 88,
+    title: child,
     leading: Text(
       '$text :',
       style: const TextStyle(
@@ -31,6 +32,5 @@ Widget entryBar({Widget? child, String? text}) {
         fontWeight: FontWeight.bold,
       ),
     ),
-    title: child,
   );
 }
