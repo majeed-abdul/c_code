@@ -26,6 +26,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      initialRoute: HomeScreen.id,
+      routes: {
+        HomeScreen.id: (context) => const HomeScreen(),
+        ScanScreen.id: (context) => const ScanScreen(),
+      },
       theme: ThemeData(
         useMaterial3: false,
         appBarTheme: const AppBarTheme(
@@ -49,11 +54,6 @@ class MyApp extends StatelessWidget {
           900: Color.fromRGBO(212, 32, 39, 1),
         }),
       ),
-      initialRoute: HomeScreen.id,
-      routes: {
-        HomeScreen.id: (context) => const HomeScreen(),
-        ScanScreen.id: (context) => const ScanScreen(),
-      },
     );
   }
 }
