@@ -13,7 +13,10 @@ Container supportBottomSheet(BuildContext context) {
     child: Column(
       children: [
         const Padding(
-          padding: EdgeInsets.only(top: 20, bottom: 14),
+          padding: EdgeInsets.only(
+            top: 20,
+            bottom: 14,
+          ),
           child: Text(
             'Support Us',
             style: TextStyle(fontSize: 16),
