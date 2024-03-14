@@ -1,9 +1,9 @@
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:qr_maze/widgets/pop_ups.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:qr_maze/widgets/pop_ups.dart';
 import 'package:flutter/services.dart';
 import 'dart:math';
+import 'package:flutter/material.dart';
 
 class AdLoader extends ChangeNotifier {
   bool loader = false;
@@ -196,5 +196,5 @@ void showThankYouPopup(BuildContext context) {
 
 int _getR7() {
   Random random = Random();
-  return random.nextInt(5) + 1;
+  return random.nextInt(5) + 1; // 5 is number of pics
 }
