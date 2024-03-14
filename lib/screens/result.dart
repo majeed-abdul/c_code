@@ -481,9 +481,12 @@ Websites : $websites''';
   }
 
   bool isEmail() {
-    bool validURL =
-        widget.result.code!.toUpperCase().startsWith("MATMSG:TO:") ||
-            widget.result.code!.toUpperCase().startsWith("MAILTO:");
+    bool validURL = widget.result.code!.toUpperCase().startsWith(
+              "MATMSG:TO:",
+            ) ||
+        widget.result.code!.toUpperCase().startsWith(
+              "MAILTO:",
+            );
     return validURL;
   }
 
