@@ -17,8 +17,8 @@ class CodeDisplayScreen extends StatefulWidget {
     required this.data,
     required this.barCode,
   });
-  final Barcode barCode;
   final String data;
+  final Barcode barCode;
 
   @override
   State<CodeDisplayScreen> createState() => _CodeDisplayScreenState();
