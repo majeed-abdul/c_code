@@ -81,8 +81,10 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
                                   onPress: () => setState(() => support = true),
                                   icon: Icons.volunteer_activism_rounded,
                                 ),
-                                const Text('Support',
-                                    textAlign: TextAlign.center),
+                                const Text(
+                                  'Support',
+                                  textAlign: TextAlign.center,
+                                ),
                               ],
                             ),
                             Column(
