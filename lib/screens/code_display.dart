@@ -59,7 +59,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
             Scaffold(
               backgroundColor: Colors.white,
               appBar: AppBar(
-                elevation: 0, //toolbarHeight: 56
+                elevation: 0, //toolbarHeight: 56,
                 centerTitle: true,
                 title: Text(widget.barCode.name),
               ),
