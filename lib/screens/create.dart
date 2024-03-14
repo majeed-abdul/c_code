@@ -558,7 +558,7 @@ class _CreateScreenState extends State<CreateScreen> {
         try {
           switch (selected) {
             case 0: ////////////// Text & URL
-              if (stringCon.text.isEmpty) {
+              if (stringCon.text.trim().isEmpty) {
                 throw 'Enter Text'; //  must not be empty
               }
               break;
@@ -585,7 +585,7 @@ class _CreateScreenState extends State<CreateScreen> {
               }
               break;
             case 2: ////////////// WIFi
-              if (wiFiNamCon.text.isEmpty) {
+              if (wiFiNamCon.text.trim().isEmpty) {
                 throw 'Enter SSID'; //  must not be empty
               } else if (wiFiPasCon.text.isEmpty && encryption != 'nopass') {
                 throw 'Enter Password'; //  must not be empty
@@ -613,19 +613,21 @@ class _CreateScreenState extends State<CreateScreen> {
             // vCardStrCon
             // vCardWebCon
             case 4: ////////////// Email
-              if (emailTooCon.text.isEmpty) {
+              if (emailTooCon.text.trim().isEmpty) {
                 throw "Enter Email"; //  must not be empty
-              } else if (emailSubCon.text.isEmpty) {
+              } else if (emailSubCon.text.trim().isEmpty) {
                 throw 'Enter Subject'; //  must not be empty
-              } else if (emailMsgCon.text.isEmpty) {
+              } else if (emailMsgCon.text.trim().isEmpty) {
                 throw 'Enter Message'; //  must not be empty
               }
               isEmail(emailTooCon.text) ? null : throw 'Invalid Email';
               break;
             case 5: ////////////// SMS
-              if (smsPhoCon.text.isEmpty) {
+              if (smsPhoCon.text.trim().isEmpty) {
                 throw "Enter Phone Number"; //  must not be empty
-              } else if (smsMsgCon.text.isEmpty) {
+              } else if (smsPhoCon.text.trim().length < 3) {
+                throw 'Enter more than 2 digits in Phone Number'; //  must not be empty
+              } else if (smsMsgCon.text.trim().isEmpty) {
                 throw 'Enter Message'; //  must not be empty
               }
               isNumber(smsPhoCon.text) ? null : throw 'Invalid Phone Number';

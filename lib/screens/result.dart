@@ -2,16 +2,16 @@ import 'package:qr_maze/functions/ads.dart';
 import 'package:qr_maze/widgets/bottom_sheet.dart';
 import 'package:qr_maze/widgets/loader.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'package:qr_maze/widgets/pop_ups.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:qr_maze/widgets/buttons.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
+import 'package:qr_maze/widgets/pop_ups.dart';
 import 'package:wifi_iot/wifi_iot.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-// import 'package:wifi_iot/wifi_iot.dart';
 import 'package:string_validator/string_validator.dart';
+// import 'package:wifi_iot/wifi_iot.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({super.key, required this.result});
@@ -32,7 +32,7 @@ class _ResultScreenState extends State<ResultScreen> {
       (value) => scrollCon.animateTo(
         scrollCon.position.maxScrollExtent,
         curve: Curves.fastOutSlowIn,
-        duration: const Duration(milliseconds: 1500),
+        duration: const Duration(milliseconds: 1400),
       ),
     );
     String word = '${widget.result.code}';
@@ -481,9 +481,12 @@ Websites : $websites''';
   }
 
   bool isEmail() {
-    bool validURL =
-        widget.result.code!.toUpperCase().startsWith("MATMSG:TO:") ||
-            widget.result.code!.toUpperCase().startsWith("MAILTO:");
+    bool validURL = widget.result.code!.toUpperCase().startsWith(
+              "MATMSG:TO:",
+            ) ||
+        widget.result.code!.toUpperCase().startsWith(
+              "MAILTO:",
+            );
     return validURL;
   }
 

@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:barcode_image/barcode_image.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:image/image.dart' as img;
-import 'package:image/image.dart';
 import 'package:provider/provider.dart';
+import 'package:image/image.dart';
 
 class CodeDisplayScreen extends StatefulWidget {
   const CodeDisplayScreen({
@@ -17,8 +17,8 @@ class CodeDisplayScreen extends StatefulWidget {
     required this.data,
     required this.barCode,
   });
-  final Barcode barCode;
   final String data;
+  final Barcode barCode;
 
   @override
   State<CodeDisplayScreen> createState() => _CodeDisplayScreenState();
@@ -59,8 +59,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
             Scaffold(
               backgroundColor: Colors.white,
               appBar: AppBar(
-                elevation: 0,
-                // toolbarHeight: 56,
+                elevation: 0, //toolbarHeight: 56,
                 centerTitle: true,
                 title: Text(widget.barCode.name),
               ),
@@ -82,8 +81,10 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
                                   onPress: () => setState(() => support = true),
                                   icon: Icons.volunteer_activism_rounded,
                                 ),
-                                const Text('Support',
-                                    textAlign: TextAlign.center),
+                                const Text(
+                                  'Support',
+                                  textAlign: TextAlign.center,
+                                ),
                               ],
                             ),
                             Column(

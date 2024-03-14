@@ -3,8 +3,8 @@ import 'package:qr_maze/functions/ads.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:qr_maze/widgets/loader.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
 
 class InfoScreen extends StatefulWidget {
   const InfoScreen({Key? key}) : super(key: key);
@@ -169,8 +169,8 @@ class _InfoScreenState extends State<InfoScreen> {
             Column(
               children: [
                 ListTile(
-                  minLeadingWidth: 0,
                   minVerticalPadding: 0,
+                  minLeadingWidth: 0,
                   leading: Icon(
                     i ? Icons.radio_button_checked : Icons.radio_button_off,
                     color: i ? Theme.of(context).primaryColor : null,
