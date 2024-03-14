@@ -27,7 +27,7 @@ Map<String, Barcode> textBarcodes = {
 };
 
 Map<String, Barcode> numberBarcodes = {
-  'QR Code': Barcode.qrCode(), //not for numbers its nessary to add R11
+  'QR Code': Barcode.qrCode(), //not for numbers its nessary to
   'Coda Bar': Barcode.codabar(),
   'Code 39': Barcode.code39(),
   'Code 93': Barcode.code93(),
