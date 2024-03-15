@@ -592,7 +592,8 @@ class _CreateScreenState extends State<CreateScreen> {
               }
               break;
             case 3: ////////////// V-Card
-              if (vCardFNaCon.text.isEmpty && vCardLNaCon.text.isEmpty) {
+              if (vCardFNaCon.text.trim().isEmpty &&
+                  vCardLNaCon.text.trim().isEmpty) {
                 throw 'Enter Name'; //  must not be empty
               } else if (vCardMobCon.text.isEmpty &&
                   vCardPhoCon.text.isEmpty &&
