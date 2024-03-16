@@ -3,6 +3,7 @@ import 'package:qr_maze/screens/create.dart';
 import 'package:qr_maze/screens/info.dart';
 import 'package:qr_maze/screens/scan.dart';
 import 'package:flutter/material.dart';
+import 'package:native_updater/native_updater.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -18,6 +19,10 @@ late Widget bodyWidget;
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
+    NativeUpdater.displayUpdateAlert(
+      context,
+      forceUpdate: true,
+    );
     SharedPreferences.getInstance().then((pref) {
       _index = pref.getInt('home') ?? 0;
       setState(() {});
