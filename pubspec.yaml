@@ -58,6 +58,11 @@ dependencies:
   share_plus: ^7.2.2
   safe_url_check: ^1.1.2
   internet_connection_checker: ^1.0.0+1
+  native_updater: ^0.1.1
+
+  # native_updater:
+  #   git: https://github.com/loadsmileau/native_updater
+  
 
 dev_dependencies:
   flutter_test:
