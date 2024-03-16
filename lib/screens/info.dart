@@ -33,7 +33,6 @@ class _InfoScreenState extends State<InfoScreen> {
     //   version = packageInfo.version;
     //   setState(() {});
     // });
-    // print('===init');
     context.read<AdLoader>().loaderOff();
   }
 
@@ -45,7 +44,6 @@ class _InfoScreenState extends State<InfoScreen> {
 
   // @override
   // void didChangeDependencies() {
-  //   print('===didChange');
   //   super.didChangeDependencies();
   // }
 
