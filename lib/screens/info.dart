@@ -243,10 +243,12 @@ https://play.google.com/store/apps/details?id=com.abdul.qr_maze''',
                 ListTile(
                   minVerticalPadding: 0,
                   minLeadingWidth: 0,
-                  leading: Icon(
-                    i ? Icons.radio_button_checked : Icons.radio_button_off,
-                    color: i ? Theme.of(context).primaryColor : null,
-                  ),
+                  leading: i
+                      ? const Icon(Icons.radio_button_checked)
+                      : const Icon(
+                          Icons.radio_button_off,
+                          color: Colors.black54,
+                        ),
                   title: const Text('Scan'),
                   onTap: () async {
                     await pref.setInt('home', 0).then((value) {
