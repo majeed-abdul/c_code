@@ -248,6 +248,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.5"
+  in_app_update:
+    dependency: transitive
+    description:
+      name: in_app_update
+      sha256: "6ce3fe4ce975812f7d6133ea95cd146ca29fccc733860b40871302a0385ddffb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   internet_connection_checker:
     dependency: "direct main"
     description:
@@ -328,6 +336,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  native_updater:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: a7bb03dfdef40a71569e45d55ac5f175b34a767d
+      url: "https://github.com/loadsmileau/native_updater"
+    source: git
+    version: "0.1.1"
   nested:
     dependency: transitive
     description:
@@ -336,6 +353,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  package_info:
+    dependency: transitive
+    description:
+      name: package_info
+      sha256: "6c07d9d82c69e16afeeeeb6866fe43985a20b3b50df243091bfc4a4ad2b03b75"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.2"
   package_info_plus:
     dependency: "direct main"
     description:
