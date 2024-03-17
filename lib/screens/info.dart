@@ -261,10 +261,14 @@ https://play.google.com/store/apps/details?id=com.abdul.qr_maze''',
                 ListTile(
                   minVerticalPadding: 0,
                   minLeadingWidth: 0,
-                  leading: Icon(
-                    i ? Icons.radio_button_off : Icons.radio_button_checked,
-                    color: i ? null : Theme.of(context).primaryColor,
-                  ),
+                  leading: i
+                      ? const Icon(
+                          Icons.radio_button_off,
+                          color: Colors.black54,
+                        )
+                      : const Icon(
+                          Icons.radio_button_checked,
+                        ),
                   title: const Text('Create'),
                   onTap: () async {
                     await pref.setInt('home', 1).then((value) {
