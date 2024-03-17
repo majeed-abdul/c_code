@@ -292,20 +292,6 @@ https://play.google.com/store/apps/details?id=com.abdul.qr_maze''',
             //     padding: EdgeInsets.all(11),
             //     child: Text('Create'),
             //   ),
-            // ),//////////////////////////////         OLD
-            // const Text('OR'),
-            // ElevatedButton(
-            //   onPressed: () async {
-            //     await pref.setInt('home', 1).then((value) {
-            //       _home = 'Scan';
-            //       setState(() {});
-            //       Navigator.pop(context);
-            //     });
-            //   },
-            //   child: const Padding(
-            //     padding: EdgeInsets.all(11),
-            //     child: Text('Scan'),
-            //   ),
             // ),
           ],
         ),
