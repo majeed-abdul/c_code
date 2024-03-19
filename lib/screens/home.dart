@@ -41,11 +41,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
   updatePopUp() async {
     // print('<<<<<<=============<<<<<<< initiated');
-    AppUpdateInfo info = await InAppUpdate.checkForUpdate();
-    if (info.updateAvailability == UpdateAvailability.updateAvailable) {
-      await InAppUpdate.startFlexibleUpdate();
-      // print('<<<<<<<============res=<<<<<<<<$a}');
-    }
+    await InAppUpdate.checkForUpdate().then(
+      (value) async {
+        if (value.updateAvailability == UpdateAvailability.updateAvailable) {
+          await InAppUpdate.startFlexibleUpdate();
+          // print('<<<<<<<============res=<<<<<<<<$a}');
+        }
+      },
+    );
+
     // print('<<<<<<<============inf=<<<<<<<<${info.availableVersionCode}');
   }
 
