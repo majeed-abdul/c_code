@@ -675,7 +675,6 @@ class _CreateScreenState extends State<CreateScreen> {
           icon: creates[index].icon,
           selected: index == selected,
           onTap: () {
-            print('===${size.width}');
             clearControllers();
             dropDownValueType = 'QR Code';
             selected = index;
