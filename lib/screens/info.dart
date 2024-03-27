@@ -20,9 +20,9 @@ class _InfoScreenState extends State<InfoScreen> {
     SharedPreferences.getInstance().then((pref) {
       int i = pref.getInt('home') ?? 0;
       if (i == 1) {
-        _home = 'Scan';
-      } else {
         _home = 'Create';
+      } else {
+        _home = 'Scan';
       }
       setState(() {});
     });
@@ -175,10 +175,10 @@ class _InfoScreenState extends State<InfoScreen> {
                     i ? Icons.radio_button_checked : Icons.radio_button_off,
                     color: i ? Theme.of(context).primaryColor : null,
                   ),
-                  title: const Text('Create'),
+                  title: const Text('Scan'),
                   onTap: () async {
                     await pref.setInt('home', 0).then((value) {
-                      _home = 'Create';
+                      _home = 'Scan';
                       setState(() {});
                       Navigator.pop(context);
                     });
@@ -191,10 +191,10 @@ class _InfoScreenState extends State<InfoScreen> {
                     i ? Icons.radio_button_off : Icons.radio_button_checked,
                     color: i ? null : Theme.of(context).primaryColor,
                   ),
-                  title: const Text('Scan'),
+                  title: const Text('Create'),
                   onTap: () async {
                     await pref.setInt('home', 1).then((value) {
-                      _home = 'Scan';
+                      _home = 'Create';
                       setState(() {});
                       Navigator.pop(context);
                     });
