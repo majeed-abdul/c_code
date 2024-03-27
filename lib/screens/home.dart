@@ -29,10 +29,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     switch (_index) {
       case 0:
-        bodyWidget = const CreateScreen();
+        bodyWidget = const ScanScreen();
         break;
       case 1:
-        bodyWidget = const ScanScreen();
+        bodyWidget = const CreateScreen();
         break;
       case 2:
         bodyWidget = const InfoScreen();
@@ -128,16 +128,16 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.add_box_outlined),
-            activeIcon: Icon(Icons.add_box),
-            label: 'Create',
-            tooltip: 'Create QR',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.center_focus_weak),
             activeIcon: Icon(Icons.center_focus_strong),
             label: 'Scan',
             tooltip: 'Scan QR',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add_box_outlined),
+            activeIcon: Icon(Icons.add_box),
+            label: 'Create',
+            tooltip: 'Create QR',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.info_outline),
