@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         ScanScreen.id: (context) => const ScanScreen(),
       },
       theme: ThemeData(
-        useMaterial3: false,
+        // useMaterial3: true,
         appBarTheme: const AppBarTheme(
           systemOverlayStyle: SystemUiOverlayStyle(
             statusBarColor: Colors.black,

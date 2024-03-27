@@ -334,12 +334,12 @@ Websites : $websites''';
                 SegmentedButton<Display>(
                   segments: const <ButtonSegment<Display>>[
                     ButtonSegment(
-                      value: Display.raw,
-                      label: Text('Raw', style: TextStyle(fontSize: 12)),
-                    ),
-                    ButtonSegment(
                       value: Display.formated,
                       label: Text('Formated', style: TextStyle(fontSize: 12)),
+                    ),
+                    ButtonSegment(
+                      value: Display.raw,
+                      label: Text('Raw', style: TextStyle(fontSize: 12)),
                     ),
                   ],
                   selected: <Display>{textFormat},
@@ -349,6 +349,15 @@ Websites : $websites''';
                       textFormat = newSelection.first;
                     });
                   },
+                  style: ButtonStyle(
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        side: const BorderSide(width: 3, color: Colors.amber),
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),
