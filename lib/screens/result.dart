@@ -25,6 +25,7 @@ class _ResultScreenState extends State<ResultScreen> {
   ScrollController scrollCon = ScrollController();
   String? formated;
   bool support = false;
+  bool formatedText = false;
 
   @override
   void initState() {
@@ -315,7 +316,9 @@ Websites : $websites''';
       width: double.infinity,
       padding: const EdgeInsets.all(9),
       child: SelectableText(
-        formated ?? widget.result.code ?? '',
+        formatedText
+            ? formated ?? widget.result.code ?? ''
+            : widget.result.code ?? '',
         style: const TextStyle(fontSize: 15),
       ),
     );
