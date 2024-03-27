@@ -328,24 +328,29 @@ Websites : $websites''';
           // InputChip(label: Text('data')),
           Visibility(
             visible: formated != null,
-            child: SegmentedButton<Display>(
-              segments: const <ButtonSegment<Display>>[
-                ButtonSegment(
-                  value: Display.raw,
-                  label: Text('Raw'),
-                  // icon: Icon(Icons.calendar_view_day)
+            child: Row(
+              children: [
+                const Spacer(flex: 4),
+                SegmentedButton<Display>(
+                  segments: const <ButtonSegment<Display>>[
+                    ButtonSegment(
+                      value: Display.raw,
+                      label: Text('Raw', style: TextStyle(fontSize: 12)),
+                    ),
+                    ButtonSegment(
+                      value: Display.formated,
+                      label: Text('Formated', style: TextStyle(fontSize: 12)),
+                    ),
+                  ],
+                  selected: <Display>{textFormat},
+                  showSelectedIcon: false,
+                  onSelectionChanged: (Set<Display> newSelection) {
+                    setState(() {
+                      textFormat = newSelection.first;
+                    });
+                  },
                 ),
-                ButtonSegment(
-                    value: Display.formated,
-                    label: Text('Formated'),
-                    icon: Icon(Icons.calendar_today)),
               ],
-              selected: <Display>{textFormat},
-              onSelectionChanged: (Set<Display> newSelection) {
-                setState(() {
-                  textFormat = newSelection.first;
-                });
-              },
             ),
           ),
           SelectableText(
