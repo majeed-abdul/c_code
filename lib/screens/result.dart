@@ -21,11 +21,14 @@ class ResultScreen extends StatefulWidget {
   State<ResultScreen> createState() => _ResultScreenState();
 }
 
+enum Display { raw, formated }
+
 class _ResultScreenState extends State<ResultScreen> {
   ScrollController scrollCon = ScrollController();
   String? formated;
   bool support = false;
-  bool formatedText = false;
+  Display textFormat = Display.raw;
+  String result = '';
 
   @override
   void initState() {
@@ -36,69 +39,72 @@ class _ResultScreenState extends State<ResultScreen> {
         duration: const Duration(milliseconds: 1400),
       ),
     );
-    String word = '${widget.result.code}';
+    result = '${widget.result.code}';
+
     if (isWiFi()) {
-      String name = word.substring(
-        word.toUpperCase().indexOf('S:') + 2,
-        word.indexOf(';', word.toUpperCase().indexOf('S:') + 1),
+      String name = result.substring(
+        result.toUpperCase().indexOf('S:') + 2,
+        result.indexOf(';', result.toUpperCase().indexOf('S:') + 1),
       );
-      String pass = word.substring(
-        word.toUpperCase().indexOf('P:') + 2,
-        word.indexOf(';', word.toUpperCase().indexOf('P:') + 1),
+      String pass = result.substring(
+        result.toUpperCase().indexOf('P:') + 2,
+        result.indexOf(';', result.toUpperCase().indexOf('P:') + 1),
       );
-      String encr = word.substring(
-        word.toUpperCase().indexOf('T:') + 2,
-        word.indexOf(';', word.toUpperCase().indexOf('T:') + 1),
+      String encr = result.substring(
+        result.toUpperCase().indexOf('T:') + 2,
+        result.indexOf(';', result.toUpperCase().indexOf('T:') + 1),
       );
-      String hidd = word.substring(
-        word.toUpperCase().contains('H:')
-            ? word.toUpperCase().indexOf('H:') + 2
-            : word.indexOf(';'),
-        word.indexOf(';', word.toUpperCase().indexOf('H:') + 1),
+      String hidd = result.substring(
+        result.toUpperCase().contains('H:')
+            ? result.toUpperCase().indexOf('H:') + 2
+            : result.indexOf(';'),
+        result.indexOf(';', result.toUpperCase().indexOf('H:') + 1),
       );
       formated = '''Name : $name
 Password : ${encr.toUpperCase() == "NOPASS" ? '' : pass}
 Encryption : ${encr.toUpperCase() == "NOPASS" ? 'None' : encr}
 Hidden : $hidd''';
+      textFormat = Display.formated;
     } //'*' * pass.length
     else if (isEmail()) {
-      String email = word.toUpperCase().startsWith('MAILTO:')
-          ? word.substring(
-              word.toUpperCase().indexOf('TO:') + 3, // mailto:
-              word.contains('?') ? word.indexOf('?') : null,
+      String email = result.toUpperCase().startsWith('MAILTO:')
+          ? result.substring(
+              result.toUpperCase().indexOf('TO:') + 3, // mailto:
+              result.contains('?') ? result.indexOf('?') : null,
             )
-          : word.substring(word.toUpperCase().indexOf(':TO:') + 4,
-              word.toUpperCase().indexOf(';SUB:'));
-      String subje = word.toUpperCase().startsWith('MAILTO:')
-          ? word.substring(
-              word.toUpperCase().contains('SUBJECT=')
-                  ? word.toUpperCase().indexOf('SUBJECT=') + 8
-                  : word.length, // mailto:
-              word.toUpperCase().contains('&BODY=')
-                  ? word.toUpperCase().indexOf('&BODY=')
+          : result.substring(result.toUpperCase().indexOf(':TO:') + 4,
+              result.toUpperCase().indexOf(';SUB:'));
+      String subje = result.toUpperCase().startsWith('MAILTO:')
+          ? result.substring(
+              result.toUpperCase().contains('SUBJECT=')
+                  ? result.toUpperCase().indexOf('SUBJECT=') + 8
+                  : result.length, // mailto:
+              result.toUpperCase().contains('&BODY=')
+                  ? result.toUpperCase().indexOf('&BODY=')
                   : null,
             )
-          : word.substring(
-              word.toUpperCase().indexOf(';SUB:') + 5,
-              word.indexOf(';BODY:'),
+          : result.substring(
+              result.toUpperCase().indexOf(';SUB:') + 5,
+              result.indexOf(';BODY:'),
             );
-      String messa = word.toUpperCase().startsWith('MAILTO:')
-          ? word.substring(
-              word.toUpperCase().contains('BODY=')
-                  ? word.toUpperCase().indexOf('BODY=') + 5
-                  : word.length, // mailto:
+      String messa = result.toUpperCase().startsWith('MAILTO:')
+          ? result.substring(
+              result.toUpperCase().contains('BODY=')
+                  ? result.toUpperCase().indexOf('BODY=') + 5
+                  : result.length, // mailto:
             )
-          : word.substring(
-              word.toUpperCase().indexOf(';BODY:') + 6,
-              word.lastIndexOf(';') - 1,
+          : result.substring(
+              result.toUpperCase().indexOf(';BODY:') + 6,
+              result.lastIndexOf(';') - 1,
             );
       formated = 'To : $email\nSubject : $subje\nMessage : $messa';
     } else if (isSMS()) {
-      String num = word.substring(6, word.substring(7).indexOf(':') + 7);
-      String msg = word.substring(word.substring(7).indexOf(':') + 8);
+      String num = result.substring(6, result.substring(7).indexOf(':') + 7);
+      String msg = result.substring(result.substring(7).indexOf(':') + 8);
       formated = 'To : $num\nMessage : $msg';
+      textFormat = Display.formated;
     } else if (isVCard()) {
-      Contact vc = Contact.fromVCard(word);
+      Contact vc = Contact.fromVCard(result);
       String name = vc.displayName;
       String addresses = '';
       for (Address i in vc.addresses) {
@@ -126,6 +132,7 @@ Email: $emails
 Organizations: $orgs
 Contact: $phones
 Websites : $websites''';
+      textFormat = Display.formated;
     }
     context.read<AdLoader>().loaderOff();
     setState(() {});
@@ -315,11 +322,42 @@ Websites : $websites''';
       ),
       width: double.infinity,
       padding: const EdgeInsets.all(9),
-      child: SelectableText(
-        formatedText
-            ? formated ?? widget.result.code ?? ''
-            : widget.result.code ?? '',
-        style: const TextStyle(fontSize: 15),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          // InputChip(label: Text('data')),
+          Visibility(
+            visible: formated != null,
+            child: SegmentedButton<Display>(
+              segments: const <ButtonSegment<Display>>[
+                ButtonSegment(
+                  value: Display.raw,
+                  label: Text('Raw'),
+                  // icon: Icon(Icons.calendar_view_day)
+                ),
+                ButtonSegment(
+                    value: Display.formated,
+                    label: Text('Formated'),
+                    icon: Icon(Icons.calendar_today)),
+              ],
+              selected: <Display>{textFormat},
+              onSelectionChanged: (Set<Display> newSelection) {
+                setState(() {
+                  // By default there is only a single segment that can be
+                  // selected at one time, so its value is always the first
+                  // item in the selected set.
+                  textFormat = newSelection.first;
+                });
+              },
+            ),
+          ),
+          SelectableText(
+            textFormat == Display.raw
+                ? formated ?? ''
+                : widget.result.code ?? '',
+            style: const TextStyle(fontSize: 15),
+          ),
+        ],
       ),
     );
   }
