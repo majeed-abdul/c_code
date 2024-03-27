@@ -343,18 +343,13 @@ Websites : $websites''';
               selected: <Display>{textFormat},
               onSelectionChanged: (Set<Display> newSelection) {
                 setState(() {
-                  // By default there is only a single segment that can be
-                  // selected at one time, so its value is always the first
-                  // item in the selected set.
                   textFormat = newSelection.first;
                 });
               },
             ),
           ),
           SelectableText(
-            textFormat == Display.raw
-                ? formated ?? ''
-                : widget.result.code ?? '',
+            textFormat == Display.raw ? result : formated ?? '',
             style: const TextStyle(fontSize: 15),
           ),
         ],
