@@ -72,7 +72,8 @@ class _InfoScreenState extends State<InfoScreen> {
               //   subtitle: Text('version: $version'),
               //   leading: const Icon(Icons.adb, size: 40),
               // ),
-              const Divider(),
+              // const Divider(),
+              const SizedBox(height: 5),
               const Text('  Setting', style: TextStyle(color: Colors.black54)),
               ListTile(
                 title: const Text('Home Screen'),
