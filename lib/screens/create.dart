@@ -110,7 +110,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 keyboardType: TextInputType.multiline,
                 maxLines: 6,
                 minLines: 3,
-                decoration: kDecoration.copyWith(hintText: 'Enter Text'),
+                decoration: const InputDecoration(hintText: 'Enter Text'),
                 onChanged: (value) => finalWords = value.trim(),
                 controller: stringCon,
               ),
@@ -126,7 +126,7 @@ class _CreateScreenState extends State<CreateScreen> {
               text: 'Number',
               child: TextField(
                 keyboardType: TextInputType.number,
-                decoration: kDecoration.copyWith(hintText: 'Enter Number'),
+                decoration: const InputDecoration(hintText: 'Enter Number'),
                 controller: numberCon,
                 onChanged: (value) => finalWords = value.trim(),
               ),
@@ -177,7 +177,7 @@ class _CreateScreenState extends State<CreateScreen> {
             entryBar(
               text: 'WiFi Name',
               child: TextField(
-                decoration: kDecoration.copyWith(hintText: 'Enter SSID'),
+                decoration: const InputDecoration(hintText: 'Enter SSId'),
                 controller: wiFiNamCon,
                 onChanged: (value) => setWiFi(),
               ),
@@ -187,7 +187,7 @@ class _CreateScreenState extends State<CreateScreen> {
               child: entryBar(
                 text: 'Password',
                 child: TextField(
-                  decoration: kDecoration.copyWith(hintText: 'Enter Password'),
+                  decoration: const InputDecoration(hintText: 'Enter Password'),
                   controller: wiFiPasCon,
                   onChanged: (value) => setWiFi(),
                 ),
@@ -229,7 +229,8 @@ class _CreateScreenState extends State<CreateScreen> {
             entryBar(
               text: 'First Name',
               child: TextField(
-                decoration: kDecoration.copyWith(hintText: 'Enter First tName'),
+                decoration:
+                    const InputDecoration(hintText: 'Enter First tName'),
                 controller: vCardFNaCon,
                 onChanged: (v) => setVCard(),
               ),
@@ -237,7 +238,7 @@ class _CreateScreenState extends State<CreateScreen> {
             entryBar(
               text: 'Last Name',
               child: TextField(
-                decoration: kDecoration.copyWith(hintText: 'Enter Last Name'),
+                decoration: const InputDecoration(hintText: 'Enter Last Name'),
                 controller: vCardLNaCon,
                 onChanged: (v) => setVCard(),
               ),
@@ -245,7 +246,7 @@ class _CreateScreenState extends State<CreateScreen> {
             entryBar(
               text: 'Mobile No',
               child: TextField(
-                decoration: kDecoration.copyWith(
+                decoration: const InputDecoration(
                   hintText: 'Enter Mobile Number',
                 ),
                 keyboardType: TextInputType.phone,
@@ -256,7 +257,7 @@ class _CreateScreenState extends State<CreateScreen> {
             entryBar(
               text: 'Phone No',
               child: TextField(
-                decoration: kDecoration.copyWith(
+                decoration: const InputDecoration(
                   hintText: 'Enter Phone Number',
                 ),
                 keyboardType: TextInputType.phone,
@@ -267,7 +268,7 @@ class _CreateScreenState extends State<CreateScreen> {
             entryBar(
               text: 'Fax',
               child: TextField(
-                decoration: kDecoration.copyWith(hintText: 'Enter Fax Number'),
+                decoration: const InputDecoration(hintText: 'Enter Fax Number'),
                 keyboardType: TextInputType.phone,
                 controller: vCardFaxCon,
                 onChanged: (v) => setVCard(),
@@ -276,7 +277,7 @@ class _CreateScreenState extends State<CreateScreen> {
             entryBar(
               text: 'Email',
               child: TextField(
-                decoration: kDecoration.copyWith(
+                decoration: const InputDecoration(
                   hintText: 'Enter Email Address',
                 ),
                 keyboardType: TextInputType.emailAddress,
@@ -287,7 +288,7 @@ class _CreateScreenState extends State<CreateScreen> {
             entryBar(
               text: 'Company',
               child: TextField(
-                decoration: kDecoration.copyWith(
+                decoration: const InputDecoration(
                   hintText: 'Enter Company Name',
                 ),
                 controller: vCardComCon,
@@ -297,7 +298,7 @@ class _CreateScreenState extends State<CreateScreen> {
             entryBar(
               text: 'Job',
               child: TextField(
-                decoration: kDecoration.copyWith(
+                decoration: const InputDecoration(
                   hintText: 'Enter Job Title',
                 ),
                 controller: vCardJobCon,
@@ -307,7 +308,7 @@ class _CreateScreenState extends State<CreateScreen> {
             entryBar(
               text: 'Country',
               child: TextField(
-                decoration: kDecoration.copyWith(
+                decoration: const InputDecoration(
                   hintText: 'Enter Country Name',
                 ),
                 controller: vCardConCon,
@@ -317,7 +318,7 @@ class _CreateScreenState extends State<CreateScreen> {
             entryBar(
               text: 'State',
               child: TextField(
-                decoration: kDecoration.copyWith(
+                decoration: const InputDecoration(
                   hintText: 'Enter State/Province Name',
                 ),
                 controller: vCardStaCon,
@@ -327,7 +328,7 @@ class _CreateScreenState extends State<CreateScreen> {
             entryBar(
               text: 'City',
               child: TextField(
-                decoration: kDecoration.copyWith(
+                decoration: const InputDecoration(
                   hintText: 'Enter City Name',
                 ),
                 controller: vCardCitCon,
@@ -337,7 +338,8 @@ class _CreateScreenState extends State<CreateScreen> {
             entryBar(
               text: 'Zip',
               child: TextField(
-                decoration: kDecoration.copyWith(hintText: 'Enter Postal Code'),
+                decoration:
+                    const InputDecoration(hintText: 'Enter Postal Code'),
                 keyboardType: TextInputType.number,
                 controller: vCardZipCon,
                 onChanged: (v) => setVCard(),
@@ -346,7 +348,7 @@ class _CreateScreenState extends State<CreateScreen> {
             entryBar(
               text: 'Street',
               child: TextField(
-                decoration: kDecoration.copyWith(
+                decoration: const InputDecoration(
                   hintText: 'Enter Street Address',
                 ),
                 keyboardType: TextInputType.streetAddress,
@@ -357,7 +359,7 @@ class _CreateScreenState extends State<CreateScreen> {
             entryBar(
               text: 'Website',
               child: TextField(
-                decoration: kDecoration.copyWith(hintText: 'Enter Web URL'),
+                decoration: const InputDecoration(hintText: 'Enter Web URL'),
                 keyboardType: TextInputType.emailAddress,
                 controller: vCardWebCon,
                 onChanged: (v) => setVCard(),
@@ -373,7 +375,7 @@ class _CreateScreenState extends State<CreateScreen> {
             entryBar(
               text: 'To',
               child: TextField(
-                decoration: kDecoration.copyWith(hintText: 'Enter Email'),
+                decoration: const InputDecoration(hintText: 'Enter Email'),
                 controller: emailTooCon,
                 onChanged: (v) => setMail(),
               ),
@@ -381,7 +383,7 @@ class _CreateScreenState extends State<CreateScreen> {
             entryBar(
               text: 'Subject',
               child: TextField(
-                decoration: kDecoration.copyWith(hintText: 'Enter Subject'),
+                decoration: const InputDecoration(hintText: 'Enter Subject'),
                 controller: emailSubCon,
                 onChanged: (v) => setMail(),
               ),
@@ -389,7 +391,7 @@ class _CreateScreenState extends State<CreateScreen> {
             entryBar(
               text: 'Message',
               child: TextField(
-                decoration: kDecoration.copyWith(hintText: 'Enter Message'),
+                decoration: const InputDecoration(hintText: 'Enter Message'),
                 maxLines: 6,
                 minLines: 3,
                 controller: emailMsgCon,
@@ -406,7 +408,7 @@ class _CreateScreenState extends State<CreateScreen> {
             entryBar(
               text: 'Phone No',
               child: TextField(
-                decoration: kDecoration.copyWith(
+                decoration: const InputDecoration(
                   hintText: 'Enter Phone Number',
                 ),
                 keyboardType: TextInputType.phone,
@@ -417,7 +419,7 @@ class _CreateScreenState extends State<CreateScreen> {
             entryBar(
               text: 'Message',
               child: TextField(
-                decoration: kDecoration.copyWith(hintText: 'Enter Message'),
+                decoration: const InputDecoration(hintText: 'Enter Message'),
                 maxLines: 6,
                 minLines: 3,
                 controller: smsMsgCon,

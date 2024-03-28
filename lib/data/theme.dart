@@ -4,32 +4,56 @@ import 'package:flutter/services.dart';
 class CustomTheme {
   static ThemeData lightThemeData() {
     return ThemeData(
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: Colors.red,
-        background: Colors.white,
-        error: Colors.red,
-        onTertiary: Colors.orange,
-      ),
-      filledButtonTheme: const FilledButtonThemeData(
-        style: ButtonStyle(
-          backgroundColor: MaterialStatePropertyAll(
-            Colors.red,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.red,
+          background: Colors.white,
+          error: Colors.red,
+          onTertiary: Colors.orange,
+        ),
+        filledButtonTheme: const FilledButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: MaterialStatePropertyAll(
+              Colors.red,
+            ),
           ),
         ),
-      ),
-      useMaterial3: true,
-      appBarTheme: const AppBarTheme(
-        color: Colors.red,
-        elevation: 5,
-        foregroundColor: Colors.white,
-        systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: Colors.black,
+        useMaterial3: true,
+        appBarTheme: const AppBarTheme(
+          color: Colors.red,
+          elevation: 5,
+          foregroundColor: Colors.white,
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor: Colors.black,
+          ),
         ),
-      ),
-      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        selectedItemColor: Colors.red,
-      ),
-    );
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          selectedItemColor: Colors.red,
+        ),
+        dialogTheme: const DialogTheme(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(30)),
+          ),
+          actionsPadding: EdgeInsets.all(15),
+          backgroundColor: Colors.white,
+        ),
+        inputDecorationTheme: const InputDecorationTheme(
+          filled: true,
+          fillColor: Colors.white,
+          contentPadding: EdgeInsets.all(8),
+          hintStyle: TextStyle(fontSize: 15),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15)),
+            borderSide: BorderSide(color: Colors.red, width: 1.0),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15)),
+            borderSide: BorderSide(color: Color(0xff999999), width: 1.0),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(15)),
+            borderSide: BorderSide(color: Color(0xff999999), width: 1.0),
+          ),
+        ));
   }
 
   static ThemeData darkThemeData() {

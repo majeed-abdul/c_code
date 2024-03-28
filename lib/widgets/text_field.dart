@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 
-InputDecoration kDecoration = const InputDecoration(
-  filled: true,
-  fillColor: Colors.white,
-  contentPadding: EdgeInsets.all(8),
-  hintStyle: TextStyle(fontSize: 15),
-  errorBorder: OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(6.0)),
-    borderSide: BorderSide(color: Colors.red, width: 1.0),
-  ),
-  focusedBorder: OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(6.0)),
-    borderSide: BorderSide(color: Color(0xff999999), width: 1.0),
-  ),
-  enabledBorder: OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(6.0)),
-    borderSide: BorderSide(color: Color(0xff999999), width: 1.0),
-  ),
-);
+// InputDecoration kDecoration = const InputDecoration(
+//   filled: true,
+//   fillColor: Colors.white,
+//   contentPadding: EdgeInsets.all(8),
+//   hintStyle: TextStyle(fontSize: 15),
+//   errorBorder: OutlineInputBorder(
+//     borderRadius: BorderRadius.all(Radius.circular(6.0)),
+//     borderSide: BorderSide(color: Colors.red, width: 1.0),
+//   ),
+//   focusedBorder: OutlineInputBorder(
+//     borderRadius: BorderRadius.all(Radius.circular(6.0)),
+//     borderSide: BorderSide(color: Color(0xff999999), width: 1.0),
+//   ),
+//   enabledBorder: OutlineInputBorder(
+//     borderRadius: BorderRadius.all(Radius.circular(6.0)),
+//     borderSide: BorderSide(color: Color(0xff999999), width: 1.0),
+//   ),
+// );
 Widget entryBar({Widget? child, String? text}) {
   return ListTile(
     title: child,
