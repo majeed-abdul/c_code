@@ -64,7 +64,6 @@ class _CreateScreenState extends State<CreateScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
@@ -552,8 +551,8 @@ class _CreateScreenState extends State<CreateScreen> {
     );
   }
 
-  ElevatedButton createButton() {
-    return ElevatedButton(
+  OutlinedButton createButton() {
+    return OutlinedButton(
       onPressed: () {
         try {
           switch (selected) {
@@ -649,8 +648,8 @@ class _CreateScreenState extends State<CreateScreen> {
         );
       },
       child: const Padding(
-        padding: EdgeInsets.symmetric(vertical: 10),
-        child: Text('Create', style: TextStyle(fontSize: 15)),
+        padding: EdgeInsets.symmetric(vertical: 11, horizontal: 11),
+        child: Text('Create', style: TextStyle(fontSize: 16)),
       ),
     );
   }

@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:qr_maze/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_maze/screens/scan.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 void main() {

@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 class CustomTheme {
   static ThemeData lightThemeData() {
     return ThemeData(
-      colorSchemeSeed: Colors.green,
+      // colorSchemeSeed: Colors.red,
+      colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.green,
+          background: Colors.white,
+          error: Colors.red,
+          onTertiary: Colors.orange),
       useMaterial3: true,
     );
   }
