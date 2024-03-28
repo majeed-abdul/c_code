@@ -669,32 +669,16 @@ class _CreateScreenState extends State<CreateScreen> {
       ),
       itemCount: creates.length,
       itemBuilder: (context, index) {
-        return FilledButton.icon(
-          onPressed: () {
+        return gridButton(
+          select: index == selected,
+          icon: creates[index].icon,
+          label: creates[index].name,
+          onTap: () {
             clearControllers();
             dropDownValueType = 'QR Code';
             selected = index;
             setState(() {});
           },
-          icon: Icon(
-            creates[index].icon,
-            color: index == selected ? null : Colors.black,
-          ),
-          label: Text(
-            creates[index].name,
-            style: TextStyle(
-              color: index == selected ? null : Colors.black,
-            ),
-          ),
-          style: ButtonStyle(
-            backgroundColor: index == selected
-                ? null
-                : const MaterialStatePropertyAll(Colors.white),
-            side: index == selected
-                ? null
-                : const MaterialStatePropertyAll(
-                    BorderSide(color: Colors.black54)),
-          ),
         );
       },
     );
