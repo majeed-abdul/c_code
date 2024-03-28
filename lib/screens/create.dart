@@ -551,8 +551,8 @@ class _CreateScreenState extends State<CreateScreen> {
     );
   }
 
-  OutlinedButton createButton() {
-    return OutlinedButton(
+  FilledButton createButton() {
+    return FilledButton(
       onPressed: () {
         try {
           switch (selected) {
@@ -648,8 +648,8 @@ class _CreateScreenState extends State<CreateScreen> {
         );
       },
       child: const Padding(
-        padding: EdgeInsets.symmetric(vertical: 11, horizontal: 11),
-        child: Text('Create', style: TextStyle(fontSize: 16)),
+        padding: EdgeInsets.all(12),
+        child: Text('Create', style: TextStyle(fontSize: 15)),
       ),
     );
   }
@@ -673,6 +673,7 @@ class _CreateScreenState extends State<CreateScreen> {
           name: creates[index].name,
           icon: creates[index].icon,
           selected: index == selected,
+          // context: context,
           onTap: () {
             clearControllers();
             dropDownValueType = 'QR Code';
@@ -680,6 +681,17 @@ class _CreateScreenState extends State<CreateScreen> {
             setState(() {});
           },
         );
+        // return InputChip(
+        //   avatar: Icon(creates[index].icon,),
+        //   label: Text(creates[index].name),
+        //   selected: index == selected,
+        //   onSelected: (value) {
+        //     clearControllers();
+        //     dropDownValueType = 'QR Code';
+        //     selected = index;
+        //     setState(() {});
+        //   },
+        // );
       },
     );
   }

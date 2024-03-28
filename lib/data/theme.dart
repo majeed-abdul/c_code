@@ -5,11 +5,31 @@ class CustomTheme {
     return ThemeData(
       // colorSchemeSeed: Colors.red,
       colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.green,
-          background: Colors.white,
-          error: Colors.red,
-          onTertiary: Colors.orange),
+        seedColor: const Color(0xFFFF4040),
+        background: Colors.white,
+        error: Colors.red,
+        onTertiary: Colors.orange,
+      ),
+      filledButtonTheme: const FilledButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: MaterialStatePropertyAll(
+            Color(0xFFFF4040),
+          ),
+        ),
+      ),
       useMaterial3: true,
+      // navigationBarTheme: const NavigationBarThemeData(
+      //   iconTheme: MaterialStatePropertyAll(IconThemeData(color: Colors.amber)),
+      // ),
+      appBarTheme: const AppBarTheme(
+        color: Colors.red,
+        // shadowColor: Colors.red,
+        elevation: 5,
+        foregroundColor: Colors.white,
+      ),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        selectedIconTheme: IconThemeData(color: Colors.red),
+      ),
     );
   }
 
