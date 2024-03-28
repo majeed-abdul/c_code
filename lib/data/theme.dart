@@ -5,7 +5,7 @@ class CustomTheme {
     return ThemeData(
       // colorSchemeSeed: Colors.red,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: const Color(0xFFFF4040),
+        seedColor: Colors.red,
         background: Colors.white,
         error: Colors.red,
         onTertiary: Colors.orange,
@@ -13,7 +13,7 @@ class CustomTheme {
       filledButtonTheme: const FilledButtonThemeData(
         style: ButtonStyle(
           backgroundColor: MaterialStatePropertyAll(
-            Color(0xFFFF4040),
+            Colors.red,
           ),
         ),
       ),
@@ -23,12 +23,14 @@ class CustomTheme {
       // ),
       appBarTheme: const AppBarTheme(
         color: Colors.red,
-        // shadowColor: Colors.red,
         elevation: 5,
         foregroundColor: Colors.white,
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         selectedIconTheme: IconThemeData(color: Colors.red),
+        selectedItemColor: Colors.amber,
+        selectedLabelStyle: TextStyle(backgroundColor: Colors.amber),
+        // showSelectedLabels: fals,
       ),
     );
   }
