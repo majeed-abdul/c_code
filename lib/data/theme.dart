@@ -27,10 +27,7 @@ class CustomTheme {
         foregroundColor: Colors.white,
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        selectedIconTheme: IconThemeData(color: Colors.red),
-        selectedItemColor: Colors.amber,
-        selectedLabelStyle: TextStyle(backgroundColor: Colors.amber),
-        // showSelectedLabels: fals,
+        selectedItemColor: Colors.red,
       ),
     );
   }

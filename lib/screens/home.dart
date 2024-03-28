@@ -114,7 +114,6 @@ class _HomeScreenState extends State<HomeScreen> {
       // }),//.. 5
 
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Theme.of(context).primaryColor,
         unselectedItemColor: Colors.black,
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
