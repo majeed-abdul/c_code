@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CustomTheme {
   static ThemeData lightThemeData() {
     return ThemeData(
-      // colorSchemeSeed: Colors.red,
       colorScheme: ColorScheme.fromSeed(
         seedColor: Colors.red,
         background: Colors.white,
@@ -18,13 +18,13 @@ class CustomTheme {
         ),
       ),
       useMaterial3: true,
-      // navigationBarTheme: const NavigationBarThemeData(
-      //   iconTheme: MaterialStatePropertyAll(IconThemeData(color: Colors.amber)),
-      // ),
       appBarTheme: const AppBarTheme(
         color: Colors.red,
         elevation: 5,
         foregroundColor: Colors.white,
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: Colors.black,
+        ),
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         selectedItemColor: Colors.red,

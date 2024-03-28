@@ -32,15 +32,14 @@ class _InfoScreenState extends State<InfoScreen> {
     //   setState(() {});
     // });
     // print('===init');
-    // context.read<AdLoader>().loaderOff();
+    context.read<AdLoader>().loaderOff();
   }
 
-  @override
-  void dispose() {
-    print('===dispose');
-    context.read<AdLoader>().loaderOff();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   context.read<AdLoader>().loaderOff();
+  //   super.dispose();
+  // }
 
   // @override
   // void didChangeDependencies() {

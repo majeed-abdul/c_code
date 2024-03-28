@@ -14,8 +14,10 @@ class AdLoader extends ChangeNotifier {
   }
 
   void loaderOff() {
-    loader = false;
-    notifyListeners();
+    if (loader) {
+      loader = false;
+      notifyListeners();
+    }
   }
 }
 
