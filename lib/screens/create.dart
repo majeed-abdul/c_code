@@ -669,29 +669,33 @@ class _CreateScreenState extends State<CreateScreen> {
       ),
       itemCount: creates.length,
       itemBuilder: (context, index) {
-        return gridButton(
-          name: creates[index].name,
-          icon: creates[index].icon,
-          selected: index == selected,
-          // context: context,
-          onTap: () {
+        return FilledButton.icon(
+          onPressed: () {
             clearControllers();
             dropDownValueType = 'QR Code';
             selected = index;
             setState(() {});
           },
+          icon: Icon(
+            creates[index].icon,
+            color: index == selected ? null : Colors.black,
+          ),
+          label: Text(
+            creates[index].name,
+            style: TextStyle(
+              color: index == selected ? null : Colors.black,
+            ),
+          ),
+          style: ButtonStyle(
+            backgroundColor: index == selected
+                ? null
+                : const MaterialStatePropertyAll(Colors.white),
+            side: index == selected
+                ? null
+                : const MaterialStatePropertyAll(
+                    BorderSide(color: Colors.black54)),
+          ),
         );
-        // return InputChip(
-        //   avatar: Icon(creates[index].icon,),
-        //   label: Text(creates[index].name),
-        //   selected: index == selected,
-        //   onSelected: (value) {
-        //     clearControllers();
-        //     dropDownValueType = 'QR Code';
-        //     selected = index;
-        //     setState(() {});
-        //   },
-        // );
       },
     );
   }

@@ -20,9 +20,9 @@ Container customButton({
   );
 }
 
-Widget gridButton({
+FilledButton gridButton({
   required IconData icon,
-  required String name,
+  required String label,
   bool selected = false,
   Function()? onTap,
 }) {
@@ -33,7 +33,7 @@ Widget gridButton({
       color: selected ? null : Colors.black,
     ),
     label: Text(
-      name,
+      label,
       style: TextStyle(
         color: selected ? null : Colors.black,
       ),
