@@ -20,9 +20,9 @@ class _InfoScreenState extends State<InfoScreen> {
     SharedPreferences.getInstance().then((pref) {
       int i = pref.getInt('home') ?? 0;
       if (i == 1) {
-        _home = 'Scan';
-      } else {
         _home = 'Create';
+      } else {
+        _home = 'Scan';
       }
       setState(() {});
     });
@@ -37,7 +37,6 @@ class _InfoScreenState extends State<InfoScreen> {
 
   // @override
   // void dispose() {
-  //   print('===dispose');
   //   context.read<AdLoader>().loaderOff();
   //   super.dispose();
   // }
@@ -72,7 +71,8 @@ class _InfoScreenState extends State<InfoScreen> {
               //   subtitle: Text('version: $version'),
               //   leading: const Icon(Icons.adb, size: 40),
               // ),
-              const Divider(),
+              // const Divider(),
+              const SizedBox(height: 5),
               const Text('  Setting', style: TextStyle(color: Colors.black54)),
               ListTile(
                 title: const Text('Home Screen'),
@@ -148,19 +148,8 @@ class _InfoScreenState extends State<InfoScreen> {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
-          ),
           actionsAlignment: MainAxisAlignment.center,
           title: const Text('Set Home Screen', textAlign: TextAlign.center),
-          titlePadding: const EdgeInsets.symmetric(
-            vertical: 10,
-            horizontal: 15,
-          ),
-          actionsPadding: const EdgeInsets.symmetric(
-            vertical: 15,
-            horizontal: 15,
-          ),
           contentPadding: const EdgeInsets.symmetric(horizontal: 20),
           content: const Text(
             'This screen will apear on app start up. Default screen is "Create"',
@@ -175,10 +164,10 @@ class _InfoScreenState extends State<InfoScreen> {
                     i ? Icons.radio_button_checked : Icons.radio_button_off,
                     color: i ? Theme.of(context).primaryColor : null,
                   ),
-                  title: const Text('Create'),
+                  title: const Text('Scan'),
                   onTap: () async {
                     await pref.setInt('home', 0).then((value) {
-                      _home = 'Create';
+                      _home = 'Scan';
                       setState(() {});
                       Navigator.pop(context);
                     });
@@ -191,10 +180,10 @@ class _InfoScreenState extends State<InfoScreen> {
                     i ? Icons.radio_button_off : Icons.radio_button_checked,
                     color: i ? null : Theme.of(context).primaryColor,
                   ),
-                  title: const Text('Scan'),
+                  title: const Text('Create'),
                   onTap: () async {
                     await pref.setInt('home', 1).then((value) {
-                      _home = 'Scan';
+                      _home = 'Create';
                       setState(() {});
                       Navigator.pop(context);
                     });

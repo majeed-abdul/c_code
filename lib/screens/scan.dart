@@ -36,31 +36,34 @@ class _ScanScreenState extends State<ScanScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: AlignmentDirectional.bottomEnd,
-      children: <Widget>[
-        Container(child: _buildQrView(context)),
-        Padding(
-          padding: const EdgeInsets.all(55),
-          child: MediaQuery.of(context).size.width <
-                  MediaQuery.of(context).size.height
-              ? Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    cameraSwitchButton(),
-                    flashButton(),
-                  ],
-                )
-              : Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: <Widget>[
-                    flashButton(),
-                    cameraSwitchButton(),
-                  ],
-                ),
-        ),
-      ],
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: Stack(
+        alignment: AlignmentDirectional.bottomEnd,
+        children: <Widget>[
+          Container(child: _buildQrView(context)),
+          Padding(
+            padding: const EdgeInsets.all(55),
+            child: MediaQuery.of(context).size.width <
+                    MediaQuery.of(context).size.height
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      cameraSwitchButton(),
+                      flashButton(),
+                    ],
+                  )
+                : Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: <Widget>[
+                      flashButton(),
+                      cameraSwitchButton(),
+                    ],
+                  ),
+          ),
+        ],
+      ),
     );
   }
 
