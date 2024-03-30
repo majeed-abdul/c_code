@@ -109,7 +109,7 @@ class _InfoScreenState extends State<InfoScreen> {
                 trailing: const Icon(Icons.more_vert),
                 onTap: () async {
                   Uri url = Uri.parse(
-                    'https://qrscancreate.blogspot.com/2024/01/privacy-policy-for-qr-scancreate.html',
+                    'https://play.google.com/apps/testing/com.abdul.qr_maze',
                   );
                   launchUrl(url, mode: LaunchMode.externalApplication);
                 },
