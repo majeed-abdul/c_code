@@ -189,23 +189,20 @@ class _CreateScreenState extends State<CreateScreen> {
             encryptionRadioButtons(),
             entryBar(
               text: 'Hidden',
-              child: Padding(
-                padding: const EdgeInsets.only(top: 6),
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(30),
-                  onTap: () {
-                    hidden = !hidden;
-                    setWiFi();
-                    setState(() {});
-                  },
-                  child: Row(
-                    children: [
-                      hidden
-                          ? const Icon(Icons.check_circle, size: 21)
-                          : const Icon(Icons.circle_outlined,
-                              color: Colors.black54, size: 21),
-                    ],
-                  ),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(30),
+                onTap: () {
+                  hidden = !hidden;
+                  setWiFi();
+                  setState(() {});
+                },
+                child: Row(
+                  children: [
+                    hidden
+                        ? const Icon(Icons.check_circle, size: 22)
+                        : const Icon(Icons.circle_outlined,
+                            color: Colors.black54, size: 22),
+                  ],
                 ),
               ),
             ),
