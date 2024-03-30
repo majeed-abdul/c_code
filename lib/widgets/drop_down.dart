@@ -11,13 +11,13 @@ Widget dropDown({
   return entryBar(
     text: text,
     child: Container(
-      padding: const EdgeInsets.symmetric(horizontal: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 7),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(6),
+        borderRadius: BorderRadius.circular(15),
         border: Border.all(color: const Color(0xff999999), width: 1),
       ),
       child: DropdownButton<String>(
-        borderRadius: BorderRadius.circular(6),
+        borderRadius: BorderRadius.circular(15),
         focusColor: Colors.white,
         isExpanded: true,
         hint: Text(hint ?? 'null'),

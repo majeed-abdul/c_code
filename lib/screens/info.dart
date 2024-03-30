@@ -75,6 +75,7 @@ class _InfoScreenState extends State<InfoScreen> {
               const SizedBox(height: 5),
               const Text('  Setting', style: TextStyle(color: Colors.black54)),
               ListTile(
+                iconColor: Colors.black54,
                 title: const Text('Home Screen'),
                 subtitle: Text(_home ?? ''),
                 leading: const Icon(Icons.home_rounded, size: 40),
@@ -84,6 +85,7 @@ class _InfoScreenState extends State<InfoScreen> {
               const Divider(),
               const Text('  Support', style: TextStyle(color: Colors.black54)),
               ListTile(
+                iconColor: Colors.black54,
                 title: const Text('Rating'),
                 subtitle: const Text('Rate us on Play Store.'),
                 leading: const Icon(Icons.star_rate_rounded, size: 40),
@@ -99,13 +101,31 @@ class _InfoScreenState extends State<InfoScreen> {
                 },
               ),
               ListTile(
+                iconColor: Colors.black54,
+                title: const Text('Join Beta'),
+                subtitle:
+                    const Text('Join testers, Early access to new features.'),
+                leading: const Icon(Icons.bug_report, size: 40),
+                trailing: const Icon(Icons.more_vert),
+                onTap: () async {
+                  Uri url = Uri.parse(
+                    'https://play.google.com/apps/testing/com.abdul.qr_maze',
+                  );
+                  launchUrl(url, mode: LaunchMode.externalApplication);
+                },
+              ),
+              ListTile(
+                iconColor: Colors.black54,
                 title: const Text('Donate ❤️'),
                 subtitle: const Text('We need support to keep you up to date.'),
                 leading: const Icon(Icons.volunteer_activism_rounded, size: 40),
-                trailing: const Icon(Icons.more_vert),
+                trailing: const Icon(
+                  Icons.more_vert,
+                ),
                 onTap: () => donate(context),
               ),
               ListTile(
+                iconColor: Colors.black54,
                 title: const Text('Support (See ads)'),
                 subtitle: const Text('Support us by watching Ads.'),
                 leading: const Icon(Icons.ads_click, size: 40),
@@ -116,26 +136,30 @@ class _InfoScreenState extends State<InfoScreen> {
               ),
               const Divider(),
               const SizedBox(height: 20),
-              Center(
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(30),
-                  onTap: () async {
-                    Uri url = Uri.parse(
-                      'https://qrscancreate.blogspot.com/2024/01/privacy-policy-for-qr-scancreate.html',
-                    );
-                    launchUrl(url, mode: LaunchMode.externalApplication);
-                  },
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 15, vertical: 11),
-                    child: Text(
-                      'Privacy Policy',
-                      style: TextStyle(color: Colors.black54),
-                    ),
-                  ),
-                ),
-              ),
+              privacyPolicyButton(),
               const SizedBox(height: 10),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Center privacyPolicyButton() {
+    return Center(
+      child: InkWell(
+        borderRadius: BorderRadius.circular(30),
+        onTap: () async {
+          Uri url = Uri.parse(
+            'https://qrscancreate.blogspot.com/2024/01/privacy-policy-for-qr-scancreate.html',
+          );
+          launchUrl(url, mode: LaunchMode.externalApplication);
+        },
+        child: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 11),
+          child: Text(
+            'Privacy Policy',
+            style: TextStyle(color: Colors.black54),
           ),
         ),
       ),
