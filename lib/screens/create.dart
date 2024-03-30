@@ -197,7 +197,7 @@ class _CreateScreenState extends State<CreateScreen> {
             entryBar(
               text: 'Hidden',
               child: Padding(
-                padding: const EdgeInsets.only(top: 8),
+                padding: const EdgeInsets.only(top: 6),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(30),
                   onTap: () {
@@ -207,13 +207,10 @@ class _CreateScreenState extends State<CreateScreen> {
                   },
                   child: Row(
                     children: [
-                      Icon(
-                        hidden
-                            ? Icons.check_box
-                            : Icons.check_box_outline_blank,
-                        color: hidden ? Theme.of(context).primaryColor : null,
-                        size: 21,
-                      ),
+                      hidden
+                          ? const Icon(Icons.check_circle, size: 21)
+                          : const Icon(Icons.circle_outlined,
+                              color: Colors.black54, size: 21),
                     ],
                   ),
                 ),
@@ -455,11 +452,10 @@ class _CreateScreenState extends State<CreateScreen> {
                 padding: const EdgeInsets.all(5),
                 child: Row(
                   children: [
-                    Icon(
-                      isNon ? Icons.check_box : Icons.check_box_outline_blank,
-                      color: isNon ? Theme.of(context).primaryColor : null,
-                      size: 21,
-                    ),
+                    isNon
+                        ? const Icon(Icons.check_circle, size: 21)
+                        : const Icon(Icons.circle_outlined,
+                            color: Colors.black54, size: 21),
                     const Text(' None'),
                   ],
                 ),
@@ -475,11 +471,10 @@ class _CreateScreenState extends State<CreateScreen> {
                 padding: const EdgeInsets.all(5),
                 child: Row(
                   children: [
-                    Icon(
-                      isWPA ? Icons.check_box : Icons.check_box_outline_blank,
-                      color: isWPA ? Theme.of(context).primaryColor : null,
-                      size: 21,
-                    ),
+                    isWPA
+                        ? const Icon(Icons.check_circle, size: 21)
+                        : const Icon(Icons.circle_outlined,
+                            color: Colors.black54, size: 21),
                     const Text(' WPA/WPA-2'),
                   ],
                 ),
@@ -495,11 +490,10 @@ class _CreateScreenState extends State<CreateScreen> {
                 padding: const EdgeInsets.all(5),
                 child: Row(
                   children: [
-                    Icon(
-                      isWEP ? Icons.check_box : Icons.check_box_outline_blank,
-                      color: isWEP ? Theme.of(context).primaryColor : null,
-                      size: 21,
-                    ),
+                    isWEP
+                        ? const Icon(Icons.check_circle, size: 21)
+                        : const Icon(Icons.circle_outlined,
+                            color: Colors.black54, size: 21),
                     const Text(' WEP'),
                   ],
                 ),
@@ -522,15 +516,9 @@ class _CreateScreenState extends State<CreateScreen> {
                 const Text('More options'),
                 const SizedBox(width: 10),
                 isMore
-                    ? const Icon(
-                        Icons.check_box,
-                        size: 21,
-                      )
-                    : const Icon(
-                        Icons.check_box_outline_blank_rounded,
-                        size: 21,
-                        color: Colors.black54,
-                      )
+                    ? const Icon(Icons.check_circle, size: 21)
+                    : const Icon(Icons.circle_outlined,
+                        color: Colors.black54, size: 21),
               ],
             ),
           ),
