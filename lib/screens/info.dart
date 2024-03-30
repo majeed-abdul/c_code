@@ -75,6 +75,7 @@ class _InfoScreenState extends State<InfoScreen> {
               const SizedBox(height: 5),
               const Text('  Setting', style: TextStyle(color: Colors.black54)),
               ListTile(
+                iconColor: Colors.black54,
                 title: const Text('Home Screen'),
                 subtitle: Text(_home ?? ''),
                 leading: const Icon(Icons.home_rounded, size: 40),
@@ -84,6 +85,7 @@ class _InfoScreenState extends State<InfoScreen> {
               const Divider(),
               const Text('  Support', style: TextStyle(color: Colors.black54)),
               ListTile(
+                iconColor: Colors.black54,
                 title: const Text('Rating'),
                 subtitle: const Text('Rate us on Play Store.'),
                 leading: const Icon(Icons.star_rate_rounded, size: 40),
@@ -99,6 +101,7 @@ class _InfoScreenState extends State<InfoScreen> {
                 },
               ),
               ListTile(
+                iconColor: Colors.black54,
                 title: const Text('Join Beta'),
                 subtitle: const Text('Rate us on Play Store.'),
                 leading: const Icon(Icons.star_rate_rounded, size: 40),
@@ -111,13 +114,17 @@ class _InfoScreenState extends State<InfoScreen> {
                 },
               ),
               ListTile(
+                iconColor: Colors.black54,
                 title: const Text('Donate ❤️'),
                 subtitle: const Text('We need support to keep you up to date.'),
                 leading: const Icon(Icons.volunteer_activism_rounded, size: 40),
-                trailing: const Icon(Icons.more_vert),
+                trailing: const Icon(
+                  Icons.more_vert,
+                ),
                 onTap: () => donate(context),
               ),
               ListTile(
+                iconColor: Colors.black54,
                 title: const Text('Support (See ads)'),
                 subtitle: const Text('Support us by watching Ads.'),
                 leading: const Icon(Icons.ads_click, size: 40),
