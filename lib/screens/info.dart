@@ -105,7 +105,7 @@ class _InfoScreenState extends State<InfoScreen> {
                 title: const Text('Join Beta'),
                 subtitle:
                     const Text('Join testers, Early access to new features.'),
-                leading: const Icon(Icons.star_rate_rounded, size: 40),
+                leading: const Icon(Icons.bug_report, size: 40),
                 trailing: const Icon(Icons.more_vert),
                 onTap: () async {
                   Uri url = Uri.parse(
