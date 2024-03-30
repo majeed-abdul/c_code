@@ -133,8 +133,8 @@ class _HomeScreenState extends State<HomeScreen> {
             tooltip: 'Scan QR',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add_box_outlined),
-            activeIcon: Icon(Icons.add_box),
+            icon: Icon(Icons.add_circle_outline),
+            activeIcon: Icon(Icons.add_circle),
             label: 'Create',
             tooltip: 'Create QR',
           ),
