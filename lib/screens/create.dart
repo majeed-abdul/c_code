@@ -141,16 +141,9 @@ class _CreateScreenState extends State<CreateScreen> {
                     const Text('More options'),
                     const SizedBox(width: 10),
                     isMore
-                        ? Icon(
-                            Icons.check_box,
-                            size: 21,
-                            color: Theme.of(context).primaryColor,
-                          )
-                        : const Icon(
-                            Icons.check_box_outline_blank_rounded,
-                            size: 21,
-                            color: Colors.black87,
-                          ),
+                        ? const Icon(Icons.check_circle, size: 22)
+                        : const Icon(Icons.circle_outlined,
+                            size: 22, color: Colors.black54),
                   ],
                 ),
               ),
@@ -453,9 +446,9 @@ class _CreateScreenState extends State<CreateScreen> {
                 child: Row(
                   children: [
                     isNon
-                        ? const Icon(Icons.check_circle, size: 21)
+                        ? const Icon(Icons.check_circle, size: 22)
                         : const Icon(Icons.circle_outlined,
-                            color: Colors.black54, size: 21),
+                            color: Colors.black54, size: 22),
                     const Text(' None'),
                   ],
                 ),
@@ -472,9 +465,9 @@ class _CreateScreenState extends State<CreateScreen> {
                 child: Row(
                   children: [
                     isWPA
-                        ? const Icon(Icons.check_circle, size: 21)
+                        ? const Icon(Icons.check_circle, size: 22)
                         : const Icon(Icons.circle_outlined,
-                            color: Colors.black54, size: 21),
+                            color: Colors.black54, size: 22),
                     const Text(' WPA/WPA-2'),
                   ],
                 ),
@@ -491,9 +484,9 @@ class _CreateScreenState extends State<CreateScreen> {
                 child: Row(
                   children: [
                     isWEP
-                        ? const Icon(Icons.check_circle, size: 21)
+                        ? const Icon(Icons.check_circle, size: 22)
                         : const Icon(Icons.circle_outlined,
-                            color: Colors.black54, size: 21),
+                            color: Colors.black54, size: 22),
                     const Text(' WEP'),
                   ],
                 ),
@@ -516,9 +509,9 @@ class _CreateScreenState extends State<CreateScreen> {
                 const Text('More options'),
                 const SizedBox(width: 10),
                 isMore
-                    ? const Icon(Icons.check_circle, size: 21)
+                    ? const Icon(Icons.check_circle, size: 22)
                     : const Icon(Icons.circle_outlined,
-                        color: Colors.black54, size: 21),
+                        color: Colors.black54, size: 22),
               ],
             ),
           ),
