@@ -200,8 +200,11 @@ class _CreateScreenState extends State<CreateScreen> {
                   children: [
                     hidden
                         ? const Icon(Icons.check_circle, size: 22)
-                        : const Icon(Icons.circle_outlined,
-                            color: Colors.black54, size: 22),
+                        : const Icon(
+                            Icons.circle_outlined,
+                            color: Colors.black54,
+                            size: 22,
+                          ),
                   ],
                 ),
               ),
