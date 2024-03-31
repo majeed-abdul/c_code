@@ -1,6 +1,5 @@
 import 'package:qr_maze/functions/ads.dart';
 import 'package:flutter/material.dart';
-import 'package:qr_maze/widgets/support_list.dart';
 
 Container supportBottomSheet(BuildContext context) {
   return Container(
@@ -39,6 +38,7 @@ Container supportBottomSheet(BuildContext context) {
           },
         ),
         ListTile(
+          iconColor: Colors.black54,
           title: const Text('Donate ❤️'),
           subtitle: const Text('We need support to keep you up to date.'),
           leading: const Icon(Icons.volunteer_activism_rounded, size: 40),
@@ -46,6 +46,7 @@ Container supportBottomSheet(BuildContext context) {
           onTap: () => donate(context),
         ),
         ListTile(
+          iconColor: Colors.black54,
           title: const Text('Support (See ads)'),
           subtitle: const Text('Support us by watching Ads.'),
           leading: const Icon(Icons.ads_click, size: 40),
