@@ -55,6 +55,11 @@ class CustomTheme {
       ),
       iconTheme: const IconThemeData(color: Colors.red), // icon color below
       listTileTheme: const ListTileThemeData(iconColor: Colors.red), //same
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        backgroundColor: Colors.red,
+        foregroundColor: Colors.white,
+        shape: CircleBorder(),
+      ),
     );
   }
 
