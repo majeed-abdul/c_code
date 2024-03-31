@@ -116,6 +116,19 @@ class _InfoScreenState extends State<InfoScreen> {
               ),
               ListTile(
                 iconColor: Colors.black54,
+                title: const Text('Share'),
+                subtitle: const Text('Share app with friends & family.'),
+                leading: const Icon(Icons.share, size: 38),
+                trailing: const Icon(Icons.more_vert),
+                onTap: () async {
+                  Uri url = Uri.parse(
+                    'https://play.google.com/apps/testing/com.abdul.qr_maze',
+                  );
+                  launchUrl(url, mode: LaunchMode.externalApplication);
+                },
+              ),
+              ListTile(
+                iconColor: Colors.black54,
                 title: const Text('Donate ❤️'),
                 subtitle: const Text('We need support to keep you up to date.'),
                 leading: const Icon(Icons.volunteer_activism_rounded, size: 40),
