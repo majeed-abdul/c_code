@@ -97,6 +97,16 @@ class _InfoScreenState extends State<InfoScreen> {
     );
   }
 
+//
+
+//
+
+//                  E X T R A S
+
+//
+
+//
+
   ListTile shareApp(BuildContext context) {
     return ListTile(
       iconColor: Colors.black54,
