@@ -78,55 +78,35 @@ class _InfoScreenState extends State<InfoScreen> {
               // const Divider(),
               const SizedBox(height: 5),
               const Text('  Setting', style: TextStyle(color: Colors.black54)),
-              ListTile(
-                iconColor: Colors.black54,
-                title: const Text('Home Screen'),
-                subtitle: Text(_home ?? ''),
-                leading: const Icon(Icons.home_rounded, size: 40),
-                trailing: const Icon(Icons.more_vert),
-                onTap: () => setHomePage(context),
-              ),
+              homeScreen(context),
               const Divider(),
               const Text('  Support', style: TextStyle(color: Colors.black54)),
-              ListTile(
-                iconColor: Colors.black54,
-                title: const Text('Rating'),
-                subtitle: const Text('Rate us on Play Store.'),
-                leading: const Icon(Icons.star_rate_rounded, size: 40),
-                trailing: const Icon(Icons.more_vert),
-                onTap: () async {
-                  String id = 'com.abdul.qr_maze';
-                  // if (await inAppReview.isAvailable()) {
-                  // inAppReview.requestReview();
-                  // } else {
-                  // debugPrint('====in_App_Review_Not_Available');
-                  inAppReview.openStoreListing(appStoreId: id);
-                  // }
-                },
-              ),
-              ListTile(
-                iconColor: Colors.black54,
-                title: const Text('Join Beta'),
-                subtitle:
-                    const Text('Join testers, Early access to new features.'),
-                leading: const Icon(Icons.bug_report, size: 40),
-                trailing: const Icon(Icons.more_vert),
-                onTap: () async {
-                  Uri url = Uri.parse(
-                    'https://play.google.com/apps/testing/com.abdul.qr_maze',
-                  );
-                  launchUrl(url, mode: LaunchMode.externalApplication);
-                },
-              ),
-              ListTile(
-                iconColor: Colors.black54,
-                title: const Text('Share'),
-                subtitle: const Text('Share app with friends & family.'),
-                leading: const Icon(Icons.share, size: 38),
-                trailing: const Icon(Icons.more_vert),
-                onTap: () async {
-                  await Share.shareWithResult(
-                    '''Unlock the Next Level in QR Scanning.
+              rating(),
+              joinBeta(),
+              shareApp(context),
+              donate(context),
+              seeAds(context),
+              const Divider(),
+              const SizedBox(height: 20),
+              privacyPolicyButton(),
+              const SizedBox(height: 10),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  ListTile shareApp(BuildContext context) {
+    return ListTile(
+      iconColor: Colors.black54,
+      title: const Text('Share'),
+      subtitle: const Text('Share app with friends & family.'),
+      leading: const Icon(Icons.share, size: 38),
+      trailing: const Icon(Icons.more_vert),
+      onTap: () async {
+        await Share.shareWithResult(
+          '''Unlock the Next Level in QR Scanning.
 
 Why Choose Our App?
 
@@ -137,37 +117,80 @@ Why Choose Our App?
 
 Don't miss out on upgrading from conventional QR scanners. Download now!
 https://play.google.com/store/apps/details?id=com.abdul.qr_maze''',
-                  ).then((value) => share(context, value));
-                },
-              ),
-              ListTile(
-                iconColor: Colors.black54,
-                title: const Text('Donate ❤️'),
-                subtitle: const Text('We need support to keep you up to date.'),
-                leading: const Icon(Icons.volunteer_activism_rounded, size: 40),
-                trailing: const Icon(
-                  Icons.more_vert,
-                ),
-                onTap: () => donate(context),
-              ),
-              ListTile(
-                iconColor: Colors.black54,
-                title: const Text('Support (See ads)'),
-                subtitle: const Text('Support us by watching Ads.'),
-                leading: const Icon(Icons.ads_click, size: 40),
-                trailing: const Icon(Icons.more_vert),
-                onTap: () {
-                  loadAndShowAd(context);
-                },
-              ),
-              const Divider(),
-              const SizedBox(height: 20),
-              privacyPolicyButton(),
-              const SizedBox(height: 10),
-            ],
-          ),
-        ),
+        ).then((value) => share(context, value));
+      },
+    );
+  }
+
+  ListTile seeAds(BuildContext context) {
+    return ListTile(
+      iconColor: Colors.black54,
+      title: const Text('Support (See ads)'),
+      subtitle: const Text('Support us by watching Ads.'),
+      leading: const Icon(Icons.ads_click, size: 40),
+      trailing: const Icon(Icons.more_vert),
+      onTap: () {
+        loadAndShowAd(context);
+      },
+    );
+  }
+
+  ListTile donate(BuildContext context) {
+    return ListTile(
+      iconColor: Colors.black54,
+      title: const Text('Donate ❤️'),
+      subtitle: const Text('We need support to keep you up to date.'),
+      leading: const Icon(Icons.volunteer_activism_rounded, size: 40),
+      trailing: const Icon(
+        Icons.more_vert,
       ),
+      onTap: () => donate(context),
+    );
+  }
+
+  ListTile joinBeta() {
+    return ListTile(
+      iconColor: Colors.black54,
+      title: const Text('Join Beta'),
+      subtitle: const Text('Join testers, Early access to new features.'),
+      leading: const Icon(Icons.bug_report, size: 40),
+      trailing: const Icon(Icons.more_vert),
+      onTap: () async {
+        Uri url = Uri.parse(
+          'https://play.google.com/apps/testing/com.abdul.qr_maze',
+        );
+        launchUrl(url, mode: LaunchMode.externalApplication);
+      },
+    );
+  }
+
+  ListTile rating() {
+    return ListTile(
+      iconColor: Colors.black54,
+      title: const Text('Rating'),
+      subtitle: const Text('Rate us on Play Store.'),
+      leading: const Icon(Icons.star_rate_rounded, size: 40),
+      trailing: const Icon(Icons.more_vert),
+      onTap: () async {
+        String id = 'com.abdul.qr_maze';
+        // if (await inAppReview.isAvailable()) {
+        // inAppReview.requestReview();
+        // } else {
+        // debugPrint('====in_App_Review_Not_Available');
+        inAppReview.openStoreListing(appStoreId: id);
+        // }
+      },
+    );
+  }
+
+  ListTile homeScreen(BuildContext context) {
+    return ListTile(
+      iconColor: Colors.black54,
+      title: const Text('Home Screen'),
+      subtitle: Text(_home ?? ''),
+      leading: const Icon(Icons.home_rounded, size: 40),
+      trailing: const Icon(Icons.more_vert),
+      onTap: () => setHomePage(context),
     );
   }
 
