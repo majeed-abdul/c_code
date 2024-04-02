@@ -5,6 +5,7 @@ import 'package:qr_maze/widgets/loader.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 
 class InfoScreen extends StatefulWidget {
   const InfoScreen({Key? key}) : super(key: key);
@@ -121,10 +122,10 @@ class _InfoScreenState extends State<InfoScreen> {
                 leading: const Icon(Icons.share, size: 38),
                 trailing: const Icon(Icons.more_vert),
                 onTap: () async {
-                  Uri url = Uri.parse(
-                    'https://play.google.com/apps/testing/com.abdul.qr_maze',
-                  );
-                  launchUrl(url, mode: LaunchMode.externalApplication);
+                  // Uri url = Uri.parse(
+                  //   'https://play.google.com/apps/testing/com.abdul.qr_maze',
+                  // );
+                  // launchUrl(url, mode: LaunchMode.externalApplication);
                 },
               ),
               ListTile(
