@@ -131,8 +131,8 @@ class _InfoScreenState extends State<InfoScreen> {
 Why Choose Our App?
 
  • Experience Extra layer of security.
- • Say Goodbye to Intrusive Ads(Watch on Your Terms).
  • Navigate with Ease and Speed.
+ • Say Goodbye to Intrusive Ads(Watch on Your Terms).
 
 Don't miss out on upgrading from conventional QR scanners. Download now!
 https://play.google.com/store/apps/details?id=com.abdul.qr_maze''',
