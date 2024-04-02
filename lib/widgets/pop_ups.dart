@@ -10,7 +10,7 @@ showSnackBar(BuildContext context, String message) {
         textAlign: TextAlign.center,
         style: const TextStyle(fontSize: 15),
       ),
-      duration: const Duration(milliseconds: 2099),
+      duration: const Duration(milliseconds: 2999),
       behavior: SnackBarBehavior.floating,
     ),
   );
