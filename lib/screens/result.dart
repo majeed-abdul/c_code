@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:qr_maze/functions/ads.dart';
 import 'package:qr_maze/widgets/bottom_sheet.dart';
 import 'package:qr_maze/widgets/loader.dart';
