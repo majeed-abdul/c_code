@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:qr_maze/functions/ads.dart';
 import 'package:qr_maze/widgets/bottom_sheet.dart';
 import 'package:qr_maze/widgets/loader.dart';
@@ -159,7 +160,6 @@ Websites : $websites''';
                 veri = Verification.noconnection;
             }
             setState(() {});
-            print('====$veri');
           });
         } else {
           setState(() {});
@@ -363,82 +363,93 @@ Websites : $websites''';
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // InputChip(label: Text('data')),
-          Row(
-            children: [
-              // Visibility(
-              //   child: ,
-              // ),
-              const Spacer(flex: 4),
-              // Visibility(
-              //   visible: isWebURL(),
-              //   child: const Padding(
-              //     padding: EdgeInsets.only(right: 5),
-              //     child: Image.asset(
-              //       'Verifying',
-              //       style: TextStyle(
-              //         fontSize: 13,
-              //         fontWeight: FontWeight.w500,
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              Visibility(
-                visible: isWebURL(),
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 10),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 5, right: 5),
+            child: Row(
+              children: [
+                const Spacer(flex: 4),
+                Visibility(
+                  visible: isWebURL(),
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 2),
+                    child: veri == Verification.verifying
+                        ? Image.asset(
+                            'assets/loader.gif',
+                            height: 20,
+                            width: 20,
+                          )
+                        : veri == Verification.verified
+                            ? const Icon(
+                                Icons.verified_user,
+                                color: Colors.green,
+                                size: 18,
+                              )
+                            : veri == Verification.notverified
+                                ? const Icon(
+                                    Icons.report,
+                                    color: Colors.red,
+                                    size: 19,
+                                  )
+                                : const Icon(
+                                    Icons.wifi_off,
+                                    color: Colors.black87,
+                                    size: 19,
+                                  ),
+                  ),
+                ),
+                Visibility(
+                  visible: isWebURL(),
                   child: Text(
-                    // veri ? 'verified' : 'not' ?? 'Verifying',
                     veri == Verification.verifying
                         ? 'Verifying...'
                         : veri == Verification.verified
-                            ? 'Verified'
+                            ? 'Safe'
                             : veri == Verification.notverified
-                                ? 'Verification Failed'
-                                : 'unable to connect',
+                                ? 'Something is Wrong'
+                                : 'No Connection',
                     style: const TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
                 ),
-              ),
-              Visibility(
-                visible: formated != null,
-                child: SegmentedButton<Display>(
-                  segments: const <ButtonSegment<Display>>[
-                    ButtonSegment(
-                      value: Display.formated,
-                      label: Text('Clean', style: TextStyle(fontSize: 12)),
+                Visibility(
+                  visible: formated != null,
+                  child: SegmentedButton<Display>(
+                    segments: const <ButtonSegment<Display>>[
+                      ButtonSegment(
+                        value: Display.formated,
+                        label: Text('Clean', style: TextStyle(fontSize: 12)),
+                      ),
+                      ButtonSegment(
+                        value: Display.raw,
+                        label: Text('Raw', style: TextStyle(fontSize: 12)),
+                      ),
+                    ],
+                    selected: <Display>{textFormat},
+                    showSelectedIcon: false,
+                    onSelectionChanged: (Set<Display> newSelection) {
+                      setState(() {
+                        textFormat = newSelection.first;
+                      });
+                    },
+                    style: const ButtonStyle(
+                      visualDensity: VisualDensity(
+                        horizontal: -3,
+                        vertical: -3,
+                      ),
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      // shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      // RoundedRectangleBorder(
+                      //     // side: const BorderSide(width: 3, color: Colors.amber),
+                      //     // borderRadius: BorderRadius.circular(30),
+                      //     ),
+                      // ),
                     ),
-                    ButtonSegment(
-                      value: Display.raw,
-                      label: Text('Raw', style: TextStyle(fontSize: 12)),
-                    ),
-                  ],
-                  selected: <Display>{textFormat},
-                  showSelectedIcon: false,
-                  onSelectionChanged: (Set<Display> newSelection) {
-                    setState(() {
-                      textFormat = newSelection.first;
-                    });
-                  },
-                  style: const ButtonStyle(
-                    visualDensity: VisualDensity(
-                      horizontal: -3,
-                      vertical: -3,
-                    ),
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    // shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    // RoundedRectangleBorder(
-                    //     // side: const BorderSide(width: 3, color: Colors.amber),
-                    //     // borderRadius: BorderRadius.circular(30),
-                    //     ),
-                    // ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           SelectableText(
             textFormat == Display.raw ? result : formated ?? '',
