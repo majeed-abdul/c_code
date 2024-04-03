@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:qr_maze/functions/ads.dart';
 import 'package:qr_maze/widgets/bottom_sheet.dart';
 import 'package:qr_maze/widgets/loader.dart';
@@ -12,6 +11,7 @@ import 'package:wifi_iot/wifi_iot.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:string_validator/string_validator.dart';
+import 'package:safe_url_check/safe_url_check.dart';
 // import 'package:wifi_iot/wifi_iot.dart';
 
 class ResultScreen extends StatefulWidget {
@@ -24,12 +24,15 @@ class ResultScreen extends StatefulWidget {
 
 enum Display { raw, formated }
 
+enum Verification { verifying, verified, notverified, noconnection }
+
 class _ResultScreenState extends State<ResultScreen> {
   ScrollController scrollCon = ScrollController();
   String? formated;
   bool support = false;
   Display textFormat = Display.raw;
   String result = '';
+  Verification veri = Verification.verifying;
 
   @override
   void initState() {
@@ -136,6 +139,27 @@ Websites : $websites''';
       textFormat = Display.formated;
     }
     context.read<AdLoader>().loaderOff();
+
+    if (isWebURL()) {
+      // Check if https://google.com is a broken URL.
+      safeUrlCheck(
+        Uri.parse(result),
+        timeout: const Duration(seconds: 15),
+      ).then((value) {
+        switch (value) {
+          case true:
+            veri = Verification.verified;
+            break;
+          case false:
+            veri = Verification.notverified;
+            break;
+          // default:
+          //   veri = Verification.noconnection;
+        }
+        setState(() {});
+        print('====$veri');
+      });
+    }
     setState(() {});
     super.initState();
   }
@@ -333,6 +357,39 @@ Websites : $websites''';
               //   child: ,
               // ),
               const Spacer(flex: 4),
+              // Visibility(
+              //   visible: isWebURL(),
+              //   child: const Padding(
+              //     padding: EdgeInsets.only(right: 5),
+              //     child: Image.asset(
+              //       'Verifying',
+              //       style: TextStyle(
+              //         fontSize: 13,
+              //         fontWeight: FontWeight.w500,
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              Visibility(
+                visible: isWebURL(),
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 10),
+                  child: Text(
+                    // veri ? 'verified' : 'not' ?? 'Verifying',
+                    veri == Verification.verifying
+                        ? 'Verifying...'
+                        : veri == Verification.verified
+                            ? 'Verified'
+                            : veri == Verification.notverified
+                                ? 'Verification Failed'
+                                : 'unable to connect',
+                    style: const TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ),
               Visibility(
                 visible: formated != null,
                 child: SegmentedButton<Display>(
