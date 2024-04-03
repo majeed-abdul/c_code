@@ -12,6 +12,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:string_validator/string_validator.dart';
 import 'package:safe_url_check/safe_url_check.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 // import 'package:wifi_iot/wifi_iot.dart';
 
 class ResultScreen extends StatefulWidget {
@@ -141,24 +142,36 @@ Websites : $websites''';
     context.read<AdLoader>().loaderOff();
 
     if (isWebURL()) {
-      // Check if https://google.com is a broken URL.
-      safeUrlCheck(
-        Uri.parse(result),
-        timeout: const Duration(seconds: 15),
-      ).then((value) {
-        switch (value) {
-          case true:
-            veri = Verification.verified;
-            break;
-          case false:
-            veri = Verification.notverified;
-            break;
-          // default:
-          //   veri = Verification.noconnection;
+      InternetConnectionChecker().hasConnection.then((value) {
+        if (value) {
+          safeUrlCheck(
+            Uri.parse(result),
+            timeout: const Duration(seconds: 15),
+          ).then((value) {
+            switch (value) {
+              case true:
+                veri = Verification.verified;
+                break;
+              case false:
+                veri = Verification.notverified;
+                break;
+              default:
+                veri = Verification.noconnection;
+            }
+            setState(() {});
+            print('====$veri');
+          });
+        } else {
+          setState(() {});
+          veri = Verification.noconnection;
         }
-        setState(() {});
-        print('====$veri');
       });
+// if(result == true) {
+//   print('YAY! Free cute dog pics!');
+// } else {
+//   print('No internet :( Reason:');
+//   print(InternetConnectionChecker().lastTryResults);
+// }
     }
     setState(() {});
     super.initState();
