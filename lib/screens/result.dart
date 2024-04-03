@@ -11,6 +11,8 @@ import 'package:wifi_iot/wifi_iot.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:string_validator/string_validator.dart';
+import 'package:safe_url_check/safe_url_check.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 // import 'package:wifi_iot/wifi_iot.dart';
 
 class ResultScreen extends StatefulWidget {
@@ -23,12 +25,15 @@ class ResultScreen extends StatefulWidget {
 
 enum Display { raw, formated }
 
+enum Verification { verifying, verified, notverified, noconnection }
+
 class _ResultScreenState extends State<ResultScreen> {
   ScrollController scrollCon = ScrollController();
   String? formated;
   bool support = false;
   Display textFormat = Display.raw;
   String result = '';
+  Verification veri = Verification.verifying;
 
   @override
   void initState() {
@@ -135,6 +140,38 @@ Websites : $websites''';
       textFormat = Display.formated;
     }
     context.read<AdLoader>().loaderOff();
+
+    if (isWebURL()) {
+      InternetConnectionChecker().hasConnection.then((value) {
+        if (value) {
+          safeUrlCheck(
+            Uri.parse(result),
+            timeout: const Duration(seconds: 15),
+          ).then((value) {
+            switch (value) {
+              case true:
+                veri = Verification.verified;
+                break;
+              case false:
+                veri = Verification.notverified;
+                break;
+              default:
+                veri = Verification.noconnection;
+            }
+            setState(() {});
+          });
+        } else {
+          setState(() {});
+          veri = Verification.noconnection;
+        }
+      });
+// if(result == true) {
+//   print('YAY! Free cute dog pics!');
+// } else {
+//   print('No internet :( Reason:');
+//   print(InternetConnectionChecker().lastTryResults);
+// }
+    }
     setState(() {});
     super.initState();
   }
@@ -325,37 +362,88 @@ Websites : $websites''';
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          // InputChip(label: Text('data')),
-          Visibility(
-            visible: formated != null,
+          Padding(
+            padding: const EdgeInsets.only(bottom: 5, right: 5),
             child: Row(
               children: [
                 const Spacer(flex: 4),
-                SegmentedButton<Display>(
-                  segments: const <ButtonSegment<Display>>[
-                    ButtonSegment(
-                      value: Display.formated,
-                      label: Text('Formated', style: TextStyle(fontSize: 12)),
+                Visibility(
+                  visible: isWebURL(),
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 2),
+                    child: veri == Verification.verifying
+                        ? Image.asset(
+                            'assets/loader.gif',
+                            height: 20,
+                            width: 20,
+                          )
+                        : veri == Verification.verified
+                            ? const Icon(
+                                Icons.verified_user,
+                                color: Colors.green,
+                                size: 18,
+                              )
+                            : veri == Verification.notverified
+                                ? const Icon(
+                                    Icons.report,
+                                    color: Colors.red,
+                                    size: 19,
+                                  )
+                                : const Icon(
+                                    Icons.wifi_off,
+                                    color: Colors.black87,
+                                    size: 19,
+                                  ),
+                  ),
+                ),
+                Visibility(
+                  visible: isWebURL(),
+                  child: Text(
+                    veri == Verification.verifying
+                        ? 'Verifying...'
+                        : veri == Verification.verified
+                            ? 'Safe'
+                            : veri == Verification.notverified
+                                ? 'Something is Wrong'
+                                : 'No Connection',
+                    style: const TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
                     ),
-                    ButtonSegment(
-                      value: Display.raw,
-                      label: Text('Raw', style: TextStyle(fontSize: 12)),
-                    ),
-                  ],
-                  selected: <Display>{textFormat},
-                  showSelectedIcon: false,
-                  onSelectionChanged: (Set<Display> newSelection) {
-                    setState(() {
-                      textFormat = newSelection.first;
-                    });
-                  },
-                  style: ButtonStyle(
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        side: const BorderSide(width: 3, color: Colors.amber),
-                        borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
+                Visibility(
+                  visible: formated != null,
+                  child: SegmentedButton<Display>(
+                    segments: const <ButtonSegment<Display>>[
+                      ButtonSegment(
+                        value: Display.formated,
+                        label: Text('Clean', style: TextStyle(fontSize: 12)),
                       ),
+                      ButtonSegment(
+                        value: Display.raw,
+                        label: Text('Raw', style: TextStyle(fontSize: 12)),
+                      ),
+                    ],
+                    selected: <Display>{textFormat},
+                    showSelectedIcon: false,
+                    onSelectionChanged: (Set<Display> newSelection) {
+                      setState(() {
+                        textFormat = newSelection.first;
+                      });
+                    },
+                    style: const ButtonStyle(
+                      visualDensity: VisualDensity(
+                        horizontal: -3,
+                        vertical: -3,
+                      ),
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      // shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      // RoundedRectangleBorder(
+                      //     // side: const BorderSide(width: 3, color: Colors.amber),
+                      //     // borderRadius: BorderRadius.circular(30),
+                      //     ),
+                      // ),
                     ),
                   ),
                 ),

@@ -58,7 +58,7 @@ class CustomTheme {
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: Colors.red,
         foregroundColor: Colors.white,
-        shape: CircleBorder(),
+        // shape: CircleBorder(),
       ),
     );
   }
