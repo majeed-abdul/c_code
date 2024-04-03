@@ -80,7 +80,7 @@ class _InfoScreenState extends State<InfoScreen> {
               rating(),
               joinBeta(),
               shareApp(context),
-              donate(context),
+              donatePop(context),
               seeAds(context),
               const Divider(),
               const SizedBox(height: 20),
@@ -130,7 +130,7 @@ class _InfoScreenState extends State<InfoScreen> {
     );
   }
 
-  ListTile donate(BuildContext context) {
+  ListTile donatePop(BuildContext context) {
     return ListTile(
       iconColor: Colors.black54,
       title: const Text('Donate ❤️'),
