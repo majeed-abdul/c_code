@@ -1,3 +1,4 @@
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:qr_maze/data/strings.dart';
 import 'package:qr_maze/widgets/pop_ups.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -29,11 +30,11 @@ class _InfoScreenState extends State<InfoScreen> {
       }
       setState(() {});
     });
-    // PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
-    //   appName = packageInfo.appName;
-    //   version = packageInfo.version;
-    //   setState(() {});
-    // });
+    PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
+      appName = packageInfo.appName;
+      version = packageInfo.version;
+      setState(() {});
+    });
     context.read<AdLoader>().loaderOff();
   }
 
@@ -51,8 +52,8 @@ class _InfoScreenState extends State<InfoScreen> {
   String? _home;
   final InAppReview inAppReview = InAppReview.instance;
 
-  // String? appName;
-  // String? version;
+  String? appName;
+  String? version;
 
   @override
   Widget build(BuildContext context) {
@@ -65,23 +66,19 @@ class _InfoScreenState extends State<InfoScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // const Divider(),
-              // const Text('  App', style: TextStyle(color: Colors.black54)),
-              // ListTile(
-              //   title: Text(appName ?? 'null'),
-              //   subtitle: Text('version: $version'),
-              //   leading: const Icon(Icons.adb, size: 40),
-              // ),
               const SizedBox(height: 5),
               const Text('  Setting', style: TextStyle(color: Colors.black54)),
               homeScreen(context),
               const Divider(),
               const Text('  Support', style: TextStyle(color: Colors.black54)),
               rating(),
-              joinBeta(),
+              joinBeta(), // comment this in line in beta version ==============
               shareApp(context),
               donatePop(context),
               seeAds(context),
+              const Divider(),
+              const Text('  App', style: TextStyle(color: Colors.black54)),
+              appInfo(beta: true), //  true in beta version ====================
               const Divider(),
               const SizedBox(height: 20),
               privacyPolicyButton(),
@@ -102,6 +99,22 @@ class _InfoScreenState extends State<InfoScreen> {
 //
 
 //
+
+  ListTile appInfo({bool beta = false}) {
+    // beta ? appName = '$appName(Beta)' : null;
+    return ListTile(
+      iconColor: Colors.black54,
+      title: Text(
+        appName == null
+            ? 'null'
+            : beta
+                ? '$appName(Beta)'
+                : '$appName',
+      ),
+      subtitle: Text('version: $version'),
+      leading: const Icon(Icons.adb, size: 40),
+    );
+  }
 
   ListTile shareApp(BuildContext context) {
     return ListTile(
