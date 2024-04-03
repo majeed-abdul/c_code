@@ -1,3 +1,4 @@
+import 'package:qr_maze/data/strings.dart';
 import 'package:qr_maze/widgets/pop_ups.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:qr_maze/functions/ads.dart';
@@ -110,19 +111,8 @@ class _InfoScreenState extends State<InfoScreen> {
       leading: const Icon(Icons.share, size: 38),
       trailing: const Icon(Icons.more_vert),
       onTap: () async {
-        await Share.shareWithResult(
-          '''Unlock the Next Level in QR Scanning.
-
-Why Choose Our App?
-
- • Experience Extra layer of security.
- • Navigate with Ease and Speed.
- • Say Goodbye to Intrusive Ads(Watch on Your Terms).
- • Check out App for More.
-
-Don't miss out on upgrading from conventional QR scanners. Download now!
-https://play.google.com/store/apps/details?id=com.abdul.qr_maze''',
-        ).then((value) => share(context, value));
+        await Share.shareWithResult(shareMessage)
+            .then((value) => share(context, value));
       },
     );
   }
