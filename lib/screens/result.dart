@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:qr_maze/functions/ads.dart';
 import 'package:qr_maze/widgets/bottom_sheet.dart';
 import 'package:qr_maze/widgets/loader.dart';
@@ -326,16 +327,19 @@ Websites : $websites''';
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           // InputChip(label: Text('data')),
-          Visibility(
-            visible: formated != null,
-            child: Row(
-              children: [
-                const Spacer(flex: 4),
-                SegmentedButton<Display>(
+          Row(
+            children: [
+              // Visibility(
+              //   child: ,
+              // ),
+              const Spacer(flex: 4),
+              Visibility(
+                visible: formated != null,
+                child: SegmentedButton<Display>(
                   segments: const <ButtonSegment<Display>>[
                     ButtonSegment(
                       value: Display.formated,
-                      label: Text('Formated', style: TextStyle(fontSize: 12)),
+                      label: Text('Clean', style: TextStyle(fontSize: 12)),
                     ),
                     ButtonSegment(
                       value: Display.raw,
@@ -349,18 +353,22 @@ Websites : $websites''';
                       textFormat = newSelection.first;
                     });
                   },
-                  style: ButtonStyle(
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        side: const BorderSide(width: 3, color: Colors.amber),
-                        borderRadius: BorderRadius.circular(30),
-                      ),
+                  style: const ButtonStyle(
+                    visualDensity: VisualDensity(
+                      horizontal: -3,
+                      vertical: -3,
                     ),
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    // shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    // RoundedRectangleBorder(
+                    //     // side: const BorderSide(width: 3, color: Colors.amber),
+                    //     // borderRadius: BorderRadius.circular(30),
+                    //     ),
+                    // ),
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
           SelectableText(
             textFormat == Display.raw ? result : formated ?? '',
