@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 
-Container customButton({
+OutlinedButton customButton({
   required IconData icon,
   void Function()? onPress,
   Color color = Colors.black,
 }) {
-  return Container(
-    height: 55,
-    width: 55,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(69),
-      border: Border.all(color: color, width: 3),
+  return OutlinedButton(
+    style: ButtonStyle(
+      side: MaterialStatePropertyAll(
+        BorderSide(width: 3, color: color),
+      ),
+      padding: const MaterialStatePropertyAll(EdgeInsets.all(0)),
+      fixedSize: const MaterialStatePropertyAll(Size.square(55)),
+      visualDensity: const VisualDensity(horizontal: -2.9, vertical: -2.9),
     ),
-    child: InkWell(
-      borderRadius: BorderRadius.circular(69),
-      onTap: onPress,
-      child: Icon(icon, color: color),
+    onPressed: onPress,
+    child: Icon(
+      icon,
+      color: color,
     ),
   );
 }
