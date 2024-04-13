@@ -339,11 +339,10 @@ packages:
   native_updater:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: a7bb03dfdef40a71569e45d55ac5f175b34a767d
-      url: "https://github.com/loadsmileau/native_updater"
-    source: git
+      name: native_updater
+      sha256: df844b38ae08af15ba6312063d30e9804cef3dfe560812c0b221bb037f98d689
+      url: "https://pub.dev"
+    source: hosted
     version: "0.1.1"
   nested:
     dependency: transitive
