@@ -77,7 +77,7 @@ class _ScanScreenState extends State<ScanScreen> {
 
 //
 
-  Container cameraSwitchButton() {
+  OutlinedButton cameraSwitchButton() {
     return customButton(
       onPress: () async {
         if (isFlashOn) {
@@ -92,7 +92,7 @@ class _ScanScreenState extends State<ScanScreen> {
     );
   }
 
-  Container flashButton() {
+  OutlinedButton flashButton() {
     return customButton(
       onPress: () async {
         controller?.toggleFlash();
