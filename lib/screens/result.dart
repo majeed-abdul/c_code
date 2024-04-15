@@ -146,7 +146,7 @@ Websites : $websites''';
         if (value) {
           safeUrlCheck(
             Uri.parse(result),
-            timeout: const Duration(seconds: 25),
+            timeout: const Duration(seconds: 20),
           ).then((value) {
             switch (value) {
               case true:
