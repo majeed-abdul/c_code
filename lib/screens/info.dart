@@ -181,11 +181,12 @@ class _InfoScreenState extends State<InfoScreen> {
       trailing: const Icon(Icons.more_vert),
       onTap: () async {
         String id = 'com.abdul.qr_maze';
-        // if (await inAppReview.isAvailable()) {
-        // inAppReview.requestReview();
-        // } else {
-        // debugPrint('====in_App_Review_Not_Available');
-        inAppReview.openStoreListing(appStoreId: id);
+        if (await inAppReview.isAvailable()) {
+          inAppReview.requestReview();
+        } else {
+          // debugPrint('====in_App_Review_Not_Available');
+          inAppReview.openStoreListing(appStoreId: id);
+        }
       },
     );
   }
