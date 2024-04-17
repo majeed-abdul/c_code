@@ -85,7 +85,7 @@ OutlinedButton customButton({
 //     ],
 //   ),
 // );
-FilledButton gridButton({
+Widget gridButton({
   required IconData icon,
   required String label,
   bool select = false,
@@ -93,14 +93,17 @@ FilledButton gridButton({
 }) {
   return FilledButton.icon(
     onPressed: onTap,
-    icon: Icon(icon, color: select ? null : Colors.black),
-    label: Text(label, style: TextStyle(color: select ? null : Colors.black)),
+    icon: Icon(icon, color: select ? Colors.black : null),
+    label: Text(
+      label,
+      style: TextStyle(color: select ? Colors.black : null),
+    ),
     style: ButtonStyle(
       backgroundColor:
-          select ? null : const MaterialStatePropertyAll(Colors.white),
-      side: select
-          ? null
-          : const MaterialStatePropertyAll(BorderSide(color: Colors.black54)),
+          select ? const MaterialStatePropertyAll(Colors.white) : null,
+      // side: select
+      //     ? const MaterialStatePropertyAll(BorderSide(color: Colors.white))
+      //     : const MaterialStatePropertyAll(BorderSide(color: Colors.black87)),
     ),
   );
 }
