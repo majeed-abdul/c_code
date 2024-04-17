@@ -71,15 +71,22 @@ class _CreateScreenState extends State<CreateScreen> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          // physics: const BouncingScrollPhysics(),
+          // padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
           child: Column(
             children: [
-              buttonsGrid(), /////////////////////////////// Grid Buttons
-              const SizedBox(height: 20),
+              // const Divider(height: 1),
+              Container(
+                color: Theme.of(context).appBarTheme.backgroundColor,
+                child: buttonsGrid(), /////////////////////// Grid Buttons
+              ),
+              const SizedBox(height: 9),
+              // buttonsGrid(),
+              // const SizedBox(height: 11),
+              // const Divider(),
               entryTextFields(), /////////////////////////// Inputs Fields
               const SizedBox(height: 11),
-              createButton(), ////////////////////////// Crerate Buttons
+              createButton(), //////////////////////////// Crerate Buttons
               const SizedBox(height: 20),
             ],
           ),
@@ -104,6 +111,14 @@ class _CreateScreenState extends State<CreateScreen> {
       case 0: ////////////// Text & URL
         w = Column(
           children: [
+            const Text(
+              'Text & URL',
+              style: TextStyle(
+                fontSize: 19,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+            ),
             entryBar(
               text: 'Text / url',
               child: TextField(
@@ -119,9 +134,17 @@ class _CreateScreenState extends State<CreateScreen> {
           ],
         );
         break;
-      case 1: ////////////// Numbers
+      case 4: ////////////// Numbers
         w = Column(
           children: [
+            const Text(
+              'Number',
+              style: TextStyle(
+                fontSize: 19,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+            ),
             entryBar(
               text: 'Number',
               child: TextField(
@@ -164,9 +187,17 @@ class _CreateScreenState extends State<CreateScreen> {
           ],
         );
         break;
-      case 2: ////////////// WiFi
+      case 1: ////////////// WiFi
         w = Column(
           children: [
+            const Text(
+              'Wifi',
+              style: TextStyle(
+                fontSize: 19,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+            ),
             entryBar(
               text: 'WiFi Name',
               child: TextField(
@@ -216,6 +247,14 @@ class _CreateScreenState extends State<CreateScreen> {
       case 3: ////////////// V-Card
         w = Column(
           children: [
+            const Text(
+              'V-Card',
+              style: TextStyle(
+                fontSize: 19,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+            ),
             entryBar(
               text: 'First Name',
               child: TextField(
@@ -359,23 +398,31 @@ class _CreateScreenState extends State<CreateScreen> {
           ],
         );
         break;
-      case 4: //////////// Geo-Location
+      case 2: //////////// Geo-Location
         w = Column(
           children: [
-            entryBar(
-              text: 'To',
-              child: TextField(
-                decoration: const InputDecoration(hintText: 'Enter Email'),
-                controller: emailTooCon,
-                onChanged: (v) => setMail(),
+            const Text(
+              'Geo-Location',
+              style: TextStyle(
+                fontSize: 19,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
               ),
             ),
             entryBar(
-              text: 'Subject',
+              text: 'Latitude',
               child: TextField(
-                decoration: const InputDecoration(hintText: 'Enter Subject'),
+                decoration: const InputDecoration(hintText: 'Enter Latitude'),
+                controller: emailTooCon,
+                // onChanged: (v) => setMail(),
+              ),
+            ),
+            entryBar(
+              text: 'Longitude',
+              child: TextField(
+                decoration: const InputDecoration(hintText: 'Enter Longitude'),
                 controller: emailSubCon,
-                onChanged: (v) => setMail(),
+                // onChanged: (v) => setMail(),
               ),
             ),
             moreOptions(),
@@ -385,6 +432,15 @@ class _CreateScreenState extends State<CreateScreen> {
       case 5: ////////////// Email
         w = Column(
           children: [
+            const Text(
+              'Email',
+              style: TextStyle(
+                fontSize: 19,
+                // height: 1.7,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+            ),
             entryBar(
               text: 'To',
               child: TextField(
@@ -418,6 +474,14 @@ class _CreateScreenState extends State<CreateScreen> {
       case 6: ////////////// SMS
         w = Column(
           children: [
+            const Text(
+              'SMS',
+              style: TextStyle(
+                fontSize: 19,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
+            ),
             entryBar(
               text: 'Phone No',
               child: TextField(
@@ -446,7 +510,10 @@ class _CreateScreenState extends State<CreateScreen> {
       default:
         w = const SizedBox();
     }
-    return w;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
+      child: w,
+    );
   }
 
   Widget encryptionRadioButtons() {
@@ -566,7 +633,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 throw 'Enter Text'; //  must not be empty
               }
               break;
-            case 1: ////////////// Number
+            case 4: ////////////// Number
               if (numberCon.text.isEmpty) {
                 throw 'Enter Number'; //  must not be empty
               } else {
@@ -588,7 +655,7 @@ class _CreateScreenState extends State<CreateScreen> {
                     : throw 'Number is not 8 digit';
               }
               break;
-            case 2: ////////////// WIFi
+            case 1: ////////////// WIFi
               if (wiFiNamCon.text.trim().isEmpty) {
                 throw 'Enter SSID'; //  must not be empty
               } else if (wiFiPasCon.text.isEmpty && encryption != 'nopass') {
@@ -617,7 +684,7 @@ class _CreateScreenState extends State<CreateScreen> {
             // vCardCitCon
             // vCardStrCon
             // vCardWebCon
-            case 4: ////////////// Email
+            case 5: ////////////// Email
               if (emailTooCon.text.trim().isEmpty) {
                 throw "Enter Email"; //  must not be empty
               } else if (emailSubCon.text.trim().isEmpty) {
@@ -627,7 +694,7 @@ class _CreateScreenState extends State<CreateScreen> {
               }
               isEmail(emailTooCon.text) ? null : throw 'Invalid Email';
               break;
-            case 5: ////////////// SMS
+            case 6: ////////////// SMS
               if (smsPhoCon.text.trim().isEmpty) {
                 throw "Enter Phone Number"; //  must not be empty
               } else if (smsPhoCon.text.trim().length < 3) {
@@ -659,33 +726,41 @@ class _CreateScreenState extends State<CreateScreen> {
     );
   }
 
-  GridView buttonsGrid() {
-    Size size = MediaQuery.of(context).size;
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisSpacing: 7,
-        childAspectRatio: 3,
-        mainAxisSpacing: 7,
-        mainAxisExtent: 45,
-        crossAxisCount:
-            (size.width >= size.height) || (size.width > 900) ? 3 : 2,
+  SizedBox buttonsGrid() {
+    // Size size = MediaQuery.of(context).size;
+    return SizedBox(
+      height: 70,
+      child: ListView.separated(
+        // shrinkWrap: true,
+        // physics: const NeverScrollableScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        //   crossAxisSpacing: 7,
+        //   childAspectRatio: 3,
+        //   mainAxisSpacing: 7,
+        //   mainAxisExtent: 45,
+        //   crossAxisCount:
+        //       (size.width >= size.height) || (size.width > 900) ? 3 : 2,
+        // ),
+        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+        itemCount: creates.length,
+        separatorBuilder: (context, index) {
+          return const SizedBox(width: 10);
+        },
+        itemBuilder: (context, index) {
+          return gridButton(
+            select: index == selected,
+            icon: creates[index].icon,
+            label: creates[index].name,
+            onTap: () {
+              clearControllers();
+              dropDownValueType = 'QR Code';
+              selected = index;
+              setState(() {});
+            },
+          );
+        },
       ),
-      itemCount: creates.length,
-      itemBuilder: (context, index) {
-        return gridButton(
-          select: index == selected,
-          icon: creates[index].icon,
-          label: creates[index].name,
-          onTap: () {
-            clearControllers();
-            dropDownValueType = 'QR Code';
-            selected = index;
-            setState(() {});
-          },
-        );
-      },
     );
   }
 
