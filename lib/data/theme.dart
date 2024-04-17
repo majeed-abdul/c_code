@@ -19,7 +19,7 @@ class CustomTheme {
       ),
       useMaterial3: true,
       appBarTheme: const AppBarTheme(
-        color: Colors.red,
+        color: Color(0xFFD42027),
         elevation: 5,
         foregroundColor: Colors.white,
         systemOverlayStyle: SystemUiOverlayStyle(
