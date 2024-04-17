@@ -13,6 +13,7 @@ List<Item> creates = [
   Item(name: 'NUMBERS', icon: Icons.numbers_outlined),
   Item(name: 'WIFI', icon: Icons.wifi_rounded),
   Item(name: 'V-CARD', icon: Icons.person_outline),
+  Item(name: 'Geo-Location', icon: Icons.location_on_outlined),
   Item(name: 'EMAIL', icon: Icons.email_outlined),
   Item(name: 'SMS', icon: Icons.sms_outlined),
 ];
