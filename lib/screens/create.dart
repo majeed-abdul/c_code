@@ -359,7 +359,30 @@ class _CreateScreenState extends State<CreateScreen> {
           ],
         );
         break;
-      case 4: ////////////// Email
+      case 4: //////////// Geo-Location
+        w = Column(
+          children: [
+            entryBar(
+              text: 'To',
+              child: TextField(
+                decoration: const InputDecoration(hintText: 'Enter Email'),
+                controller: emailTooCon,
+                onChanged: (v) => setMail(),
+              ),
+            ),
+            entryBar(
+              text: 'Subject',
+              child: TextField(
+                decoration: const InputDecoration(hintText: 'Enter Subject'),
+                controller: emailSubCon,
+                onChanged: (v) => setMail(),
+              ),
+            ),
+            moreOptions(),
+          ],
+        );
+        break;
+      case 5: ////////////// Email
         w = Column(
           children: [
             entryBar(
@@ -392,7 +415,7 @@ class _CreateScreenState extends State<CreateScreen> {
           ],
         );
         break;
-      case 5: ////////////// SMS
+      case 6: ////////////// SMS
         w = Column(
           children: [
             entryBar(
