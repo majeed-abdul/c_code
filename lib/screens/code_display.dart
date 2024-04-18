@@ -1,6 +1,6 @@
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:qr_maze/functions/ads.dart';
-import 'package:qr_maze/widgets/bottom_sheet.dart';
+import 'package:qr_maze/widgets/support_widgets.dart';
 import 'package:qr_maze/widgets/buttons.dart';
 import 'package:qr_maze/widgets/loader.dart';
 import 'package:qr_maze/widgets/pop_ups.dart';
