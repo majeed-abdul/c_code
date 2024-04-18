@@ -5,7 +5,7 @@ class CustomTheme {
   static ThemeData lightThemeData() {
     return ThemeData(
       colorScheme: ColorScheme.fromSeed(
-        seedColor: Colors.red,
+        seedColor: const Color(0xFFD42027),
         background: Colors.white,
         error: Colors.red,
         onTertiary: Colors.orange,
@@ -13,7 +13,7 @@ class CustomTheme {
       filledButtonTheme: const FilledButtonThemeData(
         style: ButtonStyle(
           backgroundColor: MaterialStatePropertyAll(
-            Colors.red,
+            Color(0xFFD42027),
           ),
         ),
       ),
@@ -27,7 +27,7 @@ class CustomTheme {
         ),
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        selectedItemColor: Colors.red,
+        selectedItemColor: Color(0xFFD42027),
       ),
       dialogTheme: const DialogTheme(
           shape: RoundedRectangleBorder(
@@ -42,7 +42,7 @@ class CustomTheme {
         hintStyle: TextStyle(fontSize: 15),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(15)),
-          borderSide: BorderSide(color: Colors.red, width: 1.0),
+          borderSide: BorderSide(color: Color(0xFFD42027), width: 1.0),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -53,10 +53,12 @@ class CustomTheme {
           borderSide: BorderSide(color: Color(0xff999999), width: 1.0),
         ),
       ),
-      iconTheme: const IconThemeData(color: Colors.red), // icon color below
-      listTileTheme: const ListTileThemeData(iconColor: Colors.red), //same
+      iconTheme:
+          const IconThemeData(color: Color(0xFFD42027)), // icon color below
+      listTileTheme:
+          const ListTileThemeData(iconColor: Color(0xFFD42027)), //same
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        backgroundColor: Colors.red,
+        backgroundColor: Color(0xFFD42027),
         foregroundColor: Colors.white,
         // shape: CircleBorder(),
       ),
