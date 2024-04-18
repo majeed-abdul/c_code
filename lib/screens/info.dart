@@ -1,5 +1,5 @@
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:qr_maze/widgets/support.dart';
+import 'package:qr_maze/widgets/support_widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:qr_maze/functions/ads.dart';
 import 'package:in_app_review/in_app_review.dart';

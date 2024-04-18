@@ -1,5 +1,5 @@
 import 'package:qr_maze/functions/ads.dart';
-import 'package:qr_maze/widgets/bottom_sheet.dart';
+import 'package:qr_maze/widgets/support_widgets.dart';
 import 'package:qr_maze/widgets/loader.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
