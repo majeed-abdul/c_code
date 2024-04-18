@@ -93,17 +93,17 @@ Widget gridButton({
 }) {
   return FilledButton.icon(
     onPressed: onTap,
-    icon: Icon(icon, color: select ? Colors.black : null),
+    icon: Icon(icon, color: !select ? Colors.black : null),
     label: Text(
       label,
-      style: TextStyle(color: select ? Colors.black : null),
+      style: TextStyle(color: !select ? Colors.black : null),
     ),
     style: ButtonStyle(
       backgroundColor:
-          select ? const MaterialStatePropertyAll(Colors.white) : null,
-      // side: select
-      //     ? const MaterialStatePropertyAll(BorderSide(color: Colors.white))
-      //     : const MaterialStatePropertyAll(BorderSide(color: Colors.black87)),
+          !select ? const MaterialStatePropertyAll(Colors.white) : null,
+      side: select
+          ? const MaterialStatePropertyAll(BorderSide(color: Colors.white))
+          : const MaterialStatePropertyAll(BorderSide(color: Colors.black87)),
     ),
   );
 }
