@@ -135,47 +135,7 @@ class _CreateScreenState extends State<CreateScreen> {
         w = smsInputs();
         break;
       case 6: //////////// Geo-Location
-        w = Column(
-          children: [
-            // const Text(
-            //   'Geo-Location',
-            //   style: TextStyle(
-            //     fontSize: 19,
-            //     fontWeight: FontWeight.bold,
-            //     color: Colors.black87,
-            //   ),
-            // ),
-            entryBar(
-              text: 'Latitude',
-              child: TextFormField(
-                decoration: const InputDecoration(hintText: 'Enter Latitude'),
-                keyboardType: TextInputType.number,
-                controller: geoLatCon,
-                onChanged: (v) => setGeo(),
-              ),
-            ),
-            entryBar(
-              text: 'Longitude',
-              child: TextFormField(
-                decoration: const InputDecoration(hintText: 'Enter Longitude'),
-                keyboardType: TextInputType.number,
-                controller: geoLonCon,
-                onChanged: (v) => setGeo(),
-              ),
-            ),
-            // SizedBox(
-            //   height: 300,
-            //   child: GoogleMap(
-            //     mapType: MapType.hybrid,
-            //     initialCameraPosition: _kGooglePlex,
-            //     onMapCreated: (GoogleMapController controller) {
-            //       _controller.complete(controller);
-            //     },
-            //   ),
-            // ),
-            moreOptions(),
-          ],
-        );
+        w = geoInputs();
         break;
 
       case 7: //////////// Phone
@@ -210,6 +170,42 @@ class _CreateScreenState extends State<CreateScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: w,
+    );
+  }
+
+  Column geoInputs() {
+    return Column(
+      children: [
+        entryBar(
+          text: 'Latitude',
+          child: TextFormField(
+            decoration: const InputDecoration(hintText: 'Enter Latitude'),
+            keyboardType: TextInputType.number,
+            controller: geoLatCon,
+            onChanged: (v) => setGeo(),
+          ),
+        ),
+        entryBar(
+          text: 'Longitude',
+          child: TextFormField(
+            decoration: const InputDecoration(hintText: 'Enter Longitude'),
+            keyboardType: TextInputType.number,
+            controller: geoLonCon,
+            onChanged: (v) => setGeo(),
+          ),
+        ),
+        // SizedBox(
+        //   height: 300,
+        //   child: GoogleMap(
+        //     mapType: MapType.hybrid,
+        //     initialCameraPosition: _kGooglePlex,
+        //     onMapCreated: (GoogleMapController controller) {
+        //       _controller.complete(controller);
+        //     },
+        //   ),
+        // ),
+        moreOptions(),
+      ],
     );
   }
 
