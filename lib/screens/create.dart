@@ -132,40 +132,7 @@ class _CreateScreenState extends State<CreateScreen> {
         w = emailInputs();
         break;
       case 5: ////////////// SMS
-        w = Column(
-          children: [
-            // const Text(
-            //   'SMS',
-            //   style: TextStyle(
-            //     fontSize: 19,
-            //     fontWeight: FontWeight.bold,
-            //     color: Colors.black87,
-            //   ),
-            // ),
-            entryBar(
-              text: 'Phone No',
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Enter Phone Number',
-                ),
-                keyboardType: TextInputType.phone,
-                controller: smsPhoCon,
-                onChanged: (v) => setSMS(),
-              ),
-            ),
-            entryBar(
-              text: 'Message',
-              child: TextFormField(
-                decoration: const InputDecoration(hintText: 'Enter Message'),
-                maxLines: 6,
-                minLines: 3,
-                controller: smsMsgCon,
-                onChanged: (v) => setSMS(),
-              ),
-            ),
-            moreOptions(),
-          ],
-        );
+        w = smsInputs();
         break;
       case 6: //////////// Geo-Location
         w = Column(
@@ -243,6 +210,35 @@ class _CreateScreenState extends State<CreateScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: w,
+    );
+  }
+
+  Column smsInputs() {
+    return Column(
+      children: [
+        entryBar(
+          text: 'Phone No',
+          child: TextFormField(
+            decoration: const InputDecoration(
+              hintText: 'Enter Phone Number',
+            ),
+            keyboardType: TextInputType.phone,
+            controller: smsPhoCon,
+            onChanged: (v) => setSMS(),
+          ),
+        ),
+        entryBar(
+          text: 'Message',
+          child: TextFormField(
+            decoration: const InputDecoration(hintText: 'Enter Message'),
+            maxLines: 6,
+            minLines: 3,
+            controller: smsMsgCon,
+            onChanged: (v) => setSMS(),
+          ),
+        ),
+        moreOptions(),
+      ],
     );
   }
 
