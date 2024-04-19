@@ -141,14 +141,6 @@ class _CreateScreenState extends State<CreateScreen> {
       case 7: //////////// Phone
         w = Column(
           children: [
-            // const Text(
-            //   'Phone',
-            //   style: TextStyle(
-            //     fontSize: 19,
-            //     fontWeight: FontWeight.bold,
-            //     color: Colors.black87,
-            //   ),
-            // ),
             entryBar(
               text: 'Phone',
               child: TextFormField(
