@@ -129,46 +129,7 @@ class _CreateScreenState extends State<CreateScreen> {
         w = vcardInputs();
         break;
       case 4: ////////////// Email
-        w = Column(
-          children: [
-            // const Text(
-            //   'Email',
-            //   style: TextStyle(
-            //     fontSize: 19,
-            //     // height: 1.7,
-            //     fontWeight: FontWeight.bold,
-            //     color: Colors.black87,
-            //   ),
-            // ),
-            entryBar(
-              text: 'To',
-              child: TextFormField(
-                decoration: const InputDecoration(hintText: 'Enter Email'),
-                controller: emailTooCon,
-                onChanged: (v) => setMail(),
-              ),
-            ),
-            entryBar(
-              text: 'Subject',
-              child: TextFormField(
-                decoration: const InputDecoration(hintText: 'Enter Subject'),
-                controller: emailSubCon,
-                onChanged: (v) => setMail(),
-              ),
-            ),
-            entryBar(
-              text: 'Message',
-              child: TextFormField(
-                decoration: const InputDecoration(hintText: 'Enter Message'),
-                maxLines: 6,
-                minLines: 3,
-                controller: emailMsgCon,
-                onChanged: (v) => setMail(),
-              ),
-            ),
-            moreOptions(),
-          ],
-        );
+        w = emailInputs();
         break;
       case 5: ////////////// SMS
         w = Column(
@@ -282,6 +243,40 @@ class _CreateScreenState extends State<CreateScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: w,
+    );
+  }
+
+  Column emailInputs() {
+    return Column(
+      children: [
+        entryBar(
+          text: 'To',
+          child: TextFormField(
+            decoration: const InputDecoration(hintText: 'Enter Email'),
+            controller: emailTooCon,
+            onChanged: (v) => setMail(),
+          ),
+        ),
+        entryBar(
+          text: 'Subject',
+          child: TextFormField(
+            decoration: const InputDecoration(hintText: 'Enter Subject'),
+            controller: emailSubCon,
+            onChanged: (v) => setMail(),
+          ),
+        ),
+        entryBar(
+          text: 'Message',
+          child: TextFormField(
+            decoration: const InputDecoration(hintText: 'Enter Message'),
+            maxLines: 6,
+            minLines: 3,
+            controller: emailMsgCon,
+            onChanged: (v) => setMail(),
+          ),
+        ),
+        moreOptions(),
+      ],
     );
   }
 
