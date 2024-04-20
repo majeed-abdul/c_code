@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:email_validator/email_validator.dart';
 import 'package:qr_maze/screens/code_display.dart';
 import 'package:barcode_widget/barcode_widget.dart';
