@@ -86,14 +86,8 @@ class _CreateScreenState extends State<CreateScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           // physics: const BouncingScrollPhysics(),
-          // padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
           child: Column(
             children: [
-              // const Divider(height: 1),
-              // Container(
-              //   color: Theme.of(context).appBarTheme.backgroundColor,
-              //   child: buttonsGrid(), /////////////////////// Grid Buttons
-              // ),
               const SizedBox(height: 9),
               buttonsGrid(),
               const SizedBox(height: 15),
@@ -126,49 +120,7 @@ class _CreateScreenState extends State<CreateScreen> {
         w = textInputs();
         break;
       case 1: ////////////// Numbers
-        w = Column(
-          children: [
-            entryBar(
-              text: 'Number',
-              child: TextFormField(
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(hintText: 'Enter Number'),
-                controller: numberCon,
-                onChanged: (value) => finalWords = value.trim(),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 5),
-              child: GestureDetector(
-                onTap: () => setState(() => isMore = !isMore),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    const Text('More options'),
-                    const SizedBox(width: 10),
-                    isMore
-                        ? const Icon(Icons.check_circle, size: 22)
-                        : const Icon(Icons.circle_outlined,
-                            size: 22, color: Colors.black54),
-                  ],
-                ),
-              ),
-            ),
-            Visibility(
-              visible: isMore,
-              child: dropDown(
-                items: numberBarcodes.keys.toList(),
-                onChanged: (v) {
-                  dropDownValueTypeNum = v;
-                  selectedCodeType = numberBarcodes[v] ?? Barcode.qrCode();
-                  setState(() {});
-                },
-                dropDownValue: dropDownValueTypeNum,
-                text: 'Type',
-              ),
-            ),
-          ],
-        );
+        w = numberInputs();
         break;
       case 2: ////////////// WiFi
         w = Column(
@@ -535,6 +487,52 @@ class _CreateScreenState extends State<CreateScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: w,
+    );
+  }
+
+  Column numberInputs() {
+    return Column(
+      children: [
+        entryBar(
+          text: 'Number',
+          child: TextFormField(
+            keyboardType: TextInputType.number,
+            decoration: const InputDecoration(hintText: 'Enter Number'),
+            controller: numberCon,
+            onChanged: (value) => finalWords = value.trim(),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 5),
+          child: GestureDetector(
+            onTap: () => setState(() => isMore = !isMore),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                const Text('More options'),
+                const SizedBox(width: 10),
+                isMore
+                    ? const Icon(Icons.check_circle, size: 22)
+                    : const Icon(Icons.circle_outlined,
+                        size: 22, color: Colors.black54),
+              ],
+            ),
+          ),
+        ),
+        Visibility(
+          visible: isMore,
+          child: dropDown(
+            items: numberBarcodes.keys.toList(),
+            onChanged: (v) {
+              dropDownValueTypeNum = v;
+              selectedCodeType = numberBarcodes[v] ?? Barcode.qrCode();
+              setState(() {});
+            },
+            dropDownValue: dropDownValueTypeNum,
+            text: 'Type',
+          ),
+        ),
+      ],
     );
   }
 
