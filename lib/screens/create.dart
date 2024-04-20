@@ -17,30 +17,6 @@ class CreateScreen extends StatefulWidget {
 }
 
 class _CreateScreenState extends State<CreateScreen> {
-  // @override
-  // void initState() {
-  //   FocusScope.of(context).unfocus();
-  //   print('===============DISMIS initState');
-  //   super.initState();
-  // }
-  // @override
-  // void reassemble() {
-  //   print('===============DISMIS reassemble');
-  //   super.reassemble();
-  // }
-  // @override
-  // void dispose() {
-  //   print('===============DISMIS dispose');
-  //   super.dispose();
-  // }
-  // @override
-  // void didChangeDependencies() {
-  //   print('===============DISMIS didChangeDependencies create');
-  //   // FocusScope.of(context).unfocus(); //  For Keyboard Dismis
-  //   clearControllers();
-  //   super.didChangeDependencies();
-  // }
-
   int selected = 0; // grid selector
   //  All
   String? dropDownValueType = textBarcodes.keys.first;
