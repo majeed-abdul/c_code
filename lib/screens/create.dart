@@ -139,22 +139,7 @@ class _CreateScreenState extends State<CreateScreen> {
         break;
 
       case 7: //////////// Phone
-        w = Column(
-          children: [
-            entryBar(
-              text: 'Phone',
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Enter Phone Number',
-                ),
-                keyboardType: TextInputType.phone,
-                controller: phoneCon,
-                onChanged: (v) => setPhone(),
-              ),
-            ),
-            moreOptions(),
-          ],
-        );
+        w = phoneInputs();
         break;
       default:
         w = const SizedBox();
@@ -162,6 +147,25 @@ class _CreateScreenState extends State<CreateScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: w,
+    );
+  }
+
+  Column phoneInputs() {
+    return Column(
+      children: [
+        entryBar(
+          text: 'Phone',
+          child: TextFormField(
+            decoration: const InputDecoration(
+              hintText: 'Enter Phone Number',
+            ),
+            keyboardType: TextInputType.phone,
+            controller: phoneCon,
+            onChanged: (v) => setPhone(),
+          ),
+        ),
+        moreOptions(),
+      ],
     );
   }
 
