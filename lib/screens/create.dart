@@ -123,215 +123,10 @@ class _CreateScreenState extends State<CreateScreen> {
         w = numberInputs();
         break;
       case 2: ////////////// WiFi
-        w = Column(
-          children: [
-            // const Text(
-            //   'Wifi',
-            //   style: TextStyle(
-            //     fontSize: 19,
-            //     fontWeight: FontWeight.bold,
-            //     color: Colors.black87,
-            //   ),
-            // ),
-            entryBar(
-              text: 'WiFi Name',
-              child: TextFormField(
-                decoration: const InputDecoration(hintText: 'Enter SSId'),
-                controller: wiFiNamCon,
-                onChanged: (value) => setWiFi(),
-              ),
-            ),
-            Visibility(
-              visible: encryption != 'nopass',
-              child: entryBar(
-                text: 'Password',
-                child: TextFormField(
-                  decoration: const InputDecoration(hintText: 'Enter Password'),
-                  controller: wiFiPasCon,
-                  onChanged: (value) => setWiFi(),
-                ),
-              ),
-            ),
-            encryptionRadioButtons(),
-            entryBar(
-              text: 'Hidden',
-              child: InkWell(
-                borderRadius: BorderRadius.circular(30),
-                onTap: () {
-                  hidden = !hidden;
-                  setWiFi();
-                  setState(() {});
-                },
-                child: Row(
-                  children: [
-                    hidden
-                        ? const Icon(Icons.check_circle, size: 22)
-                        : const Icon(
-                            Icons.circle_outlined,
-                            color: Colors.black54,
-                            size: 22,
-                          ),
-                  ],
-                ),
-              ),
-            ),
-            moreOptions(),
-          ],
-        );
+        w = wifiInputs();
         break;
       case 3: ////////////// V-Card
-        w = Column(
-          children: [
-            // const Text(
-            //   'V-Card',
-            //   style: TextStyle(
-            //     fontSize: 19,
-            //     fontWeight: FontWeight.bold,
-            //     color: Colors.black87,
-            //   ),
-            // ),
-            entryBar(
-              text: 'First Name',
-              child: TextFormField(
-                decoration:
-                    const InputDecoration(hintText: 'Enter First tName'),
-                controller: vCardFNaCon,
-                onChanged: (v) => setVCard(),
-              ),
-            ),
-            entryBar(
-              text: 'Last Name',
-              child: TextFormField(
-                decoration: const InputDecoration(hintText: 'Enter Last Name'),
-                controller: vCardLNaCon,
-                onChanged: (v) => setVCard(),
-              ),
-            ),
-            entryBar(
-              text: 'Mobile No',
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Enter Mobile Number',
-                ),
-                keyboardType: TextInputType.phone,
-                controller: vCardMobCon,
-                onChanged: (v) => setVCard(),
-              ),
-            ),
-            entryBar(
-              text: 'Phone No',
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Enter Phone Number',
-                ),
-                keyboardType: TextInputType.phone,
-                controller: vCardPhoCon,
-                onChanged: (v) => setVCard(),
-              ),
-            ),
-            entryBar(
-              text: 'Fax',
-              child: TextFormField(
-                decoration: const InputDecoration(hintText: 'Enter Fax Number'),
-                keyboardType: TextInputType.phone,
-                controller: vCardFaxCon,
-                onChanged: (v) => setVCard(),
-              ),
-            ),
-            entryBar(
-              text: 'Email',
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Enter Email Address',
-                ),
-                keyboardType: TextInputType.emailAddress,
-                controller: vCardEmaCon,
-                onChanged: (v) => setVCard(),
-              ),
-            ),
-            entryBar(
-              text: 'Company',
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Enter Company Name',
-                ),
-                controller: vCardComCon,
-                onChanged: (v) => setVCard(),
-              ),
-            ),
-            entryBar(
-              text: 'Job',
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Enter Job Title',
-                ),
-                controller: vCardJobCon,
-                onChanged: (v) => setVCard(),
-              ),
-            ),
-            entryBar(
-              text: 'Country',
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Enter Country Name',
-                ),
-                controller: vCardConCon,
-                onChanged: (v) => setVCard(),
-              ),
-            ),
-            entryBar(
-              text: 'State',
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Enter State/Province Name',
-                ),
-                controller: vCardStaCon,
-                onChanged: (v) => setVCard(),
-              ),
-            ),
-            entryBar(
-              text: 'City',
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Enter City Name',
-                ),
-                controller: vCardCitCon,
-                onChanged: (v) => setVCard(),
-              ),
-            ),
-            entryBar(
-              text: 'Zip',
-              child: TextFormField(
-                decoration:
-                    const InputDecoration(hintText: 'Enter Postal Code'),
-                keyboardType: TextInputType.number,
-                controller: vCardZipCon,
-                onChanged: (v) => setVCard(),
-              ),
-            ),
-            entryBar(
-              text: 'Street',
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Enter Street Address',
-                ),
-                keyboardType: TextInputType.streetAddress,
-                controller: vCardStrCon,
-                onChanged: (v) => setVCard(),
-              ),
-            ),
-            entryBar(
-              text: 'Website',
-              child: TextFormField(
-                decoration: const InputDecoration(hintText: 'Enter Web URL'),
-                keyboardType: TextInputType.emailAddress,
-                controller: vCardWebCon,
-                onChanged: (v) => setVCard(),
-              ),
-            ),
-            moreOptions(),
-          ],
-        );
+        w = vcardInputs();
         break;
       case 4: ////////////// Email
         w = Column(
@@ -487,6 +282,201 @@ class _CreateScreenState extends State<CreateScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: w,
+    );
+  }
+
+  Column vcardInputs() {
+    return Column(
+      children: [
+        entryBar(
+          text: 'First Name',
+          child: TextFormField(
+            decoration: const InputDecoration(hintText: 'Enter First tName'),
+            controller: vCardFNaCon,
+            onChanged: (v) => setVCard(),
+          ),
+        ),
+        entryBar(
+          text: 'Last Name',
+          child: TextFormField(
+            decoration: const InputDecoration(hintText: 'Enter Last Name'),
+            controller: vCardLNaCon,
+            onChanged: (v) => setVCard(),
+          ),
+        ),
+        entryBar(
+          text: 'Mobile No',
+          child: TextFormField(
+            decoration: const InputDecoration(
+              hintText: 'Enter Mobile Number',
+            ),
+            keyboardType: TextInputType.phone,
+            controller: vCardMobCon,
+            onChanged: (v) => setVCard(),
+          ),
+        ),
+        entryBar(
+          text: 'Phone No',
+          child: TextFormField(
+            decoration: const InputDecoration(
+              hintText: 'Enter Phone Number',
+            ),
+            keyboardType: TextInputType.phone,
+            controller: vCardPhoCon,
+            onChanged: (v) => setVCard(),
+          ),
+        ),
+        entryBar(
+          text: 'Fax',
+          child: TextFormField(
+            decoration: const InputDecoration(hintText: 'Enter Fax Number'),
+            keyboardType: TextInputType.phone,
+            controller: vCardFaxCon,
+            onChanged: (v) => setVCard(),
+          ),
+        ),
+        entryBar(
+          text: 'Email',
+          child: TextFormField(
+            decoration: const InputDecoration(
+              hintText: 'Enter Email Address',
+            ),
+            keyboardType: TextInputType.emailAddress,
+            controller: vCardEmaCon,
+            onChanged: (v) => setVCard(),
+          ),
+        ),
+        entryBar(
+          text: 'Company',
+          child: TextFormField(
+            decoration: const InputDecoration(
+              hintText: 'Enter Company Name',
+            ),
+            controller: vCardComCon,
+            onChanged: (v) => setVCard(),
+          ),
+        ),
+        entryBar(
+          text: 'Job',
+          child: TextFormField(
+            decoration: const InputDecoration(
+              hintText: 'Enter Job Title',
+            ),
+            controller: vCardJobCon,
+            onChanged: (v) => setVCard(),
+          ),
+        ),
+        entryBar(
+          text: 'Country',
+          child: TextFormField(
+            decoration: const InputDecoration(
+              hintText: 'Enter Country Name',
+            ),
+            controller: vCardConCon,
+            onChanged: (v) => setVCard(),
+          ),
+        ),
+        entryBar(
+          text: 'State',
+          child: TextFormField(
+            decoration: const InputDecoration(
+              hintText: 'Enter State/Province Name',
+            ),
+            controller: vCardStaCon,
+            onChanged: (v) => setVCard(),
+          ),
+        ),
+        entryBar(
+          text: 'City',
+          child: TextFormField(
+            decoration: const InputDecoration(
+              hintText: 'Enter City Name',
+            ),
+            controller: vCardCitCon,
+            onChanged: (v) => setVCard(),
+          ),
+        ),
+        entryBar(
+          text: 'Zip',
+          child: TextFormField(
+            decoration: const InputDecoration(hintText: 'Enter Postal Code'),
+            keyboardType: TextInputType.number,
+            controller: vCardZipCon,
+            onChanged: (v) => setVCard(),
+          ),
+        ),
+        entryBar(
+          text: 'Street',
+          child: TextFormField(
+            decoration: const InputDecoration(
+              hintText: 'Enter Street Address',
+            ),
+            keyboardType: TextInputType.streetAddress,
+            controller: vCardStrCon,
+            onChanged: (v) => setVCard(),
+          ),
+        ),
+        entryBar(
+          text: 'Website',
+          child: TextFormField(
+            decoration: const InputDecoration(hintText: 'Enter Web URL'),
+            keyboardType: TextInputType.emailAddress,
+            controller: vCardWebCon,
+            onChanged: (v) => setVCard(),
+          ),
+        ),
+        moreOptions(),
+      ],
+    );
+  }
+
+  Column wifiInputs() {
+    return Column(
+      children: [
+        entryBar(
+          text: 'WiFi Name',
+          child: TextFormField(
+            decoration: const InputDecoration(hintText: 'Enter SSId'),
+            controller: wiFiNamCon,
+            onChanged: (value) => setWiFi(),
+          ),
+        ),
+        Visibility(
+          visible: encryption != 'nopass',
+          child: entryBar(
+            text: 'Password',
+            child: TextFormField(
+              decoration: const InputDecoration(hintText: 'Enter Password'),
+              controller: wiFiPasCon,
+              onChanged: (value) => setWiFi(),
+            ),
+          ),
+        ),
+        encryptionRadioButtons(),
+        entryBar(
+          text: 'Hidden',
+          child: InkWell(
+            borderRadius: BorderRadius.circular(30),
+            onTap: () {
+              hidden = !hidden;
+              setWiFi();
+              setState(() {});
+            },
+            child: Row(
+              children: [
+                hidden
+                    ? const Icon(Icons.check_circle, size: 22)
+                    : const Icon(
+                        Icons.circle_outlined,
+                        color: Colors.black54,
+                        size: 22,
+                      ),
+              ],
+            ),
+          ),
+        ),
+        moreOptions(),
+      ],
     );
   }
 
