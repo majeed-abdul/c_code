@@ -60,6 +60,7 @@ dependencies:
   internet_connection_checker: ^1.0.0+1
   # native_updater: ^0.1.1
   in_app_update: ^4.2.1
+  google_maps_flutter: ^2.6.1
 
 
   # native_updater:
