@@ -1,4 +1,6 @@
 import 'package:email_validator/email_validator.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:qr_maze/screens/code_display.dart';
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:qr_maze/widgets/drop_down.dart';
@@ -7,7 +9,8 @@ import 'package:qr_maze/widgets/text_field.dart';
 import 'package:qr_maze/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_maze/data/create.dart';
-// import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class CreateScreen extends StatefulWidget {
   const CreateScreen({Key? key}) : super(key: key);
@@ -65,6 +68,8 @@ class _CreateScreenState extends State<CreateScreen> {
   //  Geo-Location
   TextEditingController geoLatCon = TextEditingController();
   TextEditingController geoLonCon = TextEditingController();
+  late GoogleMapController mapController;
+  Set<Marker> markers = {};
   // static const CameraPosition _kGooglePlex = CameraPosition(
   //   target: LatLng(35, 135),
   //   zoom: 10,
@@ -190,16 +195,38 @@ class _CreateScreenState extends State<CreateScreen> {
             onChanged: (v) => setGeo(),
           ),
         ),
-        // SizedBox(
-        //   height: 300,
-        //   child: GoogleMap(
-        //     mapType: MapType.hybrid,
-        //     initialCameraPosition: _kGooglePlex,
-        //     onMapCreated: (GoogleMapController controller) {
-        //       _controller.complete(controller);
-        //     },
-        //   ),
-        // ),
+        const SizedBox(height: 10),
+        SizedBox(
+          height: 300,
+          child: GoogleMap(
+            mapToolbarEnabled: false,
+            rotateGesturesEnabled: false,
+            myLocationEnabled: true,
+            myLocationButtonEnabled: true,
+            markers: Set<Marker>.of(markers),
+            onMapCreated: (controller) async {
+              mapController = controller;
+              await Permission.location.request();
+              setState(() {});
+            },
+            gestureRecognizers: {
+              Factory<OneSequenceGestureRecognizer>(
+                () => EagerGestureRecognizer(),
+              ),
+            },
+            initialCameraPosition: const CameraPosition(
+              target: LatLng(36, -114),
+              zoom: 4,
+            ),
+            onTap: (latlon) {
+              geoLatCon.text = latlon.latitude.toString().substring(0, 9);
+              geoLonCon.text = latlon.longitude.toString().substring(0, 9);
+              setState(() {});
+              setGeo();
+            },
+          ),
+        ),
+        const SizedBox(height: 5),
         moreOptions(),
       ],
     );
@@ -725,13 +752,22 @@ class _CreateScreenState extends State<CreateScreen> {
               }
               isNumber(geoLatCon.text) ? null : throw 'Invalid Latitude';
               isNumber(geoLonCon.text) ? null : throw 'Invalid Longitude';
+              double lat = double.parse(geoLatCon.text);
+              double lon = double.parse(geoLonCon.text);
+              if (lat >= 90 || lat <= -90) throw 'Invalid Latitude Range';
+              if (lon >= 180 || lon <= -180) throw 'Invalid Longitude Range';
+
               break;
 
             case 7: ////////////// Phone
               if (phoneCon.text.trim().isEmpty) {
                 throw "Enter Phone Number"; //  must not be empty
               }
-              isNumber(phoneCon.text) ? null : throw 'Invalid Phone Number';
+              isNumber(phoneCon.text)
+                  //  (A) all should be num except first char
+                  //  (B) first char can be num , '-' or '+'
+                  ? null
+                  : throw 'Invalid Phone Number';
               break;
           }
         } catch (e) {
@@ -836,6 +872,7 @@ class _CreateScreenState extends State<CreateScreen> {
     //  Geo-Location
     geoLatCon.clear();
     geoLonCon.clear();
+    markers.clear();
     //  Phone
     phoneCon.clear();
   }
@@ -870,7 +907,15 @@ END:VCARD''';
     finalWords = "SMSTO:${smsPhoCon.text.trim()}:${smsMsgCon.text.trim()}";
   }
 
-  setGeo() {
+  setGeo() async {
+    double zoom = await mapController.getZoomLevel();
+    LatLng position = LatLng(
+      double.parse(geoLatCon.text),
+      double.parse(geoLonCon.text),
+    );
+    markers.clear();
+    markers.add(Marker(markerId: const MarkerId('mark'), position: position));
+    mapController.animateCamera(CameraUpdate.newLatLngZoom(position, zoom));
     finalWords = "GEO:${geoLatCon.text.trim()},${geoLonCon.text.trim()}";
   }
 
