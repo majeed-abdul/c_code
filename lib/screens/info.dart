@@ -72,7 +72,7 @@ class _InfoScreenState extends State<InfoScreen> {
               const Divider(),
               const Text('  Support', style: TextStyle(color: Colors.black54)),
               rating(),
-              joinBeta(), // comment this in line in beta version ==============
+              // joinBeta(), // comment this in line in beta version ==============
               shareApp(context),
               donatePop(context),
               seeAds(context),
