@@ -65,8 +65,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
             Scaffold(
               backgroundColor: Colors.white,
               appBar: AppBar(
-                elevation: 0, //toolbarHeight: 56,
-                // centerTitle: true,
+                //toolbarHeight: 56,
                 title: Text(widget.barCode.name),
               ),
               body: SafeArea(
@@ -76,7 +75,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       displayOutputCode(context),
-                      // Text(widget.data),// Testing Only
+                      // Text(widget.data), // Testing Only
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 40),
                         child: Row(
