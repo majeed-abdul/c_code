@@ -144,9 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.black,
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.white,
         currentIndex: _index,
-        elevation: 25,
         onTap: (i) => setState(() => _index = i),
         selectedLabelStyle: const TextStyle(
           fontSize: 12,

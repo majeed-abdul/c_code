@@ -1,5 +1,5 @@
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:qr_maze/widgets/support.dart';
+import 'package:qr_maze/widgets/support_widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:qr_maze/functions/ads.dart';
 import 'package:in_app_review/in_app_review.dart';
@@ -58,7 +58,9 @@ class _InfoScreenState extends State<InfoScreen> {
     return Spinner(
       spinning: context.watch<AdLoader>().loader,
       child: Scaffold(
-        appBar: AppBar(title: const Text('About'), centerTitle: true),
+        appBar: AppBar(
+          title: const Text('About'),
+        ),
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           child: Column(
@@ -70,7 +72,7 @@ class _InfoScreenState extends State<InfoScreen> {
               const Divider(),
               const Text('  Support', style: TextStyle(color: Colors.black54)),
               rating(),
-              joinBeta(), // comment this in line in beta version ==============
+              // joinBeta(), // comment this in line in beta version ==============
               shareApp(context),
               donatePop(context),
               seeAds(context),

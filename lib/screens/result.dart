@@ -1,5 +1,5 @@
 import 'package:qr_maze/functions/ads.dart';
-import 'package:qr_maze/widgets/bottom_sheet.dart';
+import 'package:qr_maze/widgets/support_widgets.dart';
 import 'package:qr_maze/widgets/loader.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
@@ -13,7 +13,6 @@ import 'package:provider/provider.dart';
 import 'package:string_validator/string_validator.dart';
 import 'package:safe_url_check/safe_url_check.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-// import 'package:wifi_iot/wifi_iot.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({super.key, required this.result});
@@ -138,9 +137,27 @@ Organizations: $orgs
 Contact: $phones
 Websites : $websites''';
       textFormat = Display.formated;
+    } else if (isGeo()) {
+      String lat;
+      String lon;
+      if (result.toUpperCase().contains('MAPS.GOOGLE.COM/LOCAL?Q=')) {
+        String ss = result.toUpperCase();
+        lat = ss.substring(ss.indexOf('?Q=') + 3, ss.indexOf(',')).trim();
+        lon = ss.substring(ss.lastIndexOf(',') + 1).trim();
+      } else {
+        lat = result.substring(result.indexOf(':') + 1, result.indexOf(','));
+        lon = result.substring(result.indexOf(',') + 1);
+      }
+      formated = 'Latitude: $lat\nLongitude: $lon';
+      textFormat = Display.formated;
+    } else if (isPhone()) {
+      String phn = result.substring(result.toUpperCase().indexOf('TEL:') + 4);
+      formated = 'Phone: $phn';
+      textFormat = Display.formated;
     }
-    context.read<AdLoader>().loaderOff();
 
+    /// let code below
+    context.read<AdLoader>().loaderOff();
     if (isWebURL()) {
       InternetConnectionChecker().hasConnection.then((value) {
         if (value) {
@@ -195,8 +212,6 @@ Websites : $websites''';
             Scaffold(
               backgroundColor: Colors.white,
               appBar: AppBar(
-                elevation: 0,
-                centerTitle: true,
                 title: const Text('Result'),
               ),
               floatingActionButton: FloatingActionButton(
@@ -218,16 +233,20 @@ Websites : $websites''';
                             : isNum()
                                 ? 'Number'
                                 : isVCard()
-                                    ? 'V-Card'
-                                    : isEmail()
-                                        ? 'Email'
-                                        : isSMS()
-                                            ? 'Message'
-                                            : isWiFi()
-                                                ? 'WiFi'
-                                                : 'Text',
+                                    ? 'Contact'
+                                    : isGeo()
+                                        ? 'Geo Location'
+                                        : isEmail()
+                                            ? 'Email'
+                                            : isSMS()
+                                                ? 'Message'
+                                                : isWiFi()
+                                                    ? 'WiFi'
+                                                    : isPhone()
+                                                        ? 'Phone'
+                                                        : 'Text',
                         style: const TextStyle(
-                          fontSize: 25,
+                          fontSize: 19,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -288,7 +307,6 @@ Websites : $websites''';
         ],
       );
       text = false;
-    } else if (isNum()) {
     } else if (isVCard()) {
       w = Column(
         children: [
@@ -327,6 +345,28 @@ Websites : $websites''';
         ],
       );
       text = false;
+    } else if (isPhone()) {
+      w = Column(
+        children: [
+          customButton(
+            icon: Icons.call,
+            onPress: () => _phone(),
+          ),
+          const Text('Call', textAlign: TextAlign.center),
+        ],
+      );
+      text = false;
+    } else if (isGeo()) {
+      w = Column(
+        children: [
+          customButton(
+            icon: Icons.my_location,
+            onPress: () => _locate(),
+          ),
+          const Text('Locate', textAlign: TextAlign.center),
+        ],
+      );
+      text = false;
     }
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -362,92 +402,95 @@ Websites : $websites''';
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 5, right: 5),
-            child: Row(
-              children: [
-                const Spacer(flex: 4),
-                Visibility(
-                  visible: isWebURL(),
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 2),
-                    child: veri == Verification.verifying
-                        ? Image.asset(
-                            'assets/loader.gif',
-                            height: 20,
-                            width: 20,
-                          )
-                        : veri == Verification.verified
-                            ? const Icon(
-                                Icons.verified_user,
-                                color: Colors.green,
-                                size: 18,
-                              )
-                            : veri == Verification.notverified
-                                ? const Icon(
-                                    Icons.report,
-                                    color: Colors.red,
-                                    size: 19,
-                                  )
-                                : const Icon(
-                                    Icons.wifi_off,
-                                    color: Colors.black87,
-                                    size: 19,
-                                  ),
-                  ),
-                ),
-                Visibility(
-                  visible: isWebURL(),
-                  child: Text(
-                    veri == Verification.verifying
-                        ? 'Verifying...'
-                        : veri == Verification.verified
-                            ? 'Safe'
-                            : veri == Verification.notverified
-                                ? 'Something is Wrong'
-                                : 'No Connection',
-                    style: const TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w500,
+          Visibility(
+            visible: (isWebURL() || formated != null),
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 0, right: 5),
+              child: Row(
+                children: [
+                  const Spacer(flex: 4),
+                  Visibility(
+                    visible: isWebURL(),
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 2),
+                      child: veri == Verification.verifying
+                          ? Image.asset(
+                              'assets/loader.gif',
+                              height: 20,
+                              width: 20,
+                            )
+                          : veri == Verification.verified
+                              ? const Icon(
+                                  Icons.verified_user,
+                                  color: Colors.green,
+                                  size: 18,
+                                )
+                              : veri == Verification.notverified
+                                  ? const Icon(
+                                      Icons.report,
+                                      color: Colors.red,
+                                      size: 19,
+                                    )
+                                  : const Icon(
+                                      Icons.wifi_off,
+                                      color: Colors.black87,
+                                      size: 19,
+                                    ),
                     ),
                   ),
-                ),
-                Visibility(
-                  visible: formated != null,
-                  child: SegmentedButton<Display>(
-                    segments: const <ButtonSegment<Display>>[
-                      ButtonSegment(
-                        value: Display.formated,
-                        label: Text('Clean', style: TextStyle(fontSize: 12)),
+                  Visibility(
+                    visible: isWebURL(),
+                    child: Text(
+                      veri == Verification.verifying
+                          ? 'Verifying...'
+                          : veri == Verification.verified
+                              ? 'Safe'
+                              : veri == Verification.notverified
+                                  ? 'Something is Wrong'
+                                  : 'No Connection',
+                      style: const TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
                       ),
-                      ButtonSegment(
-                        value: Display.raw,
-                        label: Text('Raw', style: TextStyle(fontSize: 12)),
-                      ),
-                    ],
-                    selected: <Display>{textFormat},
-                    showSelectedIcon: false,
-                    onSelectionChanged: (Set<Display> newSelection) {
-                      setState(() {
-                        textFormat = newSelection.first;
-                      });
-                    },
-                    style: const ButtonStyle(
-                      visualDensity: VisualDensity(
-                        horizontal: -3,
-                        vertical: -3,
-                      ),
-                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      // shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      // RoundedRectangleBorder(
-                      //     // side: const BorderSide(width: 3, color: Colors.amber),
-                      //     // borderRadius: BorderRadius.circular(30),
-                      //     ),
-                      // ),
                     ),
                   ),
-                ),
-              ],
+                  Visibility(
+                    visible: formated != null,
+                    child: SegmentedButton<Display>(
+                      segments: const <ButtonSegment<Display>>[
+                        ButtonSegment(
+                          value: Display.formated,
+                          label: Text('Clean', style: TextStyle(fontSize: 12)),
+                        ),
+                        ButtonSegment(
+                          value: Display.raw,
+                          label: Text('Raw', style: TextStyle(fontSize: 12)),
+                        ),
+                      ],
+                      selected: <Display>{textFormat},
+                      showSelectedIcon: false,
+                      onSelectionChanged: (Set<Display> newSelection) {
+                        setState(() {
+                          textFormat = newSelection.first;
+                        });
+                      },
+                      style: const ButtonStyle(
+                        visualDensity: VisualDensity(
+                          horizontal: -3,
+                          vertical: -3,
+                        ),
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        // shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        // RoundedRectangleBorder(
+                        //     // side: const BorderSide(width: 3, color: Colors.amber),
+                        //     // borderRadius: BorderRadius.circular(30),
+                        //     ),
+                        // ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           SelectableText(
@@ -488,6 +531,31 @@ Websites : $websites''';
         ),
       );
     }
+  }
+
+  void _locate() async {
+    String lat;
+    String lon;
+    String ss = widget.result.code!.toUpperCase();
+    if (result.toUpperCase().contains('MAPS.GOOGLE.COM/LOCAL?Q=')) {
+      lat = ss.substring(ss.indexOf('?Q=') + 3, ss.indexOf(',')).trim();
+      lon = ss.substring(ss.lastIndexOf(',') + 1).trim();
+    } else {
+      lat = result.substring(result.indexOf(':') + 1, result.indexOf(','));
+      lon = result.substring(result.indexOf(',') + 1);
+    }
+    Uri url = Uri.parse('https://maps.google.com/local?q=$lat,$lon');
+    launchUrl(url, mode: LaunchMode.externalApplication);
+  }
+
+  void _phone() async {
+    String pho = result.substring(result.toUpperCase().indexOf('TEL:') + 4);
+    launchUrl(
+      Uri(
+        scheme: 'tel',
+        path: pho,
+      ),
+    );
   }
 
   void _mail() async {
@@ -594,6 +662,9 @@ Websites : $websites''';
   }
 
   bool isWebURL() {
+    if (isGeo()) {
+      return false;
+    }
     try {
       return isURL(widget.result.code ?? '');
       // return Uri.tryParse(widget.result.code ?? '')?.isAbsolute ?? false;
@@ -606,6 +677,18 @@ Websites : $websites''';
     bool validURL = widget.result.code!.toUpperCase().startsWith('WIFI:') &&
         widget.result.code!.endsWith(';');
     return validURL;
+  }
+
+  bool isGeo() {
+    String res = widget.result.code!.toUpperCase();
+    bool validGeo =
+        res.startsWith('GEO:') || res.contains('MAPS.GOOGLE.COM/LOCAL?Q=');
+    return validGeo;
+  }
+
+  bool isPhone() {
+    bool validPhone = widget.result.code!.toUpperCase().startsWith('TEL:');
+    return validPhone;
   }
 
   bool isVCard() {

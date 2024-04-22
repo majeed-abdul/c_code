@@ -1,6 +1,6 @@
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:qr_maze/functions/ads.dart';
-import 'package:qr_maze/widgets/bottom_sheet.dart';
+import 'package:qr_maze/widgets/support_widgets.dart';
 import 'package:qr_maze/widgets/buttons.dart';
 import 'package:qr_maze/widgets/loader.dart';
 import 'package:qr_maze/widgets/pop_ups.dart';
@@ -34,10 +34,16 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
     context.read<AdLoader>().loaderOff();
     super.initState();
   }
+
   // @override
   // void didChangeDependencies() {
   //   print('=====didChange');
   //   super.didChangeDependencies();
+  // }
+  // @override
+  // void dispose() {
+  //   print('=====dispose');
+  //   super.dispose();
   // }
 
   @override
@@ -59,8 +65,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
             Scaffold(
               backgroundColor: Colors.white,
               appBar: AppBar(
-                elevation: 0, //toolbarHeight: 56,
-                centerTitle: true,
+                //toolbarHeight: 56,
                 title: Text(widget.barCode.name),
               ),
               body: SafeArea(
@@ -70,6 +75,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       displayOutputCode(context),
+                      // Text(widget.data), // Testing Only
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 40),
                         child: Row(
