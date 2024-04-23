@@ -3,7 +3,6 @@ import 'package:qr_maze/screens/create.dart';
 import 'package:qr_maze/screens/info.dart';
 import 'package:qr_maze/screens/scan.dart';
 import 'package:flutter/material.dart';
-// import 'package:native_updater/native_updater.dart';
 import 'package:in_app_update/in_app_update.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -21,17 +20,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     updatePopUp();
-    // NativeUpdater.displayUpdateAlert(
-    //   context,
-    //   forceUpdate: false,
-    // appStoreUrl: '<Your App Store URL>',
-    // playStoreUrl: '',
-    // iOSDescription: '<Your iOS Description>',
-    // iOSUpdateButtonLabel: '<Your iOS Update Button Label>',
-    // iOSCloseButtonLabel: '<Your iOS Close Button Label>',
-    // iOSIgnoreButtonLabel: '<Your iOS Ignore Button Label>',
-    // iOSAlertTitle: '<Your Dialog Title>',
-    // );
     SharedPreferences.getInstance().then((pref) {
       _index = pref.getInt('home') ?? 0;
       setState(() {});
