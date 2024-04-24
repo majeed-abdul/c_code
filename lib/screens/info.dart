@@ -62,13 +62,13 @@ class _InfoScreenState extends State<InfoScreen> {
               const Divider(),
               const Text('  Support', style: TextStyle(color: Colors.black54)),
               rating(),
-              joinBeta(), // comment this in line in beta version ==============
+              joinBeta(),
               shareApp(context),
               donatePop(context),
               seeAds(context),
               const Divider(),
               const Text('  App', style: TextStyle(color: Colors.black54)),
-              appInfo(beta: false), //  true = beta version ====================
+              appInfo(), //  true = beta version ====================
               const Divider(),
               const SizedBox(height: 20),
               privacyPolicyButton(),
@@ -90,17 +90,10 @@ class _InfoScreenState extends State<InfoScreen> {
 
 //
 
-  ListTile appInfo({bool beta = false}) {
-    // beta ? appName = '$appName(Beta)' : null;
+  ListTile appInfo() {
     return ListTile(
       iconColor: Colors.black54,
-      title: Text(
-        appName == null
-            ? 'null'
-            : beta
-                ? '$appName(Beta)'
-                : '$appName',
-      ),
+      title: Text('$appName'),
       subtitle: Text('version: $version'),
       leading: const Icon(Icons.adb, size: 40),
     );
