@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:store_redirect/store_redirect.dart';
+import 'package:store_redirect/store_redirect.dart';
 
 showSnackBar(BuildContext context, String message) {
   ScaffoldMessenger.of(context).showSnackBar(
@@ -31,7 +31,7 @@ void joinBetaPopUp(BuildContext context) {
         ),
         content: Image.asset(
           'assets/joinbeta.png',
-          // width: 250,
+          // width: 500,
           // height: 250,
         ),
         actions: [
@@ -43,7 +43,7 @@ void joinBetaPopUp(BuildContext context) {
               child: const Text('Cancel')),
           FilledButton(
             onPressed: () {
-              // StoreRedirect.redirect(androidAppId: "com.abdul.qr_maze");
+              StoreRedirect.redirect(androidAppId: "com.abdul.qr_maze");
             },
             child: const Text('Visit'),
           ),
