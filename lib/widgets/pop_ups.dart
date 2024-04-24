@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// import 'package:store_redirect/store_redirect.dart';
 
 showSnackBar(BuildContext context, String message) {
   ScaffoldMessenger.of(context).showSnackBar(
@@ -21,24 +22,31 @@ void joinBetaPopUp(BuildContext context) {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        contentPadding: const EdgeInsets.all(10),
+        titlePadding: const EdgeInsets.only(top: 15, bottom: 9),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+        actionsPadding: const EdgeInsets.only(right: 12, bottom: 11),
         title: const Text(
           'How to Join Beta?',
           textAlign: TextAlign.center,
         ),
         content: Image.asset(
           'assets/joinbeta.png',
-          // width: 200,
-          height: 200,
+          // width: 250,
+          // height: 250,
         ),
         actions: [
           OutlinedButton(
               style: const ButtonStyle(
-                visualDensity: VisualDensity(vertical: -0.4),
+                visualDensity: VisualDensity(vertical: -0.3),
               ),
               onPressed: () => Navigator.pop(context),
               child: const Text('Cancel')),
-          FilledButton(onPressed: () {}, child: const Text('Visit')),
+          FilledButton(
+            onPressed: () {
+              // StoreRedirect.redirect(androidAppId: "com.abdul.qr_maze");
+            },
+            child: const Text('Visit'),
+          ),
         ],
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       );
