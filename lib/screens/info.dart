@@ -1,4 +1,5 @@
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:qr_maze/widgets/pop_ups.dart';
 import 'package:qr_maze/widgets/support_widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:qr_maze/functions/ads.dart';
@@ -36,17 +37,6 @@ class _InfoScreenState extends State<InfoScreen> {
     context.read<AdLoader>().loaderOff();
   }
 
-  // @override
-  // void dispose() {
-  //   context.read<AdLoader>().loaderOff();
-  //   super.dispose();
-  // }
-
-  // @override
-  // void didChangeDependencies() {
-  //   super.didChangeDependencies();
-  // }
-
   String? _home;
   final InAppReview inAppReview = InAppReview.instance;
 
@@ -72,13 +62,13 @@ class _InfoScreenState extends State<InfoScreen> {
               const Divider(),
               const Text('  Support', style: TextStyle(color: Colors.black54)),
               rating(),
-              // joinBeta(), // comment this in line in beta version ==============
+              joinBeta(), // comment this in line in beta version ==============
               shareApp(context),
               donatePop(context),
               seeAds(context),
               const Divider(),
               const Text('  App', style: TextStyle(color: Colors.black54)),
-              appInfo(beta: true), //  true in beta version ====================
+              appInfo(beta: false), //  true = beta version ====================
               const Divider(),
               const SizedBox(height: 20),
               privacyPolicyButton(),
@@ -123,11 +113,12 @@ class _InfoScreenState extends State<InfoScreen> {
       subtitle: const Text('Join testers, Early access to new features.'),
       leading: const Icon(Icons.bug_report, size: 40),
       trailing: const Icon(Icons.more_vert),
-      onTap: () async {
-        Uri url = Uri.parse(
-          'https://play.google.com/apps/testing/com.abdul.qr_maze',
-        );
-        launchUrl(url, mode: LaunchMode.externalApplication);
+      onTap: () {
+        joinBetaPopUp(context);
+        // Uri url = Uri.parse(
+        //   'https://play.google.com/store/apps/details?id=com.abdul.qr_maze',
+        // );
+        // launchUrl(url, mode: LaunchMode.externalApplication);
       },
     );
   }
