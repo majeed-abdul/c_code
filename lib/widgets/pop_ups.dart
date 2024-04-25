@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:in_app_update/in_app_update.dart';
 import 'package:store_redirect/store_redirect.dart';
 
 showSnackBar(BuildContext context, String message) {
@@ -52,4 +53,16 @@ void joinBetaPopUp(BuildContext context) {
       );
     },
   );
+}
+
+updatePopUp() async {
+  // print('<<<<<<=============<<<<<<< initiated');
+  await InAppUpdate.checkForUpdate().then(
+    (value) async {
+      if (value.updateAvailability == UpdateAvailability.updateAvailable) {
+        await InAppUpdate.startFlexibleUpdate();
+      }
+    },
+  );
+  // print('<<<<<<<============inf=<<<<<<<<${info.availableVersionCode}');
 }
