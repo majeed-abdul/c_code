@@ -81,6 +81,12 @@ class _CreateScreenState extends State<CreateScreen> {
   TextEditingController phoneCon = TextEditingController();
 
   @override
+  void initState() {
+    updatePopUp();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
