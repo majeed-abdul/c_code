@@ -20,7 +20,7 @@ class InfoScreen extends StatefulWidget {
 class _InfoScreenState extends State<InfoScreen> {
   @override
   void initState() {
-    super.initState();
+    updatePopUp();
     SharedPreferences.getInstance().then((pref) {
       int i = pref.getInt('home') ?? 0;
       if (i == 1) {
@@ -36,6 +36,7 @@ class _InfoScreenState extends State<InfoScreen> {
       setState(() {});
     });
     context.read<AdLoader>().loaderOff();
+    super.initState();
   }
 
   String? _home;
