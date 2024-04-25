@@ -3,7 +3,6 @@ import 'package:qr_maze/screens/create.dart';
 import 'package:qr_maze/screens/info.dart';
 import 'package:qr_maze/screens/scan.dart';
 import 'package:flutter/material.dart';
-import 'package:in_app_update/in_app_update.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -19,26 +18,11 @@ late Widget bodyWidget;
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
-    updatePopUp();
     SharedPreferences.getInstance().then((pref) {
       _index = pref.getInt('home') ?? 0;
       setState(() {});
     });
     super.initState();
-  }
-
-  updatePopUp() async {
-    // print('<<<<<<=============<<<<<<< initiated');
-    await InAppUpdate.checkForUpdate().then(
-      (value) async {
-        if (value.updateAvailability == UpdateAvailability.updateAvailable) {
-          await InAppUpdate.startFlexibleUpdate();
-          // print('<<<<<<<============res=<<<<<<<<$a}');
-        }
-      },
-    );
-
-    // print('<<<<<<<============inf=<<<<<<<<${info.availableVersionCode}');
   }
 
   @override
