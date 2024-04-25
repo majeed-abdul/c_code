@@ -7,6 +7,7 @@ import 'package:in_app_review/in_app_review.dart';
 import 'package:qr_maze/widgets/loader.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:provider/provider.dart';
+import 'package:store_redirect/store_redirect.dart';
 import 'package:flutter/material.dart';
 
 class InfoScreen extends StatefulWidget {
@@ -124,13 +125,15 @@ class _InfoScreenState extends State<InfoScreen> {
       leading: const Icon(Icons.star_rate_rounded, size: 40),
       trailing: const Icon(Icons.more_vert),
       onTap: () async {
+        // if (await inAppReview.isAvailable()) {
+        //   print('=================true');
+        //   // });
+        //   inAppReview.requestReview();
+        // } else {
         String id = 'com.abdul.qr_maze';
-        if (await inAppReview.isAvailable()) {
-          inAppReview.requestReview();
-        } else {
-          // debugPrint('====in_App_Review_Not_Available');
-          inAppReview.openStoreListing(appStoreId: id);
-        }
+        // print('=================false');
+        StoreRedirect.redirect(androidAppId: id);
+        // }
       },
     );
   }
