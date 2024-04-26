@@ -66,6 +66,10 @@ class CustomTheme {
         foregroundColor: Colors.white,
         // shape: CircleBorder(),
       ),
+      bottomSheetTheme: const BottomSheetThemeData(
+        surfaceTintColor: Colors.white,
+        showDragHandle: true,
+      ),
     );
   }
 

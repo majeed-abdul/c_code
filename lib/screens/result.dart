@@ -189,6 +189,7 @@ Websites : $websites''';
 //   print(InternetConnectionChecker().lastTryResults);
 // }
     }
+    updatePopUp();
     setState(() {});
     super.initState();
   }

@@ -81,6 +81,12 @@ class _CreateScreenState extends State<CreateScreen> {
   TextEditingController phoneCon = TextEditingController();
 
   @override
+  void initState() {
+    updatePopUp();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -195,39 +201,48 @@ class _CreateScreenState extends State<CreateScreen> {
             onChanged: (v) => setGeo(),
           ),
         ),
-        const SizedBox(height: 10),
-        SizedBox(
-          height: 300,
-          child: GoogleMap(
-            mapToolbarEnabled: false,
-            rotateGesturesEnabled: false,
-            myLocationEnabled: true,
-            myLocationButtonEnabled: true,
-            markers: Set<Marker>.of(markers),
-            onMapCreated: (controller) async {
-              mapController = controller;
-              await Permission.location.request();
-              setState(() {});
-            },
-            gestureRecognizers: {
-              Factory<OneSequenceGestureRecognizer>(
-                () => EagerGestureRecognizer(),
+        moreOptions(),
+        const SizedBox(height: 7),
+        // OutlinedButton.icon(
+        //   onPressed: () {},
+        //   icon: const Icon(Icons.public),
+        //   label: const Text('Use map to pick location'),
+        // ),
+        ClipRRect(
+          borderRadius: const BorderRadius.all(Radius.circular(15)),
+          child: SizedBox(
+            height: 300,
+            child: GoogleMap(
+              mapToolbarEnabled: false, // default true
+              rotateGesturesEnabled: false,
+              myLocationEnabled: true,
+              myLocationButtonEnabled: true,
+              mapType: MapType.hybrid,
+              markers: Set<Marker>.of(markers),
+              onMapCreated: (controller) async {
+                mapController = controller;
+                await Permission.location.request();
+                setState(() {});
+              },
+              gestureRecognizers: {
+                Factory<OneSequenceGestureRecognizer>(
+                  () => EagerGestureRecognizer(),
+                ),
+              },
+              initialCameraPosition: const CameraPosition(
+                target: LatLng(36, -114),
+                zoom: 4,
               ),
-            },
-            initialCameraPosition: const CameraPosition(
-              target: LatLng(36, -114),
-              zoom: 4,
+              onTap: (latlon) {
+                geoLatCon.text = latlon.latitude.toString().substring(0, 9);
+                geoLonCon.text = latlon.longitude.toString().substring(0, 9);
+                setGeo();
+                setState(() {});
+              },
             ),
-            onTap: (latlon) {
-              geoLatCon.text = latlon.latitude.toString().substring(0, 9);
-              geoLonCon.text = latlon.longitude.toString().substring(0, 9);
-              setState(() {});
-              setGeo();
-            },
           ),
         ),
         const SizedBox(height: 5),
-        moreOptions(),
       ],
     );
   }

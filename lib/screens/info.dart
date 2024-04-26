@@ -1,4 +1,5 @@
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:qr_maze/widgets/pop_ups.dart';
 import 'package:qr_maze/widgets/support_widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:qr_maze/functions/ads.dart';
@@ -6,6 +7,7 @@ import 'package:in_app_review/in_app_review.dart';
 import 'package:qr_maze/widgets/loader.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:provider/provider.dart';
+import 'package:store_redirect/store_redirect.dart';
 import 'package:flutter/material.dart';
 
 class InfoScreen extends StatefulWidget {
@@ -18,7 +20,7 @@ class InfoScreen extends StatefulWidget {
 class _InfoScreenState extends State<InfoScreen> {
   @override
   void initState() {
-    super.initState();
+    updatePopUp();
     SharedPreferences.getInstance().then((pref) {
       int i = pref.getInt('home') ?? 0;
       if (i == 1) {
@@ -34,18 +36,8 @@ class _InfoScreenState extends State<InfoScreen> {
       setState(() {});
     });
     context.read<AdLoader>().loaderOff();
+    super.initState();
   }
-
-  // @override
-  // void dispose() {
-  //   context.read<AdLoader>().loaderOff();
-  //   super.dispose();
-  // }
-
-  // @override
-  // void didChangeDependencies() {
-  //   super.didChangeDependencies();
-  // }
 
   String? _home;
   final InAppReview inAppReview = InAppReview.instance;
@@ -72,13 +64,13 @@ class _InfoScreenState extends State<InfoScreen> {
               const Divider(),
               const Text('  Support', style: TextStyle(color: Colors.black54)),
               rating(),
-              // joinBeta(), // comment this in line in beta version ==============
+              joinBeta(),
               shareApp(context),
               donatePop(context),
               seeAds(context),
               const Divider(),
               const Text('  App', style: TextStyle(color: Colors.black54)),
-              appInfo(beta: true), //  true in beta version ====================
+              appInfo(), //  true = beta version ====================
               const Divider(),
               const SizedBox(height: 20),
               privacyPolicyButton(),
@@ -100,17 +92,10 @@ class _InfoScreenState extends State<InfoScreen> {
 
 //
 
-  ListTile appInfo({bool beta = false}) {
-    // beta ? appName = '$appName(Beta)' : null;
+  ListTile appInfo() {
     return ListTile(
       iconColor: Colors.black54,
-      title: Text(
-        appName == null
-            ? 'null'
-            : beta
-                ? '$appName(Beta)'
-                : '$appName',
-      ),
+      title: Text('$appName'),
       subtitle: Text('version: $version'),
       leading: const Icon(Icons.adb, size: 40),
     );
@@ -123,11 +108,12 @@ class _InfoScreenState extends State<InfoScreen> {
       subtitle: const Text('Join testers, Early access to new features.'),
       leading: const Icon(Icons.bug_report, size: 40),
       trailing: const Icon(Icons.more_vert),
-      onTap: () async {
-        Uri url = Uri.parse(
-          'https://play.google.com/apps/testing/com.abdul.qr_maze',
-        );
-        launchUrl(url, mode: LaunchMode.externalApplication);
+      onTap: () {
+        joinBetaPopUp(context);
+        // Uri url = Uri.parse(
+        //   'https://play.google.com/store/apps/details?id=com.abdul.qr_maze',
+        // );
+        // launchUrl(url, mode: LaunchMode.externalApplication);
       },
     );
   }
@@ -140,13 +126,15 @@ class _InfoScreenState extends State<InfoScreen> {
       leading: const Icon(Icons.star_rate_rounded, size: 40),
       trailing: const Icon(Icons.more_vert),
       onTap: () async {
+        // if (await inAppReview.isAvailable()) {
+        //   print('=================true');
+        //   // });
+        //   inAppReview.requestReview();
+        // } else {
         String id = 'com.abdul.qr_maze';
-        if (await inAppReview.isAvailable()) {
-          inAppReview.requestReview();
-        } else {
-          // debugPrint('====in_App_Review_Not_Available');
-          inAppReview.openStoreListing(appStoreId: id);
-        }
+        // print('=================false');
+        StoreRedirect.redirect(androidAppId: id);
+        // }
       },
     );
   }
