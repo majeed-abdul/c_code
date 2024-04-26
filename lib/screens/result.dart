@@ -11,8 +11,8 @@ import 'package:wifi_iot/wifi_iot.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:string_validator/string_validator.dart';
-import 'package:safe_url_check/safe_url_check.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:safe_url_check/safe_url_check.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({super.key, required this.result});
@@ -664,6 +664,8 @@ Websites : $websites''';
 
   bool isWebURL() {
     if (isGeo()) {
+      return false;
+    } else if (isEmail()) {
       return false;
     }
     try {
