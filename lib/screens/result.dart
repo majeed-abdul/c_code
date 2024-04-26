@@ -665,8 +665,6 @@ Websites : $websites''';
   bool isWebURL() {
     if (isGeo()) {
       return false;
-    } else if (isEmail()) {
-      return false;
     }
     try {
       return isURL(widget.result.code ?? '');
