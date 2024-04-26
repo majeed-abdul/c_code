@@ -43,8 +43,8 @@ dependencies:
   package_info_plus: ^4.2.0 # app info
   image: ^4.1.3 # image manuplation
   google_mobile_ads: ^4.0.0 # ads
-  barcode_widget: ^2.0.4  # creat codes
   barcode_image: ^2.0.3 # code image creation
+  barcode_widget: ^2.0.4  # creat codes
   image_gallery_saver: ^2.0.3 # save code image
   provider: ^6.1.1  # state management
   # contacts_service: ^0.6.3  # akhsvcbaslcbasjhcvaskd TEST
