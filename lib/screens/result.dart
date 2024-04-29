@@ -102,6 +102,7 @@ Hidden : $hidd''';
               result.lastIndexOf(';') - 1,
             );
       formated = 'To : $email\nSubject : $subje\nMessage : $messa';
+      textFormat = Display.formated;
     } else if (isSMS()) {
       String num = result.substring(6, result.substring(7).indexOf(':') + 7);
       String msg = result.substring(result.substring(7).indexOf(':') + 8);
