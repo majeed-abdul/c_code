@@ -915,7 +915,7 @@ END:VCARD''';
 
   setMail() {
     finalWords =
-        "MAILTO:${emailTooCon.text.trim()}?BODY=${emailMsgCon.text.trim()}&SUBJECT=${emailSubCon.text.trim()}";
+        "MAILTO:${emailTooCon.text.trim()}?SUBJECT=${emailSubCon.text.trim()}&BODY=${emailMsgCon.text.trim()}";
   }
 
   setSMS() {
