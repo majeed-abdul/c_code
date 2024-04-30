@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 import 'package:string_validator/string_validator.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:safe_url_check/safe_url_check.dart';
+import 'package:maps_launcher/maps_launcher.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({super.key, required this.result});
@@ -536,18 +537,32 @@ Websites : $websites''';
   }
 
   void _locate() async {
-    String lat;
-    String lon;
+    double lat;
+    double lon;
     String ss = widget.result.code!.toUpperCase();
     if (result.toUpperCase().contains('MAPS.GOOGLE.COM/LOCAL?Q=')) {
-      lat = ss.substring(ss.indexOf('?Q=') + 3, ss.indexOf(',')).trim();
-      lon = ss.substring(ss.lastIndexOf(',') + 1).trim();
+      lat = double.parse(
+        ss.substring(ss.indexOf('?Q=') + 3, ss.indexOf(',')).trim(),
+      );
+      lon = double.parse(
+        ss.substring(ss.lastIndexOf(',') + 1).trim(),
+      );
     } else {
-      lat = result.substring(result.indexOf(':') + 1, result.indexOf(','));
-      lon = result.substring(result.indexOf(',') + 1);
+      lat = double.parse(
+        result.substring(
+          result.indexOf(':') + 1,
+          result.indexOf(','),
+        ),
+      );
+      lon = double.parse(
+        result.substring(
+          result.indexOf(',') + 1,
+        ),
+      );
     }
-    Uri url = Uri.parse('https://maps.google.com/local?q=$lat,$lon');
-    launchUrl(url, mode: LaunchMode.externalApplication);
+    // Uri url = Uri.parse('https://maps.google.com/local?q=$lat,$lon');
+    // launchUrl(url, mode: LaunchMode.externalApplication);// OLD
+    MapsLauncher.launchCoordinates(lat, lon);
   }
 
   void _phone() async {
