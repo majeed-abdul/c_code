@@ -23,10 +23,10 @@ class _InfoScreenState extends State<InfoScreen> {
     updatePopUp();
     SharedPreferences.getInstance().then((pref) {
       int i = pref.getInt('home') ?? 0;
-      if (i == 1) {
-        _home = 'Create';
-      } else {
+      if (i == 0) {
         _home = 'Scan';
+      } else {
+        _home = 'Create';
       }
       setState(() {});
     });
@@ -212,9 +212,7 @@ class _InfoScreenState extends State<InfoScreen> {
                           Icons.radio_button_off,
                           color: Colors.black54,
                         )
-                      : const Icon(
-                          Icons.radio_button_checked,
-                        ),
+                      : const Icon(Icons.radio_button_checked),
                   title: const Text('Create'),
                   onTap: () async {
                     await pref.setInt('home', 1).then((value) {
