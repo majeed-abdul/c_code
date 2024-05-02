@@ -563,9 +563,13 @@ Websites : $websites''';
         ),
       );
     }
-    // Uri url = Uri.parse('https://maps.google.com/local?q=$lat,$lon');
-    // launchUrl(url, mode: LaunchMode.externalApplication);// OLD
-    MapsLauncher.launchCoordinates(lat, lon);
+    try {
+      await MapsLauncher.launchCoordinates(lat, lon);
+    } catch (e) {
+      // print('======eeeee:$e');
+      Uri url = Uri.parse('https://maps.google.com/local?q=$lat,$lon');
+      launchUrl(url, mode: LaunchMode.externalApplication); // OLD
+    }
   }
 
   void _phone() async {
