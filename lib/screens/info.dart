@@ -23,10 +23,10 @@ class _InfoScreenState extends State<InfoScreen> {
     updatePopUp();
     SharedPreferences.getInstance().then((pref) {
       int i = pref.getInt('home') ?? 0;
-      if (i == 1) {
-        _home = 'Create';
-      } else {
+      if (i == 0) {
         _home = 'Scan';
+      } else {
+        _home = 'Create';
       }
       setState(() {});
     });
@@ -173,7 +173,10 @@ class _InfoScreenState extends State<InfoScreen> {
 
   Future<dynamic> setHomePage(BuildContext context) async {
     await SharedPreferences.getInstance().then((pref) {
-      bool i = pref.getInt('home') == 0 ? true : false;
+      int a = pref.getInt('home') ?? 0;
+      bool i = a == 0 ? true : false;
+      // print('=====$i');
+      // print('=====$i');
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -181,7 +184,7 @@ class _InfoScreenState extends State<InfoScreen> {
           title: const Text('Set Home Screen', textAlign: TextAlign.center),
           contentPadding: const EdgeInsets.symmetric(horizontal: 20),
           content: const Text(
-            'This screen will apear on app start up. Default screen is "Create"',
+            'This screen will apear on app start up. Default screen is "Scan"',
           ),
           actions: [
             Column(
@@ -212,9 +215,7 @@ class _InfoScreenState extends State<InfoScreen> {
                           Icons.radio_button_off,
                           color: Colors.black54,
                         )
-                      : const Icon(
-                          Icons.radio_button_checked,
-                        ),
+                      : const Icon(Icons.radio_button_checked),
                   title: const Text('Create'),
                   onTap: () async {
                     await pref.setInt('home', 1).then((value) {

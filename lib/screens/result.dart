@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 import 'package:string_validator/string_validator.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:safe_url_check/safe_url_check.dart';
+import 'package:maps_launcher/maps_launcher.dart';
 
 class ResultScreen extends StatefulWidget {
   const ResultScreen({super.key, required this.result});
@@ -58,16 +59,19 @@ class _ResultScreenState extends State<ResultScreen> {
         result.toUpperCase().indexOf('T:') + 2,
         result.indexOf(';', result.toUpperCase().indexOf('T:') + 1),
       );
-      String hidd = result.substring(
-        result.toUpperCase().contains('H:')
-            ? result.toUpperCase().indexOf('H:') + 2
-            : result.indexOf(';'),
-        result.indexOf(';', result.toUpperCase().indexOf('H:') + 1),
-      );
+      String hidd = result
+          .substring(
+            result.toUpperCase().contains('H:')
+                ? result.toUpperCase().indexOf('H:') + 2
+                : result.indexOf(';'),
+            result.indexOf(';', result.toUpperCase().indexOf('H:') + 1),
+          )
+          .toUpperCase()
+          .trim();
       formated = '''Name : $name
 Password : ${encr.toUpperCase() == "NOPASS" ? '' : pass}
 Encryption : ${encr.toUpperCase() == "NOPASS" ? 'None' : encr}
-Hidden : $hidd''';
+Hidden : ${hidd == 'TRUE' ? 'Yes' : 'No'}''';
       textFormat = Display.formated;
     } //'*' * pass.length
     else if (isEmail()) {
@@ -102,6 +106,7 @@ Hidden : $hidd''';
               result.lastIndexOf(';') - 1,
             );
       formated = 'To : $email\nSubject : $subje\nMessage : $messa';
+      textFormat = Display.formated;
     } else if (isSMS()) {
       String num = result.substring(6, result.substring(7).indexOf(':') + 7);
       String msg = result.substring(result.substring(7).indexOf(':') + 8);
@@ -535,18 +540,36 @@ Websites : $websites''';
   }
 
   void _locate() async {
-    String lat;
-    String lon;
+    double lat;
+    double lon;
     String ss = widget.result.code!.toUpperCase();
     if (result.toUpperCase().contains('MAPS.GOOGLE.COM/LOCAL?Q=')) {
-      lat = ss.substring(ss.indexOf('?Q=') + 3, ss.indexOf(',')).trim();
-      lon = ss.substring(ss.lastIndexOf(',') + 1).trim();
+      lat = double.parse(
+        ss.substring(ss.indexOf('?Q=') + 3, ss.indexOf(',')).trim(),
+      );
+      lon = double.parse(
+        ss.substring(ss.lastIndexOf(',') + 1).trim(),
+      );
     } else {
-      lat = result.substring(result.indexOf(':') + 1, result.indexOf(','));
-      lon = result.substring(result.indexOf(',') + 1);
+      lat = double.parse(
+        result.substring(
+          result.indexOf(':') + 1,
+          result.indexOf(','),
+        ),
+      );
+      lon = double.parse(
+        result.substring(
+          result.indexOf(',') + 1,
+        ),
+      );
     }
-    Uri url = Uri.parse('https://maps.google.com/local?q=$lat,$lon');
-    launchUrl(url, mode: LaunchMode.externalApplication);
+    try {
+      await MapsLauncher.launchCoordinates(lat, lon);
+    } catch (e) {
+      // print('======eeeee:$e');
+      Uri url = Uri.parse('https://maps.google.com/local?q=$lat,$lon');
+      launchUrl(url, mode: LaunchMode.externalApplication); // OLD
+    }
   }
 
   void _phone() async {
