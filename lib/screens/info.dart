@@ -173,7 +173,10 @@ class _InfoScreenState extends State<InfoScreen> {
 
   Future<dynamic> setHomePage(BuildContext context) async {
     await SharedPreferences.getInstance().then((pref) {
-      bool i = pref.getInt('home') == 0 ? true : false;
+      int a = pref.getInt('home') ?? 0;
+      bool i = a == 0 ? true : false;
+      print('=====$i');
+      print('=====$i');
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -181,7 +184,7 @@ class _InfoScreenState extends State<InfoScreen> {
           title: const Text('Set Home Screen', textAlign: TextAlign.center),
           contentPadding: const EdgeInsets.symmetric(horizontal: 20),
           content: const Text(
-            'This screen will apear on app start up. Default screen is "Create"',
+            'This screen will apear on app start up. Default screen is "Scan"',
           ),
           actions: [
             Column(
