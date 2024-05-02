@@ -175,8 +175,8 @@ class _InfoScreenState extends State<InfoScreen> {
     await SharedPreferences.getInstance().then((pref) {
       int a = pref.getInt('home') ?? 0;
       bool i = a == 0 ? true : false;
-      print('=====$i');
-      print('=====$i');
+      // print('=====$i');
+      // print('=====$i');
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
