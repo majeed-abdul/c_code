@@ -59,16 +59,19 @@ class _ResultScreenState extends State<ResultScreen> {
         result.toUpperCase().indexOf('T:') + 2,
         result.indexOf(';', result.toUpperCase().indexOf('T:') + 1),
       );
-      String hidd = result.substring(
-        result.toUpperCase().contains('H:')
-            ? result.toUpperCase().indexOf('H:') + 2
-            : result.indexOf(';'),
-        result.indexOf(';', result.toUpperCase().indexOf('H:') + 1),
-      );
+      String hidd = result
+          .substring(
+            result.toUpperCase().contains('H:')
+                ? result.toUpperCase().indexOf('H:') + 2
+                : result.indexOf(';'),
+            result.indexOf(';', result.toUpperCase().indexOf('H:') + 1),
+          )
+          .toUpperCase()
+          .trim();
       formated = '''Name : $name
 Password : ${encr.toUpperCase() == "NOPASS" ? '' : pass}
 Encryption : ${encr.toUpperCase() == "NOPASS" ? 'None' : encr}
-Hidden : $hidd''';
+Hidden : ${hidd == 'TRUE' ? 'Yes' : 'No'}''';
       textFormat = Display.formated;
     } //'*' * pass.length
     else if (isEmail()) {
