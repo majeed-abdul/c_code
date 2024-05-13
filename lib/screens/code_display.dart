@@ -29,11 +29,11 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
   bool saved = false;
   bool support = false;
 
-  @override
-  void initState() {
-    context.read<AdLoader>().loaderOff();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   context.read<AdLoader>().loaderOff();
+  //   super.initState();
+  // }
 
   // @override
   // void didChangeDependencies() {
@@ -58,78 +58,75 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
           return true;
         }
       },
-      child: Spinner(
-        spinning: context.watch<AdLoader>().loader,
-        child: Stack(
-          children: [
-            Scaffold(
-              backgroundColor: Colors.white,
-              appBar: AppBar(
-                //toolbarHeight: 56,
-                title: Text(widget.barCode.name),
-              ),
-              body: SafeArea(
-                child: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      displayOutputCode(context),
-                      // Text(widget.data), // Testing Only
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 40),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Column(
-                              children: [
-                                customButton(
-                                  onPress: () => setState(() => support = true),
-                                  icon: Icons.volunteer_activism_rounded,
-                                ),
-                                const Text(
-                                  'Support',
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                customButton(
-                                  onPress: () => saveit(),
-                                  icon: Icons.photo_library,
-                                ),
-                                const Text('Save', textAlign: TextAlign.center),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 15),
-                    ],
-                  ),
-                ),
-              ),
+      child: Stack(
+        children: [
+          Scaffold(
+            backgroundColor: Colors.white,
+            appBar: AppBar(
+              //toolbarHeight: 56,
+              title: Text(widget.barCode.name),
             ),
-            Visibility(
-              visible: support,
-              child: Scaffold(
-                backgroundColor: Colors.black54,
-                body: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
+            body: SafeArea(
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: (() => setState(() => support = false)),
+                    displayOutputCode(context),
+                    // Text(widget.data), // Testing Only
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 40),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Column(
+                            children: [
+                              customButton(
+                                onPress: () => setState(() => support = true),
+                                icon: Icons.volunteer_activism_rounded,
+                              ),
+                              const Text(
+                                'Support',
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              customButton(
+                                onPress: () => saveit(),
+                                icon: Icons.photo_library,
+                              ),
+                              const Text('Save', textAlign: TextAlign.center),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
-                    supportBottomSheet(context)
+                    const SizedBox(height: 15),
                   ],
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+          Visibility(
+            visible: support,
+            child: Scaffold(
+              backgroundColor: Colors.black54,
+              body: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: (() => setState(() => support = false)),
+                    ),
+                  ),
+                  supportBottomSheet(context)
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
