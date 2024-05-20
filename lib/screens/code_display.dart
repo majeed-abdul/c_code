@@ -179,20 +179,24 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
       showSnackBar(context, 'No code Generated.');
       return;
     }
-    final image = img.Image(width: 1024, height: 1024);
-    fill(image, color: ColorRgb8(255, 255, 255));
-    drawBarcode(
-      image,
-      widget.barCode,
-      widget.data,
-      height: 871, //  871 insted of 872 for 76 px even padding across 4 sides
-      width: 871, //  1024-(76*2)-1
-      x: 76,
-      y: 76,
-    );
-    final png = img.encodePng(image);
-    ImageGallerySaver.saveImage(png);
-    showSnackBar(context, 'Image Saved to Pictures. ✔️');
-    saved = true;
+    try {
+      final image = img.Image(width: 1024, height: 1024);
+      fill(image, color: ColorRgb8(255, 255, 255));
+      drawBarcode(
+        image,
+        widget.barCode,
+        widget.data,
+        height: 871, //  871 insted of 872 for 76 px even padding across 4 sides
+        width: 871, //  1024-(76*2)-1
+        x: 76,
+        y: 76,
+      );
+      final png = img.encodePng(image);
+      ImageGallerySaver.saveImage(png);
+      showSnackBar(context, 'Image Saved to Pictures. ✔️');
+      saved = true;
+    } catch (e) {
+      showSnackBar(context, 'Unable to save Pictures. ❌\n$e');
+    }
   }
 }
