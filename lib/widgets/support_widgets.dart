@@ -78,7 +78,7 @@ ListTile seeAds(BuildContext context) {
     leading: const Icon(Icons.ads_click, size: 40),
     trailing: const Icon(Icons.more_vert),
     onTap: () {
-      loadAndShowAd(context);
+      showInterstitialAd(context);
     },
   );
 }
