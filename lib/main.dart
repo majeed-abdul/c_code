@@ -1,7 +1,5 @@
 import 'package:qr_maze/data/hive/model.dart';
 import 'package:qr_maze/data/theme.dart';
-// import 'package:qr_maze/functions/ads.dart';
-// import 'package:provider/provider.dart';
 import 'package:qr_maze/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_maze/screens/scan.dart';
