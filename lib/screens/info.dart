@@ -2,11 +2,8 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:qr_maze/widgets/pop_ups.dart';
 import 'package:qr_maze/widgets/support_widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:qr_maze/functions/ads.dart';
 import 'package:in_app_review/in_app_review.dart';
-import 'package:qr_maze/widgets/loader.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:provider/provider.dart';
 import 'package:store_redirect/store_redirect.dart';
 import 'package:flutter/material.dart';
 
@@ -199,6 +196,7 @@ class _InfoScreenState extends State<InfoScreen> {
                   onTap: () async {
                     await pref.setInt('home', 0).then((value) {
                       _home = 'Scan';
+                      showSnackBar(context, '"Scan" is set as Home Screen');
                       setState(() {});
                       Navigator.pop(context);
                     });
@@ -217,6 +215,7 @@ class _InfoScreenState extends State<InfoScreen> {
                   onTap: () async {
                     await pref.setInt('home', 1).then((value) {
                       _home = 'Create';
+                      showSnackBar(context, '"Create" is set as Home Screen');
                       setState(() {});
                       Navigator.pop(context);
                     });
