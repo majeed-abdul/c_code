@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:provider/provider.dart';
-import 'package:qr_maze/functions/ads.dart';
+import 'package:qr_maze/data/hive/functions.dart';
+import 'package:qr_maze/data/hive/model.dart';
 import 'package:qr_maze/functions/result_idenity.dart';
 import 'package:safe_url_check/safe_url_check.dart';
 
 class ResultText extends StatefulWidget {
-  const ResultText({super.key, required this.res});
+  const ResultText({super.key, required this.res, this.history = false});
   final String res;
+  final bool history;
 
   @override
   State<ResultText> createState() => _ResultTextState();
@@ -26,8 +27,10 @@ class _ResultTextState extends State<ResultText> {
   @override
   void initState() {
     result = widget.res;
+    // result = widget.res;
+    String title = ' ';
 
-    if (isWiFi(widget.res)) {
+    if (isWiFi(result)) {
       String name = result.substring(
         result.toUpperCase().indexOf('S:') + 2,
         result.indexOf(';', result.toUpperCase().indexOf('S:') + 1),
@@ -53,9 +56,9 @@ class _ResultTextState extends State<ResultText> {
 Password : ${encr.toUpperCase() == "NOPASS" ? '' : pass}
 Encryption : ${encr.toUpperCase() == "NOPASS" ? 'None' : encr}
 Hidden : ${hidd == 'TRUE' ? 'Yes' : 'No'}''';
+      title = 'WIFI: $name';
       textFormat = Display.formated;
-    } //'*' * pass.length
-    else if (isEmail(widget.res)) {
+    } else if (isEmail(result)) {
       String email = result.toUpperCase().startsWith('MAILTO:')
           ? result.substring(
               result.toUpperCase().indexOf('TO:') + 3, // mailto:
@@ -87,13 +90,15 @@ Hidden : ${hidd == 'TRUE' ? 'Yes' : 'No'}''';
               result.lastIndexOf(';') - 1,
             );
       formated = 'To : $email\nSubject : $subje\nMessage : $messa';
+      title = 'Email: $email';
       textFormat = Display.formated;
-    } else if (isSMS(widget.res)) {
+    } else if (isSMS(result)) {
       String num = result.substring(6, result.substring(7).indexOf(':') + 7);
       String msg = result.substring(result.substring(7).indexOf(':') + 8);
       formated = 'To : $num\nMessage : $msg';
+      title = 'To : $num';
       textFormat = Display.formated;
-    } else if (isVCard(widget.res)) {
+    } else if (isVCard(result)) {
       Contact vc = Contact.fromVCard(result);
       String name = vc.displayName;
       String addresses = '';
@@ -122,8 +127,9 @@ Email: $emails
 Organizations: $orgs
 Contact: $phones
 Websites : $websites''';
+      title = 'Name: $name';
       textFormat = Display.formated;
-    } else if (isGeo(widget.res)) {
+    } else if (isGeo(result)) {
       String lat;
       String lon;
       if (result.toUpperCase().contains('MAPS.GOOGLE.COM/LOCAL?Q=')) {
@@ -135,16 +141,40 @@ Websites : $websites''';
         lon = result.substring(result.indexOf(',') + 1);
       }
       formated = 'Latitude: $lat\nLongitude: $lon';
+      title = 'Lat:${lat.substring(
+        0,
+        lat.length < 6 ? null : 6,
+      )} ,Lon:${lon.substring(
+        0,
+        lon.length < 6 ? null : 6,
+      )}';
       textFormat = Display.formated;
-    } else if (isPhone(widget.res)) {
+    } else if (isPhone(result)) {
       String phn = result.substring(result.toUpperCase().indexOf('TEL:') + 4);
       formated = 'Phone: $phn';
+      title = '$formated';
       textFormat = Display.formated;
+    } else if (isWebURL(result)) {
+      title = 'URL: $result';
+    } else if (isNum(result)) {
+      title = 'Number: $result';
+    } else {
+      title = result;
+    }
+    if (!widget.history) {
+      saveQRCode(
+        ScannedData(
+          type: resultType(result),
+          title: title,
+          data: result,
+          dateTime: DateTime.now(),
+        ),
+      );
     }
 
     /// let code below
     // context.read<AdLoader>().loaderOff();
-    if (isWebURL(widget.res)) {
+    if (isWebURL(result)) {
       InternetConnectionChecker().hasConnection.then((value) {
         if (value) {
           safeUrlCheck(
@@ -183,23 +213,7 @@ Websites : $websites''';
     return Column(
       children: [
         Text(
-          isWebURL(widget.res)
-              ? 'URL'
-              : isNum(widget.res)
-                  ? 'Number'
-                  : isVCard(widget.res)
-                      ? 'Contact'
-                      : isGeo(widget.res)
-                          ? 'Geo Location'
-                          : isEmail(widget.res)
-                              ? 'Email'
-                              : isSMS(widget.res)
-                                  ? 'Message'
-                                  : isWiFi(widget.res)
-                                      ? 'WiFi'
-                                      : isPhone(widget.res)
-                                          ? 'Phone'
-                                          : 'Text',
+          resultType(widget.res),
           style: const TextStyle(
             fontSize: 19,
             fontWeight: FontWeight.w500,
