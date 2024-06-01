@@ -1,8 +1,9 @@
-// import 'package:qr_maze/functions/ads.dart';
+import 'package:qr_maze/data/hive/functions.dart';
+import 'package:qr_maze/data/hive/model.dart';
 import 'package:qr_maze/functions/result_idenity.dart';
+import 'package:qr_maze/screens/history.dart';
 import 'package:qr_maze/widgets/result_text.dart';
 import 'package:qr_maze/widgets/support_widgets.dart';
-import 'package:qr_maze/widgets/loader.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:qr_maze/widgets/buttons.dart';
@@ -11,13 +12,12 @@ import 'package:flutter/material.dart';
 import 'package:qr_maze/widgets/pop_ups.dart';
 import 'package:wifi_iot/wifi_iot.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
-// import 'package:string_validator/string_validator.dart';
 import 'package:maps_launcher/maps_launcher.dart';
 
 class ResultScreen extends StatefulWidget {
-  const ResultScreen({super.key, required this.result});
+  const ResultScreen({super.key, required this.result, this.history});
   final Barcode result;
+  final String? history;
 
   @override
   State<ResultScreen> createState() => _ResultScreenState();
@@ -38,7 +38,11 @@ class _ResultScreenState extends State<ResultScreen> {
         duration: const Duration(milliseconds: 1400),
       ),
     );
-    result = widget.result.code ?? 'null';
+    if (widget.history == null) {
+      result = widget.result.code ?? 'null';
+    } else {
+      result = widget.history ?? 'null';
+    }
     updatePopUp();
     setState(() {});
     super.initState();
@@ -63,10 +67,12 @@ class _ResultScreenState extends State<ResultScreen> {
             appBar: AppBar(
               title: const Text('Result'),
             ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Icon(Icons.qr_code_scanner_outlined, size: 30),
-            ),
+            floatingActionButton: widget.history != null
+                ? null
+                : FloatingActionButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: const Icon(Icons.qr_code_scanner_outlined, size: 30),
+                  ),
             body: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               controller: scrollCon,
@@ -76,7 +82,7 @@ class _ResultScreenState extends State<ResultScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    ResultText(res: widget.result.code ?? ' '),
+                    ResultText(res: result, history: widget.history != null),
                     const SizedBox(height: 20),
                     buttonsRow(),
                     const SizedBox(height: 55),
