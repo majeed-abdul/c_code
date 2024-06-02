@@ -1,3 +1,4 @@
+import 'package:qr_maze/screens/history.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:qr_maze/screens/create.dart';
 import 'package:qr_maze/screens/info.dart';
@@ -35,6 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
         bodyWidget = const CreateScreen();
         break;
       case 2:
+        bodyWidget = const History();
+        break;
+      case 3:
         bodyWidget = const InfoScreen();
         break;
     }
@@ -135,6 +139,12 @@ class _HomeScreenState extends State<HomeScreen> {
             activeIcon: Icon(Icons.add_circle),
             label: 'Create',
             tooltip: 'Create QR',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.history),
+            activeIcon: Icon(Icons.history),
+            label: 'History',
+            tooltip: 'History',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.info_outline),

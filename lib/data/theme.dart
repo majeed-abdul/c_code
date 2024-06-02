@@ -6,17 +6,18 @@ class CustomTheme {
     return ThemeData(
       colorScheme: ColorScheme.fromSeed(
         seedColor: const Color(0xFFD42027),
-        background: Colors.white,
+        // background: Colors.white,
         error: Colors.red,
         onTertiary: Colors.orange,
       ),
       filledButtonTheme: const FilledButtonThemeData(
         style: ButtonStyle(
-          backgroundColor: MaterialStatePropertyAll(
+          backgroundColor: WidgetStatePropertyAll(
             Color(0xFFD42027),
           ),
         ),
       ),
+      scaffoldBackgroundColor: Colors.white,
       useMaterial3: true,
       appBarTheme: const AppBarTheme(
         color: Colors.white,

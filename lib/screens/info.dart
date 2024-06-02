@@ -35,7 +35,7 @@ class _InfoScreenState extends State<InfoScreen> {
       version = packageInfo.version;
       setState(() {});
     });
-    context.read<AdLoader>().loaderOff();
+    // context.read<AdLoader>().loaderOff();
     super.initState();
   }
 
@@ -47,36 +47,33 @@ class _InfoScreenState extends State<InfoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Spinner(
-      spinning: context.watch<AdLoader>().loader,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('About'),
-        ),
-        body: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 5),
-              const Text('  Setting', style: TextStyle(color: Colors.black54)),
-              homeScreen(context),
-              const Divider(),
-              const Text('  Support', style: TextStyle(color: Colors.black54)),
-              rating(),
-              joinBeta(),
-              shareApp(context),
-              donatePop(context),
-              seeAds(context),
-              const Divider(),
-              const Text('  App', style: TextStyle(color: Colors.black54)),
-              appInfo(), //  true = beta version ====================
-              const Divider(),
-              const SizedBox(height: 20),
-              privacyPolicyButton(),
-              const SizedBox(height: 10),
-            ],
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('About'),
+      ),
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 5),
+            const Text('  Setting', style: TextStyle(color: Colors.black54)),
+            homeScreen(context),
+            const Divider(),
+            const Text('  Support', style: TextStyle(color: Colors.black54)),
+            rating(),
+            joinBeta(),
+            shareApp(context),
+            donatePop(context),
+            seeAds(context),
+            const Divider(),
+            const Text('  App', style: TextStyle(color: Colors.black54)),
+            appInfo(), //  true = beta version ====================
+            const Divider(),
+            const SizedBox(height: 20),
+            privacyPolicyButton(),
+            const SizedBox(height: 10),
+          ],
         ),
       ),
     );

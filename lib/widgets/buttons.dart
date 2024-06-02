@@ -7,11 +7,11 @@ OutlinedButton customButton({
 }) {
   return OutlinedButton(
     style: ButtonStyle(
-      side: MaterialStatePropertyAll(
+      side: WidgetStatePropertyAll(
         BorderSide(width: 3, color: color),
       ),
-      padding: const MaterialStatePropertyAll(EdgeInsets.all(0)),
-      fixedSize: const MaterialStatePropertyAll(Size.square(55)),
+      padding: const WidgetStatePropertyAll(EdgeInsets.all(0)),
+      fixedSize: const WidgetStatePropertyAll(Size.square(55)),
       visualDensity: const VisualDensity(horizontal: -2.9, vertical: -2.9),
     ),
     onPressed: onPress,
@@ -100,10 +100,10 @@ Widget gridButton({
     ),
     style: ButtonStyle(
       backgroundColor:
-          !select ? const MaterialStatePropertyAll(Colors.white) : null,
+          !select ? const WidgetStatePropertyAll(Colors.white) : null,
       side: select
-          ? const MaterialStatePropertyAll(BorderSide(color: Colors.white))
-          : const MaterialStatePropertyAll(BorderSide(color: Colors.black87)),
+          ? const WidgetStatePropertyAll(BorderSide(color: Colors.white))
+          : const WidgetStatePropertyAll(BorderSide(color: Colors.black87)),
     ),
   );
 }

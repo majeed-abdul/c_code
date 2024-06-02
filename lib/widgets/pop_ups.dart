@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:in_app_update/in_app_update.dart';
+import 'package:qr_maze/data/hive/functions.dart';
 import 'package:store_redirect/store_redirect.dart';
 
 showSnackBar(BuildContext context, String message) {
@@ -65,4 +66,41 @@ updatePopUp() async {
     },
   );
   // print('<<<<<<<============inf=<<<<<<<<${info.availableVersionCode}');
+}
+
+Future<void> showDeleteAlert(
+  BuildContext context,
+) async {
+  return showDialog<void>(
+    context: context,
+    // barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text(
+          'Delete All',
+          // textAlign: TextAlign.center,
+        ),
+        content: const Text(
+          'Are you sure you want to delete all the scanned wifi passwords history.',
+          // textAlign: TextAlign.center,
+        ),
+        actions: <Widget>[
+          OutlinedButton(
+            child: const Text('Delete all'),
+            onPressed: () async {
+              await clearAllQRCodeHistory().then((v) {
+                Navigator.of(context).pop();
+              });
+            },
+          ),
+          FilledButton(
+            child: const Text('Cancel'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
 }

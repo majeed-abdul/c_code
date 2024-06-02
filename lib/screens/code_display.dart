@@ -1,14 +1,14 @@
 import 'package:barcode_widget/barcode_widget.dart';
-import 'package:qr_maze/functions/ads.dart';
+// import 'package:qr_maze/functions/ads.dart';
 import 'package:qr_maze/widgets/support_widgets.dart';
 import 'package:qr_maze/widgets/buttons.dart';
-import 'package:qr_maze/widgets/loader.dart';
+// import 'package:qr_maze/widgets/loader.dart';
 import 'package:qr_maze/widgets/pop_ups.dart';
 import 'package:flutter/material.dart';
 import 'package:barcode_image/barcode_image.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:image/image.dart' as img;
-import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
 import 'package:image/image.dart';
 
 class CodeDisplayScreen extends StatefulWidget {
@@ -29,11 +29,11 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
   bool saved = false;
   bool support = false;
 
-  @override
-  void initState() {
-    context.read<AdLoader>().loaderOff();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   context.read<AdLoader>().loaderOff();
+  //   super.initState();
+  // }
 
   // @override
   // void didChangeDependencies() {
@@ -58,78 +58,75 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
           return true;
         }
       },
-      child: Spinner(
-        spinning: context.watch<AdLoader>().loader,
-        child: Stack(
-          children: [
-            Scaffold(
-              backgroundColor: Colors.white,
-              appBar: AppBar(
-                //toolbarHeight: 56,
-                title: Text(widget.barCode.name),
-              ),
-              body: SafeArea(
-                child: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      displayOutputCode(context),
-                      // Text(widget.data), // Testing Only
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 40),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Column(
-                              children: [
-                                customButton(
-                                  onPress: () => setState(() => support = true),
-                                  icon: Icons.volunteer_activism_rounded,
-                                ),
-                                const Text(
-                                  'Support',
-                                  textAlign: TextAlign.center,
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                customButton(
-                                  onPress: () => saveit(),
-                                  icon: Icons.photo_library,
-                                ),
-                                const Text('Save', textAlign: TextAlign.center),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 15),
-                    ],
-                  ),
-                ),
-              ),
+      child: Stack(
+        children: [
+          Scaffold(
+            backgroundColor: Colors.white,
+            appBar: AppBar(
+              //toolbarHeight: 56,
+              title: Text(widget.barCode.name),
             ),
-            Visibility(
-              visible: support,
-              child: Scaffold(
-                backgroundColor: Colors.black54,
-                body: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
+            body: SafeArea(
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Expanded(
-                      child: GestureDetector(
-                        onTap: (() => setState(() => support = false)),
+                    displayOutputCode(context),
+                    // Text(widget.data), // Testing Only
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 40),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Column(
+                            children: [
+                              customButton(
+                                onPress: () => setState(() => support = true),
+                                icon: Icons.volunteer_activism_rounded,
+                              ),
+                              const Text(
+                                'Support',
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              customButton(
+                                onPress: () => saveit(),
+                                icon: Icons.photo_library,
+                              ),
+                              const Text('Save', textAlign: TextAlign.center),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
-                    supportBottomSheet(context)
+                    const SizedBox(height: 15),
                   ],
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+          Visibility(
+            visible: support,
+            child: Scaffold(
+              backgroundColor: Colors.black54,
+              body: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: (() => setState(() => support = false)),
+                    ),
+                  ),
+                  supportBottomSheet(context)
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -179,20 +176,24 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
       showSnackBar(context, 'No code Generated.');
       return;
     }
-    final image = img.Image(width: 1024, height: 1024);
-    fill(image, color: ColorRgb8(255, 255, 255));
-    drawBarcode(
-      image,
-      widget.barCode,
-      widget.data,
-      height: 871, //  871 insted of 872 for 76 px even padding across 4 sides
-      width: 871, //  1024-(76*2)-1
-      x: 76,
-      y: 76,
-    );
-    final png = img.encodePng(image);
-    ImageGallerySaver.saveImage(png);
-    showSnackBar(context, 'Image Saved to Pictures. ✔️');
-    saved = true;
+    try {
+      final image = img.Image(width: 1024, height: 1024);
+      fill(image, color: ColorRgb8(255, 255, 255));
+      drawBarcode(
+        image,
+        widget.barCode,
+        widget.data,
+        height: 871, //  871 insted of 872 for 76 px even padding across 4 sides
+        width: 871, //  1024-(76*2)-1
+        x: 76,
+        y: 76,
+      );
+      final png = img.encodePng(image);
+      ImageGallerySaver.saveImage(png);
+      showSnackBar(context, 'Image Saved to Pictures. ✔️');
+      saved = true;
+    } catch (e) {
+      showSnackBar(context, 'Unable to save Pictures. ❌\n$e');
+    }
   }
 }
