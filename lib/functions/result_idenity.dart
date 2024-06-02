@@ -61,3 +61,23 @@ bool isNum(String text) {
   }
   return true;
 }
+
+String resultType(String res) {
+  return isWebURL(res)
+      ? 'URL'
+      : isNum(res)
+          ? 'Number'
+          : isVCard(res)
+              ? 'Contact'
+              : isGeo(res)
+                  ? 'Geo Location'
+                  : isEmail(res)
+                      ? 'Email'
+                      : isSMS(res)
+                          ? 'Message'
+                          : isWiFi(res)
+                              ? 'WiFi'
+                              : isPhone(res)
+                                  ? 'Phone'
+                                  : 'Text';
+}
