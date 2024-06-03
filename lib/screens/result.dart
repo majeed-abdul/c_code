@@ -1,7 +1,4 @@
-import 'package:qr_maze/data/hive/functions.dart';
-import 'package:qr_maze/data/hive/model.dart';
 import 'package:qr_maze/functions/result_idenity.dart';
-import 'package:qr_maze/screens/history.dart';
 import 'package:qr_maze/widgets/result_text.dart';
 import 'package:qr_maze/widgets/support_widgets.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';

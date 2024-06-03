@@ -23,7 +23,7 @@ class _HistoryState extends State<History> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Wifi History'),
+        title: const Text('Scan History'),
         actions: [
           IconButton(
             onPressed: () async {
@@ -37,7 +37,7 @@ class _HistoryState extends State<History> {
         valueListenable: scannedBox.listenable(),
         builder: (context, Box box, _) {
           if (box.isEmpty) {
-            return const Center(child: Text('No Wifi data found'));
+            return const Center(child: Text('No scan data found'));
           }
           return ListView(
             children: [
