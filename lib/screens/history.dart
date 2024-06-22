@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 // import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:qr_maze/data/hive/model.dart';
+import 'package:qr_maze/screens/result.dart';
 import 'package:qr_maze/widgets/pop_ups.dart';
 
 class History extends StatefulWidget {
@@ -21,7 +23,7 @@ class _HistoryState extends State<History> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Wifi History'),
+        title: const Text('Scan History'),
         actions: [
           IconButton(
             onPressed: () async {
@@ -35,11 +37,11 @@ class _HistoryState extends State<History> {
         valueListenable: scannedBox.listenable(),
         builder: (context, Box box, _) {
           if (box.isEmpty) {
-            return const Center(child: Text('No Wifi data found'));
+            return const Center(child: Text('No scan data found'));
           }
           return ListView(
             children: [
-              ListView.builder(
+              ListView.separated(
                 shrinkWrap: true,
                 reverse: true,
                 itemCount: box.length,
@@ -47,9 +49,31 @@ class _HistoryState extends State<History> {
                 itemBuilder: (context, index) {
                   final scannedData = (box.getAt(index) as ScannedData);
                   return ListTile(
-                    title: Text(scannedData.type),
-                    subtitle: Text(scannedData.title),
-                    leading: const Icon(Icons.wifi_rounded, size: 38),
+                    minVerticalPadding: 5,
+                    minTileHeight: 59,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => ResultScreen(
+                            result: Barcode(' ', BarcodeFormat.qrcode, []),
+                            history: scannedData.data,
+                          ),
+                        ),
+                      );
+                    },
+                    title: Text(
+                      scannedData.type,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    subtitle: Text(
+                      scannedData.title,
+                      overflow: TextOverflow.ellipsis,
+                      softWrap: false,
+                    ),
+                    leading: Icon(iconSelector(scannedData.type), size: 31),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -84,18 +108,18 @@ class _HistoryState extends State<History> {
                             );
                           },
                           menuChildren: [
-                            MenuItemButton(
-                              onPressed: () async {
-                                // await Clipboard.setData(
-                                //   ClipboardData(text: scannedData.password),
-                                // ).then(
-                                //   (value) {
-                                //     showSnackBar(context, 'Password Copied');
-                                //   },
-                                // );
-                              },
-                              child: const Text('Copy Password'),
-                            ),
+                            // MenuItemButton(
+                            //   onPressed: () async {
+                            //     // await Clipboard.setData(
+                            //     //   ClipboardData(text: scannedData.password),
+                            //     // ).then(
+                            //     //   (value) {
+                            //     //     showSnackBar(context, 'Password Copied');
+                            //     //   },
+                            //     // );
+                            //   },
+                            //   child: const Text('Copy Password'),
+                            // ),
                             MenuItemButton(
                               onPressed: () async {
                                 scannedBox.deleteAt(index);
@@ -113,7 +137,7 @@ class _HistoryState extends State<History> {
                     ),
                   );
                 },
-                // separatorBuilder: (context, index) => const Divider(),
+                separatorBuilder: (context, index) => const Divider(),
               ),
             ],
           );
@@ -121,5 +145,28 @@ class _HistoryState extends State<History> {
       ),
       // bottomNavigationBar: BannerAds(),
     );
+  }
+
+  IconData iconSelector(String type) {
+    switch (type) {
+      case 'URL':
+        return Icons.link;
+      case 'Number':
+        return Icons.numbers;
+      case 'WiFi':
+        return Icons.wifi_rounded;
+      case 'Contact':
+        return Icons.person_outline;
+      case 'Email':
+        return Icons.email_outlined;
+      case 'Message':
+        return Icons.sms_outlined;
+      case 'Geo Location':
+        return Icons.location_on_outlined;
+      case 'Phone':
+        return Icons.phone_outlined;
+      default:
+        return Icons.text_fields_rounded;
+    }
   }
 }
