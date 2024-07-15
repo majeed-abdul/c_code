@@ -1,6 +1,6 @@
 {
-    "name": "c_code",
-    "short_name": "c_code",
+    "name": "qr_maze",
+    "short_name": "qr_maze",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
