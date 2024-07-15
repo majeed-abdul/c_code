@@ -3,10 +3,10 @@ import 'dart:ui';
 
 class Spinner extends StatelessWidget {
   const Spinner({
-    Key? key,
+    super.key,
     required this.spinning,
     this.child = const SizedBox(),
-  }) : super(key: key);
+  });
 
   final bool spinning;
   final Widget child;
