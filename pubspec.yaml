@@ -1,5 +1,5 @@
 name: qr_maze
-description: A new Flutter project.
+description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -16,10 +16,10 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.1.0+13
+version: 1.2.0+14
 
 environment:
-  sdk: '>=2.19.6 <3.0.0'
+  sdk: '>=3.4.3 <4.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -34,7 +34,7 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.6
   url_launcher: ^6.1.10 # opening default Browser, Email and Messaging applications
   icons_launcher: ^2.1.0
   qr_code_scanner: ^1.0.1 # scan codes
@@ -68,11 +68,6 @@ dependencies:
   hive_flutter: ^1.1.0
   intl: ^0.19.0
 
-
-  # native_updater:
-  #   git: https://github.com/loadsmileau/native_updater
-  
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -82,7 +77,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.0
   hive_generator: ^2.0.1
   build_runner: ^2.4.10
 
@@ -128,6 +123,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+# ================= ICON LAUNCHER =================
 icons_launcher:
   image_path: "assets/icon.png"
   platforms:
@@ -143,3 +139,6 @@ icons_launcher:
       enable: true
     linux:
       enable: true
+# TERMINAL COMANDS:
+# flutter pub get
+# dart run icons_launcher:create
