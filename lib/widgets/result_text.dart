@@ -4,6 +4,7 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:qr_maze/data/hive/functions.dart';
 import 'package:qr_maze/data/hive/model.dart';
 import 'package:qr_maze/functions/result_idenity.dart';
+import 'package:qr_maze/widgets/pop_ups.dart';
 import 'package:safe_url_check/safe_url_check.dart';
 
 class ResultText extends StatefulWidget {
@@ -236,6 +237,27 @@ Websites : $websites''';
                   padding: const EdgeInsets.only(bottom: 0, right: 5),
                   child: Row(
                     children: [
+                      Visibility(
+                        visible: (widget.history && isWiFi(result)),
+                        child: OutlinedButton(
+                          style: const ButtonStyle(
+                            visualDensity: VisualDensity(
+                              vertical: -3,
+                            ),
+                          ),
+                          onPressed: () {
+                            String name = result.substring(
+                              result.toUpperCase().indexOf('S:') + 2,
+                              result.indexOf(
+                                  ';', result.toUpperCase().indexOf('S:') + 1),
+                            );
+                            wifiQR(context, name, result);
+                          },
+                          child: const Text(
+                            'Display QR code',
+                          ),
+                        ),
+                      ),
                       const Spacer(flex: 4),
                       Visibility(
                         visible: isWebURL(widget.res),
