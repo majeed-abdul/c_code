@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "c_code" "\0"
+            VALUE "CompanyName", "com.abdul" "\0"
+            VALUE "FileDescription", "qr_maze" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "c_code" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "c_code.exe" "\0"
-            VALUE "ProductName", "c_code" "\0"
+            VALUE "InternalName", "qr_maze" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2024 com.abdul. All rights reserved." "\0"
+            VALUE "OriginalFilename", "qr_maze.exe" "\0"
+            VALUE "ProductName", "qr_maze" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

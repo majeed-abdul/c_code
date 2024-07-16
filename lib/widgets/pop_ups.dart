@@ -1,3 +1,4 @@
+import 'package:barcode_widget/barcode_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:in_app_update/in_app_update.dart';
 import 'package:qr_maze/data/hive/functions.dart';
@@ -102,5 +103,60 @@ Future<void> showDeleteAlert(
         ],
       );
     },
+  );
+}
+
+void wifiQR(
+  BuildContext context,
+  String name,
+  String data,
+) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        backgroundColor: Colors.white,
+        // titlePadding: const EdgeInsets.only(top: 15, bottom: 9),
+        contentPadding: const EdgeInsets.symmetric(vertical: 15),
+        title: Text(
+          name,
+          textAlign: TextAlign.center,
+          style: const TextStyle(color: Colors.black),
+        ),
+        content: _displayOutputCode(context, data),
+        actions: const [
+          Text(
+            'Scan to connect',
+            style: TextStyle(color: Colors.black54, fontSize: 14),
+          ),
+        ],
+        actionsAlignment: MainAxisAlignment.center,
+      );
+    },
+  );
+}
+
+Widget _displayOutputCode(BuildContext context, String data) {
+  Widget w;
+  try {
+    w = BarcodeWidget(
+      // height: MediaQuery.of(context).size.width <=
+      //         MediaQuery.of(context).size.height
+      //     ? MediaQuery.of(context).size.width - 80 // (40*2)  portrait
+      //     : MediaQuery.of(context).size.height - 160, // (40*2)+24+56
+      data: data,
+      barcode: Barcode.qrCode(),
+      margin: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+      errorBuilder: (context, error) => _onError(error),
+    );
+  } catch (e) {
+    w = _onError(e.toString());
+  }
+  return SizedBox(height: 240, width: 240, child: w);
+}
+
+Widget _onError(String message) {
+  return Text(
+    message.substring(message.indexOf('Barcode, '), message.length - 1),
   );
 }

@@ -44,11 +44,12 @@ Future<void> showInterstitialAd(BuildContext context) async {
             // context.read<AdLoader>().loaderOff();
           }),
           onAdDismissedFullScreenContent: ((ad) {
+            showThankYouPopup(context);
             ad.dispose();
             // context.read<AdLoader>().loaderOff();
           }),
         );
-        ad.show().then((value) => showThankYouPopup(context));
+        ad.show();
       },
       onAdFailedToLoad: (LoadAdError error) {
         // _loadAndShowAd1(context);
@@ -193,6 +194,7 @@ void showThankYouPopup(BuildContext context) {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          backgroundColor: Colors.white,
           titlePadding: const EdgeInsets.all(20),
           title: Image.asset(
             'assets/thankyou/${_getR7()}.gif',

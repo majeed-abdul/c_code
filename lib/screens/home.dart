@@ -6,7 +6,7 @@ import 'package:qr_maze/screens/scan.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
   static String id = 'homeScreen';
 
   @override

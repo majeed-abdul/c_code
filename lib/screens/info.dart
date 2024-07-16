@@ -8,7 +8,7 @@ import 'package:store_redirect/store_redirect.dart';
 import 'package:flutter/material.dart';
 
 class InfoScreen extends StatefulWidget {
-  const InfoScreen({Key? key}) : super(key: key);
+  const InfoScreen({super.key});
 
   @override
   State<InfoScreen> createState() => _InfoScreenState();
