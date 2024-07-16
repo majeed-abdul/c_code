@@ -123,7 +123,12 @@ class _ResultScreenState extends State<ResultScreen> {
   Row buttonsRow() {
     Widget w = const SizedBox.shrink();
     bool text = true;
-    if (isWiFi(widget.result.code ?? ' ')) {
+    if (widget.history == null) {
+      result = widget.result.code ?? 'null';
+    } else {
+      result = widget.history ?? 'null';
+    }
+    if (isWiFi(result)) {
       w = Column(
         children: [
           customButton(
@@ -134,7 +139,7 @@ class _ResultScreenState extends State<ResultScreen> {
         ],
       );
       text = false;
-    } else if (isVCard(widget.result.code ?? ' ')) {
+    } else if (isVCard(result)) {
       w = Column(
         children: [
           customButton(onPress: () => _contact(), icon: Icons.call),
@@ -142,7 +147,7 @@ class _ResultScreenState extends State<ResultScreen> {
         ],
       );
       text = false;
-    } else if (isEmail(widget.result.code ?? ' ')) {
+    } else if (isEmail(result)) {
       w = Column(
         children: [
           customButton(
@@ -153,7 +158,7 @@ class _ResultScreenState extends State<ResultScreen> {
         ],
       );
       text = false;
-    } else if (isSMS(widget.result.code ?? ' ')) {
+    } else if (isSMS(result)) {
       w = Column(
         children: [
           customButton(
@@ -164,7 +169,7 @@ class _ResultScreenState extends State<ResultScreen> {
         ],
       );
       text = false;
-    } else if (isWebURL(widget.result.code ?? ' ')) {
+    } else if (isWebURL(result)) {
       w = Column(
         children: [
           customButton(onPress: () => _browse(), icon: Icons.language),
@@ -172,7 +177,7 @@ class _ResultScreenState extends State<ResultScreen> {
         ],
       );
       text = false;
-    } else if (isPhone(widget.result.code ?? ' ')) {
+    } else if (isPhone(result)) {
       w = Column(
         children: [
           customButton(
@@ -183,7 +188,7 @@ class _ResultScreenState extends State<ResultScreen> {
         ],
       );
       text = false;
-    } else if (isGeo(widget.result.code ?? ' ')) {
+    } else if (isGeo(result)) {
       w = Column(
         children: [
           customButton(
