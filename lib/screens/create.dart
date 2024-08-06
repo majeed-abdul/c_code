@@ -691,20 +691,20 @@ class _CreateScreenState extends State<CreateScreen> {
               if (numberCon.text.isEmpty) {
                 throw 'Enter Number'; //  must not be empty
               } else {
-                isNumber(numberCon.text) ? null : throw 'Invalid Number';
+                isNumber(numberCon.text.trim()) ? null : throw 'Invalid Number';
               }
               if (selectedCodeType == Barcode.ean5()) {
-                numberCon.text.length == 5
+                numberCon.text.trim().length == 5
                     ? null
                     : throw 'Number is not 5 digit';
               }
               if (selectedCodeType == Barcode.ean2()) {
-                numberCon.text.length == 2
+                numberCon.text.trim().length == 2
                     ? null
                     : throw 'Number is not 2 digit';
               }
               if (selectedCodeType == Barcode.ean8()) {
-                numberCon.text.length == 8
+                numberCon.text.trim().length == 8
                     ? null
                     : throw 'Number is not 8 digit';
               }
@@ -725,11 +725,19 @@ class _CreateScreenState extends State<CreateScreen> {
                   vCardEmaCon.text.isEmpty) {
                 throw 'Enter Any Contact Number or Email'; //  must not be empty
               }
-              isNumber(vCardMobCon.text) ? null : throw 'Invalid Mobile Number';
-              isNumber(vCardPhoCon.text) ? null : throw 'Invalid Phone Number';
-              isNumber(vCardFaxCon.text) ? null : throw 'Invalid Fax Number';
-              isNumber(vCardZipCon.text) ? null : throw 'Invalid Zip Code';
-              isEmail(vCardEmaCon.text) ? null : throw 'Invalid Email';
+              isNumber(vCardMobCon.text.trim())
+                  ? null
+                  : throw 'Invalid Mobile Number';
+              isNumber(vCardPhoCon.text.trim())
+                  ? null
+                  : throw 'Invalid Phone Number';
+              isNumber(vCardFaxCon.text.trim())
+                  ? null
+                  : throw 'Invalid Fax Number';
+              isNumber(vCardZipCon.text.trim())
+                  ? null
+                  : throw 'Invalid Zip Code';
+              isEmail(vCardEmaCon.text.trim()) ? null : throw 'Invalid Email';
               break;
             // vCardComCon
             // vCardJobCon
@@ -746,7 +754,7 @@ class _CreateScreenState extends State<CreateScreen> {
               } else if (emailMsgCon.text.trim().isEmpty) {
                 throw 'Enter Message'; //  must not be empty
               }
-              isEmail(emailTooCon.text) ? null : throw 'Invalid Email';
+              isEmail(emailTooCon.text.trim()) ? null : throw 'Invalid Email';
               break;
             case 5: ////////////// SMS
               if (smsPhoCon.text.trim().isEmpty) {
@@ -756,7 +764,9 @@ class _CreateScreenState extends State<CreateScreen> {
               } else if (smsMsgCon.text.trim().isEmpty) {
                 throw 'Enter Message'; //  must not be empty
               }
-              isNumber(smsPhoCon.text) ? null : throw 'Invalid Phone Number';
+              isNumber(smsPhoCon.text.trim())
+                  ? null
+                  : throw 'Invalid Phone Number';
               break;
 
             case 6: ////////////// Geo-Location
@@ -765,8 +775,10 @@ class _CreateScreenState extends State<CreateScreen> {
               } else if (geoLonCon.text.trim().isEmpty) {
                 throw 'Enter Longitude'; //  must not be empty
               }
-              isNumber(geoLatCon.text) ? null : throw 'Invalid Latitude';
-              isNumber(geoLonCon.text) ? null : throw 'Invalid Longitude';
+              isNumber(geoLatCon.text.trim()) ? null : throw 'Invalid Latitude';
+              isNumber(geoLonCon.text.trim())
+                  ? null
+                  : throw 'Invalid Longitude';
               double lat = double.parse(geoLatCon.text);
               double lon = double.parse(geoLonCon.text);
               if (lat >= 90 || lat <= -90) throw 'Invalid Latitude Range';
@@ -778,7 +790,7 @@ class _CreateScreenState extends State<CreateScreen> {
               if (phoneCon.text.trim().isEmpty) {
                 throw "Enter Phone Number"; //  must not be empty
               }
-              isNumber(phoneCon.text)
+              isNumber(phoneCon.text.trim())
                   //  (A) all should be num except first char
                   //  (B) first char can be num , '-' or '+'
                   ? null
