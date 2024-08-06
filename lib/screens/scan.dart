@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:qr_maze/screens/result.dart';
 import 'dart:io';
 
+import 'package:qr_scanner_overlay/qr_scanner_overlay.dart';
+
 class ScanScreen extends StatefulWidget {
   const ScanScreen({super.key});
   static String id = 'scan_screen';
@@ -41,7 +43,17 @@ class _ScanScreenState extends State<ScanScreen> {
       body: Stack(
         alignment: AlignmentDirectional.bottomEnd,
         children: <Widget>[
-          Container(child: _buildQrView(context)),
+          Container(child: _buildQrView()),
+
+          /// ScreenShot Comment
+          // Image.asset(
+          //   'assets/screenshot.png',
+          //   height: double.infinity,
+          //   fit: BoxFit.cover,
+          // ),
+          QRScannerOverlay(
+            overlayColor: Colors.black38,
+          ),
           Padding(
             padding: const EdgeInsets.all(55),
             child: MediaQuery.of(context).size.width <
@@ -106,21 +118,17 @@ class _ScanScreenState extends State<ScanScreen> {
     );
   }
 
-  Widget _buildQrView(BuildContext context) {
-    double scanArea =
-        MediaQuery.of(context).size.width < MediaQuery.of(context).size.height
-            ? MediaQuery.of(context).size.width / 1.25
-            : MediaQuery.of(context).size.height / 1.5;
+  Widget _buildQrView() {
     return QRView(
       key: qrKey,
       onQRViewCreated: _onQRViewCreated,
-      overlay: QrScannerOverlayShape(
-        borderColor: Theme.of(context).primaryColor,
-        cutOutSize: scanArea,
-        borderLength: 40,
-        borderRadius: 1,
-        borderWidth: 9,
-      ),
+      // overlay: QrScannerOverlayShape(
+      //   borderColor: Theme.of(context).primaryColor,
+      //   cutOutSize: scanArea,
+      //   borderLength: 40,
+      //   borderRadius: 1,
+      //   borderWidth: 9,
+      // ),
     );
   }
 
