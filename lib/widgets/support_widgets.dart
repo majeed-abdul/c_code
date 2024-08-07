@@ -28,7 +28,7 @@ Container supportBottomSheet(BuildContext context) {
         const Divider(),
         shareApp(context),
         donatePop(context),
-        seeAds(context),
+        // seeAds(context),
         const Divider(),
         const SizedBox(height: 15),
       ],
