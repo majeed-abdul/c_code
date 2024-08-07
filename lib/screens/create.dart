@@ -461,7 +461,7 @@ class _CreateScreenState extends State<CreateScreen> {
         entryBar(
           text: 'WiFi Name',
           child: TextFormField(
-            decoration: const InputDecoration(hintText: 'Enter SSId'),
+            decoration: const InputDecoration(hintText: 'Enter SSID'),
             controller: wiFiNamCon,
             onChanged: (value) => setWiFi(),
           ),
