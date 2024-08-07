@@ -6,6 +6,8 @@
         android:label="QR Scanner"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBW3nI_a1hK3-xFxzxlZOL_SvynqHLK2IQ"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

@@ -51,6 +51,7 @@ class _HistoryState extends State<History> {
                   return ListTile(
                     minVerticalPadding: 5,
                     minTileHeight: 59,
+                    // dense: true,
                     onTap: () {
                       Navigator.push(
                         context,
@@ -69,9 +70,10 @@ class _HistoryState extends State<History> {
                       ),
                     ),
                     subtitle: Text(
-                      scannedData.title,
+                      scannedData.title.trim(),
                       overflow: TextOverflow.ellipsis,
                       softWrap: false,
+                      maxLines: 1,
                     ),
                     leading: Icon(iconSelector(scannedData.type), size: 31),
                     trailing: Row(
@@ -104,7 +106,7 @@ class _HistoryState extends State<History> {
                                 }
                               },
                               icon: const Icon(Icons.more_vert),
-                              tooltip: 'Show menu',
+                              tooltip: 'Menu',
                             );
                           },
                           menuChildren: [

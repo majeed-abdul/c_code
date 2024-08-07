@@ -1,3 +1,4 @@
+import 'package:qr_maze/functions/ads.dart';
 import 'package:qr_maze/functions/result_idenity.dart';
 import 'package:qr_maze/widgets/result_text.dart';
 import 'package:qr_maze/widgets/support_widgets.dart';
@@ -97,7 +98,10 @@ class _ResultScreenState extends State<ResultScreen> {
                 children: [
                   Expanded(
                     child: GestureDetector(
-                      onTap: (() => setState(() => support = false)),
+                      onTap: (() {
+                        showInterstitialAd(context);
+                        setState(() => support = false);
+                      }),
                     ),
                   ),
                   supportBottomSheet(context)
@@ -337,7 +341,7 @@ class _ResultScreenState extends State<ResultScreen> {
 
   void _copy() async {
     await Clipboard.setData(
-      ClipboardData(text: '${widget.result.code}'),
+      ClipboardData(text: result),
     ).then(
       (value) => showSnackBar(context, 'Copied'),
     );
