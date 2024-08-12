@@ -348,14 +348,14 @@ class _ResultScreenState extends State<ResultScreen> {
   }
 
   void _browse() async {
-    Uri url = Uri.parse(widget.result.code ?? '');
+    Uri url = Uri.parse(result);
     launchUrl(url, mode: LaunchMode.externalApplication);
   }
 
   void _contact() async {
-    // Contact contact = Contact.fromVCard('${widget.result.code}');
+    // Contact contact = Contact.fromVCard(result);
     // await contact.insert();
-    String word = '${widget.result.code}';
+    String word = result;
     Contact vc = Contact.fromVCard(word);
     String num = vc.phones[0].number;
     if (num.isEmpty) {
@@ -373,7 +373,7 @@ class _ResultScreenState extends State<ResultScreen> {
   void _locate() async {
     double lat;
     double lon;
-    String ss = widget.result.code!.toUpperCase();
+    String ss = result.toUpperCase();
     if (result.toUpperCase().contains('MAPS.GOOGLE.COM/LOCAL?Q=')) {
       lat = double.parse(
         ss.substring(ss.indexOf('?Q=') + 3, ss.indexOf(',')).trim(),
@@ -414,7 +414,7 @@ class _ResultScreenState extends State<ResultScreen> {
   }
 
   void _mail() async {
-    String word = '${widget.result.code}';
+    String word = result;
 
     final Uri emailLaunchUri = Uri(
       scheme: 'mailto',
@@ -459,7 +459,7 @@ class _ResultScreenState extends State<ResultScreen> {
   }
 
   void _sms() async {
-    String word = '${widget.result.code}';
+    String word = result;
 
     final Uri smsLaunchUri = Uri(
       scheme: 'sms',
@@ -474,7 +474,7 @@ class _ResultScreenState extends State<ResultScreen> {
   }
 
   void _wifiConect() async {
-    String word = '${widget.result.code}';
+    String word = result;
     String ssid = word.substring(
       word.toUpperCase().indexOf('S:') + 2,
       word.indexOf(';', word.toUpperCase().indexOf('S:') + 1),
