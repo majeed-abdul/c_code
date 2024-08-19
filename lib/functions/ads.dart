@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 // import 'package:provider/provider.dart';
 import 'package:qr_maze/widgets/pop_ups.dart';

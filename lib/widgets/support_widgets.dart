@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:qr_maze/functions/ads.dart';
 import 'package:qr_maze/widgets/pop_ups.dart';

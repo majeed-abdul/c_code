@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:qr_maze/functions/ads.dart';
 import 'package:qr_maze/functions/result_idenity.dart';
 import 'package:qr_maze/widgets/result_text.dart';
@@ -511,7 +513,6 @@ class _ResultScreenState extends State<ResultScreen> {
         isHidden: hidden.toUpperCase() == 'TRUE',
       );
     } catch (e) {
-      // ignore: use_build_context_synchronously
       showSnackBar(context, 'Try ti connect Manually\n ($e)');
     }
   }
