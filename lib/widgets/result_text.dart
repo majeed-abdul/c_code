@@ -36,29 +36,29 @@ class _ResultTextState extends State<ResultText> {
         result.toUpperCase().indexOf('S:') + 2,
         result.indexOf(';', result.toUpperCase().indexOf('S:') + 1),
       );
-      String pass = result.substring(
-        result.toUpperCase().indexOf('P:') + 2,
-        result.indexOf(';', result.toUpperCase().indexOf('P:') + 1),
-      );
-      String encr = result.substring(
-        result.toUpperCase().indexOf('T:') + 2,
-        result.indexOf(';', result.toUpperCase().indexOf('T:') + 1),
-      );
-      String hidd = result
-          .substring(
-            result.toUpperCase().contains('H:')
-                ? result.toUpperCase().indexOf('H:') + 2
-                : result.indexOf(';'),
-            result.indexOf(';', result.toUpperCase().indexOf('H:') + 1),
-          )
-          .toUpperCase()
-          .trim();
-      formated = '''Name : $name
-Password : ${encr.toUpperCase() == "NOPASS" ? '' : pass}
-Encryption : ${encr.toUpperCase() == "NOPASS" ? 'None' : encr}
-Hidden : ${hidd == 'TRUE' ? 'Yes' : 'No'}''';
+//       String pass = result.substring(
+//         result.toUpperCase().indexOf('P:') + 2,
+//         result.indexOf(';', result.toUpperCase().indexOf('P:') + 1),
+//       );
+//       String encr = result.substring(
+//         result.toUpperCase().indexOf('T:') + 2,
+//         result.indexOf(';', result.toUpperCase().indexOf('T:') + 1),
+//       );
+//       String hidd = result
+//           .substring(
+//             result.toUpperCase().contains('H:')
+//                 ? result.toUpperCase().indexOf('H:') + 2
+//                 : result.indexOf(';'),
+//             result.indexOf(';', result.toUpperCase().indexOf('H:') + 1),
+//           )
+//           .toUpperCase()
+//           .trim();
+//       formated = '''Name : $name
+// Password : ${encr.toUpperCase() == "NOPASS" ? '' : pass}
+// Encryption : ${encr.toUpperCase() == "NOPASS" ? 'None' : encr}
+// Hidden : ${hidd == 'TRUE' ? 'Yes' : 'No'}''';
       title = 'WIFI: $name';
-      textFormat = Display.formated;
+      // textFormat = Display.formated;
     } else if (isEmail(result)) {
       String email = result.toUpperCase().startsWith('MAILTO:')
           ? result.substring(
@@ -67,66 +67,66 @@ Hidden : ${hidd == 'TRUE' ? 'Yes' : 'No'}''';
             )
           : result.substring(result.toUpperCase().indexOf(':TO:') + 4,
               result.toUpperCase().indexOf(';SUB:'));
-      String subje = result.toUpperCase().startsWith('MAILTO:')
-          ? result.substring(
-              result.toUpperCase().contains('SUBJECT=')
-                  ? result.toUpperCase().indexOf('SUBJECT=') + 8
-                  : result.length, // mailto:
-              result.toUpperCase().contains('&BODY=')
-                  ? result.toUpperCase().indexOf('&BODY=')
-                  : null,
-            )
-          : result.substring(
-              result.toUpperCase().indexOf(';SUB:') + 5,
-              result.indexOf(';BODY:'),
-            );
-      String messa = result.toUpperCase().startsWith('MAILTO:')
-          ? result.substring(
-              result.toUpperCase().contains('BODY=')
-                  ? result.toUpperCase().indexOf('BODY=') + 5
-                  : result.length, // mailto:
-            )
-          : result.substring(
-              result.toUpperCase().indexOf(';BODY:') + 6,
-              result.lastIndexOf(';') - 1,
-            );
-      formated = 'To : $email\nSubject : $subje\nMessage : $messa';
+      // String subje = result.toUpperCase().startsWith('MAILTO:')
+      //     ? result.substring(
+      //         result.toUpperCase().contains('SUBJECT=')
+      //             ? result.toUpperCase().indexOf('SUBJECT=') + 8
+      //             : result.length, // mailto:
+      //         result.toUpperCase().contains('&BODY=')
+      //             ? result.toUpperCase().indexOf('&BODY=')
+      //             : null,
+      //       )
+      //     : result.substring(
+      //         result.toUpperCase().indexOf(';SUB:') + 5,
+      //         result.indexOf(';BODY:'),
+      //       );
+      // String messa = result.toUpperCase().startsWith('MAILTO:')
+      //     ? result.substring(
+      //         result.toUpperCase().contains('BODY=')
+      //             ? result.toUpperCase().indexOf('BODY=') + 5
+      //             : result.length, // mailto:
+      //       )
+      //     : result.substring(
+      //         result.toUpperCase().indexOf(';BODY:') + 6,
+      //         result.lastIndexOf(';') - 1,
+      //       );
+      // formated = 'To : $email\nSubject : $subje\nMessage : $messa';
       title = 'Email: $email';
-      textFormat = Display.formated;
+      // textFormat = Display.formated;
     } else if (isSMS(result)) {
       String num = result.substring(6, result.substring(7).indexOf(':') + 7);
-      String msg = result.substring(result.substring(7).indexOf(':') + 8);
-      formated = 'To : $num\nMessage : $msg';
+      // String msg = result.substring(result.substring(7).indexOf(':') + 8);
+      // formated = 'To : $num\nMessage : $msg';
       title = 'To : $num';
-      textFormat = Display.formated;
+      // textFormat = Display.formated;
     } else if (isVCard(result)) {
       Contact vc = Contact.fromVCard(result);
       String name = vc.displayName;
-      String? addresses = '';
-      for (Address i in vc.addresses) {
-        if (i.address != '') {
-          addresses = '$addresses\n${i.label.name} address :  "${i.address}"';
-        }
-      }
-      String? emails = '';
-      for (Email i in vc.emails) {
-        emails = '$emails\n${i.label.name} email :  ${i.address}';
-      }
-      String? orgs = '';
-      for (Organization i in vc.organizations) {
-        orgs = '$orgs\n${i.company}, Job: ${i.title}';
-      }
-      String? phones = '';
-      for (Phone i in vc.phones) {
-        phones = '$phones\n${i.label.name} number: ${i.number}';
-      }
-      String? websites = '';
-      for (Website i in vc.websites) {
-        websites = '$websites\n${i.customLabel} number: ${i.url}';
-      }
-      formated = '''Name: $name$addresses$emails$orgs$phones$websites''';
+      // String? addresses = '';
+      // for (Address i in vc.addresses) {
+      //   if (i.address != '') {
+      //     addresses = '$addresses\n${i.label.name} address :  "${i.address}"';
+      //   }
+      // }
+      // String? emails = '';
+      // for (Email i in vc.emails) {
+      //   emails = '$emails\n${i.label.name} email :  ${i.address}';
+      // }
+      // String? orgs = '';
+      // for (Organization i in vc.organizations) {
+      //   orgs = '$orgs\n${i.company}, Job: ${i.title}';
+      // }
+      // String? phones = '';
+      // for (Phone i in vc.phones) {
+      //   phones = '$phones\n${i.label.name} number: ${i.number}';
+      // }
+      // String? websites = '';
+      // for (Website i in vc.websites) {
+      //   websites = '$websites\n${i.customLabel} number: ${i.url}';
+      // }
+      // formated = '''Name: $name$addresses$emails$orgs$phones$websites''';
       title = 'Name: $name';
-      textFormat = Display.formated;
+      // textFormat = Display.formated;
     } else if (isGeo(result)) {
       String lat;
       String lon;
@@ -138,7 +138,7 @@ Hidden : ${hidd == 'TRUE' ? 'Yes' : 'No'}''';
         lat = result.substring(result.indexOf(':') + 1, result.indexOf(','));
         lon = result.substring(result.indexOf(',') + 1);
       }
-      formated = 'Latitude: $lat\nLongitude: $lon';
+      // formated = 'Latitude: $lat\nLongitude: $lon';
       title = 'Lat:${lat.substring(
         0,
         lat.length < 6 ? null : 6,
@@ -146,12 +146,12 @@ Hidden : ${hidd == 'TRUE' ? 'Yes' : 'No'}''';
         0,
         lon.length < 6 ? null : 6,
       )}';
-      textFormat = Display.formated;
+      // textFormat = Display.formated;
     } else if (isPhone(result)) {
       String phn = result.substring(result.toUpperCase().indexOf('TEL:') + 4);
-      formated = 'Phone: $phn';
-      title = '$formated';
-      textFormat = Display.formated;
+      // formated = 'Phone: $phn';
+      title = 'Phone: $phn';
+      // textFormat = Display.formated;
     } else if (isWebURL(result)) {
       title = 'URL: $result';
     } else if (isNum(result)) {
@@ -159,6 +159,8 @@ Hidden : ${hidd == 'TRUE' ? 'Yes' : 'No'}''';
     } else {
       title = result;
     }
+    formated = getFormatText(result);
+    formated != null ? textFormat = Display.formated : null;
     if (!widget.history) {
       saveQRCode(
         ScannedData(
@@ -352,4 +354,137 @@ Hidden : ${hidd == 'TRUE' ? 'Yes' : 'No'}''';
       ],
     );
   }
+}
+
+String? getFormatText(String res) {
+  String? formated;
+  if (isWiFi(res)) {
+    String name = res.substring(
+      res.toUpperCase().indexOf('S:') + 2,
+      res.indexOf(';', res.toUpperCase().indexOf('S:') + 1),
+    );
+    String pass = res.substring(
+      res.toUpperCase().indexOf('P:') + 2,
+      res.indexOf(';', res.toUpperCase().indexOf('P:') + 1),
+    );
+    String encr = res.substring(
+      res.toUpperCase().indexOf('T:') + 2,
+      res.indexOf(';', res.toUpperCase().indexOf('T:') + 1),
+    );
+    String hidd = res
+        .substring(
+          res.toUpperCase().contains('H:')
+              ? res.toUpperCase().indexOf('H:') + 2
+              : res.indexOf(';'),
+          res.indexOf(';', res.toUpperCase().indexOf('H:') + 1),
+        )
+        .toUpperCase()
+        .trim();
+    formated = '''Name : $name
+Password : ${encr.toUpperCase() == "NOPASS" ? '' : pass}
+Encryption : ${encr.toUpperCase() == "NOPASS" ? 'None' : encr}
+Hidden : ${hidd == 'TRUE' ? 'Yes' : 'No'}''';
+    // title = 'WIFI: $name';
+    // textFormat = Display.formated;
+  } else if (isEmail(res)) {
+    String email = res.toUpperCase().startsWith('MAILTO:')
+        ? res.substring(
+            res.toUpperCase().indexOf('TO:') + 3, // mailto:
+            res.contains('?') ? res.indexOf('?') : null,
+          )
+        : res.substring(res.toUpperCase().indexOf(':TO:') + 4,
+            res.toUpperCase().indexOf(';SUB:'));
+    String subje = res.toUpperCase().startsWith('MAILTO:')
+        ? res.substring(
+            res.toUpperCase().contains('SUBJECT=')
+                ? res.toUpperCase().indexOf('SUBJECT=') + 8
+                : res.length, // mailto:
+            res.toUpperCase().contains('&BODY=')
+                ? res.toUpperCase().indexOf('&BODY=')
+                : null,
+          )
+        : res.substring(
+            res.toUpperCase().indexOf(';SUB:') + 5,
+            res.indexOf(';BODY:'),
+          );
+    String messa = res.toUpperCase().startsWith('MAILTO:')
+        ? res.substring(
+            res.toUpperCase().contains('BODY=')
+                ? res.toUpperCase().indexOf('BODY=') + 5
+                : res.length, // mailto:
+          )
+        : res.substring(
+            res.toUpperCase().indexOf(';BODY:') + 6,
+            res.lastIndexOf(';') - 1,
+          );
+    formated = 'To : $email\nSubject : $subje\nMessage : $messa';
+    // title = 'Email: $email';
+    // textFormat = Display.formated;
+  } else if (isSMS(res)) {
+    String num = res.substring(6, res.substring(7).indexOf(':') + 7);
+    String msg = res.substring(res.substring(7).indexOf(':') + 8);
+    formated = 'To : $num\nMessage : $msg';
+    // title = 'To : $num';
+    // textFormat = Display.formated;
+  } else if (isVCard(res)) {
+    Contact vc = Contact.fromVCard(res);
+    String name = vc.displayName;
+    String? addresses = '';
+    for (Address i in vc.addresses) {
+      if (i.address != '') {
+        addresses = '$addresses\n${i.label.name} address :  "${i.address}"';
+      }
+    }
+    String? emails = '';
+    for (Email i in vc.emails) {
+      emails = '$emails\n${i.label.name} email :  ${i.address}';
+    }
+    String? orgs = '';
+    for (Organization i in vc.organizations) {
+      orgs = '$orgs\n${i.company}, Job: ${i.title}';
+    }
+    String? phones = '';
+    for (Phone i in vc.phones) {
+      phones = '$phones\n${i.label.name} number: ${i.number}';
+    }
+    String? websites = '';
+    for (Website i in vc.websites) {
+      websites = '$websites\n${i.customLabel} number: ${i.url}';
+    }
+    formated = '''Name: $name$addresses$emails$orgs$phones$websites''';
+    // title = 'Name: $name';
+    // textFormat = Display.formated;
+  } else if (isGeo(res)) {
+    String lat;
+    String lon;
+    if (res.toUpperCase().contains('MAPS.GOOGLE.COM/LOCAL?Q=')) {
+      String ss = res.toUpperCase();
+      lat = ss.substring(ss.indexOf('?Q=') + 3, ss.indexOf(',')).trim();
+      lon = ss.substring(ss.lastIndexOf(',') + 1).trim();
+    } else {
+      lat = res.substring(res.indexOf(':') + 1, res.indexOf(','));
+      lon = res.substring(res.indexOf(',') + 1);
+    }
+    formated = 'Latitude: $lat\nLongitude: $lon';
+    // title = 'Lat:${lat.substring(
+    //   0,
+    //   lat.length < 6 ? null : 6,
+    // )} ,Lon:${lon.substring(
+    //   0,
+    //   lon.length < 6 ? null : 6,
+    // )}';
+    // textFormat = Display.formated;
+  } else if (isPhone(res)) {
+    String phn = res.substring(res.toUpperCase().indexOf('TEL:') + 4);
+    formated = 'Phone: $phn';
+    // title = '$formated';
+    // textFormat = Display.formated;
+  } else if (isWebURL(res)) {
+    // title = 'URL: $res';
+  } else if (isNum(res)) {
+    // title = 'Number: $res';
+  } else {
+    // title = res;
+  }
+  return formated;
 }
