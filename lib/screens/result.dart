@@ -343,7 +343,7 @@ class _ResultScreenState extends State<ResultScreen> {
 
   void _copy() async {
     await Clipboard.setData(
-      ClipboardData(text: result),
+      ClipboardData(text: getFormatText(result) ?? result),
     ).then(
       (value) => showSnackBar(context, 'Copied'),
     );
