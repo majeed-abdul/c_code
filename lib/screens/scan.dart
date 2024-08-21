@@ -44,7 +44,8 @@ class _ScanScreenState extends State<ScanScreen> {
       body: Stack(
         alignment: AlignmentDirectional.bottomEnd,
         children: <Widget>[
-          Container(child: _buildQrView()), // ScreenShot Comment
+          Container(child: _buildQrView()),
+          // ScreenShot Comment
           // Image.asset(
           //   'assets/screenshot.png',
           //   height: double.infinity,
