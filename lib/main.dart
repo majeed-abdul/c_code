@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:qr_maze/screens/scan.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:quick_settings/quick_settings.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -12,6 +13,17 @@ void main() async {
   await Hive.openBox<ScannedData>('scannedCodes');
   WidgetsFlutterBinding.ensureInitialized();
   MobileAds.instance.initialize();
+  QuickSettings.setup(
+    onTileClicked: (t) {
+      // runApp(const MyApp());
+      print("==== THIS IS HAPPNING");
+      return null;
+    },
+    onTileAdded: (t) {
+      return null;
+    },
+    onTileRemoved: () {},
+  );
   return runApp(
       // MultiProvider(
       //   providers: [

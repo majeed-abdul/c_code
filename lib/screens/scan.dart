@@ -43,14 +43,14 @@ class _ScanScreenState extends State<ScanScreen> {
       body: Stack(
         alignment: AlignmentDirectional.bottomEnd,
         children: <Widget>[
-          Container(child: _buildQrView()), // ScreenShot Comment
-          // Image.asset(
-          //   'assets/screenshot.png',
-          //   height: double.infinity,
-          //   fit: BoxFit.cover,
-          // ),
+          // Container(child: _buildQrView()), // ScreenShot Comment
+          Image.asset(
+            'assets/screenshot.png',
+            height: double.infinity,
+            fit: BoxFit.cover,
+          ),
           QRScannerOverlay(
-            overlayColor: Colors.black38,
+            overlayColor: Colors.black26,
           ),
           Padding(
             padding: const EdgeInsets.all(55),

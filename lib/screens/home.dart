@@ -1,4 +1,5 @@
 import 'package:qr_maze/screens/history.dart';
+import 'package:quick_settings/quick_settings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:qr_maze/screens/create.dart';
 import 'package:qr_maze/screens/info.dart';
@@ -19,6 +20,18 @@ late Widget bodyWidget;
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
+    //   QuickSettings.(
+    //   title: 'Open My App',
+    //   subtitle: 'Launch the app',
+    //   icon: 'ic_launcher', // Your app's launcher icon
+    //   onTap: () {
+    //     // Logic to handle tile tap
+    //     Navigator.push(
+    //       context,
+    //       MaterialPageRoute(builder: (context) => MyAppHomePage()),
+    //     );
+    //   },
+    // );
     SharedPreferences.getInstance().then((pref) {
       _index = pref.getInt('home') ?? 0;
       setState(() {});
