@@ -1,10 +1,13 @@
+// import 'package:flutter/services.dart';
+// import 'package:qr_maze/main.dart';
 import 'package:qr_maze/screens/history.dart';
-import 'package:quick_settings/quick_settings.dart';
+// import 'package:quick_settings/quick_settings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:qr_maze/screens/create.dart';
 import 'package:qr_maze/screens/info.dart';
 import 'package:qr_maze/screens/scan.dart';
 import 'package:flutter/material.dart';
+// import 'package:app_launcher/app_launcher.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -39,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
+  // static const methodChannel = MethodChannel("samples.flutter.dev/battery");
   @override
   Widget build(BuildContext context) {
     switch (_index) {
@@ -129,7 +133,21 @@ class _HomeScreenState extends State<HomeScreen> {
       //   debugPrint(
       //       '---------Connection result-----------: ${result.toString()}');
       // }),//.. 5
+      //
+      //
+      //===========================================================
+      //
+      //
 
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     // await AppLauncher.openApp(
+      //     //   //// TEST  ////
+      //     //   androidApplicationId: "com.abdul.qr_maze",
+      //     // );
+      //     // QuickSettingsHelper.openQuickSettings();
+      //   },
+      // ),
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.black,
         type: BottomNavigationBarType.fixed,
@@ -169,4 +187,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+  // static Future<bool?> openApp() async {
+  //   return await methodChannel.invokeMethod<bool>("getOpenApp");
+  // }
 }
