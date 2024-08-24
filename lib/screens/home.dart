@@ -18,49 +18,56 @@ class HomeScreen extends StatefulWidget {
 }
 
 int _index = 0;
-late Widget bodyWidget;
+// late Widget bodyWidget;
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
-    //   QuickSettings.(
-    //   title: 'Open My App',
-    //   subtitle: 'Launch the app',
-    //   icon: 'ic_launcher', // Your app's launcher icon
-    //   onTap: () {
-    //     // Logic to handle tile tap
-    //     Navigator.push(
-    //       context,
-    //       MaterialPageRoute(builder: (context) => MyAppHomePage()),
-    //     );
-    //   },
-    // );
     SharedPreferences.getInstance().then((pref) {
       _index = pref.getInt('home') ?? 0;
       setState(() {});
     });
+    pageController = PageController(initialPage: _index);
     super.initState();
   }
 
-  // static const methodChannel = MethodChannel("samples.flutter.dev/battery");
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
+
+  PageController pageController = PageController();
   @override
   Widget build(BuildContext context) {
-    switch (_index) {
-      case 0:
-        bodyWidget = const ScanScreen();
-        break;
-      case 1:
-        bodyWidget = const CreateScreen();
-        break;
-      case 2:
-        bodyWidget = const History();
-        break;
-      case 3:
-        bodyWidget = const InfoScreen();
-        break;
-    }
+    // switch (_index) {
+    //   case 0:
+    //     bodyWidget = const ScanScreen();
+    //     break;
+    //   case 1:
+    //     bodyWidget = const CreateScreen();
+    //     break;
+    //   case 2:
+    //     bodyWidget = const History();
+    //     break;
+    //   case 3:
+    //     bodyWidget = const InfoScreen();
+    //     break;
+    // }
     return Scaffold(
-      body: bodyWidget,
+      body: PageView(
+        controller: pageController,
+        onPageChanged: (i) => setState(() => _index = i),
+        children: const [
+          ScanScreen(),
+          CreateScreen(),
+          History(),
+          InfoScreen(),
+        ],
+      ),
+
+      //
+      //
       // floatingActionButton: FloatingActionButton(
       //   child: const Icon(Icons.add),
       //   // backgroundColor: Theme.of(context).primaryColorDark,
@@ -152,7 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
         unselectedItemColor: Colors.black,
         type: BottomNavigationBarType.fixed,
         currentIndex: _index,
-        onTap: (i) => setState(() => _index = i),
+        onTap: (i) => setState(() => pageController.jumpToPage(_index = i)),
         selectedLabelStyle: const TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.bold,
