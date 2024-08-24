@@ -159,7 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
         unselectedItemColor: Colors.black,
         type: BottomNavigationBarType.fixed,
         currentIndex: _index,
-        onTap: (i) => setState(() => pageController.jumpToPage(_index = i)),
+        onTap: (i) => pageController.jumpToPage(i),
         selectedLabelStyle: const TextStyle(
           fontSize: 12,
           fontWeight: FontWeight.bold,
