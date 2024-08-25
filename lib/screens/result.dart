@@ -25,7 +25,7 @@ class ResultScreen extends StatefulWidget {
 
 class _ResultScreenState extends State<ResultScreen> {
   ScrollController scrollCon = ScrollController();
-  String? formated;
+  // String? formated;
   bool support = false;
   String result = '';
 
