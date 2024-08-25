@@ -429,29 +429,29 @@ Hidden : ${hidd == 'TRUE' ? 'Yes' : 'No'}''';
   } else if (isVCard(res)) {
     Contact vc = Contact.fromVCard(res);
     String name = vc.displayName;
-    String? addresses = '';
+    String? address = '';
     for (Address i in vc.addresses) {
       if (i.address != '') {
-        addresses = '$addresses\n${i.label.name} address :  "${i.address}"';
+        address = '$address\n${i.label.name} address:  "${i.address}"';
       }
     }
     String? emails = '';
     for (Email i in vc.emails) {
-      emails = '$emails\n${i.label.name} email :  ${i.address}';
+      emails = '$emails\n${i.label.name} email:  ${i.address}';
     }
     String? orgs = '';
     for (Organization i in vc.organizations) {
-      orgs = '$orgs\n${i.company}, Job: ${i.title}';
+      orgs = '$orgs\norganization:  ${i.company}, title: ${i.title}';
     }
     String? phones = '';
     for (Phone i in vc.phones) {
-      phones = '$phones\n${i.label.name} number: ${i.number}';
+      phones = '$phones\n${i.label.name} number:  ${i.number}';
     }
     String? websites = '';
     for (Website i in vc.websites) {
-      websites = '$websites\n${i.customLabel} number: ${i.url}';
+      websites = '$websites\n${i.customLabel == '' ? 'web' : null}:  ${i.url}';
     }
-    formated = '''Name: $name$addresses$emails$orgs$phones$websites''';
+    formated = '''name:  $name$address$emails$orgs$phones$websites''';
     // title = 'Name: $name';
     // textFormat = Display.formated;
   } else if (isGeo(res)) {
