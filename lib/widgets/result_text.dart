@@ -432,7 +432,7 @@ Hidden : ${hidd == 'TRUE' ? 'Yes' : 'No'}''';
     String? address = '';
     for (Address i in vc.addresses) {
       if (i.address != '') {
-        address = '$address\n${i.label.name} address:  "${i.address}"';
+        address = '$address\n${i.label.name} address:  ${i.address}';
       }
     }
     String? emails = '';
