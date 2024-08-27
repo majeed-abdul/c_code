@@ -1,8 +1,9 @@
+import 'dart:typed_data';
+
 import 'package:barcode_widget/barcode_widget.dart';
 // import 'package:qr_maze/functions/ads.dart';
 import 'package:qr_maze/widgets/support_widgets.dart';
 import 'package:qr_maze/widgets/buttons.dart';
-// import 'package:qr_maze/widgets/loader.dart';
 import 'package:qr_maze/widgets/pop_ups.dart';
 import 'package:flutter/material.dart';
 import 'package:barcode_image/barcode_image.dart';
@@ -10,6 +11,7 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:image/image.dart' as img;
 // import 'package:provider/provider.dart';
 import 'package:image/image.dart';
+import 'package:share_plus/share_plus.dart';
 
 class CodeDisplayScreen extends StatefulWidget {
   const CodeDisplayScreen({
@@ -177,23 +179,36 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
       return;
     }
     try {
-      final image = img.Image(width: 1024, height: 1024);
-      fill(image, color: ColorRgb8(255, 255, 255));
-      drawBarcode(
-        image,
-        widget.barCode,
-        widget.data,
-        height: 871, //  871 insted of 872 for 76 px even padding across 4 sides
-        width: 871, //  1024-(76*2)-1
-        x: 76,
-        y: 76,
-      );
-      final png = img.encodePng(image);
+      final png = getImageFile();
       ImageGallerySaver.saveImage(png);
       showSnackBar(context, 'Image Saved to Pictures. ✔️');
       saved = true;
     } catch (e) {
       showSnackBar(context, 'Unable to save Pictures. ❌\n$e');
     }
+  }
+
+  Uint8List getImageFile() {
+    final image = img.Image(width: 1024, height: 1024);
+    fill(image, color: ColorRgb8(255, 255, 255));
+    drawBarcode(
+      image,
+      widget.barCode,
+      widget.data,
+      height: 871, //  871 insted of 872 for 76 px even padding across 4 sides
+      width: 871, //  1024-(76*2)-1
+      x: 76,
+      y: 76,
+    );
+    final png = img.encodePng(image);
+    return png;
+  }
+
+  shareImage() async {
+    final png = getImageFile();
+    final image = XFile.fromData(
+      png,
+    );
+    await Share.shareXFiles([image]);
   }
 }
