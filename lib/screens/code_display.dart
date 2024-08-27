@@ -96,7 +96,7 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
                           Column(
                             children: [
                               customButton(
-                                onPress: () => saveit(),
+                                onPress: () => shareImage(),
                                 icon: Icons.photo_library,
                               ),
                               const Text('Save', textAlign: TextAlign.center),
@@ -206,9 +206,11 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
 
   shareImage() async {
     final png = getImageFile();
-    final image = XFile.fromData(
+    final imageFile = XFile.fromData(
       png,
+      // name: fileName,
+      mimeType: 'image/png',
     );
-    await Share.shareXFiles([image]);
+    await Share.shareXFiles([imageFile]);
   }
 }
