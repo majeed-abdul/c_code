@@ -97,6 +97,15 @@ class _CodeDisplayScreenState extends State<CodeDisplayScreen> {
                             children: [
                               customButton(
                                 onPress: () => shareImage(),
+                                icon: Icons.share,
+                              ),
+                              const Text('Share', textAlign: TextAlign.center),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              customButton(
+                                onPress: () => saveit(),
                                 icon: Icons.photo_library,
                               ),
                               const Text('Save', textAlign: TextAlign.center),
