@@ -41,7 +41,7 @@
             android:value="ca-app-pub-8519985134285001~1863048259"/>
         <service
             android:name=".MyTileService"
-            android:icon="@mipmap/quickSettingIcon"
+            android:icon="@drawable/flutter"
             android:label="QR Scanner"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
             android:exported="true">
