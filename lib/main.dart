@@ -3,7 +3,7 @@ import 'package:qr_maze/data/hive/model.dart';
 import 'package:qr_maze/data/theme.dart';
 import 'package:qr_maze/screens/home.dart';
 import 'package:flutter/material.dart';
-import 'package:qr_maze/screens/scan.dart';
+import 'package:qr_maze/screens/onboarding.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -42,10 +42,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: HomeScreen.id,
+      initialRoute: OnBording.id,
       routes: {
+        OnBording.id: (context) => const OnBording(),
         HomeScreen.id: (context) => const HomeScreen(),
-        ScanScreen.id: (context) => const ScanScreen(),
       },
       theme: CustomTheme.lightThemeData(),
       // darkTheme: CustomTheme.darkThemeData(),
