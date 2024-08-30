@@ -7,7 +7,7 @@ import 'dart:io';
 
 class ScanScreen extends StatefulWidget {
   const ScanScreen({super.key});
-  static String id = 'scan_screen';
+  // static String id = 'scan_screen';
 
   @override
   State<ScanScreen> createState() => _ScanScreenState();
