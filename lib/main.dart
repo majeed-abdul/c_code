@@ -6,8 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:qr_maze/screens/scan.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-// import 'package:quick_settings/quick_settings.dart';
-// import 'package:flutter/services.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -42,11 +40,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // FocusManager.instance.primaryFocus?.dispose();
-
-    // FocusScope.of(context).unfocus(); //  For Keyboard Dismis
-    // FocusScope.of(context).; //  For Keyboard Dismis
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: HomeScreen.id,
