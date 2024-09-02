@@ -1,4 +1,3 @@
-// import 'package:app_launcher/app_launcher.dart';
 import 'package:qr_maze/data/hive/model.dart';
 import 'package:qr_maze/data/theme.dart';
 import 'package:qr_maze/screens/home.dart';
@@ -6,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:qr_maze/screens/onboarding.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+// import 'package:app_launcher/app_launcher.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -42,10 +42,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: OnBording.id,
+      initialRoute: SplashScreen.id,
       routes: {
         OnBording.id: (context) => const OnBording(),
         HomeScreen.id: (context) => const HomeScreen(),
+        SplashScreen.id: (context) => const SplashScreen(),
       },
       theme: CustomTheme.lightThemeData(),
       // darkTheme: CustomTheme.darkThemeData(),
