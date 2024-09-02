@@ -351,6 +351,103 @@ class _ResultTextState extends State<ResultText> {
             ],
           ),
         ),
+        // const SizedBox(height: 30),
+        // Container(
+        //   height: 180,
+        //   decoration: BoxDecoration(
+        //     shape: BoxShape.circle,
+        //     border: Border.all(width: 3),
+        //     // borderRadius: const BorderRadius.all(
+        //     //   Radius.circular(55),
+        //     // ),
+        //   ),
+        //   child: Row(
+        //     mainAxisAlignment: MainAxisAlignment.center,
+        //     children: [
+        //       Visibility(
+        //         visible: isWebURL(widget.res),
+        //         child: Padding(
+        //           padding: const EdgeInsets.only(right: 2),
+        //           child: veri == Verification.verifying
+        //               ? Image.asset(
+        //                   'assets/loader.gif',
+        //                   height: 20,
+        //                   width: 20,
+        //                 )
+        //               : veri == Verification.verified
+        //                   ? const Icon(
+        //                       Icons.verified_user,
+        //                       color: Colors.green,
+        //                       size: 54,
+        //                     )
+        //                   : veri == Verification.notverified
+        //                       ? const Icon(
+        //                           Icons.report,
+        //                           color: Colors.red,
+        //                           size: 19,
+        //                         )
+        //                       : const Icon(
+        //                           Icons.wifi_off,
+        //                           color: Colors.black87,
+        //                           size: 19,
+        //                         ),
+        //         ),
+        //       ),
+        //       Visibility(
+        //         visible: isWebURL(widget.res),
+        //         child: Text(
+        //           veri == Verification.verifying
+        //               ? 'Verifying...'
+        //               : veri == Verification.verified
+        //                   ? 'Safe'
+        //                   : veri == Verification.notverified
+        //                       ? 'Something is Wrong'
+        //                       : 'No Connection',
+        //           style: const TextStyle(
+        //             fontSize: 39,
+        //             color: Colors.black,
+        //             fontWeight: FontWeight.w500,
+        //           ),
+        //         ),
+        //       ),
+        //       Visibility(
+        //         visible: formated != null,
+        //         child: SegmentedButton<Display>(
+        //           segments: const <ButtonSegment<Display>>[
+        //             ButtonSegment(
+        //               value: Display.formated,
+        //               label: Text('Clean', style: TextStyle(fontSize: 12)),
+        //             ),
+        //             ButtonSegment(
+        //               value: Display.raw,
+        //               label: Text('Raw', style: TextStyle(fontSize: 12)),
+        //             ),
+        //           ],
+        //           selected: <Display>{textFormat},
+        //           showSelectedIcon: false,
+        //           onSelectionChanged: (Set<Display> newSelection) {
+        //             setState(() {
+        //               textFormat = newSelection.first;
+        //             });
+        //           },
+        //           style: const ButtonStyle(
+        //             visualDensity: VisualDensity(
+        //               horizontal: -3,
+        //               vertical: -3,
+        //             ),
+        //             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        //             // shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+        //             // RoundedRectangleBorder(
+        //             //     // side: const BorderSide(width: 3, color: Colors.amber),
+        //             //     // borderRadius: BorderRadius.circular(30),
+        //             //     ),
+        //             // ),
+        //           ),
+        //         ),
+        //       ),
+        //     ],
+        //   ),
+        // ),
       ],
     );
   }
