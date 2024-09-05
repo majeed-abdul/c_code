@@ -19,13 +19,21 @@ Container supportBottomSheet(BuildContext context) {
         const Padding(
           padding: EdgeInsets.only(
             top: 20,
-            bottom: 14,
+            bottom: 7,
           ),
           child: Text(
             'Please Support Us',
             style: TextStyle(fontSize: 16),
-            selectionColor: Colors.black54,
+            // selectionColor: Colors.black54,
           ),
+        ),
+        const Text(
+          "Automatic Ad will be triggered after this.",
+          style: TextStyle(
+            fontSize: 13,
+            color: Colors.black54,
+          ),
+          // selectionColor: Colors.grey,
         ),
         const Divider(),
         shareApp(context),
