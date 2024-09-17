@@ -42,10 +42,12 @@ Future<void> showInterstitialAd(BuildContext context) async {
       onAdLoaded: (ad) {
         ad.fullScreenContentCallback = FullScreenContentCallback(
           onAdFailedToShowFullScreenContent: ((ad, err) {
+            debugPrint('=== Ad Failed to Show:$err');
             ad.dispose();
             // context.read<AdLoader>().loaderOff();
           }),
           onAdDismissedFullScreenContent: ((ad) {
+            debugPrint('=== Ad Dismissed');
             showThankYouPopup(context);
             ad.dispose();
             // context.read<AdLoader>().loaderOff();
@@ -57,7 +59,12 @@ Future<void> showInterstitialAd(BuildContext context) async {
         // _loadAndShowAd1(context);
 
         _currentAdIndex++;
-        showInterstitialAd(context);
+        if (_currentAdIndex < _adUnitIDs.length) {
+          showInterstitialAd(context);
+        } else {
+          showSnackBar(context, 'Unable to show Ad, but Thanks ❤️');
+          _currentAdIndex = 0;
+        }
       },
     ),
   );
