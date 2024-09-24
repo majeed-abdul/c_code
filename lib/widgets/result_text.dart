@@ -28,7 +28,6 @@ class _ResultTextState extends State<ResultText> {
   @override
   void initState() {
     result = widget.res;
-    // result = widget.res;
     String title = ' ';
 
     if (isWiFi(result)) {
@@ -36,29 +35,7 @@ class _ResultTextState extends State<ResultText> {
         result.toUpperCase().indexOf('S:') + 2,
         result.indexOf(';', result.toUpperCase().indexOf('S:') + 1),
       );
-//       String pass = result.substring(
-//         result.toUpperCase().indexOf('P:') + 2,
-//         result.indexOf(';', result.toUpperCase().indexOf('P:') + 1),
-//       );
-//       String encr = result.substring(
-//         result.toUpperCase().indexOf('T:') + 2,
-//         result.indexOf(';', result.toUpperCase().indexOf('T:') + 1),
-//       );
-//       String hidd = result
-//           .substring(
-//             result.toUpperCase().contains('H:')
-//                 ? result.toUpperCase().indexOf('H:') + 2
-//                 : result.indexOf(';'),
-//             result.indexOf(';', result.toUpperCase().indexOf('H:') + 1),
-//           )
-//           .toUpperCase()
-//           .trim();
-//       formated = '''Name : $name
-// Password : ${encr.toUpperCase() == "NOPASS" ? '' : pass}
-// Encryption : ${encr.toUpperCase() == "NOPASS" ? 'None' : encr}
-// Hidden : ${hidd == 'TRUE' ? 'Yes' : 'No'}''';
       title = 'WIFI: $name';
-      // textFormat = Display.formated;
     } else if (isEmail(result)) {
       String email = result.toUpperCase().startsWith('MAILTO:')
           ? result.substring(
@@ -67,66 +44,14 @@ class _ResultTextState extends State<ResultText> {
             )
           : result.substring(result.toUpperCase().indexOf(':TO:') + 4,
               result.toUpperCase().indexOf(';SUB:'));
-      // String subje = result.toUpperCase().startsWith('MAILTO:')
-      //     ? result.substring(
-      //         result.toUpperCase().contains('SUBJECT=')
-      //             ? result.toUpperCase().indexOf('SUBJECT=') + 8
-      //             : result.length, // mailto:
-      //         result.toUpperCase().contains('&BODY=')
-      //             ? result.toUpperCase().indexOf('&BODY=')
-      //             : null,
-      //       )
-      //     : result.substring(
-      //         result.toUpperCase().indexOf(';SUB:') + 5,
-      //         result.indexOf(';BODY:'),
-      //       );
-      // String messa = result.toUpperCase().startsWith('MAILTO:')
-      //     ? result.substring(
-      //         result.toUpperCase().contains('BODY=')
-      //             ? result.toUpperCase().indexOf('BODY=') + 5
-      //             : result.length, // mailto:
-      //       )
-      //     : result.substring(
-      //         result.toUpperCase().indexOf(';BODY:') + 6,
-      //         result.lastIndexOf(';') - 1,
-      //       );
-      // formated = 'To : $email\nSubject : $subje\nMessage : $messa';
       title = 'Email: $email';
-      // textFormat = Display.formated;
     } else if (isSMS(result)) {
       String num = result.substring(6, result.substring(7).indexOf(':') + 7);
-      // String msg = result.substring(result.substring(7).indexOf(':') + 8);
-      // formated = 'To : $num\nMessage : $msg';
       title = 'To : $num';
-      // textFormat = Display.formated;
     } else if (isVCard(result)) {
       Contact vc = Contact.fromVCard(result);
       String name = vc.displayName;
-      // String? addresses = '';
-      // for (Address i in vc.addresses) {
-      //   if (i.address != '') {
-      //     addresses = '$addresses\n${i.label.name} address :  "${i.address}"';
-      //   }
-      // }
-      // String? emails = '';
-      // for (Email i in vc.emails) {
-      //   emails = '$emails\n${i.label.name} email :  ${i.address}';
-      // }
-      // String? orgs = '';
-      // for (Organization i in vc.organizations) {
-      //   orgs = '$orgs\n${i.company}, Job: ${i.title}';
-      // }
-      // String? phones = '';
-      // for (Phone i in vc.phones) {
-      //   phones = '$phones\n${i.label.name} number: ${i.number}';
-      // }
-      // String? websites = '';
-      // for (Website i in vc.websites) {
-      //   websites = '$websites\n${i.customLabel} number: ${i.url}';
-      // }
-      // formated = '''Name: $name$addresses$emails$orgs$phones$websites''';
       title = 'Name: $name';
-      // textFormat = Display.formated;
     } else if (isGeo(result)) {
       String lat;
       String lon;
@@ -138,7 +63,6 @@ class _ResultTextState extends State<ResultText> {
         lat = result.substring(result.indexOf(':') + 1, result.indexOf(','));
         lon = result.substring(result.indexOf(',') + 1);
       }
-      // formated = 'Latitude: $lat\nLongitude: $lon';
       title = 'Lat:${lat.substring(
         0,
         lat.length < 6 ? null : 6,
@@ -146,12 +70,9 @@ class _ResultTextState extends State<ResultText> {
         0,
         lon.length < 6 ? null : 6,
       )}';
-      // textFormat = Display.formated;
     } else if (isPhone(result)) {
       String phn = result.substring(result.toUpperCase().indexOf('TEL:') + 4);
-      // formated = 'Phone: $phn';
       title = 'Phone: $phn';
-      // textFormat = Display.formated;
     } else if (isWebURL(result)) {
       title = 'URL: $result';
     } else if (isNum(result)) {
@@ -171,8 +92,6 @@ class _ResultTextState extends State<ResultText> {
         ),
       );
     }
-
-    /// let code below
     // context.read<AdLoader>().loaderOff();
     if (isWebURL(result)) {
       InternetConnectionChecker().hasConnection.then((value) {
@@ -198,12 +117,6 @@ class _ResultTextState extends State<ResultText> {
           veri = Verification.noconnection;
         }
       });
-// if(result == true) {
-//   print('YAY! Free cute dog pics!');
-// } else {
-//   print('No internet :( Reason:');
-//   print(InternetConnectionChecker().lastTryResults);
-// }
     }
     super.initState();
   }
@@ -248,7 +161,9 @@ class _ResultTextState extends State<ResultText> {
                             String name = result.substring(
                               result.toUpperCase().indexOf('S:') + 2,
                               result.indexOf(
-                                  ';', result.toUpperCase().indexOf('S:') + 1),
+                                ';',
+                                result.toUpperCase().indexOf('S:') + 1,
+                              ),
                             );
                             wifiQR(context, name, result);
                           },
@@ -331,12 +246,6 @@ class _ResultTextState extends State<ResultText> {
                               vertical: -3,
                             ),
                             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                            // shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            // RoundedRectangleBorder(
-                            //     // side: const BorderSide(width: 3, color: Colors.amber),
-                            //     // borderRadius: BorderRadius.circular(30),
-                            //     ),
-                            // ),
                           ),
                         ),
                       ),
