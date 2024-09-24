@@ -822,19 +822,20 @@ class _CreateScreenState extends State<CreateScreen> {
   }
 
   GridView buttonsGrid() {
-    Size size = MediaQuery.of(context).size;
+    // Size size = MediaQuery.of(context).size;
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       // scrollDirection: Axis.horizontal,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisSpacing: 7,
-        childAspectRatio: 3,
-        mainAxisSpacing: 7,
-        mainAxisExtent: 45,
-        crossAxisCount:
-            (size.width >= size.height) || (size.width > 900) ? 3 : 2,
-      ),
+      gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+          crossAxisSpacing: 7,
+          childAspectRatio: 3,
+          mainAxisSpacing: 7,
+          mainAxisExtent: 45,
+          maxCrossAxisExtent: 250
+          // crossAxisCount:
+          //     (size.width >= size.height) || (size.width > 900) ? 3 : 2,
+          ),
       padding: const EdgeInsets.symmetric(horizontal: 15),
       itemCount: creates.length,
       // separatorBuilder: (context, index) {
