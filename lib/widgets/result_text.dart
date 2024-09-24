@@ -1,3 +1,4 @@
+import 'package:dart_ping/dart_ping.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -25,6 +26,7 @@ class _ResultTextState extends State<ResultText> {
   Verification veri = Verification.verifying;
   late String result;
   String? formated;
+  late bool urlExists;
   @override
   void initState() {
     result = widget.res;
@@ -96,22 +98,7 @@ class _ResultTextState extends State<ResultText> {
     if (isWebURL(result)) {
       InternetConnectionChecker().hasConnection.then((value) {
         if (value) {
-          safeUrlCheck(
-            Uri.parse(result),
-            timeout: const Duration(seconds: 20),
-          ).then((value) {
-            switch (value) {
-              case true:
-                veri = Verification.verified;
-                break;
-              case false:
-                veri = Verification.notverified;
-                break;
-              default:
-                veri = Verification.noconnection;
-            }
-            setState(() {});
-          });
+          checkURL(result);
         } else {
           setState(() {});
           veri = Verification.noconnection;
@@ -210,7 +197,7 @@ class _ResultTextState extends State<ResultText> {
                               : veri == Verification.verified
                                   ? 'Safe'
                                   : veri == Verification.notverified
-                                      ? 'Something is Wrong'
+                                      ? 'Unsecured'
                                       : 'No Connection',
                           style: const TextStyle(
                             fontSize: 13,
@@ -360,6 +347,29 @@ class _ResultTextState extends State<ResultText> {
       ],
     );
   }
+
+  checkURL(String r) async {
+    safeUrlCheck(
+      Uri.parse(r),
+      timeout: const Duration(seconds: 20),
+    ).then((value) {
+      switch (value) {
+        case true:
+          veri = Verification.verified;
+          break;
+        case false:
+          veri = Verification.notverified;
+          break;
+        default:
+          veri = Verification.noconnection;
+      }
+      setState(() {});
+    });
+    r = 'htps://google.com';
+    final res = await Ping(r, count: 1).stream.first;
+    urlExists = res.error?.error.index == null ? true : false;
+    print('================= $r = $urlExists = ${res.error?.error}');
+  }
 }
 
 String? getFormatText(String res) {
@@ -390,8 +400,6 @@ String? getFormatText(String res) {
 Password : ${encr.toUpperCase() == "NOPASS" ? '' : pass}
 Encryption : ${encr.toUpperCase() == "NOPASS" ? 'None' : encr}
 Hidden : ${hidd == 'TRUE' ? 'Yes' : 'No'}''';
-    // title = 'WIFI: $name';
-    // textFormat = Display.formated;
   } else if (isEmail(res)) {
     String email = res.toUpperCase().startsWith('MAILTO:')
         ? res.substring(
@@ -424,14 +432,10 @@ Hidden : ${hidd == 'TRUE' ? 'Yes' : 'No'}''';
             res.lastIndexOf(';') - 1,
           );
     formated = 'To : $email\nSubject : $subje\nMessage : $messa';
-    // title = 'Email: $email';
-    // textFormat = Display.formated;
   } else if (isSMS(res)) {
     String num = res.substring(6, res.substring(7).indexOf(':') + 7);
     String msg = res.substring(res.substring(7).indexOf(':') + 8);
     formated = 'To : $num\nMessage : $msg';
-    // title = 'To : $num';
-    // textFormat = Display.formated;
   } else if (isVCard(res)) {
     Contact vc = Contact.fromVCard(res);
     String name = vc.displayName;
