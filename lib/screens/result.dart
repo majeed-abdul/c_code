@@ -25,13 +25,12 @@ class ResultScreen extends StatefulWidget {
 
 class _ResultScreenState extends State<ResultScreen> {
   ScrollController scrollCon = ScrollController();
-  // String? formated;
   bool support = false;
   String result = '';
 
   @override
   void initState() {
-    Future.delayed(const Duration(milliseconds: 500)).then(
+    Future.delayed(const Duration(milliseconds: 250)).then(
       (value) => scrollCon.animateTo(
         scrollCon.position.maxScrollExtent,
         curve: Curves.fastOutSlowIn,
@@ -77,8 +76,10 @@ class _ResultScreenState extends State<ResultScreen> {
               physics: const BouncingScrollPhysics(),
               controller: scrollCon,
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 25,
+                  vertical: 15,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
