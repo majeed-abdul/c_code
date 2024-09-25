@@ -69,6 +69,7 @@ dependencies:
   qr_scanner_overlay: ^0.0.2
   # quick_settings: ^1.0.1
   app_launcher: ^1.0.1  # Android Only
+  dart_ping: ^9.0.1
 
 dev_dependencies:
   flutter_test:
