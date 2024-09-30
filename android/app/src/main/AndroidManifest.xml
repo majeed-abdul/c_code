@@ -7,8 +7,9 @@
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBW3nI_a1hK3-xFxzxlZOL_SvynqHLK2IQ"/>
+            <!-- android:name=".MainActivity" -->
         <activity
-            android:name=".MainActivity"
+            android:name="io.flutter.embedding.android.FlutterActivity"
             android:exported="true"
             android:launchMode="singleTop"
             android:taskAffinity=""
@@ -37,6 +38,17 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-8519985134285001~1863048259"/>
+        <service
+            android:name=".MyTileService"
+            android:icon="@drawable/flutter"
+            android:label="QR Scanner"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE"/>
+            </intent-filter>
+       </service>
     </application>
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility and
@@ -50,3 +62,4 @@
         </intent>
     </queries>
 </manifest>
+

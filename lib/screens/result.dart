@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:qr_maze/functions/ads.dart';
 import 'package:qr_maze/functions/result_idenity.dart';
 import 'package:qr_maze/widgets/result_text.dart';
@@ -23,13 +25,12 @@ class ResultScreen extends StatefulWidget {
 
 class _ResultScreenState extends State<ResultScreen> {
   ScrollController scrollCon = ScrollController();
-  String? formated;
   bool support = false;
   String result = '';
 
   @override
   void initState() {
-    Future.delayed(const Duration(milliseconds: 500)).then(
+    Future.delayed(const Duration(milliseconds: 250)).then(
       (value) => scrollCon.animateTo(
         scrollCon.position.maxScrollExtent,
         curve: Curves.fastOutSlowIn,
@@ -75,8 +76,10 @@ class _ResultScreenState extends State<ResultScreen> {
               physics: const BouncingScrollPhysics(),
               controller: scrollCon,
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 25,
+                  vertical: 15,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -341,21 +344,21 @@ class _ResultScreenState extends State<ResultScreen> {
 
   void _copy() async {
     await Clipboard.setData(
-      ClipboardData(text: result),
+      ClipboardData(text: getFormatText(result) ?? result),
     ).then(
       (value) => showSnackBar(context, 'Copied'),
     );
   }
 
   void _browse() async {
-    Uri url = Uri.parse(widget.result.code ?? '');
+    Uri url = Uri.parse(result);
     launchUrl(url, mode: LaunchMode.externalApplication);
   }
 
   void _contact() async {
-    // Contact contact = Contact.fromVCard('${widget.result.code}');
+    // Contact contact = Contact.fromVCard(result);
     // await contact.insert();
-    String word = '${widget.result.code}';
+    String word = result;
     Contact vc = Contact.fromVCard(word);
     String num = vc.phones[0].number;
     if (num.isEmpty) {
@@ -373,7 +376,7 @@ class _ResultScreenState extends State<ResultScreen> {
   void _locate() async {
     double lat;
     double lon;
-    String ss = widget.result.code!.toUpperCase();
+    String ss = result.toUpperCase();
     if (result.toUpperCase().contains('MAPS.GOOGLE.COM/LOCAL?Q=')) {
       lat = double.parse(
         ss.substring(ss.indexOf('?Q=') + 3, ss.indexOf(',')).trim(),
@@ -414,7 +417,7 @@ class _ResultScreenState extends State<ResultScreen> {
   }
 
   void _mail() async {
-    String word = '${widget.result.code}';
+    String word = result;
 
     final Uri emailLaunchUri = Uri(
       scheme: 'mailto',
@@ -459,7 +462,7 @@ class _ResultScreenState extends State<ResultScreen> {
   }
 
   void _sms() async {
-    String word = '${widget.result.code}';
+    String word = result;
 
     final Uri smsLaunchUri = Uri(
       scheme: 'sms',
@@ -474,7 +477,7 @@ class _ResultScreenState extends State<ResultScreen> {
   }
 
   void _wifiConect() async {
-    String word = '${widget.result.code}';
+    String word = result;
     String ssid = word.substring(
       word.toUpperCase().indexOf('S:') + 2,
       word.indexOf(';', word.toUpperCase().indexOf('S:') + 1),
@@ -511,7 +514,6 @@ class _ResultScreenState extends State<ResultScreen> {
         isHidden: hidden.toUpperCase() == 'TRUE',
       );
     } catch (e) {
-      // ignore: use_build_context_synchronously
       showSnackBar(context, 'Try ti connect Manually\n ($e)');
     }
   }

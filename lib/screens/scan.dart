@@ -2,13 +2,12 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:qr_maze/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_maze/screens/result.dart';
-import 'dart:io';
-
 import 'package:qr_scanner_overlay/qr_scanner_overlay.dart';
+import 'dart:io';
 
 class ScanScreen extends StatefulWidget {
   const ScanScreen({super.key});
-  static String id = 'scan_screen';
+  // static String id = 'scan_screen';
 
   @override
   State<ScanScreen> createState() => _ScanScreenState();
@@ -38,19 +37,27 @@ class _ScanScreenState extends State<ScanScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool isPotrait =
+        MediaQuery.of(context).size.width < MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.black,
       body: Stack(
         alignment: AlignmentDirectional.bottomEnd,
         children: <Widget>[
-          Container(child: _buildQrView()), // ScreenShot Comment
+          Container(child: _buildQrView()),
+          // ScreenShot Comment
           // Image.asset(
           //   'assets/screenshot.png',
           //   height: double.infinity,
           //   fit: BoxFit.cover,
           // ),
           QRScannerOverlay(
-            overlayColor: Colors.black38,
+            overlayColor: Colors.black26,
+            scanAreaSize: Size.square(
+              isPotrait
+                  ? MediaQuery.of(context).size.width - 90
+                  : MediaQuery.of(context).size.height - 125,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(55),

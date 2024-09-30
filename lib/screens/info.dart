@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:qr_maze/widgets/pop_ups.dart';
 import 'package:qr_maze/widgets/support_widgets.dart';
